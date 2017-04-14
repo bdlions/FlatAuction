@@ -1,0 +1,18 @@
+Member registration
+<form role="form" (submit)="registerUser($event)" method="post">
+    <div class="form-group">
+        <label for="username">First name:</label>
+        <input name="firstName" [(ngModel)]="user.firstName">
+    </div>
+    <div class="form-group">
+        <label for="lastName">Last name:</label>
+        <input name="lastName" [(ngModel)]="user.lastName">
+    </div>
+
+    <button type="submit" class="btn btn-default">Submit</button>
+
+</form>
+<p>Hello {{user.firstName}} {{user.lastName}}</p>
+<br/>
+<br/>
+<br/>
