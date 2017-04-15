@@ -12,7 +12,6 @@ import {Search} from '../common/search';
 // Define which component should be loaded based on the current URL
 export const routes: Routes = [
     {path: '', component: Landing},
-    //  { path: 'login',  component: Signup },
     {path: 'signup', component: Signup},
     {path: 'search', component: Search},
     //  { path: 'home',   component: Home, canActivate: [AuthGuard] },

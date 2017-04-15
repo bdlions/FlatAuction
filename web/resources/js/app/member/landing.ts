@@ -18,7 +18,9 @@ export class Landing {
 
     login(event: Event, username: string, password: string) {
         event.preventDefault();
-        this.router.navigate(['login']);
+        window.location.replace("/");
+        window.location.href = "member.jsp";
+//        this.router.navigateByUrl('login');
     }
 
     signup(event: Event) {
