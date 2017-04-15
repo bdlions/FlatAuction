@@ -16,6 +16,7 @@ var auth_guard_1 = require("../common/auth.guard");
 var NonMemberApp_1 = require("../NonMemberApp");
 var signup_1 = require("../member/signup");
 var landing_1 = require("../member/landing");
+var search_1 = require("../common/search");
 var NonMemberAppModule = (function () {
     function NonMemberAppModule() {
     }
@@ -28,7 +29,7 @@ NonMemberAppModule = __decorate([
                 useHash: false
             })
         ],
-        declarations: [signup_1.Signup, NonMemberApp_1.NonMemberApp, landing_1.Landing],
+        declarations: [signup_1.Signup, NonMemberApp_1.NonMemberApp, landing_1.Landing, search_1.Search],
         bootstrap: [NonMemberApp_1.NonMemberApp],
         providers: [auth_guard_1.AuthGuard, { provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }]
     })

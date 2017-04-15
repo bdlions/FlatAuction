@@ -11,6 +11,7 @@ import {AuthGuard} from '../common/auth.guard';
 import {NonMemberApp} from '../NonMemberApp';
 import {Signup} from '../member/signup';
 import {Landing} from '../member/landing';
+import {Search} from '../common/search';
 
 
 
@@ -20,7 +21,7 @@ import {Landing} from '../member/landing';
             useHash: false
         })
     ],
-    declarations: [Signup, NonMemberApp, Landing],
+    declarations: [Signup, NonMemberApp, Landing, Search],
     bootstrap: [NonMemberApp],
     providers: [AuthGuard, {provide: LocationStrategy, useClass: HashLocationStrategy}]
 })

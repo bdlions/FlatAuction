@@ -10,18 +10,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var MemberApp = (function () {
-    function MemberApp(router) {
+var Search = (function () {
+    function Search(router) {
         this.router = router;
     }
-    return MemberApp;
+    Search.prototype.ngOnInit = function () {
+        var _this = this;
+        this.subscribe = this.router.params.subscribe(function (params) {
+            _this.id = params['id'];
+            console.log(_this.id);
+        });
+    };
+    Search.prototype.ngOnDestroy = function () {
+        this.subscribe.unsubscribe();
+    };
+    return Search;
 }());
-MemberApp = __decorate([
+Search = __decorate([
     core_1.Component({
         selector: 'data-content',
-        templateUrl: "./../../../html_components/public/app.html",
+        templateUrl: "./../../../../html_components/public/search.html",
     }),
-    __metadata("design:paramtypes", [router_1.Router])
-], MemberApp);
-exports.MemberApp = MemberApp;
-//# sourceMappingURL=MemberApp.js.map
+    __metadata("design:paramtypes", [router_1.ActivatedRoute])
+], Search);
+exports.Search = Search;
+//# sourceMappingURL=Search.js.map

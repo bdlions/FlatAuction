@@ -24,6 +24,10 @@ var Landing = (function () {
         event.preventDefault();
         this.router.navigate(['signup']);
     };
+    Landing.prototype.search = function (event, id) {
+        event.preventDefault();
+        this.router.navigate(['search', { id: id }]);
+    };
     return Landing;
 }());
 Landing = __decorate([

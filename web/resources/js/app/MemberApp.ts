@@ -5,17 +5,12 @@ import {Http} from '@angular/http';
 
 @Component({
     selector: 'data-content',
-    templateUrl: "./../../../html_components/public/index.html",
+    templateUrl: "./../../../html_components/public/app.html",
 })
 export class MemberApp {
-    constructor(public router: Router, public http: Http) {
+    constructor(public router: Router) {
         
     }
-    
-//    signup(event: Event) {
-//        event.preventDefault();
-//        console.log("signup");
-//        this.router.navigate(['signup']);
-//    }
+
 }
 

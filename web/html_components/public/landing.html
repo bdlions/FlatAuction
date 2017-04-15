@@ -19,16 +19,25 @@ product list<br/>
 
 
 <ul>
-  <li *ngFor="let product of productList">
-    location type: {{product.location_type}} query string: {{product.search_string}}
-  </li>
+    <li *ngFor="let product of productList">
+        location type: {{product.location_type}} query string: {{product.search_string}}
+</li>
 </ul>
 
 
 featured product list<br/>
 ============================<br/>
 <ul>
-  <li *ngFor="let product of featuredProductList">
-    id: {{product.id}} , title: {{product.title}}, price : {{product.price}}
-  </li>
+    <li *ngFor="let product of featuredProductList">
+        id: {{product.id}} , title: {{product.title}}, price : {{product.price}}
+</li>
 </ul>
+
+<form role="form" (submit)="search($event, searchId.value)">
+      <div class="form-group">
+        <label for="id">Search Id</label>
+        <input type="text" #searchId class="form-control" id="searchId" placeholder="searchId">
+    </div>
+
+    <button type="submit" class="btn btn-default">Search</button>
+</form>
