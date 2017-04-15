@@ -16,7 +16,7 @@ var auth_guard_1 = require("../common/auth.guard");
 //
 var MemberApp_1 = require("../MemberApp");
 //import {App} from './app';
-//import {Home} from './home';
+var dashboard_1 = require("../member/dashboard");
 //import {Abroad} from './abroad';
 //import {Header} from './header';
 var MemberAppModule = (function () {
@@ -31,7 +31,7 @@ MemberAppModule = __decorate([
                 useHash: false
             })
         ],
-        declarations: [MemberApp_1.MemberApp],
+        declarations: [MemberApp_1.MemberApp, dashboard_1.DashBoard],
         bootstrap: [MemberApp_1.MemberApp],
         providers: [auth_guard_1.AuthGuard, { provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }]
     })

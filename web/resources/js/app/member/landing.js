@@ -18,9 +18,9 @@ var Landing = (function () {
     }
     Landing.prototype.login = function (event, username, password) {
         event.preventDefault();
+        localStorage.setItem("username", username);
         window.location.replace("/");
         window.location.href = "member.jsp";
-        //        this.router.navigateByUrl('login');
     };
     Landing.prototype.signup = function (event) {
         event.preventDefault();

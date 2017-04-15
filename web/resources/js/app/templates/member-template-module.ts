@@ -12,7 +12,7 @@ import {AuthGuard} from '../common/auth.guard';
 import {MemberApp} from '../MemberApp';
 import {Signup} from '../member/signup';
 //import {App} from './app';
-//import {Home} from './home';
+import {DashBoard} from "../member/dashboard";
 //import {Abroad} from './abroad';
 //import {Header} from './header';
 
@@ -23,7 +23,7 @@ import {Signup} from '../member/signup';
             useHash: false
         })
     ],
-    declarations: [MemberApp],
+    declarations: [MemberApp, DashBoard],
     bootstrap: [MemberApp],
     providers: [AuthGuard, {provide: LocationStrategy, useClass: HashLocationStrategy}]
 })

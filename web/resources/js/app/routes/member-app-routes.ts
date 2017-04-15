@@ -2,14 +2,14 @@
 import {Routes} from '@angular/router';
 import {AuthGuard} from '../common/auth.guard';
 import {MemberApp} from "../MemberApp";
-import {Signup} from "../member/signup";
+import {DashBoard} from "../member/dashboard";
 
 // Define which component should be loaded based on the current URL
 export const routes: Routes = [
-//    {path: '', component: MemberApp},
-//    {path: 'signup', component: Signup},
+    {path: '', component: DashBoard, canActivate: [AuthGuard]},
+    //    {path: 'signup', component: Signup},
     //  { path: 'signup', component: Signup },
-    //  { path: 'home',   component: Home, canActivate: [AuthGuard] },
+    {path: 'home', component: DashBoard, canActivate: [AuthGuard]},
     //  { path: 'abroad',   component: Abroad, canActivate: [AuthGuard] },
-    //  { path: '**',     component: Login },
+    {path: '**', component: DashBoard, canActivate: [AuthGuard] },
 ];

@@ -18,9 +18,9 @@ export class Landing {
 
     login(event: Event, username: string, password: string) {
         event.preventDefault();
+        localStorage.setItem("username", username);
         window.location.replace("/");
         window.location.href = "member.jsp";
-//        this.router.navigateByUrl('login');
     }
 
     signup(event: Event) {

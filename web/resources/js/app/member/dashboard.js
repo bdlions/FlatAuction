@@ -10,28 +10,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var AuthGuard = (function () {
-    function AuthGuard(router) {
+var http_1 = require("@angular/http");
+var DashBoard = (function () {
+    function DashBoard(router, http) {
         this.router = router;
+        this.http = http;
     }
-    AuthGuard.prototype.canActivate = function () {
-        // Check to see if a user has a valid JWT
-        if (localStorage.getItem('username')) {
-            // If they do, return true and allow the user to load the home component
-            console.log(localStorage.getItem("username"));
-            return true;
-        }
-        console.log("no user exists");
-        // If not, they redirect them to the login page
-        //        this.router.navigate(['/login']);
-        window.location.href = "non-member.jsp";
-        return false;
-    };
-    return AuthGuard;
+    return DashBoard;
 }());
-AuthGuard = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [router_1.Router])
-], AuthGuard);
-exports.AuthGuard = AuthGuard;
-//# sourceMappingURL=auth.guard.js.map
+DashBoard = __decorate([
+    core_1.Component({
+        selector: 'data-content1ddd',
+        templateUrl: "./../../../../html_components/public/index.html",
+    }),
+    __metadata("design:paramtypes", [router_1.Router, http_1.Http])
+], DashBoard);
+exports.DashBoard = DashBoard;
+//# sourceMappingURL=dashboard.js.map
