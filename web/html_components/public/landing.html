@@ -1,4 +1,68 @@
-<div class="login jumbotron center-block">
+<div class="container">
+    <div class="row form-group">
+        <div class="col-xs-12 col-sm-7 col-md-8 col-lg-8 form-group">
+            <div class="search-box-pagelet form-group">
+                <form role="form" (submit)="search($event, searchId.value)">
+                      <div class="row form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <h1 for="id" class="text-center search-box-header-text">Find your soltion</h1>
+                            <h3 for="id" class="text-center search-box-small-text">Search properties for sale and to rent</h3>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 form-group">
+                            <input type="text" #searchId class="form-control search-input-field" id="searchId" placeholder="Search for Your Result">
+                            <div class="search-box-search-result-layout"> 
+                                <ul class="search-box-search-result-ul">
+                                    <li *ngFor="let product of productList">
+                                        location type: {{product.location_type}} query string: {{product.search_string}}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 form-group">
+                        <button type="submit" class="form-control common-custom-button">Sale</button>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 form-group">
+                        <button type="submit" class="form-control common-custom-button">Rent</button>
+                    </div>
+                </div>
+            </form> 
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
+        <form role="form" (submit)="login($event, username.value, password.value)">
+              <div class="login-pagelet">
+                <div class="login-block">
+                    <h1>Login</h1>
+                    <div class="row form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <button type="submit" class="form-control login-facebook-button"><i class="fa fa-facebook"></i>&nbsp;&nbsp; Log in with Facebook</button> 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <input type="text" #username id="username" class="form-control input-custom-field" placeholder="Username"/>
+                            <input type="text" #password id="password" class="form-control input-custom-field" placeholder="Password"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 form-group">
+                            <button type="submit" class="form-control common-custom-button">Submit</button> 
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="sign-up-anchor">
+                                <a [routerLink]="['/signup']" (click)="signup($event)">Click here to Signup</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+<!--<div class="login jumbotron center-block">
     <h1>Login</h1>
     <form role="form" (submit)="login($event, username.value, password.value)">
           <div class="form-group">
@@ -12,9 +76,9 @@
         <button type="submit" class="btn btn-default">Submit</button>
         <a [routerLink]="['/signup']" (click)="signup($event)">Click here to Signup</a>
     </form>
-</div>
+</div>-->
 
-product list<br/>
+<!--product list<br/>
 ============================<br/>
 
 
@@ -22,7 +86,7 @@ product list<br/>
     <li *ngFor="let product of productList">
         location type: {{product.location_type}} query string: {{product.search_string}}
 </li>
-</ul>
+</ul>-->
 
 
 featured product list<br/>
@@ -32,12 +96,11 @@ featured product list<br/>
         id: {{product.id}} , title: {{product.title}}, price : {{product.price}}
 </li>
 </ul>
-
+<!--
 <form role="form" (submit)="search($event, searchId.value)">
       <div class="form-group">
         <label for="id">Search Id</label>
         <input type="text" #searchId class="form-control" id="searchId" placeholder="searchId">
     </div>
-
     <button type="submit" class="btn btn-default">Search</button>
-</form>
+</form>-->
