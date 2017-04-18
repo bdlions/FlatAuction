@@ -567,3 +567,118 @@ input[type=checkbox]:checked {
 .product-details-button-anchor,.product-details-button-anchor:hover,.product-details-button-anchor:focus,.product-details-button-anchor:visited{
     text-decoration: none;
 }
+
+.panel.with-nav-tabs .nav-tabs{
+    border-bottom: none;
+}
+.panel.with-nav-tabs .nav-justified{
+    margin-bottom: -1px;
+}
+
+/********************************************************************/
+/*** PANEL PRIMARY ***/
+.with-nav-tabs.panel-primary .nav-tabs > li > a,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
+    color: #484848;
+    border-left: 1px solid #ddd!important;
+    border-right: 1px solid #ddd!important;
+    border-top-left-radius: 0px!important;
+    border-top-right-radius: 0px!important;
+    margin-right: -5px!important;
+    outline: none!important;
+    font-size: 16px;
+}
+.with-nav-tabs.panel-primary .nav-tabs > .open > a,
+.with-nav-tabs.panel-primary .nav-tabs > .open > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > .open > a:focus,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
+    color: #484848;
+    background-color: #fff;
+}
+.with-nav-tabs.panel-primary .nav-tabs > li.active > a,
+.with-nav-tabs.panel-primary .nav-tabs > li.active > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li.active > a:focus {
+    color: #484848;
+    background-color: #E9E9E9;
+    border-color: #ddd;
+    border-bottom-color: transparent;
+    border-top-left-radius: 0px!important;
+    border-top-right-radius: 0px!important;
+    border-left: 1px solid #ddd!important;
+    border-right: 1px solid #ddd!important;
+    margin-right: -5px!important;
+}
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu {
+    background-color: #428bca;
+    border-color: #3071a9;
+}
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a {
+    color: #484848;
+}
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:focus {
+    background-color: #3071a9;
+}
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a,
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {
+    background-color: #4a9fe9;
+}
+.custom-panel{
+    border-radius: 0px!important;
+    border: 1px solid #ddd!important;
+    border-top-left-radius: 0px!important;
+    border-top-right-radius: 0px!important;
+}
+.custom-panel ul li{
+    float: right;
+    margin-right: 5px;
+}
+.custom-panel-heading{
+    padding: 0px!important;
+    border-bottom: 1px solid #ddd!important;
+}
+.panel-primary > .custom-panel-heading{
+    font-family: 'effra-regular';
+    background-image: linear-gradient(to bottom,#ffffff 0,#ffffff 100%);
+    color: #484848;
+    border-top-left-radius: 0px!important;
+    border-top-right-radius: 0px!important;
+}
+.custom-panel-body{
+    background-color: #E9E9EB!important;
+}
+
+.grid-property-section{
+    background-color: #fff;
+    margin-bottom: 1px;
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+}
+.grid-property-price{
+    background-color: #F4F4F5;
+    width: 100%;
+    padding: 10px;
+    min-height: 50px;
+}
+.grid-property-price h3{
+    font-family: 'effra-regular';
+    color: #484848;
+    font-size: 24px;
+    padding: 5px;
+    line-height: 1.2em;
+}
+.grid-property-title > h4{
+    font-family: 'effra-regular';
+    color: #484848;
+    font-size: 14px;
+    padding: 5px;
+    line-height: 1.2em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: normal;
+}
