@@ -1,3 +1,5 @@
+import {Image} from "./Image";
+
 export class Product {
     id:number;
     title:string;
@@ -8,6 +10,7 @@ export class Product {
     type:number;
     location_type: string;
     search_string: string;
+    images: Array<Image>;
 }
 
 

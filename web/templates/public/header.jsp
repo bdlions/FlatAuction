@@ -5,6 +5,7 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="resources/css/bootstrap.min.css" >
         <link rel="stylesheet" href="resources/css/font-awesome.min.css" >
+        <link rel="stylesheet" href="resources/css/autocomplete-style.css" >
 
         <!-- Optional theme -->
         <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css" >

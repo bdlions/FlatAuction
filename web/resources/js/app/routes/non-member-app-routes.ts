@@ -8,12 +8,15 @@ import {Landing} from '../member/landing';
 //import { Abroad } from './abroad';
 import {AuthGuard} from '../common/auth.guard';
 import {Search} from '../common/search';
+import {AutoComplete} from '../autocomplete';
+//import {Angular2Autocomplete} from '../autocomplete/autocomplete-example';
 
 // Define which component should be loaded based on the current URL
 export const routes: Routes = [
     {path: '', component: Landing},
     {path: 'signup', component: Signup},
     {path: 'search', component: Search},
+    {path: 'complete', component: AutoComplete},
     //  { path: 'home',   component: Home, canActivate: [AuthGuard] },
     //  { path: 'abroad',   component: Abroad, canActivate: [AuthGuard] },
     {path: '**', component: Landing},

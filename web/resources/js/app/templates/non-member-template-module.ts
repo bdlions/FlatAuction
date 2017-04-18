@@ -12,7 +12,7 @@ import {NonMemberApp} from '../NonMemberApp';
 import {Signup} from '../member/signup';
 import {Landing} from '../member/landing';
 import {Search} from '../common/search';
-
+import {AutoComplete} from '../autocomplete';
 
 
 @NgModule({
@@ -21,7 +21,7 @@ import {Search} from '../common/search';
             useHash: false
         })
     ],
-    declarations: [Signup, NonMemberApp, Landing, Search],
+    declarations: [Signup, NonMemberApp, Landing, Search, AutoComplete],
     bootstrap: [NonMemberApp],
     providers: [AuthGuard, {provide: LocationStrategy, useClass: HashLocationStrategy}]
 })
