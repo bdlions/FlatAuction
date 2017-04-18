@@ -13,6 +13,7 @@ var router_1 = require("@angular/router");
 var Search = (function () {
     function Search(router) {
         this.router = router;
+        this.productList = JSON.parse("[{\"id\":\"1\",\"title\":\"Fun at the Bowling Alley\", \"price\":\"100\", \"time\":\"1010\", \"img\":\"a.jpg\", \"type\":\"1\"},{\"id\":\"2\",\"title\":\"iPhone 7\", \"price\":\"1000\", \"time\":\"2020\", \"img\":\"b.jpg\", \"type\":\"2\"}]");
     }
     Search.prototype.ngOnInit = function () {
         var _this = this;
@@ -34,4 +35,4 @@ Search = __decorate([
     __metadata("design:paramtypes", [router_1.ActivatedRoute])
 ], Search);
 exports.Search = Search;
-//# sourceMappingURL=Search.js.map
+//# sourceMappingURL=search.js.map
