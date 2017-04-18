@@ -16,7 +16,7 @@ export const routes: Routes = [
     {path: '', component: Landing},
     {path: 'signup', component: Signup},
     {path: 'search', component: Search},
-    {path: 'complete', component: AutoComplete},
+//    {path: 'complete', component: AutoComplete},
     //  { path: 'home',   component: Home, canActivate: [AuthGuard] },
     //  { path: 'abroad',   component: Abroad, canActivate: [AuthGuard] },
     {path: '**', component: Landing},

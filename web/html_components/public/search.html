@@ -31,14 +31,14 @@
                                             <h3>{{product.price}}</h3>
                                         </div>
                                         <div class="row">
-                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-                                            <div class="grid-property-title">
-                                                <h4>{{product.title}}</h4>
+                                            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                <div class="grid-property-title">
+                                                    <h4>{{product.title}}</h4>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 
-                                        </div>
+                                            </div>
                                         </div>
 
                                     </div>
@@ -71,6 +71,9 @@ product list<br/>
 <ul>
     <li *ngFor="let product of productList">
         id: {{product.id}} , title: {{product.title}}, price : {{product.price}}, img : {{product.img}}, description : {{product.description}}
-
+        Images :
+        <div *ngFor="let image of product.images">
+            Image Id:{{image.id}} , Image url: {{image.url}}
+        </div>
 </li>
 </ul>
