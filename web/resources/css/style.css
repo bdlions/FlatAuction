@@ -1,5 +1,5 @@
 /*
-Theme Name: Property Auction
+Theme Name: Flat Auction
 Athour: A.LK.M. Nazmul Islam
 Version: 1.0
 */
@@ -28,6 +28,13 @@ h1,h2,h3,h4,h5,h6{
     font-family: 'effra-medium';
     color: #484848;
 }
+.margin-bottom-5px{
+    margin-bottom: 5px;
+}
+.margin-top-50px{
+    margin-top: 50px;
+}
+
 /* ---------------------------- Header -------------------------------- */
 
 .margin-top-bottom-100px{
@@ -278,7 +285,7 @@ input[type=checkbox]:checked {
         float: right;
         margin-top: 6px;
     }
-     .search-box-pagelet{
+    .search-box-pagelet{
         padding: 80px 30px;
     }
 }
@@ -504,4 +511,59 @@ input[type=checkbox]:checked {
     background-color: #00deb6;
     color: #fff;
     cursor: pointer;
+}
+
+/* --------------------- Features Product -------------------------------------  */
+.featured-product-list-heading{
+    font-family: 'effra-regular';
+    color: #00deb6;
+    font-weight: normal;
+    font-size: 24px;
+}
+.product-auction-head{
+    background: none repeat scroll 0 0 #ffffff;
+    border: 1px solid #dedede;
+    box-sizing: border-box;
+    padding: 5px;
+    position: relative;
+}
+.product-auction-img img{
+    height: 176px!important;
+    width: 100%!important;
+}
+.product-auction-time {
+    font-family: 'effra-regular';
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.6);
+    bottom: 40px;
+    color: #fff;
+    height: 40px;
+    left: 0px;
+    line-height: 40px;
+    overflow: hidden;
+    position: relative;
+    width: 100%!important;
+    font-size: 14px;
+    width: 100%;
+}
+.product-auction-title h3{
+    font-family: 'effra-regular';
+    padding: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: normal;
+    margin-top: -30px;
+}
+.product-auction-price h3{
+    font-family: 'effra-medium';
+    padding: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 1.2em;
+
+}
+.product-details-button-anchor,.product-details-button-anchor:hover,.product-details-button-anchor:focus,.product-details-button-anchor:visited{
+    text-decoration: none;
 }

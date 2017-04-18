@@ -598,19 +598,8 @@ body {
 .site-footer {
     min-width: 1006px
 }
-.row {
-    margin-bottom: 16px;
-    margin-bottom: 1.6rem;
-    margin-left: -16px
-}
-.row:before,
-.row:after {
-    content: " ";
-    display: table
-}
-.row:after {
-    clear: both
-}
+
+
 .lt-ie8 .row {
     clear: both;
     zoom: 1

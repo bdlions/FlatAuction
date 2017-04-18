@@ -58,7 +58,43 @@
         </form>
     </div>
 </div>
+<div class="row form-group margin-top-50px">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h2 class="featured-product-list-heading">Featured Product List</h2>
+    </div>
 </div>
+<div class="row form-group">
+    <div *ngFor="let product of featuredProductList" class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group" >
+        <div class="product-auction-head">
+            <div class="product-auction-img">
+                <a href=""><img class="img-responsive" src="resources/images/{{product.img}}"></a>
+            </div>
+            <div class="product-auction-time text-center" id="{{product.id}}">{{product.time}}</div>
+            <div class="product-auction-title margin-bottom-5px">
+                <h3>{{product.title}}</h3>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" >
+                    <div class="product-auction-price">
+                        <h3>{{product.price}}</h3>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" >
+                    <a class="product-details-button-anchor" href=""> <button class="form-control common-custom-button">Details</button> </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+<!--featured product list<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let product of featuredProductList">
+        id: {{product.id}} , title: {{product.title}}, price : {{product.price}}, img : {{product.img}}, time : {{product.time}}
+</li>
+</ul>-->
 <!--<div class="login jumbotron center-block">
     <h1>Login</h1>
     <form role="form" (submit)="login($event, username.value, password.value)">
@@ -86,13 +122,13 @@
 </ul>-->
 
 
-featured product list<br/>
+<!--featured product list<br/>
 ============================<br/>
 <ul>
     <li *ngFor="let product of featuredProductList">
-        id: {{product.id}} , title: {{product.title}}, price : {{product.price}}
+        id: {{product.id}} , title: {{product.title}}, price : {{product.price}}, img : {{product.img}}, time : {{product.time}}
 </li>
-</ul>
+</ul>-->
 <!--
 <form role="form" (submit)="search($event, searchId.value)">
       <div class="form-group">
