@@ -12,6 +12,7 @@ import {NonMemberApp} from '../NonMemberApp';
 import {Signup} from '../member/signup';
 import {Landing} from '../member/landing';
 import {Search} from '../common/search';
+import {Productinfo} from '../common/productinfo';
 import {AutoComplete} from '../autocomplete';
 
 
@@ -21,7 +22,7 @@ import {AutoComplete} from '../autocomplete';
             useHash: false
         })
     ],
-    declarations: [Signup, NonMemberApp, Landing, Search, AutoComplete],
+    declarations: [Signup, NonMemberApp, Landing, Search, Productinfo, AutoComplete],
     bootstrap: [NonMemberApp],
     providers: [AuthGuard, {provide: LocationStrategy, useClass: HashLocationStrategy}]
 })

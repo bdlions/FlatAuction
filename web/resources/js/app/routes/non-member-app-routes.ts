@@ -8,6 +8,7 @@ import {Landing} from '../member/landing';
 //import { Abroad } from './abroad';
 import {AuthGuard} from '../common/auth.guard';
 import {Search} from '../common/search';
+import {Productinfo} from '../common/productinfo';
 import {AutoComplete} from '../autocomplete';
 //import {Angular2Autocomplete} from '../autocomplete/autocomplete-example';
 
@@ -16,6 +17,7 @@ export const routes: Routes = [
     {path: '', component: Landing},
     {path: 'signup', component: Signup},
     {path: 'search', component: Search},
+    {path: 'productinfo', component: Productinfo},
 //    {path: 'complete', component: AutoComplete},
     //  { path: 'home',   component: Home, canActivate: [AuthGuard] },
     //  { path: 'abroad',   component: Abroad, canActivate: [AuthGuard] },
