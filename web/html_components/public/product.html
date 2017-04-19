@@ -1,5 +1,132 @@
-id: {{product.id}} , title: {{product.title}}, price : {{product.price}}, img : {{product.img}}, description : {{product.description}}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <div class="product-info-details-left-panel form-group">
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h1 class="text-center product-info-details-left-panel-heading">Auction</h1>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="hr"></div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
+                        <div class="product-info-details-left-panel-auction-timeblock">
+                            <h5 class="product-info-details-left-panel-timeheader">
+                                Ends within:
+                            </h5>
+                            <h5 class="product-info-details-left-panel-auction-time">
+                                {{product.time}}
+                            </h5>
+                            <h5 class="product-info-details-left-panel-current-price-header">
+                                Current Bid:
+                            </h5>
+                            <h3 class="product-info-details-left-panel-current-price">
+                                {{product.price}}
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="product-info-details-left-panel-bid-label">Auto Bid </div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <input type="text" class="form-control product-info-details-input-custom-field" placeholder="Max Bid">
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <button class="form-control product-info-details-custom-button">Place Bid!</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="product-info-details-left-panel-bid-label">Bid Directly</div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <input type="text" class="form-control product-info-details-input-custom-field" placeholder="Max Bid">
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <button class="form-control product-info-details-custom-button">Place Bid!</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h3 class="product-info-details-left-panel-previous-bids-header">
+                            Current Bids
+                        </h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="product-info-details-left-panel-previous-bids">
+                            {{product.price}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-info-details-left-panel form-group">
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h1 class="text-center product-info-details-left-panel-heading">Location</h1>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h3 class="product-info-details-left-panel-location">{{product.location_type}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+             <div class="product-info-details-right-panel form-group">
+            <div class="row form-group">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h1 class="product-info-details-right-panel-product-title">{{product.title}}</h1>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="carousel slide" data-ride="carousel" id="quote-carousel">
+                        <div class="carousel-inner">
+                            <!--image loop-->
+                            <div class="item active">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <img class="product-info-details-right-panel-carousel-img-adjust" src="resources/images/{{product.img}}">
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <a data-slide="prev" href="#quote-carousel" class="left carousel-control"><i class="fa fa-chevron-left"></i></a>
+                        <a data-slide="next" href="#quote-carousel" class="right carousel-control"><i class="fa fa-chevron-right"></i></a>
+                    </div>                          
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h2 class="product-info-details-right-panel-product-description-header">Product Description</h2>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h3 class="product-info-details-right-panel-product-description">{{product.description}}</h3>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+id: {{product.id}} , title: {{product.title}}, time: {{product.time}} price : {{product.price}}, img : {{product.img}}, description : {{product.description}}
 Images :
 <div *ngFor="let image of product.images">
-        Image Id:{{image.id}} , Image url: {{image.url}}
+    Image Id:{{image.id}} , Image url: {{image.url}}
 </div>
