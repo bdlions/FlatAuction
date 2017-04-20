@@ -1,4 +1,84 @@
 <div class="container">
+    <nav class="navbar navbar-default product-info-detail-navbar">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#product-info-detail-navbar" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!--<a class="navbar-brand" href="#">Brand</a>-->
+        </div>
+
+        <div class="collapse navbar-collapse" id="product-info-detail-navbar">
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" #searchId class="form-control product-info-detail-search-input-field" id="searchId" placeholder="Enter a Search Location">
+                    <div class="product-info-detail-search-result-layout"> 
+                        <ul class="product-info-detail-search-result-ul">
+                            <li *ngFor="let location of locationList">
+                                <a id="{{location.id}}">{{location.searchString}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Radius <span class="caret"></span></a>
+                    <ul class="dropdown-menu product-info-detail-custom-dropdown-menu">
+                        <li *ngFor="let radius of radiusList" ><a href="" id="{{radius.id}}">{{radius.title}}</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Min Price <span class="caret"></span></a>
+                    <ul class="dropdown-menu product-info-detail-custom-dropdown-menu">
+                        <li *ngFor="let minPrice of minPriceList" ><a href="" id="{{minPrice.id}}">{{minPrice.symbol}}{{minPrice.amount}}</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Max Price <span class="caret"></span></a>
+                    <ul class="dropdown-menu product-info-detail-custom-dropdown-menu">
+                        <li *ngFor="let maxPrice of maxPriceList" ><a href="" id="{{maxPrice.id}}">{{maxPrice.symbol}}{{maxPrice.amount}}</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">Filters <b class="caret"></b></a>
+                    <ul class="dropdown-menu multi-level">
+                        <li class="dropdown-submenu">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Product Type</a>
+                            <ul class="dropdown-menu">
+                                <li *ngFor="let productType of productTypeList">
+                                    <a id="{{productType.id}}">{{productType.title}}</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Occupation</a>
+                            <ul class="dropdown-menu">
+                                <li *ngFor="let occupation of occupationList">
+                                    <a id="{{occupation.id}}">{{occupation.title}}</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Gender</a>
+                            <ul class="dropdown-menu">
+                                <li *ngFor="let gender of genderList">
+                                    <a id="{{gender.id}}">{{gender.title}}</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Room Size</a>
+                            <ul class="dropdown-menu">
+                                <li *ngFor="let roomSize of roomSizeList">
+                                    <a id="{{roomSize.id}}">{{roomSize.title}}</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <div class="row form-group">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="panel with-nav-tabs panel-primary custom-panel">
@@ -70,7 +150,7 @@
 
                                                         </div>
                                                         <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                                                             <a [routerLink]="['/signup']" (click)="signup($event)" class="list-property-sign-up-anchor"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                                            <a [routerLink]="['/signup']" (click)="signup($event)" class="list-property-sign-up-anchor"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
                                                         </div>
                                                         <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
                                                             <a href="" class="list-property-contact-anchor"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
@@ -134,92 +214,93 @@
             </div>
         </div>
     </div>
+</div>
 
 
 
 
-    Search component
-    <br/>
-    <br/>
-    <br/>
-    selected id {{id}}
-    <br/>
-    <br/>
-    <br/>
+Search component
+<br/>
+<br/>
+<br/>
+selected id {{id}}
+<br/>
+<br/>
+<br/>
 
-    product list<br/>
-    ============================<br/>
-    <ul>
-        <li *ngFor="let product of productList">
-            id: {{product.id}} , title: {{product.title}}, price : {{product.price}}, img : {{product.img}}, description : {{product.description}}
-            Images :
-            <div *ngFor="let image of product.images">
-                Image Id:{{image.id}} , Image url: {{image.url}}
-        </div>
-    </li>
+product list<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let product of productList">
+        id: {{product.id}} , title: {{product.title}}, price : {{product.price}}, img : {{product.img}}, description : {{product.description}}
+        Images :
+        <div *ngFor="let image of product.images">
+            Image Id:{{image.id}} , Image url: {{image.url}}
+    </div>
+</li>
 </ul>
-    
-    Location list<br/>
-    ============================<br/>
-    <ul>
-        <li *ngFor="let location of locationList">
-            id: {{location.id}} , locationType {{location.locationType}}, searchString : {{location.searchString}}
-        </li>
-    </ul>
-    
-    Radius list<br/>
-    ============================<br/>
-    <ul>
-        <li *ngFor="let radius of radiusList">
-            id: {{radius.id}} , title: {{radius.title}}
-        </li>
-    </ul>
-    
-    Min Price list<br/>
-    ============================<br/>
-    <ul>
-        <li *ngFor="let minPrice of minPriceList">
-            id: {{minPrice.id}} , symbol {{minPrice.symbol}}, amount : {{minPrice.amount}}
-        </li>
-    </ul>
 
-    Max Price list<br/>
-    ============================<br/>
-    <ul>
-        <li *ngFor="let maxPrice of maxPriceList">
-            id: {{maxPrice.id}} , symbol {{maxPrice.symbol}}, amount : {{maxPrice.amount}}
-        </li>
-    </ul>
-    
-    Product Type list<br/>
-    ============================<br/>
-    <ul>
-        <li *ngFor="let productType of productTypeList">
-            id: {{productType.id}} , title: {{productType.title}}
-        </li>
-    </ul>
-    
-    Occupation list<br/>
-    ============================<br/>
-    <ul>
-        <li *ngFor="let occupation of occupationList">
-            id: {{occupation.id}} , title: {{occupation.title}}
-        </li>
-    </ul>
-    
-    Gender list<br/>
-    ============================<br/>
-    <ul>
-        <li *ngFor="let gender of genderList">
-            id: {{gender.id}} , title: {{gender.title}}
-        </li>
-    </ul>
-    
-    Room size list<br/>
-    ============================<br/>
-    <ul>
-        <li *ngFor="let roomSize of roomSizeList">
-            id: {{roomSize.id}} , title: {{roomSize.title}}
-        </li>
-    </ul>
+Location list<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let location of locationList">
+        id: {{location.id}} , locationType {{location.locationType}}, searchString : {{location.searchString}}
+</li>
+</ul>
+
+Radius list<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let radius of radiusList">
+        id: {{radius.id}} , title: {{radius.title}}
+</li>
+</ul>
+
+Min Price list<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let minPrice of minPriceList">
+        id: {{minPrice.id}} , symbol {{minPrice.symbol}}, amount : {{minPrice.amount}}
+</li>
+</ul>
+
+Max Price list<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let maxPrice of maxPriceList">
+        id: {{maxPrice.id}} , symbol {{maxPrice.symbol}}, amount : {{maxPrice.amount}}
+</li>
+</ul>
+
+Product Type list<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let productType of productTypeList">
+        id: {{productType.id}} , title: {{productType.title}}
+</li>
+</ul>
+
+Occupation list<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let occupation of occupationList">
+        id: {{occupation.id}} , title: {{occupation.title}}
+</li>
+</ul>
+
+Gender list<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let gender of genderList">
+        id: {{gender.id}} , title: {{gender.title}}
+</li>
+</ul>
+
+Room size list<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let roomSize of roomSizeList">
+        id: {{roomSize.id}} , title: {{roomSize.title}}
+</li>
+</ul>
 
