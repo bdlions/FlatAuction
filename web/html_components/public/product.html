@@ -85,41 +85,217 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-             <div class="product-info-details-right-panel form-group">
-            <div class="row form-group">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <h1 class="product-info-details-right-panel-product-title">{{product.title}}</h1>
+            <div class="product-info-details-right-panel form-group">
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h1 class="product-info-details-right-panel-product-title">{{product.title}}</h1>
+                    </div>
                 </div>
-            </div>
-            <div class="row form-group">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="carousel slide" data-ride="carousel" id="quote-carousel">
-                        <div class="carousel-inner">
-                            <!--image loop-->
-                            <div class="item active">
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="carousel slide" data-ride="carousel" id="quote-carousel">
+                            <div class="carousel-inner">
+                                <!--image loop-->
+                                <div class="item active">
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                             <img class="product-info-details-right-panel-carousel-img-adjust" src="resources/images/{{product.img}}">
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <a data-slide="prev" href="#quote-carousel" class="left carousel-control"><i class="fa fa-chevron-left"></i></a>
+                            <a data-slide="next" href="#quote-carousel" class="right carousel-control"><i class="fa fa-chevron-right"></i></a>
+                        </div>                          
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h2 class="product-info-details-right-panel-product-description-header">Product Description</h2>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h3 class="product-info-details-right-panel-product-description">{{product.description}}</h3>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="hr"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h2 class="product-info-details-right-panel-product-availability-header">Availability</h2>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="row">
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-availability-content">Available</h3>
+                            </div>
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-availability-content">Now</h3>
                             </div>
                         </div>
-                        <a data-slide="prev" href="#quote-carousel" class="left carousel-control"><i class="fa fa-chevron-left"></i></a>
-                        <a data-slide="next" href="#quote-carousel" class="right carousel-control"><i class="fa fa-chevron-right"></i></a>
-                    </div>                          
+                        <div class="row">
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-availability-content">Minimum term</h3>
+                            </div>
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-availability-content">None</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-availability-content">Maximum term</h3>
+                            </div>
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-availability-content">None</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="hr"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h2 class="product-info-details-right-panel-product-extra-cost-header">Extra costs</h2>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="row">
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-extra-cost-content">Fees apply?</h3>
+                            </div>
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-extra-cost-content">Yes</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="hr"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h2 class="product-info-details-right-panel-product-amenities-header">Amenities</h2>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="row">
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-amenities-content">Furnishings</h3>
+                            </div>
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-amenities-content">Furnished</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-amenities-content">Parking</h3>
+                            </div>
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-amenities-content">No</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-amenities-content">Garage</h3>
+                            </div>
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-amenities-content">No</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-amenities-content">Garden/terrace</h3>
+                            </div>
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-amenities-content">No</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-amenities-content">Balcony/Patio</h3>
+                            </div>
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-amenities-content">No</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-amenities-content">Disabled access</h3>
+                            </div>
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-amenities-content">No</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="row form-group">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="hr"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h2 class="product-info-details-right-panel-product-tenant-preferences-header">New tenant preferences</h2>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="row">
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-tenant-preferences-content">Smoking OK?</h3>
+                            </div>
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-tenant-preferences-content">Yes</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-tenant-preferences-content">Pets OK?</h3>
+                            </div>
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-tenant-preferences-content">No</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-tenant-preferences-content">Occupation</h3>
+                            </div>
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-tenant-preferences-content">Don't mind</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-tenant-preferences-content">DSS</h3>
+                            </div>
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-tenant-preferences-content">No</h3>
+                            </div>
+                        </div>
+                         <div class="row">
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-tenant-preferences-content">References?</h3>
+                            </div>
+                            <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                <h3 class="product-info-details-right-panel-product-tenant-preferences-content">Yes</h3>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <h2 class="product-info-details-right-panel-product-description-header">Product Description</h2>
-                </div>
-            </div>
-            <div class="row form-group">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <h3 class="product-info-details-right-panel-product-description">{{product.description}}</h3>
-                </div>
-            </div>
-        </div>
         </div>
     </div>
 </div>
