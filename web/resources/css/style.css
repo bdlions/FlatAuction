@@ -296,6 +296,9 @@ input[type=checkbox]:checked {
     .product-info-detail-search-result-ul{
         position: relative;
     }
+    .filter-content-box{
+        width: 100%!important;
+    }
 }
 
 /* --------------------- Tablet Device -------------------------------------  */
@@ -330,6 +333,9 @@ input[type=checkbox]:checked {
     }
     .product-info-detail-search-result-ul{
         position: absolute;
+    }
+   .filter-content-box{
+        width: 718px!important;
     }
 }
 /* --------------------- Medium Device -------------------------------------  */
@@ -370,6 +376,9 @@ input[type=checkbox]:checked {
     .product-info-detail-search-result-ul{
         position: absolute;
     }
+   .filter-content-box{
+        width: 940px!important;
+    }
 }
 /* --------------------- Large Device -------------------------------------  */
 @media only screen and (min-width : 1200px) {
@@ -408,6 +417,9 @@ input[type=checkbox]:checked {
     }
     .product-info-detail-search-result-ul{
         position: absolute;
+    }
+    .filter-content-box{
+        width: 1139px!important;
     }
 }
 /* --------------------- Login Box -------------------------------------  */
@@ -1181,13 +1193,13 @@ input[type=checkbox]:checked {
 }
 
 .product-info-detail-navbar .navbar-nav>.open>a, .product-info-detail-navbar .navbar-nav>.open>a:focus, .product-info-detail-navbar .navbar-nav>.open>a:hover{
-    background-color: #00deb6;
+    background-color: #262637;
     color: #fff!important;
     margin-bottom: 0px;
     background-image: none;
 }
 .product-info-detail-navbar .navbar-nav>li:hover,.product-info-detail-navbar .navbar-nav>li:focus{
-    background-color: #00deb6;
+    background-color: #262637;
     color: #fff!important;
     /*padding-bottom: 2px;*/
     background-image: none;
@@ -1295,4 +1307,40 @@ input[type=checkbox]:checked {
     -webkit-border-radius: 6px 0 6px 6px;
     -moz-border-radius: 6px 0 6px 6px;
     border-radius: 6px 0 6px 6px;
+}
+.dropdown-menu-custom{
+    z-index: 9999999;
+}
+.custom-nav-button{
+    font-size: 16px;
+    padding: 12px 16px;
+}
+.custom-nav-button{
+    font-size: 16px;
+    padding: 12px 16px;
+    font-family: 'effra-regular';
+    background-color: #262637;
+    border: 1px solid #262637;
+    color: #fff;
+    border-radius: 0px;
+}
+.custom-nav-button:focus{
+    border: 1px solid #262637;
+}
+
+.filter-content-box{
+    position: absolute!important;
+    background-color: #fff!important;
+    color: #484848!important;
+    padding: 10px!important;
+    z-index: 9999999!important;
+    top: 100%!important;
+    left:0!important;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+.filsters-submenu-title{
+    font-size: 14px;
+    font-family: 'effra-regular';
+    color: #484848;
 }

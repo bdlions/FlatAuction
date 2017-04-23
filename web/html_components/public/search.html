@@ -43,39 +43,35 @@
                         <li *ngFor="let maxPrice of maxPriceList" ><a href="" id="{{maxPrice.id}}">{{maxPrice.symbol}}{{maxPrice.amount}}</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown">Filters <b class="caret"></b></a>
-                    <ul class="dropdown-menu multi-level">
-                        <li class="dropdown-submenu">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Product Type</a>
-                            <ul class="dropdown-menu">
-                                <li *ngFor="let productType of productTypeList">
-                                    <a id="{{productType.id}}">{{productType.title}}</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown-submenu">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Occupation</a>
-                            <ul class="dropdown-menu">
-                                <li *ngFor="let occupation of occupationList">
-                                    <a id="{{occupation.id}}">{{occupation.title}}</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown-submenu">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Gender</a>
-                            <ul class="dropdown-menu">
-                                <li *ngFor="let gender of genderList">
-                                    <a id="{{gender.id}}">{{gender.title}}</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown-submenu">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Room Size</a>
-                            <ul class="dropdown-menu">
-                                <li *ngFor="let roomSize of roomSizeList">
-                                    <a id="{{roomSize.id}}">{{roomSize.title}}</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
+                <button type="button" class="common-custom-button custom-nav-button" data-toggle="collapse" data-target="#filsters">Filters <span class="caret"></span></button>
+                <div id="filsters" class="collapse filter-content-box">
+                    <div class="row form-group">
+                        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group">
+                            <h3 class="filsters-submenu-title">Product Type</h3>
+                            <select class="form-control select-custom-field">
+                                <option *ngFor="let productType of productTypeList" value="{{productType.title}}"><a id="{{productType.id}}">{{productType.title}}</a></option>
+                            </select> 
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group">
+                            <h3 class="filsters-submenu-title">Occupation</h3>
+                            <select class="form-control select-custom-field">
+                                <option *ngFor="let occupation of occupationList" value="{{occupation.title}}"><a id="{{occupation.id}}">{{occupation.title}}</a></option>
+                            </select> 
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group">
+                            <h3 class="filsters-submenu-title">Gender</h3>
+                            <select class="form-control select-custom-field">
+                                <option *ngFor="let gender of genderList" value="{{gender.title}}"><a id="{{gender.id}}">{{gender.title}}</a></option>
+                            </select> 
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group">
+                            <h3 class="filsters-submenu-title">Room Size</h3>
+                            <select class="form-control select-custom-field">
+                                <option *ngFor="let roomSize of roomSizeList" value="{{roomSize.title}}"><a id="{{roomSize.id}}">{{roomSize.title}}</a></option>
+                            </select> 
+                        </div>
+                    </div>
+                </div>
             </ul>
         </div>
     </nav>
