@@ -334,7 +334,7 @@ input[type=checkbox]:checked {
     .product-info-detail-search-result-ul{
         position: absolute;
     }
-   .filter-content-box{
+    .filter-content-box{
         width: 718px!important;
     }
 }
@@ -376,7 +376,7 @@ input[type=checkbox]:checked {
     .product-info-detail-search-result-ul{
         position: absolute;
     }
-   .filter-content-box{
+    .filter-content-box{
         width: 940px!important;
     }
 }
@@ -1344,3 +1344,31 @@ input[type=checkbox]:checked {
     font-family: 'effra-regular';
     color: #484848;
 }
+/* --------------------- Steps of Flow -------------------------------------  */
+
+.steps img{
+    max-width: 40px;
+    background: #F48221;
+    border-radius: 50%;
+}
+.hd-content{
+    font-family: 'effra-regular';
+    color: #484848;
+    font-size: 14px;
+    line-height: 40px;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+/*.steps img{
+    max-width: 40px;
+    background: #00DEB6;
+    border-radius: 50%;
+}
+.hd-content{
+    font-family: 'effra-regular';
+    color: #484848;
+    font-size: 14px;
+    line-height: 40px;
+    vertical-align: middle;
+    margin-left: 5px;
+}*/

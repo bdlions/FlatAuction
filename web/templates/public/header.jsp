@@ -2,6 +2,10 @@
 <html>
     <head>
         <title>Property Auction</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="resources/css/bootstrap.min.css" >
         <link rel="stylesheet" href="resources/css/font-awesome.min.css" >
@@ -10,7 +14,7 @@
         <!-- Optional theme -->
         <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css" >
         <link rel="stylesheet" href="resources/css/header-menu.css" >
-        <link rel="stylesheet" href="resources/css/style.css" >
+        <link rel="stylesheet" href="resources/css/nonmember-style.css" >
 
         <!-- Latest compiled and minified JavaScript -->
         <script src="resources/js/jquery.min.js"></script>
@@ -44,49 +48,49 @@
                     <ul class="globalNav-content">
                         <li class="globalNav-item">
                             <a class="globalNav-link" href="" data-analytics-label="">
-                                Menu 1
+                                Home
                             </a>
-                            <div class="globalNav-subNav">
-                                <ul class="globalNav-subNav-col">
-                                    <li class="globalNav-subNav-item">
-                                        <a class="globalNav-subNav-link" href=""
-                                           data-analytics-label="">Sub Menu 1</a>
-                                    </li>
-                                    <li class="globalNav-subNav-item">
-                                        <a class="globalNav-subNav-link" href=""
-                                           data-analytics-label="">Sub Menu 2</a>
-                                    </li>
-                                </ul>
-                                <ul class="globalNav-subNav-col">
-                                    <li class="globalNav-subNav-item">
-                                        <a class="globalNav-subNav-link" href=""
-                                           data-analytics-label="">Sub Menu 3</a>
-                                    </li>
-                                    <li class="globalNav-subNav-item">
-                                        <a class="globalNav-subNav-link" href=""
-                                           data-analytics-label="">Sub Menu 4</a>
-                                    </li>
-                                    <li class="globalNav-subNav-item">
-                                        <a class="globalNav-subNav-link" href=""
-                                           data-analytics-label="">Sub Menu 5</a>
-                                    </li>
-                                </ul>
-                            </div>
+                            <!--                            <div class="globalNav-subNav">
+                                                            <ul class="globalNav-subNav-col">
+                                                                <li class="globalNav-subNav-item">
+                                                                    <a class="globalNav-subNav-link" href=""
+                                                                       data-analytics-label="">Sub Menu 1</a>
+                                                                </li>
+                                                                <li class="globalNav-subNav-item">
+                                                                    <a class="globalNav-subNav-link" href=""
+                                                                       data-analytics-label="">Sub Menu 2</a>
+                                                                </li>
+                                                            </ul>
+                                                            <ul class="globalNav-subNav-col">
+                                                                <li class="globalNav-subNav-item">
+                                                                    <a class="globalNav-subNav-link" href=""
+                                                                       data-analytics-label="">Sub Menu 3</a>
+                                                                </li>
+                                                                <li class="globalNav-subNav-item">
+                                                                    <a class="globalNav-subNav-link" href=""
+                                                                       data-analytics-label="">Sub Menu 4</a>
+                                                                </li>
+                                                                <li class="globalNav-subNav-item">
+                                                                    <a class="globalNav-subNav-link" href=""
+                                                                       data-analytics-label="">Sub Menu 5</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>-->
                         </li>
 
                         <li class="globalNav-item">
                             <a class="globalNav-link" href="" data-analytics-label="rent">
-                                Menu 2
+                                Search
                             </a>
                             <div class="globalNav-subNav">
                                 <ul class="globalNav-subNav-col">
                                     <li class="globalNav-subNav-item">
                                         <a class="globalNav-subNav-link" href=""
-                                           data-analytics-label="">Sub Menu 1</a>
+                                           data-analytics-label="">Basic Search</a>
                                     </li>
                                     <li class="globalNav-subNav-item">
                                         <a class="globalNav-subNav-link" href=""
-                                           data-analytics-label="">Sub Menu 2</a>
+                                           data-analytics-label="">Advanced Search</a>
                                     </li>
                                 </ul>
                             </div>
@@ -94,104 +98,48 @@
 
                         <li class="globalNav-item globalNav-item-findAgents">
                             <a class="globalNav-link" href="" data-analytics-label="">
-                                Menu 3
+                                About
                             </a>
-                            <div class="globalNav-subNav">
-                                <ul class="globalNav-subNav-col">
-                                    <li class="globalNav-subNav-item">
-                                        <a class="globalNav-subNav-link" href=""
-                                           data-analytics-label="">Sub Menu 1</a>
-                                    </li>
-                                    <li class="globalNav-subNav-item">
-                                        <a class="globalNav-subNav-link" href=""
-                                           data-analytics-label="">Sub Menu 2</a>
-                                    </li>
-                                </ul>
-                            </div>
+                            <!--                            <div class="globalNav-subNav">
+                                                            <ul class="globalNav-subNav-col">
+                                                                <li class="globalNav-subNav-item">
+                                                                    <a class="globalNav-subNav-link" href=""
+                                                                       data-analytics-label="">Sub Menu 1</a>
+                                                                </li>
+                                                                <li class="globalNav-subNav-item">
+                                                                    <a class="globalNav-subNav-link" href=""
+                                                                       data-analytics-label="">Sub Menu 2</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>-->
                         </li>
-
                         <li class="globalNav-item">
                             <a class="globalNav-link" href="" data-analytics-label="">
-                                Menu 4
+                                Contact
                             </a>
-                            <div class="globalNav-subNav">
-                                <ul class="globalNav-subNav-col">
-                                    <li class="globalNav-subNav-item">
-                                        <a class="globalNav-subNav-link" href=""
-                                           data-analytics-label="">Sub Menu 1</a>
-                                    </li>
-                                    <li class="globalNav-subNav-item">
-                                        <a class="globalNav-subNav-link" href=""
-                                           data-analytics-label="">Sub Menu 2</a>
-                                    </li>
-                                </ul>
-                                <ul class="globalNav-subNav-col">
-                                    <li class="globalNav-subNav-item">
-                                        <a class="globalNav-subNav-link" href=""
-                                           data-analytics-label="">Sub Menu 3</a>
-                                    </li>
-                                    <li class="globalNav-subNav-item">
-                                        <a class="globalNav-subNav-link" href=""
-                                           data-analytics-label="">Sub Menu 4</a>
-                                    </li>
-                                </ul>
-                            </div>
+                            <!--                            <div class="globalNav-subNav">
+                                                            <ul class="globalNav-subNav-col">
+                                                                <li class="globalNav-subNav-item">
+                                                                    <a class="globalNav-subNav-link" href=""
+                                                                       data-analytics-label="">Sub Menu 1</a>
+                                                                </li>
+                                                                <li class="globalNav-subNav-item">
+                                                                    <a class="globalNav-subNav-link" href=""
+                                                                       data-analytics-label="">Sub Menu 2</a>
+                                                                </li>
+                                                            </ul>
+                                                            <ul class="globalNav-subNav-col">
+                                                                <li class="globalNav-subNav-item">
+                                                                    <a class="globalNav-subNav-link" href=""
+                                                                       data-analytics-label="">Sub Menu 3</a>
+                                                                </li>
+                                                                <li class="globalNav-subNav-item">
+                                                                    <a class="globalNav-subNav-link" href=""
+                                                                       data-analytics-label="">Sub Menu 4</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>-->
                         </li>
-
-                        <li class="globalNav-item globalNav-item-commercial">
-                            <a class="globalNav-link" href="" data-analytics-label="commercial">
-                                Menu 5
-                            </a>
-                            <div class="globalNav-subNav">
-                                <ul class="globalNav-subNav-col">
-                                    <li class="globalNav-subNav-item">
-                                        <a class="globalNav-subNav-link" href=""
-                                           data-analytics-label="">Sub Menu 1</a>
-                                    </li>
-                                    <li class="globalNav-subNav-item">
-                                        <a class="globalNav-subNav-link" href=""
-                                           data-analytics-label="">Sub Menu 2</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-
-                        <li class="globalNav-item globalNav-item-overseas">
-                            <a class="globalNav-link" href="" data-analytics-label="">
-                                Menu 6
-                            </a>
-                            <div class="globalNav-subNav">
-                                <ul class="reverseBorder globalNav-subNav-col">
-                                    <li class="globalNav-subNav-item">
-                                        <a class="globalNav-subNav-link" href=""
-                                           data-analytics-label="">Sub Menu 1</a>
-                                    </li>
-                                    <li class="globalNav-subNav-item">
-                                        <a class="globalNav-subNav-link" href=""
-                                           data-analytics-label="">Sub Menu 2</a>
-                                    </li>
-                                    <li class="globalNav-subNav-item">
-                                        <a class="globalNav-subNav-link" href=""
-                                           data-analytics-label="">Sub Menu 3</a>
-                                    </li>
-                                </ul>
-                                <ul class="reverseBorder globalNav-subNav-col">
-                                    <li class="globalNav-subNav-item">
-                                        <a class="globalNav-subNav-link" href=""
-                                           data-analytics-label="">Sub Menu 4</a>
-                                    </li>
-                                    <li class="globalNav-subNav-item">
-                                        <a class="globalNav-subNav-link" href=""
-                                           data-analytics-label="">Sub Menu 5</a>
-                                    </li>
-                                    <li class="globalNav-subNav-item">
-                                        <a class="globalNav-subNav-link" href=""
-                                           data-analytics-label="">Sub Menu 6</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-
                     </ul>
                 </nav>
 
