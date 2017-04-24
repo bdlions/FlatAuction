@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Http} from '@angular/http';
 import {Subscription} from 'rxjs';
 import {Product} from '../dto/Product';
@@ -13,6 +13,7 @@ import {General} from '../dto/General';
     templateUrl: "./../../../../html_components/public/search.html",
 })
 export class Search implements OnInit, OnDestroy {
+    
     private locationList: Location[];
     private radiusList: General[];
     private minPriceList: Price[];
@@ -26,7 +27,8 @@ export class Search implements OnInit, OnDestroy {
     private subscribe:Subscription;
     private id:number;
     
-    constructor(public router: ActivatedRoute) {
+    constructor(public router:Router, public route: ActivatedRoute) {
+        
         this.locationList = JSON.parse("[{\"id\":\"1\",\"locationType\":\"area\",\"searchString\":\"London\"}, {\"id\":\"2\",\"locationType\":\"area\",\"searchString\":\"London 123\"}]");
         this.radiusList = JSON.parse("[{\"id\":\"1\",\"title\":\"+0 miles\"}, {\"id\":\"2\",\"title\":\"+1/4 miles\"}, {\"id\":\"3\",\"title\":\"+1/2 miles\"}]");
         this.minPriceList = JSON.parse("[{\"id\":\"1\",\"symbol\":\"\",\"amount\":\"Min Price\"}, {\"id\":\"2\",\"symbol\":\"£\",\"amount\":\"500\"}, {\"id\":\"3\",\"symbol\":\"£\",\"amount\":\"600\"}]");
@@ -40,11 +42,18 @@ export class Search implements OnInit, OnDestroy {
         console.log(this.productList);
     }
     
+    
+    public selectProduct(event: Event, id: number){
+        this.router.navigate(['productinfo', {id: this.id }]);
+    }
+    
     ngOnInit() {
-        this.subscribe = this.router.params.subscribe(params => {
+        this.subscribe = this.route.params.subscribe(params => {
             this.id = params['id']; 
             console.log(this.id);
-        });
+            
+            
+        }); 
     }
 
     ngOnDestroy() {

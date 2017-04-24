@@ -5,4 +5,4 @@ var Bid = (function () {
     return Bid;
 }());
 exports.Bid = Bid;
-//# sourceMappingURL=Bid.js.map
+//# sourceMappingURL=bid.js.map
