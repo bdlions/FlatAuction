@@ -1,0 +1,15 @@
+Bid list<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let bid of bidList">
+        Name : {{bid.user.firstName}} {{bid.user.lastName}}, id: {{bid.id}} , amount : {{bid.amount}} {{bid.currency.title}}, time: {{bid.time}}
+</li>
+</ul>
+<br/>
+Product Info<br/>
+============================<br/>
+id: {{product.id}} , title: {{product.title}}, time: {{product.time}} price : {{product.price}}, img : {{product.img}}, description : {{product.description}}
+Images :
+<div *ngFor="let image of product.images">
+    Image Id:{{image.id}} , Image url: {{image.url}}
+</div>
