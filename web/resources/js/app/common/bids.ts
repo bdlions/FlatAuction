@@ -26,6 +26,9 @@ export class Bids implements OnInit, OnDestroy {
         this.product.type = 1;
         this.product.location_type = "location1";
         this.product.images = JSON.parse("[{\"id\":\"1\", \"url\":\"a.jpg\"}, {\"id\":\"2\", \"url\":\"b.jpg\"}]");
+        this.product.totalBidders = 10;
+        this.product.totalBids = 36;
+        this.product.timeLeft = "1 day 13 hours 30 mins";
         
         this.bidList = JSON.parse("[{\"id\":\"1\",\"time\":\"21 Apr 2017 9:38:35AM\",\"amount\":\"1000\", \"currency\":{\"id\":\"1\", \"title\":\"$\"}, \"user\":{\"firstName\":\"Nazmul\", \"lastName\":\"Hasan\"}}, {\"id\":\"2\",\"time\":\"20 Apr 2017 9:38:35AM\",\"amount\":\"2000\", \"currency\":{\"id\":\"1\", \"title\":\"$\"}, \"user\":{\"firstName\":\"Alamgir\", \"lastName\":\"Kabir\"}}]");
         console.log(this.bidList);
