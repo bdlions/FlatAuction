@@ -29,6 +29,9 @@ h1,h2,h3,h4,h5,h6{
     color: #484848;
     line-height: 150%;
 }
+a{
+    cursor: pointer;
+}
 .padding-5px{
     padding: 5px;
 }
@@ -57,6 +60,72 @@ h1,h2,h3,h4,h5,h6{
 .footer-border{
     border-top: 1px solid #ccc;
     padding: 8px 2px;
+}
+/* ---------------------------- Table -------------------------------- */
+table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+    color: #484848;
+}
+table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+}
+table tr {
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: .35em;
+}
+table th,
+table td {
+    padding: .625em;
+    text-align: center;
+}
+table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+@media screen and (max-width: 600px) {
+    table {
+        border: 0;
+    }
+    table caption {
+        font-size: 1.3em;
+    }
+    table thead {
+        border: none;
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+    table tr {
+        border: 3px solid #ccc;
+        display: block;
+        margin-bottom: .625em;
+    }
+    table td {
+        border-bottom: 1px solid #ccc;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+    }
+    table td:before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    table td:last-child {
+        border-bottom: 0;
+    }
 }
 /* ---------------------------- Component -------------------------------- */
 .input-custom-field{
@@ -1372,3 +1441,59 @@ input[type=checkbox]:checked {
     vertical-align: middle;
     margin-left: 5px;
 }*/
+
+/* --------------------- Bid History -------------------------------------  */
+
+.bid-history-title{
+    font-family: 'effra-regular';
+    color: #484848;
+    font-size: 1.5em;
+    line-height: 1.5em;
+    font-weight: normal;
+}
+.bid-history-table-layout,.bid-history-product-item-layout{
+    padding: 10px;
+    background: #fff;
+    position: relative;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 0 0 #e2e2e2;
+    border-radius: 4px;
+}
+.bidders-title,.bids-title,.bids-time-left-title{
+    font-family: 'effra-regular';
+    color: #777;
+}
+.bidders-content,.bids-content,.bids-time-left-content{
+    font-family: 'effra-regular';
+    color: #222;
+    font-size: 16px;
+}
+.bidders-bid-table tr:hover{
+    color: #484848;
+}
+
+.bid-history-product-item-title{
+    font-family: 'effra-regular';
+    color: #484848;
+    font-size: 16px;
+    line-height: 1.5em;
+    font-weight: normal;
+}
+.bid-history-product-item-description{
+    font-family: 'effra-regular';
+    color: #484848;
+    font-size: 14px;
+    line-height: 1.5em;
+    font-weight: normal;
+}
+.bid-history-product-item-price-title{
+    font-family: 'effra-regular';
+    color: #777;
+}
+.bid-history-product-item-price-content{
+    font-family: 'effra-regular';
+    color: #484848;
+    font-size: 14px;
+    line-height: 1.5em;
+    font-weight: normal;
+}

@@ -161,10 +161,7 @@ button,
 select {
     text-transform: none
 }
-table button,
-table input {
-    overflow: auto
-}
+
 button,
 html input[type="button"],
 input[type="reset"],
@@ -214,10 +211,7 @@ textarea {
 textarea[contenteditable] {
     -webkit-appearance: none
 }
-table {
-    border-collapse: collapse;
-    border-spacing: 0
-}
+
 ul,
 ol,
 li,
@@ -1823,39 +1817,7 @@ span.errors {
     padding: 4px 8px 4px 4px;
     vertical-align: top
 }
-table {
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 20px;
-    margin-bottom: 2rem;
-    width: 100%
-}
-th,
-td {
-    border: 1px solid #ddd;
-    border-bottom: 0;
-    padding: 8px;
-    padding: .8rem 8px;
-    text-align: left
-}
-.striped {
-    border: 0
-}
-.striped th,
-.striped tr:nth-child(even) {
-    background-color: #edeff4
-}
-.striped th,
-.striped td {
-    border-top: 0;
-    border-right: 0
-}
-.striped th {
-    border-bottom: 1px solid #ddd
-}
-.striped th:first-child,
-.striped td:first-child {
-    border-left: none
-}
+
 
 .counter,
 .counter ol {
@@ -5625,17 +5587,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
     blockquote {
         page-break-inside: avoid
     }
-    thead {
-        display: table-header-group
-    }
-    tr,
-    img {
-        page-break-inside: avoid
-    }
-    img {
-        max-width: 100%!important;
-        page-break-inside: avoid
-    }
+    
     @page {
         margin: 8.75mm
     }
@@ -5975,14 +5927,7 @@ p.date-sold {
 .similar-nearby-sold-history-price-difference-negative {
     color: #7e807e
 }
-.similar-nearby-sold-history-table td,
-.similar-nearby-sold-history-table th {
-    border: 0 none;
-    vertical-align: middle
-}
-.similar-nearby-sold-history-table {
-    margin-top: 15px
-}
+
 #similar-nearby-sold-history-acknowledgment {
     font-size: 11px;
     color: #666;
@@ -6364,27 +6309,7 @@ p.date-sold {
     font-size: 15px;
     font-weight: normal
 }
-.coloured .similar-nearby-sold-history-table th {
-    color: #262637;
-    font-family: Effra-Medium, arial, helvetica, sans-serif;
-    font-size: 14px;
-    font-weight: normal
-}
-.coloured .similar-nearby-sold-history-table tr {
-    color: #262637;
-    font-family: Effra-Regular, arial, helvetica, sans-serif;
-    font-size: 14px;
-    font-weight: normal
-}
-.coloured .similar-nearby-sold-history-table .similar-nearby-sold-history-price-difference {
-    color: #009177;
-    font-family: Effra-Medium, arial, helvetica, sans-serif;
-    font-size: 18px;
-    font-weight: normal
-}
-.coloured .similar-nearby-sold-history-table .bdr-b {
-    border-bottom: 1px dashed #dfdfe1
-}
+
 .coloured #similar-nearby-sold-history-acknowledgment {
     color: #535353;
     font-family: Effra-Regular, arial, helvetica, sans-serif;
@@ -7291,16 +7216,7 @@ a.globalNav-link--current {
     background-color: #42506b;
     color: #ececec
 }
-#schools-192 .schoolsTableHeading {
-    padding: 15px;
-    border-left: 1px solid #ddd;
-    border-right: 1px solid #ddd
-}
-#schools-192 .schoolsTableHeading-title {
-    display: inline-block;
-    padding: 0;
-    color: #42506b
-}
+
 #schools-192 .propertyMapMarkerLabel {
     width: 23px;
     height: 31px;
@@ -7360,109 +7276,7 @@ a.globalNav-link--current {
     background: url("../images/schools-map-os-us-active.png") 0 0 no-repeat;
     cursor: pointer
 }
-#schools-192 .schoolsTable {
-    position: relative;
-    border: 1px solid #ddd;
-    table-layout: fixed
-}
-#schools-192 .schoolsTable-colIndex {
-    width: 45px
-}
-#schools-192 .schoolsTable-colName {
-    width: 283px
-}
-#schools-192 .schoolsTable--hideRating .schoolsTable-colName {
-    width: 378px
-}
-#schools-192 .schoolsTable-colRating {
-    width: 95px
-}
-#schools-192 .schoolsTable--hideRating .schoolsTable-colRating {
-    display: none
-}
-#schools-192 .schoolsTable-colCatchment {
-    width: 200px
-}
-#schools-192 .schoolsTable-row {
-    cursor: pointer
-}
-#schools-192 .schoolsTable-row--odd {
-    background-color: #f9f9f7
-}
-#schools-192 .schoolsTable-cell {
-    box-sizing: border-box;
-    border: 1px solid #ddd;
-    border-top: 0;
-    border-bottom: 0;
-    padding: 10px 8px;
-    font-size: 0;
-    vertical-align: middle;
-    text-align: center
-}
-#schools-192 .schoolsTable-cellIndex {
-    padding: 4px 6px;
-    border-left: none
-}
-#schools-192 .schoolsTable-cellName {
-    text-align: left
-}
-#schools-192 .schoolsTable--hideRating .schoolsTable-cellRating {
-    display: none
-}
-#schools-192 .schoolsTable-index {
-    display: inline-block;
-    z-index: 1;
-    position: relative;
-    font-size: 14px;
-    color: #262637
-}
-#schools-192 .schoolsTable-row--selected .schoolsTable-index {
-    color: #fff
-}
-#schools-192 .schoolsTable-row--selected .schoolsTable-cellIndex {
-    background-color: #262637
-}
-#schools-192 .schoolsTable-name {
-    display: block;
-    width: 265px;
-    line-height: 1.2em;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-wrap: normal;
-    font-size: 14px;
-    color: #262637
-}
-#schools-192 .schoolsTable--hideRating .schoolsTable-name {
-    width: 355px
-}
-#schools-192 .schoolsTable-distance {
-    padding-right: 8px;
-    font-size: 12px;
-    line-height: 1.2em;
-    color: #42506b
-}
-#schools-192 .schoolsTable-schoolType {
-    border-left: 1px solid #42506b;
-    padding-left: 8px;
-    font-size: 12px;
-    line-height: 1.2em;
-    color: #42506b
-}
-#schools-192 .schoolsTable-rating {
-    font-size: 12px;
-    line-height: 1.2em;
-    color: #262637
-}
-#schools-192 .schoolsTable-overview {
-    display: block;
-    font-size: 12px;
-    text-align: left;
-    color: #42506b
-}
-#schools-192 .schoolsTable-overview--hide {
-    display: none
-}
+
 #schools-192 #schools-map {
     position: relative;
     overflow: hidden
@@ -7780,35 +7594,7 @@ a.globalNav-link--current {
     text-shadow: none;
     color: #fff
 }
-#schools-192 .schoolsTableLoadMore {
-    text-align: center;
-    margin-bottom: 15px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #ddd
-}
-#schools-192 .schoolsTableLoadMore-button {
-    display: inline-block;
-    position: relative;
-    text-shadow: none;
-    text-decoration: none;
-    color: #004889;
-    font-size: 16px
-}
-#schools-192 .schoolsTableLoadMore-buttonArrow {
-    display: inline-block;
-    position: absolute;
-    top: 3px;
-    right: -25px;
-    width: 10px;
-    height: 10px;
-    border-bottom: 1px solid #004889;
-    border-right: 1px solid #004889;
-    content: "";
-    transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-}
+
 #schools-192 .schoolsDataProvider {
     text-align: center;
     border-bottom: 1px solid #ddd;
@@ -7893,15 +7679,7 @@ a.globalNav-link--current {
     right: 0;
     bottom: 0
 }
-#schools-192 .schoolsAlert-table {
-    display: table;
-    height: 100%;
-    margin: 0 auto
-}
-#schools-192 .schoolsAlert-tableCell {
-    vertical-align: middle;
-    display: table-cell
-}
+
 #schools-192 .schoolsAlert-message {
     position: relative;
     max-width: 650px;
