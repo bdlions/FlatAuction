@@ -14,16 +14,16 @@ import {Landing} from '../member/landing';
 import {Search} from '../common/search';
 import {Productinfo} from '../common/productinfo';
 import {Bids} from '../common/bids';
-import {AutoComplete} from '../autocomplete';
-import { Ng2CompleterModule } from "ng2-completer";
+import {CarouselModule, TypeaheadModule} from "ngx-bootstrap"
 
 @NgModule({
-    imports: [HttpModule, BrowserModule, FormsModule, Ng2CompleterModule,
+    imports: [HttpModule, BrowserModule, FormsModule, 
+        CarouselModule.forRoot(), TypeaheadModule.forRoot(),
         RouterModule.forRoot(routes, {
             useHash: false
         })
     ],
-    declarations: [Signup, NonMemberApp, Landing, Search, Productinfo, Bids, AutoComplete],
+    declarations: [Signup, NonMemberApp, Landing, Search, Productinfo, Bids],
     bootstrap: [NonMemberApp],
     providers: [AuthGuard, {provide: LocationStrategy, useClass: HashLocationStrategy}]
 })

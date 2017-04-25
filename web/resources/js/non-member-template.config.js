@@ -32,7 +32,7 @@
       // other libraries
       'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
-      'ng2-completer': 'npm:ng2-completer/ng2-completer.umd.js'
+      'ngx-bootstrap': 'npm:ngx-bootstrap/bundles/ngx-bootstrap.umd.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {

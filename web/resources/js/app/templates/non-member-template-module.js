@@ -19,8 +19,7 @@ var landing_1 = require("../member/landing");
 var search_1 = require("../common/search");
 var productinfo_1 = require("../common/productinfo");
 var bids_1 = require("../common/bids");
-var autocomplete_1 = require("../autocomplete");
-var ng2_completer_1 = require("ng2-completer");
+var ngx_bootstrap_1 = require("ngx-bootstrap");
 var NonMemberAppModule = (function () {
     function NonMemberAppModule() {
     }
@@ -28,12 +27,13 @@ var NonMemberAppModule = (function () {
 }());
 NonMemberAppModule = __decorate([
     core_1.NgModule({
-        imports: [http_1.HttpModule, platform_browser_1.BrowserModule, forms_1.FormsModule, ng2_completer_1.Ng2CompleterModule,
+        imports: [http_1.HttpModule, platform_browser_1.BrowserModule, forms_1.FormsModule,
+            ngx_bootstrap_1.CarouselModule.forRoot(), ngx_bootstrap_1.TypeaheadModule.forRoot(),
             router_1.RouterModule.forRoot(non_member_app_routes_1.routes, {
                 useHash: false
             })
         ],
-        declarations: [signup_1.Signup, NonMemberApp_1.NonMemberApp, landing_1.Landing, search_1.Search, productinfo_1.Productinfo, bids_1.Bids, autocomplete_1.AutoComplete],
+        declarations: [signup_1.Signup, NonMemberApp_1.NonMemberApp, landing_1.Landing, search_1.Search, productinfo_1.Productinfo, bids_1.Bids],
         bootstrap: [NonMemberApp_1.NonMemberApp],
         providers: [auth_guard_1.AuthGuard, { provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }]
     })
