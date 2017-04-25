@@ -1415,7 +1415,7 @@ input[type=checkbox]:checked {
 }
 /* --------------------- Steps of Flow -------------------------------------  */
 
-.steps img{
+/*.steps img{
     max-width: 40px;
     background: #F48221;
     border-radius: 50%;
@@ -1427,8 +1427,8 @@ input[type=checkbox]:checked {
     line-height: 40px;
     vertical-align: middle;
     margin-left: 5px;
-}
-/*.steps img{
+}*/
+.steps img{
     max-width: 40px;
     background: #00DEB6;
     border-radius: 50%;
@@ -1440,7 +1440,7 @@ input[type=checkbox]:checked {
     line-height: 40px;
     vertical-align: middle;
     margin-left: 5px;
-}*/
+}
 
 /* --------------------- Bid History -------------------------------------  */
 
