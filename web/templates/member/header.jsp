@@ -24,11 +24,11 @@
         <script src="resources/js/node_modules/zone.js/dist/zone.js"></script>
         <script src="resources/js/node_modules/systemjs/dist/system.src.js"></script>
         <script src="resources/js/non-member-template.config.js"></script>
-        <script>
+<!--        <script>
             System.import('resources/js/member-template.js').catch(function(err) {
                 console.error(err);
             });
-        </script>
+        </script>-->
         <link rel="shortcut icon" href="resources/images/favicon.ico" type="image/x-icon"> 
     </head>
     <body class="margin-top-bottom-100px">
