@@ -20,6 +20,7 @@ var search_1 = require("../common/search");
 var productinfo_1 = require("../common/productinfo");
 var bids_1 = require("../common/bids");
 var autocomplete_1 = require("../autocomplete");
+var ng2_completer_1 = require("ng2-completer");
 var NonMemberAppModule = (function () {
     function NonMemberAppModule() {
     }
@@ -27,7 +28,7 @@ var NonMemberAppModule = (function () {
 }());
 NonMemberAppModule = __decorate([
     core_1.NgModule({
-        imports: [http_1.HttpModule, platform_browser_1.BrowserModule, forms_1.FormsModule,
+        imports: [http_1.HttpModule, platform_browser_1.BrowserModule, forms_1.FormsModule, ng2_completer_1.Ng2CompleterModule,
             router_1.RouterModule.forRoot(non_member_app_routes_1.routes, {
                 useHash: false
             })

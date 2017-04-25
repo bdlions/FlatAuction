@@ -27,16 +27,18 @@
                             <h3 for="id" class="text-center search-box-small-text">Search properties for sale and to rent</h3>
                         </div>
                     </div>
-                    <div class="row form-group">
+                      <div class="row form-group">
                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 form-group">
-                            <input type="text" #searchId class="form-control search-input-field" id="searchId" placeholder="Search for Your Result">
-                            <div class="search-box-search-result-layout"> 
+                            <ng2-completer id='searchId' class="form-control search-input-field" placeholder="Search for Your Result" name='searchId' [(ngModel)]="captain" [datasource]="dataService" [minSearchLength]="0"></ng2-completer>
+                          
+                            <!--<input type="text" #searchId class="form-control search-input-field" id="searchId" placeholder="Search for Your Result">-->
+<!--                            <div class="search-box-search-result-layout"> 
                                 <ul class="search-box-search-result-ul">
                                     <li *ngFor="let product of productList">
                                         location type: {{product.location_type}} query string: {{product.search_string}}
                                 </li>
                             </ul>
-                        </div>
+                        </div>-->
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 form-group">
                         <button type="submit" class="form-control common-custom-button">Rent</button>

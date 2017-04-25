@@ -10,11 +10,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var Observable_1 = require("rxjs/Observable");
+require("rxjs/Rx");
+var ng2_completer_1 = require("ng2-completer");
 var Landing = (function () {
-    function Landing(router) {
+    function Landing(router, completerService) {
         this.router = router;
+        this.completerService = completerService;
         this.productList = JSON.parse("[{\"location_type\":\"area\",\"search_string\":\"London\"}, {\"location_type\":\"area\",\"search_string\":\"London 123\"}]");
         this.featuredProductList = JSON.parse("[{\"id\":\"1\",\"title\":\"Fun at the Bowling Alley\", \"price\":\"100\", \"time\":\"1010\", \"img\":\"a.jpg\", \"type\":\"1\"},{\"id\":\"2\",\"title\":\"iPhone 7\", \"price\":\"1000\", \"time\":\"2020\", \"img\":\"b.jpg\", \"type\":\"2\"}, {\"id\":\"1\",\"title\":\"Fun at the Bowling Alley\", \"price\":\"100\", \"time\":\"1010\", \"img\":\"a.jpg\", \"type\":\"1\"},{\"id\":\"2\",\"title\":\"iPhone 7\", \"price\":\"1000\", \"time\":\"2020\", \"img\":\"b.jpg\", \"type\":\"2\"}, {\"id\":\"1\",\"title\":\"Fun at the Bowling Alley\", \"price\":\"100\", \"time\":\"1010\", \"img\":\"a.jpg\", \"type\":\"1\"},{\"id\":\"2\",\"title\":\"iPhone 7\", \"price\":\"1000\", \"time\":\"2020\", \"img\":\"b.jpg\", \"type\":\"2\"}]");
+        var timedRes = Observable_1.Observable.from([this.productList]).delay(2000);
+        this.dataService = completerService.local(timedRes, 'search_string', 'search_string');
     }
     Landing.prototype.login = function (event, username, password) {
         event.preventDefault();
@@ -37,7 +43,7 @@ Landing = __decorate([
         selector: 'content',
         templateUrl: "./../../../../html_components/public/landing.html",
     }),
-    __metadata("design:paramtypes", [router_1.Router])
+    __metadata("design:paramtypes", [router_1.Router, ng2_completer_1.CompleterService])
 ], Landing);
 exports.Landing = Landing;
 //# sourceMappingURL=landing.js.map
