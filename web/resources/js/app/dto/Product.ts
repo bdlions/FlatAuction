@@ -11,6 +11,9 @@ export class Product {
     location_type: string;
     search_string: string;
     images: Array<Image>;
+    totalBidders:number;
+    totalBids:number;
+    timeLeft:string;
 }
 
 

@@ -12,8 +12,9 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var Product_1 = require("../dto/Product");
 var Productinfo = (function () {
-    function Productinfo(router) {
+    function Productinfo(router, route) {
         this.router = router;
+        this.route = route;
         this.product = new Product_1.Product();
         this.product.id = 1;
         this.product.title = "Fun at the Bowling Alley";
@@ -24,10 +25,16 @@ var Productinfo = (function () {
         this.product.type = 1;
         this.product.location_type = "location1";
         this.product.images = JSON.parse("[{\"id\":\"1\", \"url\":\"a.jpg\"}, {\"id\":\"2\", \"url\":\"b.jpg\"}]");
+        this.product.totalBidders = 10;
+        this.product.totalBids = 36;
+        this.product.timeLeft = "1 day 13 hours 30 mins";
     }
+    Productinfo.prototype.showBids = function (event, id) {
+        this.router.navigate(['bids', { id: this.id }]);
+    };
     Productinfo.prototype.ngOnInit = function () {
         var _this = this;
-        this.subscribe = this.router.params.subscribe(function (params) {
+        this.subscribe = this.route.params.subscribe(function (params) {
             _this.id = params['id'];
             console.log(_this.id);
         });
@@ -42,7 +49,7 @@ Productinfo = __decorate([
         selector: 'data-content',
         templateUrl: "./../../../../html_components/public/product.html",
     }),
-    __metadata("design:paramtypes", [router_1.ActivatedRoute])
+    __metadata("design:paramtypes", [router_1.Router, router_1.ActivatedRoute])
 ], Productinfo);
 exports.Productinfo = Productinfo;
 //# sourceMappingURL=productinfo.js.map

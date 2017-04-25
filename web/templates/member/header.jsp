@@ -24,15 +24,15 @@
         <script src="resources/js/node_modules/zone.js/dist/zone.js"></script>
         <script src="resources/js/node_modules/systemjs/dist/system.src.js"></script>
         <script src="resources/js/non-member-template.config.js"></script>
-        <script>
+<!--        <script>
             System.import('resources/js/member-template.js').catch(function(err) {
                 console.error(err);
             });
-        </script>
+        </script>-->
         <link rel="shortcut icon" href="resources/images/favicon.ico" type="image/x-icon"> 
     </head>
     <body class="margin-top-bottom-100px">
-        <header class="">
+        <header class="form-group">
             <div  class="header-white-bg">
                 <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 form-group">
@@ -59,10 +59,10 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <nav class="navbar navbar-default header-custom-navbar">
-                                <div class="container-fluid">
+                                <div class="container-fluid header-navbar-container-fluid-adjust">
                                     <!-- Brand and toggle get grouped for better mobile display -->
                                     <div class="navbar-header">
-                                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#member-header" aria-expanded="false">
                                             <span class="sr-only">Toggle navigation</span>
                                             <span class="icon-bar"></span>
                                             <span class="icon-bar"></span>
@@ -70,9 +70,10 @@
                                         </button>
                                     </div>
 
-                                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                    <div class="collapse navbar-collapse" id="member-header">
                                         <ul class="nav navbar-nav header-custom-nav">
                                             <li class="active"><a href="">Home</a></li>
+                                            <li><a href="">Dashboard</a></li>
                                             <li class="dropdown">
                                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Search <span class="caret"></span></a>
                                                 <ul class="dropdown-menu">

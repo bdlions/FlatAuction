@@ -71,6 +71,14 @@
                             </select> 
                         </div>
                     </div>
+                     <div class="row form-group">
+                        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group">
+                            <h3 class="filsters-submenu-title">Duration</h3>
+                            <select class="form-control select-custom-field">
+                                <option *ngFor="let duration of durationList" value="{{duration.title}}"><a id="{{duration.id}}">{{duration.title}}</a></option>
+                            </select> 
+                        </div>
+                     </div>
                 </div>
             </ul>
         </div>
@@ -297,6 +305,14 @@ Room size list<br/>
 <ul>
     <li *ngFor="let roomSize of roomSizeList">
         id: {{roomSize.id}} , title: {{roomSize.title}}
+</li>
+</ul>
+
+Duration list<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let duration of durationList">
+        id: {{duration.id}} , title: {{duration.title}}
 </li>
 </ul>
 

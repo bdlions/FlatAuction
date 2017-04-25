@@ -31,8 +31,6 @@
                             <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
                                 <ul class="left-menu-unorder-list">
                                     <a ><li>Registered Users</li></a>
-                                    <a ><li>Update User</li></a>
-                                    <a ><li>Delete User</li></a>
                                 </ul>
                             </div>
                         </div>
@@ -45,9 +43,7 @@
                             <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
                                 <ul class="left-menu-unorder-list">
                                     <a ><li>Create Search Location</li></a>
-                                    <a ><li>Update Search Location</li></a>
-                                    <a ><li>Show List of Search locations</li></a>
-                                    <a ><li>Delete Search Location</li></a>
+                                    <a ><li>Show Search Locations</li></a>
                                 </ul>
                             </div>
                         </div>
@@ -59,12 +55,7 @@
                             </div>
                             <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
                                 <ul class="left-menu-unorder-list">
-                                    <a ><li>Display List of Properties</li></a>
-                                    <a ><li>Display List of Bids for Each Property</li></a>
-                                    <a ><li>Update Property</li></a>
-                                    <a ><li>Update Bid of a Property</li></a>
-                                    <a ><li>Delete Property</li></a>
-                                    <a ><li>Delete Bid of a Property</li></a>
+                                    <a ><li>Display Properties</li></a>
                                 </ul>
                             </div>
                         </div>
@@ -72,7 +63,7 @@
                             <a class="left-menu-anchor"  role="button">
                                 <div class="panel-heading custom-panel-heading" role="tab" id="heading5">
                                     <h4 class="panel-title">
-                                        Manage Landing page properties
+                                        Manage Landing Page Properties
                                     </h4>
                                 </div>
                             </a>

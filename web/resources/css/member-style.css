@@ -29,6 +29,9 @@ h1,h2,h3,h4,h5,h6{
     color: #484848;
     line-height: 150%;
 }
+a{
+    cursor: pointer;
+}
 
 /* ---------------------------- Header -------------------------------- */
 .header-white-bg{
@@ -166,6 +169,72 @@ h1,h2,h3,h4,h5,h6{
 .footer-border{
     border-top: 1px solid #ccc;
     padding: 8px 2px;
+}
+/* ---------------------------- Table -------------------------------- */
+table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+    color: #484848;
+}
+table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+}
+table tr {
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: .35em;
+}
+table th,
+table td {
+    padding: .625em;
+    text-align: center;
+}
+table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+@media screen and (max-width: 600px) {
+    table {
+        border: 0;
+    }
+    table caption {
+        font-size: 1.3em;
+    }
+    table thead {
+        border: none;
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+    table tr {
+        border: 3px solid #ccc;
+        display: block;
+        margin-bottom: .625em;
+    }
+    table td {
+        border-bottom: 1px solid #ccc;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+    }
+    table td:before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    table td:last-child {
+        border-bottom: 0;
+    }
 }
 /* ---------------------------- Component -------------------------------- */
 .input-custom-field{
@@ -405,7 +474,7 @@ input[type=checkbox]:checked {
         color: #fff!important;
     }
     .header-custom-nav li a{
-        padding: 15px 50px;
+        padding: 15px 35px;
     }
     .dropdown-img-custom-button{
         margin-top: 3px;
@@ -414,6 +483,10 @@ input[type=checkbox]:checked {
     }
     .dropdown-img.open > .dropdown-menu{
         top: 58px;
+    }
+    .header-navbar-container-fluid-adjust{
+        margin-left: -30px!important;  
+        margin-right: 0px!important;  
     }
 }
 /* --------------------- Medium Device -------------------------------------  */
@@ -435,6 +508,10 @@ input[type=checkbox]:checked {
     }
     .dropdown-img.open > .dropdown-menu{
         top: 58px;
+    }
+    .header-navbar-container-fluid-adjust{
+        margin-left: -30px!important;  
+        margin-right: 0px!important;  
     }
 }
 /* --------------------- Large Device -------------------------------------  */
@@ -458,11 +535,125 @@ input[type=checkbox]:checked {
     .dropdown-img.open > .dropdown-menu{
         top: 58px;
     }
+    .header-navbar-container-fluid-adjust{
+        margin-left: -30px!important;  
+        margin-right: 0px!important;  
+    }
 
 }
 /* -------------------------------- Common ----------------------------- */
-.container-fluid-adjust{
-    margin-left: -15px!important;  
-    margin-right: 0px!important;  
+
+
+/* ---------------------------- Dashboard Left Sidebar Menu -------------------------------- */
+
+.dashboard-left-sidebar-ul{
+    padding: 0; 
+    margin: 0; 
+    list-style-type: none;
+}
+.dashboard-left-sidebar-ul > li > .active,.dashboard-left-sidebar-ul > li > .active:hover{
+    font-family: 'effra-regular';
+    text-decoration: none;
+    color: #484848!important;
+    font-weight: bold;
+}
+
+.dashboard-left-sidebar-ul > li > a{
+    font-family: 'effra-regular';
+    padding: 6px 0;
+    font-size: 18px;
+    color: #767676;
+    line-height: 2em;
+}
+.dashboard-left-sidebar-ul > li > a:hover{
+    font-family: 'effra-regular';
+    text-decoration: none;
+    padding: 6px 0;
+    color: #bbbbbb;
+    line-height: 2em;
+}
+/* ---------------------------- Feature Ad Left Sidebar Menu -------------------------------- */
+
+.featured-ad-left-sidebar-ul{
+    padding: 0; 
+    margin: 0; 
+    list-style-type: none;
+}
+.featured-ad-left-sidebar-ul > li > .active,.featured-ad-left-sidebar-ul > li > .active:hover{
+    font-family: 'effra-regular';
+    text-decoration: none;
+    color: #484848!important;
+    font-weight: bold;
+}
+
+.featured-ad-left-sidebar-ul > li > a{
+    font-family: 'effra-regular';
+    padding: 6px 0;
+    font-size: 18px;
+    color: #767676;
+    line-height: 2em;
+}
+.featured-ad-left-sidebar-ul > li > a:hover{
+    font-family: 'effra-regular';
+    text-decoration: none;
+    padding: 6px 0;
+    color: #bbbbbb;
+    line-height: 2em;
+}
+/* ---------------------------- Profile Left Sidebar Menu -------------------------------- */
+
+.profile-left-sidebar-ul{
+    padding: 0; 
+    margin: 0; 
+    list-style-type: none;
+}
+.profile-left-sidebar-ul > li > .active,.profile-left-sidebar-ul > li > .active:hover{
+    font-family: 'effra-regular';
+    text-decoration: none;
+    color: #484848!important;
+    font-weight: bold;
+}
+
+.profile-left-sidebar-ul > li > a{
+    font-family: 'effra-regular';
+    padding: 6px 0;
+    font-size: 18px;
+    color: #767676;
+    line-height: 2em;
+}
+.profile-left-sidebar-ul > li > a:hover{
+    font-family: 'effra-regular';
+    text-decoration: none;
+    padding: 6px 0;
+    color: #bbbbbb;
+    line-height: 2em;
+}
+/* ---------------------------- Manage Product Left Sidebar Menu -------------------------------- */
+
+.manage-product-left-sidebar-ul{
+    padding: 0; 
+    margin: 0; 
+    list-style-type: none;
+}
+.manage-product-left-sidebar-ul > li > .active,.manage-product-left-sidebar-ul > li > .active:hover{
+    font-family: 'effra-regular';
+    text-decoration: none;
+    color: #484848!important;
+    font-weight: bold;
+}
+
+.manage-product-left-sidebar-ul > li > a{
+    font-family: 'effra-regular';
+    padding: 6px 0;
+    font-size: 18px;
+    color: #767676;
+    line-height: 2em;
+}
+.manage-product-left-sidebar-ul > li > a:hover{
+    font-family: 'effra-regular';
+    text-decoration: none;
+    padding: 6px 0;
+    color: #bbbbbb;
+    line-height: 2em;
 }
 
