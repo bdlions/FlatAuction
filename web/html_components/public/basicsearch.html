@@ -1,0 +1,74 @@
+Basic Search Page<br/>
+
+
+Location list<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let location of locationList">
+        id: {{location.id}} , locationType {{location.locationType}}, searchString : {{location.searchString}}
+</li>
+</ul>
+
+Radius list<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let radius of radiusList">
+        id: {{radius.id}} , title: {{radius.title}}
+</li>
+</ul>
+
+Min Price list<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let minPrice of minPriceList">
+        id: {{minPrice.id}} , symbol {{minPrice.symbol}}, amount : {{minPrice.amount}}
+</li>
+</ul>
+
+Max Price list<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let maxPrice of maxPriceList">
+        id: {{maxPrice.id}} , symbol {{maxPrice.symbol}}, amount : {{maxPrice.amount}}
+</li>
+</ul>
+
+Product Type list<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let productType of productTypeList">
+        id: {{productType.id}} , title: {{productType.title}}
+</li>
+</ul>
+
+Occupation list<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let occupation of occupationList">
+        id: {{occupation.id}} , title: {{occupation.title}}
+</li>
+</ul>
+
+Gender list<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let gender of genderList">
+        id: {{gender.id}} , title: {{gender.title}}
+</li>
+</ul>
+
+Room size list<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let roomSize of roomSizeList">
+        id: {{roomSize.id}} , title: {{roomSize.title}}
+</li>
+</ul>
+
+Duration list<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let duration of durationList">
+        id: {{duration.id}} , title: {{duration.title}}
+</li>
+</ul>

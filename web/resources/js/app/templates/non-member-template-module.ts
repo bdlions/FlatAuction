@@ -11,6 +11,8 @@ import {AuthGuard} from '../common/auth.guard';
 import {NonMemberApp} from '../NonMemberApp';
 import {Signup} from '../member/signup';
 import {Landing} from '../member/landing';
+import {BasicSearch} from '../common/basicsearch';
+import {AdvancedSearch} from '../common/advancedsearch';
 import {Search} from '../common/search';
 import {Productinfo} from '../common/productinfo';
 import {Bids} from '../common/bids';
@@ -23,7 +25,7 @@ import {CarouselModule, TypeaheadModule} from "ngx-bootstrap"
             useHash: false
         })
     ],
-    declarations: [Signup, NonMemberApp, Landing, Search, Productinfo, Bids],
+    declarations: [Signup, NonMemberApp, Landing, BasicSearch, AdvancedSearch, Search, Productinfo, Bids],
     bootstrap: [NonMemberApp],
     providers: [AuthGuard, {provide: LocationStrategy, useClass: HashLocationStrategy}]
 })

@@ -28,6 +28,8 @@ export class Productinfo implements OnInit, OnDestroy {
         this.product.totalBidders = 10;
         this.product.totalBids = 36;
         this.product.timeLeft = "1 day 13 hours 30 mins";
+        this.product.startDate = "2017-05-11";
+        this.product.endDate = "2017-05-15";
     }
     
     public showBids(event: Event, id: number){

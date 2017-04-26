@@ -1,0 +1,13 @@
+Saved Ads
+
+product list<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let product of productList">
+        id: {{product.id}} , title: {{product.title}}, price : {{product.price}}, img : {{product.img}}, description : {{product.description}}
+        Images :
+        <div *ngFor="let image of product.images">
+            Image Id:{{image.id}} , Image url: {{image.url}}
+    </div>
+</li>
+</ul>

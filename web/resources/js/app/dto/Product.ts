@@ -2,6 +2,7 @@ import {Image} from "./Image";
 
 export class Product {
     id:number;
+    productId:string;
     title:string;
     description:string;
     price:number;
@@ -14,6 +15,8 @@ export class Product {
     totalBidders:number;
     totalBids:number;
     timeLeft:string;
+    startDate:string;
+    endDate:string;
 }
 
 

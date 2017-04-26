@@ -1,0 +1,14 @@
+Message Panel
+
+inbox<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let message of inbox">
+        id: {{message.id}} , subject {{message.subject}}, To : {{message.to.firstName}} {{message.to.lastName}}
+        <br/>
+        Messages :
+        <div *ngFor="let messageText of message.messageList">
+            Id:{{messageText.id}} , Text: {{messageText.text}}, Time: {{messageText.time}}, User : {{messageText.user.firstName}} {{messageText.user.lastName}}
+    </div>
+</li>
+</ul>

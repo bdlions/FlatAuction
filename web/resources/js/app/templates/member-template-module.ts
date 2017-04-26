@@ -10,9 +10,11 @@ import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import {AuthGuard} from '../common/auth.guard';
 //
 import {MemberApp} from '../MemberApp';
-import {Signup} from '../member/signup';
 //import {App} from './app';
 import {DashBoard} from "../member/dashboard";
+import {SavedAds} from "../member/savedads";
+import {MyAds} from "../member/myads";
+import {Messages} from "../member/messages";
 //import {Abroad} from './abroad';
 //import {Header} from './header';
 
@@ -23,7 +25,7 @@ import {DashBoard} from "../member/dashboard";
             useHash: false
         })
     ],
-    declarations: [MemberApp, DashBoard],
+    declarations: [MemberApp, DashBoard, SavedAds, MyAds, Messages],
     bootstrap: [MemberApp],
     providers: [AuthGuard, {provide: LocationStrategy, useClass: HashLocationStrategy}]
 })

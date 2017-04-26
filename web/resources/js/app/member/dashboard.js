@@ -21,7 +21,7 @@ var DashBoard = (function () {
 DashBoard = __decorate([
     core_1.Component({
         selector: 'data-content1ddd',
-        templateUrl: "./../../../../html_components/public/index.html",
+        templateUrl: "./../../../../html_components/member/dashboard.html",
     }),
     __metadata("design:paramtypes", [router_1.Router, http_1.Http])
 ], DashBoard);

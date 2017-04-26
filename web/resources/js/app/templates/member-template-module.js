@@ -17,6 +17,9 @@ var auth_guard_1 = require("../common/auth.guard");
 var MemberApp_1 = require("../MemberApp");
 //import {App} from './app';
 var dashboard_1 = require("../member/dashboard");
+var savedads_1 = require("../member/savedads");
+var myads_1 = require("../member/myads");
+var messages_1 = require("../member/messages");
 //import {Abroad} from './abroad';
 //import {Header} from './header';
 var MemberAppModule = (function () {
@@ -31,7 +34,7 @@ MemberAppModule = __decorate([
                 useHash: false
             })
         ],
-        declarations: [MemberApp_1.MemberApp, dashboard_1.DashBoard],
+        declarations: [MemberApp_1.MemberApp, dashboard_1.DashBoard, savedads_1.SavedAds, myads_1.MyAds, messages_1.Messages],
         bootstrap: [MemberApp_1.MemberApp],
         providers: [auth_guard_1.AuthGuard, { provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }]
     })
