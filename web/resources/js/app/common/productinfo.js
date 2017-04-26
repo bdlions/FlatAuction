@@ -49,7 +49,7 @@ var Productinfo = (function () {
 Productinfo = __decorate([
     core_1.Component({
         selector: 'data-content',
-        templateUrl: "./../../../../html_components/public/product.html",
+        templateUrl: window.SUB_DIRECTORY + "/html_components/public/product.html",
     }),
     __metadata("design:paramtypes", [router_1.Router, router_1.ActivatedRoute])
 ], Productinfo);

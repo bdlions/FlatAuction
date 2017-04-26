@@ -35,7 +35,7 @@ var MyAds = (function () {
 MyAds = __decorate([
     core_1.Component({
         selector: 'data-content',
-        templateUrl: "./../../../../html_components/member/myads.html",
+        templateUrl: window.SUB_DIRECTORY + "/html_components/member/myads.html",
     }),
     __metadata("design:paramtypes", [router_1.Router, router_1.ActivatedRoute])
 ], MyAds);

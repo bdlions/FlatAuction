@@ -8,7 +8,7 @@ import {Message} from '../dto/Message';
 
 @Component({
     selector: 'data-content',
-    templateUrl: "./../../../../html_components/member/messages.html",
+    templateUrl: window.SUB_DIRECTORY +"/html_components/member/messages.html",
 })
 export class Messages implements OnInit, OnDestroy {
     private inbox: Message[];

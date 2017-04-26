@@ -8,7 +8,7 @@ import 'rxjs/Rx';
 
 @Component({
     selector: 'content',
-    templateUrl: "./../../../../html_components/public/landing.html",
+    templateUrl: window.SUB_DIRECTORY +"/html_components/public/landing.html",
 })
 export class Landing {
     public selectedLocation:string;

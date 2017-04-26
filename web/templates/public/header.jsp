@@ -7,15 +7,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="resources/css/wave.css" >
         <link rel="stylesheet" href="resources/css/bootstrap.min.css" >
-        <link rel="stylesheet" href="resources/css/font-awesome.min.css" >
-        <!--<link rel="stylesheet" href="resources/css/autocomplete-style.css" >-->
-
+        
         <!-- Optional theme -->
         <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css" >
         <link rel="stylesheet" href="resources/css/header-menu.css" >
         <link rel="stylesheet" href="resources/css/common.css" >
         <link rel="stylesheet" href="resources/css/nonmember.css" >
+        <link rel="stylesheet" href="resources/css/font-awesome.min.css" >
+        <!--<link rel="stylesheet" href="resources/css/autocomplete-style.css" >-->
+
 
         <!-- Latest compiled and minified JavaScript -->
         <script src="resources/js/jquery.min.js"></script>
@@ -29,6 +31,7 @@
         <!-- Polyfills -->
         <script src="resources/js/header-menu.js"></script>
         <script src="resources/js/ga.js"></script>
+        <script src="resources/js/global.js"></script>
         <script>
             System.import('resources/js/non-member-template.js').catch(function(err) {
                 console.error(err);

@@ -19,7 +19,7 @@ var MemberApp = (function () {
 MemberApp = __decorate([
     core_1.Component({
         selector: 'data-content',
-        templateUrl: "./../../../html_components/public/app.html",
+        templateUrl: window.SUB_DIRECTORY + "/html_components/public/app.html",
     }),
     __metadata("design:paramtypes", [router_1.Router])
 ], MemberApp);

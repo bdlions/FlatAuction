@@ -10,7 +10,7 @@ import {General} from '../dto/General';
 
 @Component({
     selector: 'data-content',
-    templateUrl: "./../../../../html_components/public/advancedsearch.html",
+    templateUrl: window.SUB_DIRECTORY +"/html_components/public/advancedsearch.html",
 })
 export class AdvancedSearch implements OnInit, OnDestroy {
     

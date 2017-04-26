@@ -10,8 +10,24 @@
             <jsp:include page="templates/member/dashboard-left-sidebar.jsp"></jsp:include>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-                <data-content>     
-                    Loading...
+                <style type="text/css">
+                    .vertical-center {
+                        min-height: 100%; 
+                        min-height: 100vh;
+                        display: flex;
+                        align-items: center;
+                    }
+                </style>
+                <data-content>
+                    <div class="vertical-center">
+                        <div class="sk-wave">
+                            <div class="sk-rect sk-rect1"></div>
+                            <div class="sk-rect sk-rect2"></div>
+                            <div class="sk-rect sk-rect3"></div>
+                            <div class="sk-rect sk-rect4"></div>
+                            <div class="sk-rect sk-rect5"></div>
+                        </div>
+                    </div>
                 </data-content>
             </div>
         </div>

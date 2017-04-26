@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="resources/css/font-awesome.min.css" >
 
         <!-- Optional theme -->
+        <link rel="stylesheet" href="resources/css/wave.css" >
         <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css" >
         <link rel="stylesheet" href="resources/css/admin-style.css" >
 
@@ -23,8 +24,9 @@
         <script src="resources/js/node_modules/zone.js/dist/zone.js"></script>
         <script src="resources/js/node_modules/systemjs/dist/system.src.js"></script>
         <script src="resources/js/non-member-template.config.js"></script>
+        <script src="resources/js/global.js"></script>
         <script>
-            System.import('resources/js/admin-template.js').catch(function(err) {
+            System.import('resources/js/admin-template.js').catch(function (err) {
                 console.error(err);
             });
         </script>
@@ -55,8 +57,24 @@
                 <jsp:include page="left-sidebar.jsp"></jsp:include>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-                <data-content>     
-                    Loading...
+                <style type="text/css">
+                    .vertical-center {
+                        min-height: 100%; 
+                        min-height: 100vh;
+                        display: flex;
+                        align-items: center;
+                    }
+                </style>
+                <data-content>
+                    <div class="vertical-center">
+                        <div class="sk-wave">
+                            <div class="sk-rect sk-rect1"></div>
+                            <div class="sk-rect sk-rect2"></div>
+                            <div class="sk-rect sk-rect3"></div>
+                            <div class="sk-rect sk-rect4"></div>
+                            <div class="sk-rect sk-rect5"></div>
+                        </div>
+                    </div>
                 </data-content>
             </div>
         </div>

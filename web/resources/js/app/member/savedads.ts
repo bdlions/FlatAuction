@@ -7,7 +7,7 @@ import {Product} from '../dto/Product';
 
 @Component({
     selector: 'data-content',
-    templateUrl: "./../../../../html_components/member/savedads.html",
+    templateUrl: window.SUB_DIRECTORY +"/html_components/member/savedads.html",
 })
 export class SavedAds implements OnInit, OnDestroy {
     

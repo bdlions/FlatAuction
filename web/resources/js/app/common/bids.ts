@@ -7,7 +7,7 @@ import {Product} from '../dto/Product';
 
 @Component({
     selector: 'data-content',
-    templateUrl: "./../../../../html_components/public/bid.html",
+    templateUrl: window.SUB_DIRECTORY +"/html_components/public/bid.html",
 })
 export class Bids implements OnInit, OnDestroy {
     private product: Product;

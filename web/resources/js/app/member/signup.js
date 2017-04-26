@@ -28,8 +28,7 @@ var Signup = (function () {
 }());
 Signup = __decorate([
     core_1.Component({
-        selector: 'data-content1ddd',
-        templateUrl: "./../../../../html_components/public/signup.html",
+        templateUrl: window.SUB_DIRECTORY + "/html_components/public/signup.html",
     }),
     __metadata("design:paramtypes", [router_1.Router, http_1.Http])
 ], Signup);

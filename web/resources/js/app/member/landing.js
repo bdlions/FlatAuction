@@ -36,7 +36,7 @@ var Landing = (function () {
 Landing = __decorate([
     core_1.Component({
         selector: 'content',
-        templateUrl: "./../../../../html_components/public/landing.html",
+        templateUrl: window.SUB_DIRECTORY + "/html_components/public/landing.html",
     }),
     __metadata("design:paramtypes", [router_1.Router])
 ], Landing);

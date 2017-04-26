@@ -8,6 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="resources/css/wave.css" >
         <link rel="stylesheet" href="resources/css/bootstrap.min.css" >
         <link rel="stylesheet" href="resources/css/font-awesome.min.css" >
 
@@ -25,6 +26,7 @@
         <script src="resources/js/node_modules/zone.js/dist/zone.js"></script>
         <script src="resources/js/node_modules/systemjs/dist/system.src.js"></script>
         <script src="resources/js/non-member-template.config.js"></script>
+        <script src="resources/js/global.js"></script>
 <!--        <script>
             System.import('resources/js/member-template.js').catch(function(err) {
                 console.error(err);

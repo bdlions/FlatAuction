@@ -5,7 +5,7 @@ import {User} from '../dto/User'
 
 @Component({
     selector: 'data-content1ddd',
-    templateUrl: "./../../../../html_components/member/manageproduct/index.html",
+    templateUrl: window.SUB_DIRECTORY +"/html_components/member/manageproduct/index.html",
 })
 export class DashBoard {
     

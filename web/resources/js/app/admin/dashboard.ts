@@ -4,7 +4,7 @@ import {Http} from '@angular/http';
 
 @Component({
     selector: 'data-content1ddd',
-    templateUrl: "./../../../../html_components/admin/index.html",
+    templateUrl: window.SUB_DIRECTORY +"/html_components/admin/index.html",
 })
 export class DashBoard {
     

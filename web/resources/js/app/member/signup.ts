@@ -5,8 +5,7 @@ import {User} from '../dto/User'
 import {Product} from '../dto/Product'
 
 @Component({
-    selector: 'data-content1ddd',
-    templateUrl: "./../../../../html_components/public/signup.html",
+    templateUrl: window.SUB_DIRECTORY + "/html_components/public/signup.html",
 })
 export class Signup {
     private user:User;

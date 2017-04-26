@@ -44,7 +44,7 @@ var Search = (function () {
 Search = __decorate([
     core_1.Component({
         selector: 'data-content',
-        templateUrl: "./../../../../html_components/public/search.html",
+        templateUrl: window.SUB_DIRECTORY + "/html_components/public/search.html",
     }),
     __metadata("design:paramtypes", [router_1.Router, router_1.ActivatedRoute])
 ], Search);
