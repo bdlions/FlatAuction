@@ -356,9 +356,6 @@ input[type=checkbox]:checked {
 }
 /* --------------------- Mobile Device -------------------------------------  */
 @media (max-width : 767px) {
-    .sign-up-anchor{
-        float: right;
-    }
     .search-box-pagelet{
         padding: 30px;
     }
@@ -389,15 +386,7 @@ input[type=checkbox]:checked {
     .filter-content-box{
         width: 100%!important;
     }
-    .landing-page-search-box-layout > typeahead-container {
-        position: relative!important;
-        display: block!important;
-        top: 0!important;
-        left: 0!important;
-    }
-    .landing-page-search-box-layout > typeahead-container > ul {
-        width: 100%!important;
-    }
+
     .property-search-page-search-box-layout > typeahead-container {
         position: relative!important;
         display: block!important;
@@ -429,9 +418,6 @@ input[type=checkbox]:checked {
 
 /* --------------------- Tablet Device -------------------------------------  */
 @media (min-width : 768px) and (max-width : 991px) {
-    .sign-up-anchor{
-        float: right;
-    }
     .search-box-pagelet{
         padding: 20px 30px 30px 30px;
     }
@@ -463,9 +449,6 @@ input[type=checkbox]:checked {
     .filter-content-box{
         width: 718px!important;
     }
-    .landing-page-search-box-layout > typeahead-container > ul > li > a{
-        width: 348px;
-    }
     .property-search-page-search-box-layout > input{
         width: 660px!important;
     }
@@ -476,21 +459,17 @@ input[type=checkbox]:checked {
         width: 715px!important;
     }
     .basic-search-page-search-box-layout > typeahead-container > ul > li > a{
-          width: 715px!important;
+        width: 715px!important;
     }
     .advanced-search-page-search-box-layout > input{
         width: 715px!important;
     }
     .advanced-search-page-search-box-layout > typeahead-container > ul > li > a{
-          width: 715px!important;
+        width: 715px!important;
     }
 }
 /* --------------------- Medium Device -------------------------------------  */
 @media (min-width : 992px) and (max-width : 1199px) {
-    .sign-up-anchor{
-        float: right;
-        margin-top: 6px;
-    }
     .search-box-pagelet{
         padding: 80px 30px;
     }
@@ -526,9 +505,7 @@ input[type=checkbox]:checked {
     .filter-content-box{
         width: 940px!important;
     }
-    .landing-page-search-box-layout > typeahead-container > ul > li > a{
-        width: 360px;
-    }
+
     .property-search-page-search-box-layout > input{
         width: 360px!important;
     }
@@ -539,21 +516,17 @@ input[type=checkbox]:checked {
         width: 295px!important;
     }
     .basic-search-page-search-box-layout > typeahead-container > ul > li > a{
-         width: 295px!important;
+        width: 295px!important;
     }
     .advanced-search-page-search-box-layout > input{
         width: 295px!important;
     }
     .advanced-search-page-search-box-layout > typeahead-container > ul > li > a{
-         width: 295px!important;
+        width: 295px!important;
     }
 }
 /* --------------------- Large Device -------------------------------------  */
 @media only screen and (min-width : 1200px) {
-    .sign-up-anchor{
-        float: right;
-        margin-top: 6px;
-    }
     .search-box-pagelet{
         padding: 80px 30px;
     }
@@ -589,9 +562,6 @@ input[type=checkbox]:checked {
     .filter-content-box{
         width: 1139px!important;
     }
-    .landing-page-search-box-layout > typeahead-container > ul > li > a{
-        width: 450px;
-    }
     .property-search-page-search-box-layout > input{
         width: 450px!important;
     }
@@ -602,48 +572,14 @@ input[type=checkbox]:checked {
         width: 360px!important;
     }
     .basic-search-page-search-box-layout > typeahead-container > ul > li > a{
-         width: 360px!important;
+        width: 360px!important;
     }
     .advanced-search-page-search-box-layout > input{
         width: 360px!important;
     }
     .advanced-search-page-search-box-layout > typeahead-container > ul > li > a{
-         width: 360px!important;
+        width: 360px!important;
     }
-}
-
-/* --------------------- Landing Page Search Box -------------------------------------  */
-
-.landing-page-search-box-layout > typeahead-container > ul{
-    border-radius: 0!important;
-}
-.landing-page-search-box-layout > typeahead-container > ul > li > a{
-    font-family: 'effra-regular';
-    color: #484848;
-    background-image: none!important;
-    background-color: #fff!important;
-    border-top: 1px solid #00DEB6;
-}
-.landing-page-search-box-layout > typeahead-container > ul > li > a:hover,
-.landing-page-search-box-layout > typeahead-container > ul > li > a:focus,
-.landing-page-search-box-layout > typeahead-container > ul > li > a:visited{
-    font-family: 'effra-regular';
-    background-image: none!important;
-    background-color: #00DEB6!important;
-    color: #FFF!important;
-}
-.landing-page-search-box-header-text{
-    font-family: 'effra-medium';
-    color: #00deb6;
-    line-height: 1.5em;
-    font-size: 28px;
-}
-.landing-page-search-box-small-text{
-    font-family: 'effra-regular';
-    color: #fff;
-    line-height: 1.2em;
-    font-size: 16px;
-    font-weight: normal;
 }
 
 /* --------------------- Property Search Page Search Box -------------------------------------  */
