@@ -20,7 +20,7 @@
     <div class="row form-group">
         <div class="col-xs-12 col-sm-7 col-md-8 col-lg-8 form-group">
             <div class="search-box-pagelet form-group">
-                <form role="form" (submit)="search($event, productSelector.value)">
+                <form role="form" (submit)="search($event, locationSelector.value)">
                       <div class="row form-group">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <h1 for="id" class="text-center search-box-header-text">Find your soltion</h1>
@@ -29,9 +29,9 @@
                     </div>
                     <div class="row form-group">
                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 form-group">
-                            <input #productSelector name="productSelector" [(ngModel)]="selectedProduct"
-                                   [typeahead]="productList"
-                                   typeaheadOptionField="search_string"
+                            <input #locationSelector name="locationSelector" [(ngModel)]="selectedLocation"
+                                   [typeahead]="locationList"
+                                   typeaheadOptionField="searchString"
                                    class="form-control">
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 form-group">
