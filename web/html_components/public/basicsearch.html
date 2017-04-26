@@ -1,3 +1,42 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <h1 class="basic-search-header">Basic Search</h1>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 form-group">
+            <h3 class="basic-search-selection-title">Search Location</h3>
+            <div class="basic-search-page-search-box-layout">
+                <input #locationSelector name="locationSelector" [(ngModel)]="selectedLocation"
+                    [typeahead]="locationList"
+                    typeaheadOptionField="searchString"
+                    class="form-control search-input-field" placeholder="Search for Location">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
+            <h3 class="basic-search-selection-title">Product Type</h3>
+            <select class="form-control select-custom-field">
+                <option *ngFor="let productType of productTypeList" value="{{productType.title}}"><a id="{{productType.id}}">{{productType.title}}</a></option>
+            </select> 
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
+            <h3 class="basic-search-selection-title">Radius</h3>
+            <select class="form-control select-custom-field">
+                <option *ngFor="let radius of radiusList" value="{{radius.title}}"><a id="{{radius.id}}">{{radius.title}}</a></option>
+            </select> 
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
+            <input id="productId" class="form-control input-custom-field" placeholder="Product Id (example: 1)"> 
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4 form-group">
+            <button id="basicSearchButton" class="form-control common-custom-button">Search</button>
+        </div>
+    </div>
+</div>
+<!--
 Basic Search Page<br/>
 
 
@@ -71,4 +110,4 @@ Duration list<br/>
     <li *ngFor="let duration of durationList">
         id: {{duration.id}} , title: {{duration.title}}
 </li>
-</ul>
+</ul>-->

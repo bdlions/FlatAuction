@@ -1,3 +1,78 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <h1 class="advanced-search-header">Advanced Search</h1>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 form-group">
+            <h3 class="advanced-search-selection-title">Search Location</h3>
+                        <div class="advanced-search-page-search-box-layout">
+                            <input #locationSelector name="locationSelector" [(ngModel)]="selectedLocation"
+                                [typeahead]="locationList"
+                                typeaheadOptionField="searchString"
+                                class="form-control search-input-field" placeholder="Search for Location">
+                        </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
+            <h3 class="advanced-search-selection-title">Product Type</h3>
+            <select class="form-control select-custom-field">
+                <option *ngFor="let productType of productTypeList" value="{{productType.title}}"><a id="{{productType.id}}">{{productType.title}}</a></option>
+            </select> 
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
+            <h3 class="advanced-search-selection-title">Radius</h3>
+            <select class="form-control select-custom-field">
+                <option *ngFor="let radius of radiusList" value="{{radius.title}}"><a id="{{radius.id}}">{{radius.title}}</a></option>
+            </select> 
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
+            <h3 class="advanced-search-selection-title">Min Price</h3>
+            <select class="form-control select-custom-field">
+                <option *ngFor="let minPrice of minPriceList" value="{{minPrice.symbol}}{{minPrice.amount}}"><a id="{{minPrice.id}}">{{minPrice.symbol}}{{minPrice.amount}}</a></option>
+            </select> 
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
+            <h3 class="advanced-search-selection-title">Max Price</h3>
+            <select class="form-control select-custom-field">
+                <option *ngFor="let maxPrice of maxPriceList" value="{{maxPrice.symbol}}{{maxPrice.amount}}"><a id="{{maxPrice.id}}">{{maxPrice.symbol}}{{maxPrice.amount}}</a></option>
+            </select> 
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
+            <h3 class="advanced-search-selection-title">Occupation</h3>
+            <select class="form-control select-custom-field">
+                <option *ngFor="let occupation of occupationList" value="{{occupation.title}}"><a id="{{occupation.id}}">{{occupation.title}}</a></option>
+            </select> 
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
+            <h3 class="advanced-search-selection-title">Gender</h3>
+            <select class="form-control select-custom-field">
+                <option *ngFor="let gender of genderList" value="{{gender.title}}"><a id="{{gender.id}}">{{gender.title}}</a></option>
+            </select> 
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
+            <h3 class="advanced-search-selection-title">Room Size</h3>
+            <select class="form-control select-custom-field">
+                <option *ngFor="let roomSize of roomSizeList" value="{{roomSize.title}}"><a id="{{roomSize.id}}">{{roomSize.title}}</a></option>
+            </select> 
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
+            <h3 class="advanced-search-selection-title">Duration</h3>
+            <select class="form-control select-custom-field">
+                <option *ngFor="let duration of durationList" value="{{duration.title}}"><a id="{{duration.id}}">{{duration.title}}</a></option>
+            </select> 
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-xs-12 col-sm-offset-6 col-sm-6 col-md-offset-8 col-md-4 col-lg-offset-8 col-lg-4">
+            <button id="advancedSearchButton" class="form-control common-custom-button">Search</button>
+        </div>
+    </div>
+</div>
+
+<!--
+
 Advanced Search Page<br/>
 
 
@@ -71,4 +146,4 @@ Duration list<br/>
     <li *ngFor="let duration of durationList">
         id: {{duration.id}} , title: {{duration.title}}
 </li>
-</ul>
+</ul>-->
