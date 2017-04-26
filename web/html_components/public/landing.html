@@ -29,10 +29,12 @@
                     </div>
                     <div class="row form-group">
                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 form-group">
-                            <input #locationSelector name="locationSelector" [(ngModel)]="selectedLocation"
-                                   [typeahead]="locationList"
-                                   typeaheadOptionField="searchString"
-                                   class="form-control">
+                            <div class="landing-page-search-box-layout">
+                                <input #locationSelector name="locationSelector" [(ngModel)]="selectedLocation"
+                                    [typeahead]="locationList"
+                                    typeaheadOptionField="searchString"
+                                    class="form-control search-input-field">
+                            </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 form-group">
                             <button type="submit" class="form-control common-custom-button">Rent</button>

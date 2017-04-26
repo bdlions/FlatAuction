@@ -110,14 +110,8 @@
 
     
                         <carousel>
-                            <slide>
-                                <img src="resources/images/{{product.img}}" alt="First slide">
-                            </slide>
-                            <slide>
-                                <img src="resources/images/{{product.img}}" alt="Second slide">
-                            </slide>
-                            <slide>
-                                <img src="resources/images/{{product.img}}" alt="Third slide">
+                            <slide *ngFor="let image of product.images">
+                                <img class="product-info-details-img" src="resources/images/{{image.url}}" alt="{{image.url}}">
                             </slide>
                         </carousel>
                     </div>

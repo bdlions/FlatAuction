@@ -14,13 +14,11 @@
         <div class="collapse navbar-collapse" id="product-info-detail-navbar">
             <form class="navbar-form navbar-left">
                 <div class="form-group">
-                    <input type="text" #searchId class="form-control product-info-detail-search-input-field" id="searchId" placeholder="Enter a Search Location">
-                    <div class="product-info-detail-search-result-layout"> 
-                        <ul class="product-info-detail-search-result-ul">
-                            <li *ngFor="let location of locationList">
-                                <a id="{{location.id}}">{{location.searchString}}</a>
-                            </li>
-                        </ul>
+                    <div class="property-search-page-search-box-layout">
+                        <input #locationSelector name="locationSelector" [(ngModel)]="selectedLocation"
+                            [typeahead]="locationList"
+                            typeaheadOptionField="searchString"
+                            class="form-control search-input-field">
                     </div>
                 </div>
             </form>
@@ -71,14 +69,14 @@
                             </select> 
                         </div>
                     </div>
-                     <div class="row form-group">
+                    <div class="row form-group">
                         <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group">
                             <h3 class="filsters-submenu-title">Duration</h3>
                             <select class="form-control select-custom-field">
                                 <option *ngFor="let duration of durationList" value="{{duration.title}}"><a id="{{duration.id}}">{{duration.title}}</a></option>
                             </select> 
                         </div>
-                     </div>
+                    </div>
                 </div>
             </ul>
         </div>
