@@ -14,7 +14,7 @@
         <!-- Optional theme -->
         <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css" >
         <link rel="stylesheet" href="resources/css/header-menu.css" >
-        <link rel="stylesheet" href="resources/css/nonmember-style.css" >
+        <link rel="stylesheet" href="resources/css/common.css" >
 
         <!-- Latest compiled and minified JavaScript -->
         <script src="resources/js/jquery.min.js"></script>

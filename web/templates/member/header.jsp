@@ -13,7 +13,8 @@
 
         <!-- Optional theme -->
         <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css" >
-        <link rel="stylesheet" href="resources/css/member-style.css" >
+        <link rel="stylesheet" href="resources/css/common.css" >
+        <link rel="stylesheet" href="resources/css/member.css" >
 
         <!-- Latest compiled and minified JavaScript -->
         <script src="resources/js/jquery.min.js"></script>
@@ -31,7 +32,7 @@
         </script>-->
         <link rel="shortcut icon" href="resources/images/favicon.ico" type="image/x-icon"> 
     </head>
-    <body class="margin-top-bottom-100px">
+    <body class="margin-bottom-100px">
         <header class="form-group">
             <div  class="header-white-bg">
                 <div class="row">
