@@ -179,16 +179,7 @@ button[disabled],
 html input[disabled] {
     cursor: default
 }
-input[type="checkbox"],
-input[type="radio"] {
-    box-sizing: border-box;
-    padding: 0
-}
-.lt-ie8 input[type="checkbox"],
-.lt-ie8 input[type="radio"] {
-    height: 13px;
-    width: 13px
-}
+
 input[type="search"] {
     -webkit-appearance: textfield;
     -moz-box-sizing: content-box;
@@ -1339,28 +1330,7 @@ i.icon-success,
 .icon-rss:before {
     background-position: -550px -50px
 }
-.icon-uncheckedbox,
-.icon-checkedbox {
-    padding-left: 20px
-}
-.icon-uncheckedbox:before {
-    background-position: 0 -296px
-}
-.icon-checkedbox:before {
-    background-position: -50px -296px
-}
-.icon-checkedbox:hover {
-    text-decoration: none
-}
-.icon-checkedbox:hover span {
-    text-decoration: underline
-}
-.icon-checkedbox:hover:before {
-    background-position: 0 -296px
-}
-.icon-uncheckedbox:hover:before {
-    background-position: -50px -296px
-}
+
 .icon-list-dark:before {
     background-position: -350px -148px
 }
@@ -2970,13 +2940,6 @@ body .list-bullet-darkBlue li:before {
 }
 .update-results .range select {
     width: 68px
-}
-.update-results .checkbox,
-.update-results .submit {
-    margin-left: 64px
-}
-.update-results .checkbox label {
-    width: auto
 }
 .secondary-content .create-alert-save-search span {
     display: block
@@ -5304,27 +5267,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 #create-account-and-log-in-lightbox-contents .submitset.nospace input {
 
 }
-#create-account-and-log-in-lightbox-contents .checkbox {
-    margin: 0;
-    clear: both;
-    float: left
-}
-#create-account-and-log-in-lightbox-contents .inputset.checkboxes {
-    border: 0
-}
-#create-account-and-log-in-lightbox-contents .inputset.checkboxes label {
-    font-weight: normal;
-    width: auto;
-    float: left;
-    clear: none;
-    padding: 0 0 0 .2em
-}
-#create-account-and-log-in-lightbox-contents .inputset.checkboxes input {
-    width: auto;
-    float: left;
-    margin-right: 5px;
-    margin-top: 2px
-}
+
 #create-account-and-log-in-lightbox-contents .inputset.radiobutton {
     padding: .2em 0;
     clear: none
@@ -5460,31 +5403,8 @@ only screen and (min-device-pixel-ratio: 1.5) {
 #create-account-and-log-in-lightbox-contents #arrangeAndInformation label {
     font-weight: bold
 }
-#create-account-and-log-in-lightbox-contents .simpleform .checkboxes input,
-.simpleform .checkboxes label {
-    width: auto;
-    float: left;
-    clear: none;
-    padding: 0
-}
-#create-account-and-log-in-lightbox-contents .simpleform .checkboxes label,
-.simpleform .checkboxes input {
-    margin-left: 0
-}
-#create-account-and-log-in-lightbox-contents .privacy.checkboxes input {
-    margin: 0 5px 15px 0
-}
-#create-account-and-log-in-lightbox-contents .simpleform .checkboxes label {
-    margin-right: 2em
-}
-#create-account-and-log-in-lightbox-contents .simpleform .checkboxes label.last {
-    margin-right: 0
-}
 #create-account-and-log-in-lightbox-contents #labelp2sla_4 {
     margin-right: 0
-}
-#create-account-and-log-in-lightbox-contents .error.checkboxes label {
-    color: #000
 }
 #create-account-and-log-in-lightbox-contents .small-print {
     font-size: 12px;

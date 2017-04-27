@@ -1,12 +1,14 @@
 <div class="container">
     <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <h1 class="basic-search-header">Basic Search</h1>
         </div>
     </div>
     <div class="row form-group">
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 form-group">
+        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
             <h3 class="basic-search-selection-title">Search Location</h3>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 form-group">
             <div class="basic-search-page-search-box-layout">
                 <input #locationSelector name="locationSelector" [(ngModel)]="selectedLocation"
                     [typeahead]="locationList"
@@ -14,24 +16,31 @@
                     class="form-control search-input-field" placeholder="Search for Location">
             </div>
         </div>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
-            <h3 class="basic-search-selection-title">Product Type</h3>
-            <select class="form-control select-custom-field">
-                <option *ngFor="let productType of productTypeList" value="{{productType.title}}"><a id="{{productType.id}}">{{productType.title}}</a></option>
-            </select> 
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
+        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
             <h3 class="basic-search-selection-title">Radius</h3>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 form-group">
             <select class="form-control select-custom-field">
                 <option *ngFor="let radius of radiusList" value="{{radius.title}}"><a id="{{radius.id}}">{{radius.title}}</a></option>
             </select> 
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+            <h3 class="basic-search-selection-title">Property Type</h3>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 form-group">
+            <select class="form-control select-custom-field">
+                <option *ngFor="let productType of productTypeList" value="{{productType.title}}"><a id="{{productType.id}}">{{productType.title}}</a></option>
+            </select> 
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+            <h3 class="basic-search-selection-title">Advert Ref#</h3>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 form-group">
+            <input id="advertRef" class="form-control input-custom-field" placeholder="Enter Your Advert Ref#"> 
+        </div>
     </div>
     <div class="row form-group">
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
-            <input id="productId" class="form-control input-custom-field" placeholder="Product Id (example: 1)"> 
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4 form-group">
+        <div class="col-xs-12 col-sm-offset-8 col-sm-4 col-md-offset-10 col-md-2 col-lg-offset-10 col-lg-2  form-group">
             <button id="basicSearchButton" class="form-control common-custom-button">Search</button>
         </div>
     </div>
