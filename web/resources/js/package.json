@@ -1,0 +1,7 @@
+{
+  "name": "FlatAuction",
+  "version": "1.0.0",
+  "dependencies": {
+    "ng2-file-upload": "^1.2.1"
+  }
+}

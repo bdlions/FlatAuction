@@ -29,6 +29,7 @@
       '@angular/upgrade': 'npm:@angular/upgrade/bundles/upgrade.umd.js',
       '@angular/upgrade/static': 'npm:@angular/upgrade/bundles/upgrade-static.umd.js',
       'angular2-jwt': 'npm:angular2-jwt/angular2-jwt.js',
+      'ng2-file-upload': 'npm:ng2-file-upload/bundles/ng2-file-upload.umd.js',
       // other libraries
       'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
