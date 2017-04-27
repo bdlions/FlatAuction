@@ -461,4 +461,57 @@ Version: 1.0
     color: #222;
     font-size: 16px;
 }
-/* ---------------------------- Messages -------------------------------- */
+/* ---------------------------- Messages Inbox -------------------------------- */
+.message-inbox-header-layout{
+    background-color: #BBB;
+    padding: 1px 55px;
+}
+.message-inbox-header-title{
+    font-family: 'effra-regular';
+    color: #fff;
+    font-family: sans-serif;
+}
+.message-inbox-content-layout{
+    background-color: #FFFFFF;
+    border-left: 5px solid #FFFFFF;
+    margin-bottom: 1px;
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    padding: 10px;
+}
+.message-inbox-content-layout:hover{
+    border-left: 5px solid #00deb6;
+    cursor: pointer;
+}
+.message-inbox-user-image{
+    width: 60px;
+    background: rgb(0, 222, 182);
+    border-radius: 50%;
+    float: right;
+}
+.message-inbox-sender-name{
+    font-family: 'effra-regular';
+    color: #484848;
+    font-size: 22px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    line-height: 100%;
+}
+.message-inbox-message-subject{
+    font-family: 'effra-regular';
+    color: #484848;
+    font-size: 15px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    line-height: 100%;
+}
+.message-inbox-mesage-delete-icon{
+    font-family: 'effra-regular';
+    font-size: 15px;
+    color: #484848;
+}
+.message-inbox-mesage-delete-icon:hover{
+    cursor: pointer;
+    color: #00deb6;
+}
