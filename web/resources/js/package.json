@@ -2,6 +2,7 @@
   "name": "FlatAuction",
   "version": "1.0.0",
   "dependencies": {
+    "angular2-google-maps": "^0.17.0",
     "ng2-file-upload": "^1.2.1"
   }
 }

@@ -81,28 +81,46 @@
             </ul>
         </div>
     </nav>
+
     <div class="row form-group">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="panel with-nav-tabs panel-primary custom-panel">
                 <div class="panel-heading custom-panel-heading">
                     <ul class="nav nav-tabs">
-                        <li><a href="#map" data-toggle="tab"><i class="fa fa-map-marker" aria-hidden="true"></i> Map</a></li>
-                        <li class="active"><a href="#list" data-toggle="tab"><i class="fa fa-list" aria-hidden="true"></i> List</a></li>
-                        <li><a href="#grid" data-toggle="tab"><i class="fa fa-bars" aria-hidden="true"></i> Grid</a></li>
-                        <!--                        <li class="dropdown">
-                                                    <a href="#" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-                                                    <ul class="dropdown-menu" role="menu">
-                                                        <li><a href="#tab4primary" data-toggle="tab">Primary 4</a></li>
-                                                        <li><a href="#tab5primary" data-toggle="tab">Primary 5</a></li>
-                                                    </ul>
-                                                </li>-->
+                        <li class="active">
+                            <a href="#map" data-toggle="tab" (click)="showMap = true;doTriggerResize()">
+                               <i class="fa fa-map-marker" aria-hidden="true"></i> Map
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#list" data-toggle="tab">
+                                <i class="fa fa-list" aria-hidden="true"></i> List
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#grid" data-toggle="tab" >
+                                <i class="fa fa-bars" aria-hidden="true"></i> Grid
+                            </a>
+                        </li>
                     </ul>
                 </div>
+
                 <div class="panel-body custom-panel-body">
                     <div class="tab-content">
-                        <div class="tab-pane fade" id="map">Map dispaly section</div>
+                        <div class="tab-pane fade in active" id="map">
+                            <h1>{{ title }}</h1>
+
+                            <!-- this creates a google map on the page with the given lat/lng from -->
+                            <!-- the component as the initial center of the map: -->
+
+                            <sebm-google-map [latitude]="lat" [longitude]="lng">
+                                <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
+                            </sebm-google-map>
+
+
+                        </div>
                         <!--List section content-->
-                        <div class="tab-pane fade in active" id="list">
+                        <div class="tab-pane fade" id="list">
                             <div class="row form-group">
                                 <div *ngFor="let product of productList" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
                                     <div class="list-property-section">

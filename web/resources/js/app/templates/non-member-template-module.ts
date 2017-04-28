@@ -18,11 +18,15 @@ import {Productinfo} from '../common/productinfo';
 import {Bids} from '../common/bids';
 import {CarouselModule, TypeaheadModule} from "ngx-bootstrap"
 import {FileUploadModule } from 'ng2-file-upload';
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 @NgModule({
     imports: [HttpModule, BrowserModule, FormsModule, 
         CarouselModule.forRoot(), TypeaheadModule.forRoot(),
         FileUploadModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyBQwFpi-R6gtguRzwSPzy4D0kyULz4ICd4'
+        }),
         RouterModule.forRoot(routes, {
             useHash: false
         })
