@@ -515,3 +515,35 @@ Version: 1.0
     cursor: pointer;
     color: #00deb6;
 }
+/* ---------------------------- Featured Ad Stats -------------------------------- */
+.featured-ad-stats-layout{
+    background-color: #fff; 
+    border-radius: 10px;
+    padding: 10px 20px; 
+}
+.featured-ad-stats-account-summary-layout{
+    background-color: #EEE;
+    border: 1px solid #BBB;
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    padding: 10px;
+    border-radius: 4px;
+}
+.featured-ad-stats-account-summary-layout > h4{
+    font-family: 'effra-regular';
+    color: #484848;
+}
+.featured-ad-stats-account-summary-title{
+    font-family: 'effra-regular';
+    color: #484848;
+    font-weight: bold;
+}
+.featured-ad-stats-account-summary-content{
+    font-family: 'effra-regular';
+    color: #484848;
+    font-weight: normal;
+}
+.featured-ad-stats-table tr:hover{
+    color: #484848;
+}

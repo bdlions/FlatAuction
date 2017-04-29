@@ -1,3 +1,110 @@
+<div class="featured-ad-stats-layout">
+    <div class="row form-group">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h2>Featured Ad Statistics</h2>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 form-group">
+            <div class="row form-group">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h5> Select an advert to view its statistics...</h5>
+                    <select class="form-control select-custom-field">
+                        <option *ngFor="let product of productList" value="{{product.title}}"><a id="{{product.id}}">{{product.title}}</a></option>
+                    </select> 
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-4 col-sm-3 col-md-1 col-lg-1">
+                    <h5>From</h5>
+                </div>
+                <div class="col-xs-8 col-sm-9 col-md-5 col-lg-5  form-group">
+                    <input class="form-control input-custom-field" type="text" id="datepicker">
+                </div>
+                <div class="col-xs-4 col-sm-3 col-md-1 col-lg-1">
+                    <h5>To</h5>
+                </div>
+                <div class="col-xs-8 col-sm-9 col-md-5 col-lg-5">
+                    <input class="form-control input-custom-field" type="text" id="datepicker">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+                    <button id="view-stats-button" class="form-control common-custom-button">View Stats</button>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <table class="featured-ad-stats-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Clicks</th>
+                                <th>Impressions</th>
+                                <th>CTR</th>
+                                <th>Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let stat of statList">
+                                <td data-label="Date">{{stat.date}}</td>
+                                <td data-label="Clicks">{{stat.clicks}}</td>
+                                <td data-label="Impressions">{{stat.impressions}}</td>
+                                <td data-label="CTR">{{stat.ctr}}</td>
+                                <td data-label="Cost">{{stat.cost.amount}}{{stat.cost.currencyUnit.title}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h4>Account summary</h4>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="featured-ad-stats-account-summary-layout">
+                        <div class="row form-group">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <h5 class="featured-ad-stats-account-summary-title">Total Balance</h5>
+                                <h5 class="featured-ad-stats-account-summary-content">{{accountSummaryFA.totalBalance.currencyUnit.title}}{{accountSummaryFA.totalBalance.amount}}</h5>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <h5 class="featured-ad-stats-account-summary-title">Daily Budget</h5>
+                                <h5 class="featured-ad-stats-account-summary-content">{{accountSummaryFA.dailyBudget.currencyUnit.title}}{{accountSummaryFA.dailyBudget.amount}}</h5>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <h5 class="featured-ad-stats-account-summary-title">Default Bid</h5>
+                                <h5 class="featured-ad-stats-account-summary-content">{{accountSummaryFA.defaultBid.amount}}{{accountSummaryFA.defaultBid.currencyUnit.title}}</h5>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <h5 class="featured-ad-stats-account-summary-title">Spent Today</h5>
+                                <h5 class="featured-ad-stats-account-summary-content">{{accountSummaryFA.spentToday.amount}}{{accountSummaryFA.spentToday.currencyUnit.title}}</h5>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <h5 class="featured-ad-stats-account-summary-title">Left Today</h5>
+                                <h5 class="featured-ad-stats-account-summary-content">{{accountSummaryFA.leftToday.currencyUnit.title}}{{accountSummaryFA.leftToday.amount}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 Stats Module
 
 <br/>Advert List<br/>
@@ -5,7 +112,7 @@ Stats Module
 <ul>
     <li *ngFor="let product of productList">
         id: {{product.id}} , title: {{product.title}}
-    </li>
+</li>
 </ul>
 
 <br/>Stat List<br/>
@@ -13,7 +120,7 @@ Stats Module
 <ul>
     <li *ngFor="let stat of statList">
         date {{stat.date}} , title: {{stat.clicks}}, impressions {{stat.impressions}}, ctr: {{stat.ctr}}, cost {{stat.cost.amount}}{{stat.cost.currencyUnit.title}}
-    </li>
+</li>
 </ul>
 
 <br/>Account Summary<br/>
