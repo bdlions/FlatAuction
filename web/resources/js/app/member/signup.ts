@@ -4,7 +4,7 @@ import {Http} from '@angular/http';
 import {User} from '../dto/User'
 import {Product} from '../dto/Product'
 import { FileUploader } from 'ng2-file-upload';
-const URL = 'http://localhost:8084/FlatAuction/FileUploadServlet';
+const URL = window.SUB_DIRECTORY + '/FileUploadServlet';
 
 @Component({
     templateUrl: window.SUB_DIRECTORY + "/html_components/public/signup.html",

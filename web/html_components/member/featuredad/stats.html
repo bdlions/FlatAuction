@@ -1,0 +1,33 @@
+Stats Module
+
+<br/>Advert List<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let product of productList">
+        id: {{product.id}} , title: {{product.title}}
+    </li>
+</ul>
+
+<br/>Stat List<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let stat of statList">
+        date {{stat.date}} , title: {{stat.clicks}}, impressions {{stat.impressions}}, ctr: {{stat.ctr}}, cost {{stat.cost.amount}}{{stat.cost.currencyUnit.title}}
+    </li>
+</ul>
+
+<br/>Account Summary<br/>
+<br/>Total Balance<br/>
+{{accountSummaryFA.totalBalance.currencyUnit.title}}{{accountSummaryFA.totalBalance.amount}}
+
+<br/>Daily Budget<br/>
+{{accountSummaryFA.dailyBudget.currencyUnit.title}}{{accountSummaryFA.dailyBudget.amount}}
+
+<br/>Default Bid<br/>
+{{accountSummaryFA.defaultBid.amount}}{{accountSummaryFA.defaultBid.currencyUnit.title}}
+
+<br/>Spent Today<br/>
+{{accountSummaryFA.spentToday.amount}}{{accountSummaryFA.spentToday.currencyUnit.title}}
+
+<br/>Left Today<br/>
+{{accountSummaryFA.leftToday.currencyUnit.title}}{{accountSummaryFA.leftToday.amount}}

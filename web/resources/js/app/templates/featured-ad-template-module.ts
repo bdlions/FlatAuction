@@ -12,6 +12,7 @@ import {AuthGuard} from '../common/auth.guard';
 import {FeaturedAdApp} from '../FeaturedAdApp';
 //import {App} from './app';
 import {DashBoard} from "../featuredad/dashboard";
+import {Stats} from "../featuredad/stats";
 //import {Abroad} from './abroad';
 //import {Header} from './header';
 
@@ -22,7 +23,7 @@ import {DashBoard} from "../featuredad/dashboard";
             useHash: false
         })
     ],
-    declarations: [FeaturedAdApp, DashBoard],
+    declarations: [FeaturedAdApp, DashBoard, Stats],
     bootstrap: [FeaturedAdApp],
     providers: [AuthGuard, {provide: LocationStrategy, useClass: HashLocationStrategy}]
 })
