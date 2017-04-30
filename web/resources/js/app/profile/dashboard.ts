@@ -17,6 +17,7 @@ export class DashBoard {
         this.user.email = "bdlions@gmail.com";
         this.user.cellNo = "8801678112509";
         this.user.img = "a.jpg";
+        this.user.isVerified = true;
     }
     
 }
