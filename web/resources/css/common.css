@@ -23,6 +23,7 @@ body{
     font-family: 'effra-regular';
     background-color: #F5F5F5;
     color: #484848;
+    overflow-x: hidden;
 }
 h1,h2,h3,h4,h5,h6{
     font-family: 'effra-medium';
