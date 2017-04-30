@@ -5,9 +5,9 @@ import {User} from '../dto/User'
 
 @Component({
     selector: 'data-content1ddd',
-    templateUrl: window.SUB_DIRECTORY +"/html_components/member/profile/index.html",
+    templateUrl: window.SUB_DIRECTORY +"/html_components/member/profile/uploaddocument.html",
 })
-export class DashBoard {
+export class UploadDocument {
     private user: User;
     constructor(public router: Router, public http: Http) {
         this.user = new User();
@@ -20,6 +20,7 @@ export class DashBoard {
         this.user.document = "document.jpg";
         this.user.isVerified = true;
     }
+    
     editprofile(event: Event) {
         event.preventDefault();
         this.router.navigate(['editprofile']);

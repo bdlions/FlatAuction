@@ -1,0 +1,9 @@
+Individual Ad Bids
+
+<br/>product list<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let product of productList">
+        id: {{product.id}}, isFeaturedAdd {{product.isFeaturedAdd}} , title: {{product.title}}, location {{product.location.postCode}}, isDefaultBid {{product.isDefaultBid}}, Amount {{product.adBid.amount}}{{product.adBid.currencyUnit.title}}
+    </li>
+</ul>

@@ -4,6 +4,7 @@ export class User {
     lastName:string;
     email:string;
     img:string;
+    document:string;
     cellNo:string;
     isVerified:boolean;
 }

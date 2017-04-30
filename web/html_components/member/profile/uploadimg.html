@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <ul class="profile-left-sidebar-ul">
+            <li><a class="active" [routerLink]="['/editprofile']" (click)="editprofile($event)">Edit Profile</a></li>
+            <li><a [routerLink]="['/uploadimg']" (click)="uploadimg($event)">Upload Profile Picture</a></li>
+            <li><a [routerLink]="['/uploaddocument']" (click)="uploaddocument($event)">Profile Verification</a></li>
+        </ul>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+        Upload profile Picture here
+    </div>
+</div>
+
+
+
+<!--    This is your profile
+
+    <br/>Profile Info<br/>
+    First Name: {{user.firstName}}
+    Last Name: {{user.lastName}}
+    Email: {{user.email}}
+    Cell: {{user.cellNo}}
+    Image: {{user.img}}-->

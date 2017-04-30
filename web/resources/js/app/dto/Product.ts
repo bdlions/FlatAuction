@@ -42,6 +42,9 @@ export class Product {
     timeLeft:string;
     startDate:string;
     endDate:string;
+    isFeaturedAdd:boolean;
+    isDefaultBid:boolean;
+    adBid: Currency;
 }
 
 

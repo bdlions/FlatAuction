@@ -12,6 +12,9 @@ import {AuthGuard} from '../common/auth.guard';
 import {ProfileApp} from '../ProfileApp';
 //import {App} from './app';
 import {DashBoard} from "../profile/dashboard";
+import {EditProfile} from "../profile/editprofile";
+import {UploadImg} from "../profile/uploadimg";
+import {UploadDocument} from "../profile/uploaddocument";
 //import {Abroad} from './abroad';
 //import {Header} from './header';
 
@@ -22,7 +25,7 @@ import {DashBoard} from "../profile/dashboard";
             useHash: false
         })
     ],
-    declarations: [ProfileApp, DashBoard],
+    declarations: [ProfileApp, DashBoard, EditProfile, UploadImg, UploadDocument],
     bootstrap: [ProfileApp],
     providers: [AuthGuard, {provide: LocationStrategy, useClass: HashLocationStrategy}]
 })
