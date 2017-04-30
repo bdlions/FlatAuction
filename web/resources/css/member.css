@@ -172,6 +172,9 @@ Version: 1.0
     .home-page-search-box-layout > typeahead-container > ul {
         width: 100%!important;
     }
+    .tabs-left .nav-tabs li {
+        float: none!important; 
+    }
 }
 
 /* --------------------- Tablet Device -------------------------------------  */
@@ -203,6 +206,9 @@ Version: 1.0
     .home-page-search-box-layout > typeahead-container > ul > li > a{
         width: 348px;
     }
+    .tabs-left .nav-tabs li {
+        float: none!important; 
+    }
 }
 /* --------------------- Medium Device -------------------------------------  */
 @media (min-width : 992px) and (max-width : 1199px) {
@@ -230,6 +236,12 @@ Version: 1.0
     }
     .home-page-search-box-layout > typeahead-container > ul > li > a{
         width: 360px;
+    }
+    .tabs-left .nav-tabs li {
+        float: none!important; 
+    }
+    .tabs-left > .nav-tabs > li > a {
+        width: 140px;
     }
 }
 /* --------------------- Large Device -------------------------------------  */
@@ -259,6 +271,12 @@ Version: 1.0
     }
     .home-page-search-box-layout > typeahead-container > ul > li > a{
         width: 450px;
+    }
+    .tabs-left .nav-tabs li {
+        float: none!important; 
+    }
+    .tabs-left > .nav-tabs > li > a {
+        width: 140px;
     }
 }
 /* -------------------------------- Common ----------------------------- */
@@ -350,32 +368,69 @@ Version: 1.0
 }
 /* ---------------------------- Manage Product Left Sidebar Menu -------------------------------- */
 
-.manage-product-left-sidebar-ul{
-    padding: 0; 
-    margin: 0; 
-    list-style-type: none;
-}
-.manage-product-left-sidebar-ul > li > .active,.manage-product-left-sidebar-ul > li > .active:hover{
-    font-family: 'effra-regular';
-    text-decoration: none;
-    color: #484848!important;
-    font-weight: bold;
+.tabs-right > .nav-tabs,
+.tabs-left > .nav-tabs {
+    border-bottom: 0;
 }
 
-.manage-product-left-sidebar-ul > li > a{
-    font-family: 'effra-regular';
-    padding: 6px 0;
-    font-size: 18px;
-    color: #767676;
-    line-height: 2em;
+.tab-content > .tab-pane,
+.pill-content > .pill-pane {
+    display: none;
 }
-.manage-product-left-sidebar-ul > li > a:hover{
-    font-family: 'effra-regular';
-    text-decoration: none;
-    padding: 6px 0;
-    color: #bbbbbb;
-    line-height: 2em;
+
+.tab-content > .active,
+.pill-content > .active {
+    display: block;
 }
+
+
+.tabs-left > .nav-tabs > li,
+.tabs-right > .nav-tabs > li {
+    float: none;
+}
+
+.tabs-left > .nav-tabs > li > a,
+.tabs-right > .nav-tabs > li > a {
+    margin-bottom: 3px;
+}
+
+.tabs-left > .nav-tabs {
+    margin-right: 19px;
+    border-right: 1px solid #ddd;
+}
+
+.tabs-left  .nav-tabs  li  a {
+    background-color: #bbb;
+    color: #484848;
+    margin-right: -1px;
+    -webkit-border-radius: 4px 0 0 4px;
+    -moz-border-radius: 4px 0 0 4px;
+    border-radius: 0;
+    padding: 10px 20px;
+    text-align: center;
+    margin-bottom: 2px;
+}
+
+.tabs-left .nav-tabs  li  a:hover,
+.tabs-left  .nav-tabs  li  a:focus {
+    background-color: #00DEB6;
+    color: #fff;
+}
+
+.tabs-left  .nav-tabs .active  a,
+.tabs-left .nav-tabs .active a:hover,
+.tabs-left  .nav-tabs .active  a:focus {
+    background-color: #00DEB6;
+    color: #fff;
+
+}
+
+
+
+
+
+
+
 
 /* ---------------------------- Dashboard -------------------------------- */
 .dashboard-welcome-note{
@@ -622,4 +677,34 @@ Version: 1.0
     font-family: 'effra-regular';
     font-weight: normal;
     color: #484848;
+}
+.user-profile-dashboard-content-layout p{
+    font-family: 'effra-regular';
+    font-weight: normal;
+    color: #484848;
+    margin: 10px 0;
+}
+.user-profile-dashboard-content-layout .fa-success{
+    font-family: 'effra-regular';
+    font-weight: normal;
+    color: #006e1f;
+    font-size: 14px;
+}
+.user-profile-dashboard-content-layout .fa-disable{
+    font-family: 'effra-regular';
+    font-weight: normal;
+    color: red;
+    font-size: 14px;
+}
+
+/* --------------------- Create Advertise -------------------------------------  */
+.create-ad-label{
+    font-family: 'effra-regular';
+    font-weight: normal;
+     color: #484848;
+    font-size: 16px;
+    font-weight: normal;
+}
+.amenity-title{
+    margin-bottom: 2px;
 }

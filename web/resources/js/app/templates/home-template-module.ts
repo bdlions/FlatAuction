@@ -14,10 +14,11 @@ import {HomeApp} from '../HomeApp';
 import {DashBoard} from "../home/dashboard";
 //import {Abroad} from './abroad';
 //import {Header} from './header';
+import {TypeaheadModule} from "ngx-bootstrap"
 
 
 @NgModule({
-    imports: [HttpModule, BrowserModule, FormsModule,
+    imports: [HttpModule, BrowserModule, FormsModule, TypeaheadModule.forRoot(),
         RouterModule.forRoot(routes, {
             useHash: false
         })

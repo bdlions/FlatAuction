@@ -1,28 +1,158 @@
+<div class="row form-group">
+    <div class="col-xs-12 col-sm-12 col-md-offset-3 col-md-9 col-lg-offset-3 col-lg-9">
+        <h3 class="text-center">Create Your Advertise</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="tabbable tabs-left">
+            <div class="row form-group">
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 form-group">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#step1" data-toggle="tab">Step 1</a></li>
+                        <li><a href="#step2" data-toggle="tab">Step 2</a></li>
+                        <li><a href="#step3" data-toggle="tab">Step 3</a></li>
+                        <li><a href="#step4" data-toggle="tab">Step 4</a></li>
+                        <li><a href="#step5" data-toggle="tab">Step 5</a></li>
+                        <li><a href="#step6" data-toggle="tab">Step 6</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                    <div class="row form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="step1">
+                                    <div class="row form-group">
+                                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                            <h5 class="create-ad-label">I have for Rent</h5>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                            <select class="form-control select-custom-field">
+                                                <option *ngFor="let room of roomList" value="{{room.title}}"><a id="{{room.id}}">{{room.title}}</a></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                            <h5 class="create-ad-label">Size of property</h5>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                            <select class="form-control select-custom-field">
+                                                <option *ngFor="let productSize of productSizeList" value="{{productSize.title}}"><a id="{{productSize.id}}">{{productSize.title}}</a></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                            <h5 class="create-ad-label">Type of property</h5>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                            <select class="form-control select-custom-field">
+                                                <option *ngFor="let productType of productTypeList" value="{{productType.title}}"><a id="{{productType.id}}">{{productType.title}}</a></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="step2">
+                                    <div class="row form-group">
+                                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                            <h5 class="create-ad-label">Area</h5>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                            <select class="form-control select-custom-field">
+                                                <option *ngFor="let area of areaList" value="{{area.searchString}}"><a id="{{area.id}}">{{area.searchString}}</a></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                            <h5 class="create-ad-label">Amenities</h5>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                            <div id="{{amenity.id}}" *ngFor="let amenity of amenityList">
+                                                 <p><input type="checkbox"/> {{amenity.title}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="tab-pane" id="step3">
+                                    <div class="row form-group">
+                                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                            <h5 class="create-ad-label">Min Stay</h5>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                            <select class="form-control select-custom-field">
+                                                <option *ngFor="let minStay of minStayList" value="{{minStay.title}}"><a id="{{minStay.id}}">{{minStay.title}}</a></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                            <h5 class="create-ad-label">Max Stay</h5>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                            <select class="form-control select-custom-field">
+                                                <option *ngFor="let maxStay of maxStayList" value="{{maxStay.title}}"><a id="{{maxStay.id}}">{{maxStay.title}}</a></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="step4">
+                                    <div class="row form-group">
+                                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                            <h5 class="create-ad-label">Smoking</h5>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                            <select class="form-control select-custom-field">
+                                                <option *ngFor="let smoking of smokingList" value="{{smoking.title}}"><a id="{{smoking.id}}">{{smoking.title}}</a></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                            <h5 class="create-ad-label">Occupation</h5>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                            <select class="form-control select-custom-field">
+                                                <option *ngFor="let occupation of occupationList" value="{{occupation.title}}"><a id="{{occupation.id}}">{{occupation.title}}</a></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                            <h5 class="create-ad-label">Pets</h5>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                            <select class="form-control select-custom-field">
+                                                <option *ngFor="let pet of petList" value="{{pet.title}}"><a id="{{pet.id}}">{{pet.title}}</a></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="step5">
+
+                                </div>
+                                <div class="tab-pane" id="step6">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+
+
+
 Manage New Product
 
-<br/>Room list<br/>
-============================<br/>
-<ul>
-    <li *ngFor="let room of roomList">
-        id: {{room.id}} , title: {{room.title}}
-</li>
-</ul>
 
-<br/>Size list<br/>
-============================<br/>
-<ul>
-    <li *ngFor="let productSize of productSizeList">
-        id: {{productSize.id}} , title: {{productSize.title}}
-</li>
-</ul>
-
-<br/>Type list<br/>
-============================<br/>
-<ul>
-    <li *ngFor="let productType of productTypeList">
-        id: {{productType.id}} , title: {{productType.title}}
-</li>
-</ul>
 
 <br/>Duration list<br/>
 ============================<br/>
@@ -32,58 +162,5 @@ Manage New Product
 </li>
 </ul>
 
-<br/>Area list<br/>
-============================<br/>
-<ul>
-    <li *ngFor="let area of areaList">
-        id: {{area.id}} , title: {{area.searchString}}
-</li>
-</ul>
 
-<br/>Amenities<br/>
-============================<br/>
-<ul>
-    <li *ngFor="let amenity of amenityList">
-        id: {{amenity.id}} , title: {{amenity.title}}
-</li>
-</ul>
-
-<br/>Occupation List<br/>
-============================<br/>
-<ul>
-    <li *ngFor="let occupation of occupationList">
-        id: {{occupation.id}} , title: {{occupation.title}}
-</li>
-</ul>
-
-<br/>Smoking List<br/>
-============================<br/>
-<ul>
-    <li *ngFor="let smoking of smokingList">
-        id: {{smoking.id}} , title: {{smoking.title}}
-</li>
-</ul>
-
-<br/>Pet List<br/>
-============================<br/>
-<ul>
-    <li *ngFor="let pet of petList">
-        id: {{pet.id}} , title: {{pet.title}}
-</li>
-</ul>
-
-<br/>Min Stay List<br/>
-============================<br/>
-<ul>
-    <li *ngFor="let minStay of minStayList">
-        id: {{minStay.id}} , title: {{minStay.title}}
-</li>
-</ul>
-
-<br/>Max Stay List<br/>
-============================<br/>
-<ul>
-    <li *ngFor="let maxStay of maxStayList">
-        id: {{maxStay.id}} , title: {{maxStay.title}}
-</li>
-</ul>
+-->
