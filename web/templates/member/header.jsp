@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="resources/css/wave.css" >
         <link rel="stylesheet" href="resources/css/bootstrap.min.css" >
         <link rel="stylesheet" href="resources/css/font-awesome.min.css" >
+        <link rel="stylesheet" href="resources/css/bootstrap.min.css.map" >
 
         <!-- Optional theme -->
         <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css" >

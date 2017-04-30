@@ -163,6 +163,15 @@ Version: 1.0
     .dropdown-img.open > .dropdown-menu{
         top: 58px;
     }
+    .home-page-search-box-layout > typeahead-container {
+        position: relative!important;
+        display: block!important;
+        top: 0!important;
+        left: 0!important;
+    }
+    .home-page-search-box-layout > typeahead-container > ul {
+        width: 100%!important;
+    }
 }
 
 /* --------------------- Tablet Device -------------------------------------  */
@@ -191,6 +200,9 @@ Version: 1.0
         margin-left: -30px!important;  
         margin-right: 0px!important;  
     }
+    .home-page-search-box-layout > typeahead-container > ul > li > a{
+        width: 348px;
+    }
 }
 /* --------------------- Medium Device -------------------------------------  */
 @media (min-width : 992px) and (max-width : 1199px) {
@@ -215,6 +227,9 @@ Version: 1.0
     .header-navbar-container-fluid-adjust{
         margin-left: -30px!important;  
         margin-right: 0px!important;  
+    }
+    .home-page-search-box-layout > typeahead-container > ul > li > a{
+        width: 360px;
     }
 }
 /* --------------------- Large Device -------------------------------------  */
@@ -242,7 +257,9 @@ Version: 1.0
         margin-left: -30px!important;  
         margin-right: 0px!important;  
     }
-
+    .home-page-search-box-layout > typeahead-container > ul > li > a{
+        width: 450px;
+    }
 }
 /* -------------------------------- Common ----------------------------- */
 
@@ -545,5 +562,64 @@ Version: 1.0
     font-weight: normal;
 }
 .featured-ad-stats-table tr:hover{
+    color: #484848;
+}
+
+
+/* --------------------- Home Page Search Box -------------------------------------  */
+
+.home-page-search-box-layout > typeahead-container > ul{
+    border-radius: 0!important;
+}
+.home-page-search-box-layout > typeahead-container > ul > li > a{
+    font-family: 'effra-regular';
+    color: #484848;
+    background-image: none!important;
+    background-color: #fff!important;
+    border-top: 1px solid #00DEB6;
+}
+.home-page-search-box-layout > typeahead-container > ul > li > a:hover,
+.home-page-search-box-layout > typeahead-container > ul > li > a:focus,
+.home-page-search-box-layout > typeahead-container > ul > li > a:visited{
+    font-family: 'effra-regular';
+    background-image: none!important;
+    background-color: #00DEB6!important;
+    color: #FFF!important;
+}
+.home-page-search-box-header-text{
+    font-family: 'effra-medium';
+    color: #00deb6;
+    line-height: 1.5em;
+    font-size: 28px;
+}
+.home-page-search-box-small-text{
+    font-family: 'effra-regular';
+    color: #fff;
+    line-height: 1.2em;
+    font-size: 16px;
+    font-weight: normal;
+}
+/* --------------------- User Profile DashBoard -------------------------------------  */
+.user-profile-dashboard-header-layout{
+    background-color: #00deb6;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+.user-profile-dashboard-header{
+    font-family: 'effra-regular';
+    font-weight: normal;
+    color: #fff;
+    line-height: 1em;
+    font-size: 28px;
+    text-align: center;
+}
+.user-profile-dashboard-content-layout{
+    background-color: #ccc;
+    padding: 15px!important;
+    margin: 0!important;
+}
+.user-profile-dashboard-content-layout{
+    font-family: 'effra-regular';
+    font-weight: normal;
     color: #484848;
 }

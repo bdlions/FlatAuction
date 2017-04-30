@@ -1,8 +1,66 @@
-This is your profile
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <ul class="profile-left-sidebar-ul">
+            <li><a class="active">Edit Profile</a></li>
+            <li><a>Upload Profile Picture</a></li>
+            <li><a>Profile Verification</a></li>
+        </ul>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+        <div class="user-profile-dashboard-header-layout">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h3 class="user-profile-dashboard-header">User Profile</h3>
+                </div>
+            </div>
+        </div>
+        <div class="user-profile-dashboard-content-layout">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <img class="img-responsive" src="resources/images/{{user.img}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                            <h5>User:</h5>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                            {{user.firstName}} {{user.lastName}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                            <h5>Email:</h5>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                            {{user.email}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                            <h5>Cell:</h5>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                            {{user.cellNo}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<br/>Profile Info<br/>
-First Name: {{user.firstName}}
-Last Name: {{user.lastName}}
-Email: {{user.email}}
-Cell: {{user.cellNo}}
-Image: {{user.img}}
+
+
+<!--    This is your profile
+
+    <br/>Profile Info<br/>
+    First Name: {{user.firstName}}
+    Last Name: {{user.lastName}}
+    Email: {{user.email}}
+    Cell: {{user.cellNo}}
+    Image: {{user.img}}-->
