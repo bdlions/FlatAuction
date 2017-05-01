@@ -1,10 +1,8 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Http} from '@angular/http';
 import {Subscription} from 'rxjs';
 
 import {AccountSummaryFA} from '../dto/AccountSummaryFA';
-import {Currency} from '../dto/Currency';
 import {Stat} from '../dto/Stat';
 
 import {Product} from '../dto/Product';
@@ -39,7 +37,7 @@ export class Stats implements OnInit, OnDestroy {
     private subscribe:Subscription;
     private id:number;
     
-    public dt: Date = new Date();
+    public fromDate: Date = new Date();
     public minDate: Date = void 0;
   
     constructor(public router:Router, public route: ActivatedRoute) {
@@ -69,6 +67,8 @@ export class Stats implements OnInit, OnDestroy {
         
         
         console.log(this.productList);
+
+        
     }
     
     
