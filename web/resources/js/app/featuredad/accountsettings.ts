@@ -43,4 +43,19 @@ export class AccountSettings implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.subscribe.unsubscribe();
     }
+    
+    accountsettings(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['accountsettings']);
+    }
+    
+    individualadbids(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['individualadbids']);
+    }
+    
+    stats(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['stats']);
+    }
 }

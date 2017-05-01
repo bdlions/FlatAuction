@@ -37,4 +37,24 @@ export class SavedAds implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.subscribe.unsubscribe();
     }
+    
+    dashboard(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['dashboard']);
+    }
+    
+    myads(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['myads']);
+    }
+    
+    savedads(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['savedads']);
+    }
+    
+    messages(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['messages']);
+    }
 }

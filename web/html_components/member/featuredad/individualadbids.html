@@ -1,9 +1,26 @@
-Individual Ad Bids
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <ul class="featured-ad-left-sidebar-ul">
+            <li><a class="active" [routerLink]="['/accountsettings']" (click)="accountsettings($event)">Account Settings</a></li>
+            <li><a [routerLink]="['/individualadbids']" (click)="individualadbids($event)">Individual Ad Bids</a></li>
+            <li><a>Payment</a></li>
+            <li><a [routerLink]="['/stats']" (click)="stats($event)">Stats</a></li>
+            <li><a>Ranking</a></li>
+            <li><a>FAQ</a></li>
+        </ul>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+        Individual Ad Bids
+        <br/>product list<br/>
+        ============================<br/>
+        <ul>
+            <li *ngFor="let product of productList">
+                id: {{product.id}}, isFeaturedAdd {{product.isFeaturedAdd}} , title: {{product.title}}, location {{product.location.postCode}}, isDefaultBid {{product.isDefaultBid}}, Amount {{product.adBid.amount}}{{product.adBid.currencyUnit.title}}
+            </li>
+        </ul>
+    </div>
+</div>
 
-<br/>product list<br/>
-============================<br/>
-<ul>
-    <li *ngFor="let product of productList">
-        id: {{product.id}}, isFeaturedAdd {{product.isFeaturedAdd}} , title: {{product.title}}, location {{product.location.postCode}}, isDefaultBid {{product.isDefaultBid}}, Amount {{product.adBid.amount}}{{product.adBid.currencyUnit.title}}
-    </li>
-</ul>
+
+
+

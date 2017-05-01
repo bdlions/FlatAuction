@@ -1,10 +1,24 @@
-Account Settings of Featured Ad
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <ul class="featured-ad-left-sidebar-ul">
+            <li><a class="active" [routerLink]="['/accountsettings']" (click)="accountsettings($event)">Account Settings</a></li>
+            <li><a [routerLink]="['/individualadbids']" (click)="individualadbids($event)">Individual Ad Bids</a></li>
+            <li><a>Payment</a></li>
+            <li><a [routerLink]="['/stats']" (click)="stats($event)">Stats</a></li>
+            <li><a>Ranking</a></li>
+            <li><a>FAQ</a></li>
+        </ul>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+        Account Settings of Featured Ad
+        <br/>Default bid per click<br/>
+        {{accountSettingFA.defaultBidPerClick.currencyUnit.title}}{{accountSettingFA.defaultBidPerClick.amount}}
 
-<br/>Default bid per click<br/>
-{{accountSettingFA.defaultBidPerClick.currencyUnit.title}}{{accountSettingFA.defaultBidPerClick.amount}}
+        <br/>Default Bid<br/>
+        {{accountSettingFA.dailyBudget.amount}}{{accountSettingFA.dailyBudget.currencyUnit.title}}
 
-<br/>Default Bid<br/>
-{{accountSettingFA.dailyBudget.amount}}{{accountSettingFA.dailyBudget.currencyUnit.title}}
+        <br/>Campaign Status<br/>
+        {{accountSettingFA.campainActive}}
+    </div>
+</div>
 
-<br/>Campaign Status<br/>
-{{accountSettingFA.campainActive}}

@@ -1,43 +1,57 @@
-<div class="row form-group">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h2 class="saved-ads-product-heading">Your Saved Ads</h2>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <ul class="dashboard-left-sidebar-ul">
+            <li><a class="active" href="manage-product.jsp">Add Advert</a></li>
+            <li><a [routerLink]="['/myads']" (click)="myads($event)">My Ads</a></li>
+            <li><a [routerLink]="['/savedads']" (click)="savedads($event)">Saved Ads</a></li>
+            <li><a [routerLink]="['/messages']" (click)="messages($event)">Messages</a></li>
+        </ul>
     </div>
-</div>
-<div class="row form-group">
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 form-group" *ngFor="let product of productList">
-         <div class="saved-ads-product-layout">
-            <div class="row form-group">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <h2 class="saved-ads-product-title"><a>{{product.title}}</a></h2>
-                </div>
+    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+        <div class="row form-group">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h2 class="saved-ads-product-heading">Your Saved Ads</h2>
             </div>
-            <div class="row">
-                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
-                    <img class="img-responsive" src="resources/images/{{product.img}}">
-                </div>
-                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 form-group">
-                    <span class="saved-ads-product-description">{{product.description}}</span>
-                </div>
-            </div>
-            <div class="row form-group">
-                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
-                     <span class="saved-ads-product-price-title">Price</span>
-                </div>
-                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 form-group">
-                    <span class="saved-ads-product-price-amount">{{product.price}}</span>
-                </div>
-            </div>
-            <div class="row form-group">
-                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
-                     <span class="saved-ads-product-id-title">Product Id</span>
-                </div>
-                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 form-group">
-                    <span class="saved-ads-product-id">{{product.id}}</span>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 form-group" *ngFor="let product of productList">
+                 <div class="saved-ads-product-layout">
+                    <div class="row form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <h2 class="saved-ads-product-title"><a>{{product.title}}</a></h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+                            <img class="img-responsive" src="resources/images/{{product.img}}">
+                        </div>
+                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 form-group">
+                            <span class="saved-ads-product-description">{{product.description}}</span>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+                             <span class="saved-ads-product-price-title">Price</span>
+                        </div>
+                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 form-group">
+                            <span class="saved-ads-product-price-amount">{{product.price}}</span>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+                             <span class="saved-ads-product-id-title">Product Id</span>
+                        </div>
+                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 form-group">
+                            <span class="saved-ads-product-id">{{product.id}}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
 
 <!--Saved Ads
 

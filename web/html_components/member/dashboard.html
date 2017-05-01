@@ -1,5 +1,18 @@
 <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h2 class="dashboard-welcome-note">Welcome to Your Dashboard</h2>
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <ul class="dashboard-left-sidebar-ul">
+            <li><a class="active" href="manage-product.jsp">Add Advert</a></li>
+            <li><a [routerLink]="['/myads']" (click)="myads($event)">My Ads</a></li>
+            <li><a [routerLink]="['/savedads']" (click)="savedads($event)">Saved Ads</a></li>
+            <li><a [routerLink]="['/messages']" (click)="messages($event)">Messages</a></li>
+        </ul>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h2 class="dashboard-welcome-note">Welcome to Flat Auction</h2>
+            </div>
+        </div>
     </div>
 </div>
+
