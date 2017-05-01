@@ -74,8 +74,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-
                                 </div>
                                 <div class="tab-pane" id="step3">
                                     <div class="row form-group">
@@ -132,10 +130,64 @@
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="step5">
-
+                                    <div class="row form-group">
+                                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                            <h5 class="create-ad-label">Title</h5>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                            <input class="form-control input-custom-field" name="title" value="{{product.title}}" placeholder="Short Description" type="text" />
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                            <h5 class="create-ad-label">Description</h5>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                            <textarea rows="8" class="form-control input-custom-field" placeholder="Description Here..." value="{{product.description}}"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                            <h5 class="create-ad-label">Your Name</h5>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                            <input class="form-control input-custom-field" name="displayFirstName" value="{{product.displayFirstName}}" placeholder="First Name" type="text" disabled/>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                            <input class="form-control input-custom-field" name="displayLastName" value="{{product.displayLastName}}" placeholder="Last Name" type="text" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                            <h5 class="create-ad-label">Telephone</h5>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                            <input class="form-control input-custom-field" name="displayCellNo" value="{{product.displayCellNo}}" placeholder="Telephone" type="text"/>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="tab-pane" id="step6">
-
+                                    <div class="row form-group">
+                                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                            <h5 class="create-ad-label">Daily Email Alerts</h5>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                            <p id="dailyEmailAlert"  class="text-justify"><input type="checkbox"/>  Yes, please send me daily summary emails of new Rooms Wanted adverts matching my requirements </p>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                            <h5 class="create-ad-label"> Instant Email Alerts</h5>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                            <p id="instantEmailAlert" class="text-justify"><input type="checkbox"/>  Yes, please send me emails of new Rooms Wanted adverts matching my requirements as soon as they are placed on the website  </p>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-xs-12 col-sm-offset-8 col-sm-4 col-md-offset-8 col-md-4 col-lg-offset-8 col-lg-4">
+                                            <button class="form-control common-custom-button">Place Your Advert</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
