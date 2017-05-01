@@ -9,11 +9,20 @@ package com.auction.util;
  *
  * @author alamgir
  */
-public class SignInResponse extends ClientResponse{
+public class SignInResponse extends ClientResponse {
 
     private String userName;
     private String fullName;
     private String address;
+    private String sessionId;
+
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
 
     public String getUserName() {
         return userName;
@@ -39,5 +48,4 @@ public class SignInResponse extends ClientResponse{
         this.address = address;
     }
 
-    
 }

@@ -16,4 +16,5 @@ public interface IPacketHeader {
     ACTION getAction();
     REQUEST_TYPE getRequestType();
     String getSessionId();
+    String getPacketId();
 }

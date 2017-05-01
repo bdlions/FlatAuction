@@ -10,6 +10,7 @@ import com.auction.packet.IPacket;
 import com.auction.packet.IPacketHeader;
 import com.auction.request.handler.AuthHandler;
 import com.auction.request.handler.RequestExecutorInfo;
+import com.auction.request.handler.RequestHandler;
 import com.auction.session.ISession;
 import com.auction.session.ISessionManager;
 import com.auction.session.Session;
@@ -122,7 +123,7 @@ public class ClientRequestHandler {
     }
 
     private Class[] getDelegators() {
-        Class[] delegators = new Class[]{AuthHandler.class};
+        Class[] delegators = new Class[]{AuthHandler.class, RequestHandler.class};
         return delegators;
     }
 

@@ -14,10 +14,12 @@ import {ManageProductApp} from '../ManageProductApp';
 import {DashBoard} from "../manageproduct/dashboard";
 //import {Abroad} from './abroad';
 //import {Header} from './header';
-
+import {CarouselModule, TypeaheadModule, DatepickerModule} from "ngx-bootstrap"
 
 @NgModule({
     imports: [HttpModule, BrowserModule, FormsModule,
+        CarouselModule.forRoot(), TypeaheadModule.forRoot(),
+        DatepickerModule.forRoot(),
         RouterModule.forRoot(routes, {
             useHash: false
         })

@@ -1,6 +1,5 @@
 package com.auction.packet;
 
-
 import com.auction.packet.IPacket;
 import com.auction.util.ACTION;
 import com.auction.util.REQUEST_TYPE;
@@ -21,6 +20,11 @@ public class MockPacketHeader implements IPacketHeader {
     private ACTION action;
     private REQUEST_TYPE requestType;
     private String sessionId;
+    private String packetId;
+
+    public void setPacketId(String packetId) {
+        this.packetId = packetId;
+    }
 
     public void setAction(ACTION action) {
         this.action = action;
@@ -33,7 +37,12 @@ public class MockPacketHeader implements IPacketHeader {
     public void setSessionId(String sessionId) {
         this.sessionId = sessionId;
     }
-    
+
+    @Override
+    public String getPacketId() {
+        return packetId;
+    }
+
     @Override
     public ACTION getAction() {
         return action;
@@ -41,7 +50,7 @@ public class MockPacketHeader implements IPacketHeader {
 
     @Override
     public REQUEST_TYPE getRequestType() {
-        return REQUEST_TYPE.AUTH;
+        return requestType;
     }
 
     @Override
@@ -54,17 +63,15 @@ public class MockPacketHeader implements IPacketHeader {
         mockPacket.setAction(ACTION.SIGN_IN);
         mockPacket.setRequestType(REQUEST_TYPE.AUTH);
         mockPacket.setSessionId("sessionId-111");
-        
+
         String gson = new GsonBuilder().create().toJson(mockPacket);
         System.out.println(gson);
 
         mockPacket = new GsonBuilder().create().fromJson(gson, MockPacketHeader.class);
-        
-        
+
         gson = new GsonBuilder().create().toJson(mockPacket);
         System.out.println(gson);
-        
-        
+
     }
-    
+
 }

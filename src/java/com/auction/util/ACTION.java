@@ -15,7 +15,9 @@ public enum ACTION {
     @SerializedName("1001")
     SIGN_IN(1001, REQUEST_TYPE.AUTH),
     @SerializedName("1002")
-    SIGN_OUT(1002, REQUEST_TYPE.AUTH)
+    SIGN_OUT(1002, REQUEST_TYPE.AUTH),
+    @SerializedName("1003")
+    FETCH_PRODUCT_LIST(1003, REQUEST_TYPE.REQUEST),
     ;
 
     private int id;

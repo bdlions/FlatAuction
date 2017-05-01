@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "dependencies": {
     "angular2-google-maps": "^0.17.0",
+    "angular2-uuid": "^1.1.1",
     "ng2-file-upload": "^1.2.1"
   }
 }

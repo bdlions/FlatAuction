@@ -14,8 +14,12 @@ import com.auction.util.ClientMessages;
 import com.auction.util.ClientRequestHandler;
 import com.auction.util.ClientResponse;
 import com.auction.util.REQUEST_TYPE;
+import com.auction.util.StringUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -50,9 +54,13 @@ public class RequestServlet extends HttpServlet {
 
         PrintWriter out = response.getWriter();
         try {
-            String packetHeaderText = request.getParameter("packetHeader");
-            String packetBody = request.getParameter("packetBody");
-            if(packetHeaderText == null || packetHeaderText.equals("")){
+            request.setCharacterEncoding("UTF-8");
+     
+            JsonParser parser = new JsonParser();
+            JsonObject jsonObject = (JsonObject)parser.parse(request.getReader());
+            JsonElement packetHeaderText = jsonObject.get("packetHeader");
+            JsonElement packetBody = jsonObject.get("packetBody");
+            if(packetHeaderText == null){
                 ClientResponse cr = new ClientFailedResponse();
                 cr.setMessage(ClientMessages.PACKET_HEADER_MISSING);
                 out.println(gson.toJson(cr));
@@ -72,7 +80,7 @@ public class RequestServlet extends HttpServlet {
 
                 @Override
                 public String getPacketBody() {
-                    return packetBody;
+                    return packetBody != null ? packetBody.getAsString() : null;
                 }
             });
             

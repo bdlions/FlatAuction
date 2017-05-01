@@ -12,6 +12,8 @@ import com.google.gson.annotations.SerializedName;
  * @author alamgir
  */
 public enum REQUEST_TYPE {
+    @SerializedName("0")
+    NONE(0),
     @SerializedName("1")
     AUTH(1),
     @SerializedName("2")

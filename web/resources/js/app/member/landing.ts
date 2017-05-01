@@ -4,27 +4,57 @@ import {Http} from '@angular/http';
 import {Location} from '../dto/Location';
 import {Product} from '../dto/Product';
 import {Observable} from 'rxjs/Observable';
+import {WebAPIService} from './../webservice/web-api-service';
+import {PacketHeaderFactory} from './../webservice/PacketHeaderFactory';
+import {ACTION} from './../webservice/ACTION';
+import {ServerResponse} from './../common/ServerResponse';
+import {SignInResponse} from './../common/SignInResponse';
+
 import 'rxjs/Rx';
 
 @Component({
     selector: 'content',
     templateUrl: window.SUB_DIRECTORY +"/html_components/public/landing.html",
+    providers: [WebAPIService]
 })
+
 export class Landing {
     public selectedLocation:string;
     private locationList: Location[];
-    private featuredProductList: Product[];    
+    private featuredProductList: Product[];  
+    private webAPIService: WebAPIService;
+    private errorMsg:string;
     
-    constructor(public router: Router) {
+    constructor(public router: Router, webAPIService: WebAPIService) {
+        this.webAPIService = webAPIService;
         this.locationList = JSON.parse("[{\"id\":\"1\", \"locationType\":\"area\",\"searchString\":\"London\"}, {\"id\":\"2\", \"locationType\":\"area\",\"searchString\":\"London 123\"}, {\"id\":\"3\", \"locationType\":\"area\",\"searchString\":\"London 456\"}]");
         this.featuredProductList = JSON.parse("[{\"id\":\"1\",\"title\":\"Fun at the Bowling Alley\", \"price\":\"100\", \"time\":\"1010\", \"img\":\"a.jpg\", \"type\":\"1\"},{\"id\":\"2\",\"title\":\"iPhone 7\", \"price\":\"1000\", \"time\":\"2020\", \"img\":\"b.jpg\", \"type\":\"2\"}, {\"id\":\"1\",\"title\":\"Fun at the Bowling Alley\", \"price\":\"100\", \"time\":\"1010\", \"img\":\"a.jpg\", \"type\":\"1\"},{\"id\":\"2\",\"title\":\"iPhone 7\", \"price\":\"1000\", \"time\":\"2020\", \"img\":\"b.jpg\", \"type\":\"2\"}, {\"id\":\"1\",\"title\":\"Fun at the Bowling Alley\", \"price\":\"100\", \"time\":\"1010\", \"img\":\"a.jpg\", \"type\":\"1\"},{\"id\":\"2\",\"title\":\"iPhone 7\", \"price\":\"1000\", \"time\":\"2020\", \"img\":\"b.jpg\", \"type\":\"2\"}]");
     }
 
     login(event: Event, username: string, password: string) {
         event.preventDefault();
-        localStorage.setItem("username", username);
-        window.location.replace("/");
-        window.location.href = "member.jsp";
+        let requestBody: string = "{\"userName\": \"" + username + "\", \"password\": \"" + password+"\"}";
+        
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.SIGN_IN), requestBody).then(result =>{
+            let response:ServerResponse  = <ServerResponse>result;
+            if (response.success){
+                let signInResponse: SignInResponse = <SignInResponse> result;
+                if (signInResponse.sessionId != null && signInResponse.sessionId != ""){
+                    localStorage.setItem("username", username);
+                    localStorage.setItem("sessionId", signInResponse.sessionId);
+                    window.location.replace("/");
+                    window.location.href = "member.jsp";
+                }
+                else{
+                    this.errorMsg = "Invalid session.";
+                }
+            }
+            else{
+                this.errorMsg = response.message;
+            }
+        });
+        
+        
     }
 
     signup(event: Event) {

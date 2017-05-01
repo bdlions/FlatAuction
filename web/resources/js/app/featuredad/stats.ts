@@ -39,6 +39,9 @@ export class Stats implements OnInit, OnDestroy {
     private subscribe:Subscription;
     private id:number;
     
+    public dt: Date = new Date();
+    public minDate: Date = void 0;
+  
     constructor(public router:Router, public route: ActivatedRoute) {
         
         this.accountSummaryFA = new AccountSummaryFA();
