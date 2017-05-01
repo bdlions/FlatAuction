@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {Http} from '@angular/http';
 import {User} from '../dto/User'
+import {Product} from '../dto/Product'
 import {General} from '../dto/General'
 import {Location} from '../dto/Location'
 
@@ -10,6 +11,7 @@ import {Location} from '../dto/Location'
     templateUrl: window.SUB_DIRECTORY +"/html_components/member/manageproduct/index.html",
 })
 export class DashBoard {
+    private product: Product;
     private roomList: General[];
     private productSizeList: General[];
     private productTypeList: General[];
@@ -22,6 +24,7 @@ export class DashBoard {
     private minStayList: General[];
     private maxStayList: General[];
     constructor(public router: Router, public http: Http) {
+        this.product = new Product();
         this.roomList = JSON.parse("[{\"id\":\"1\",\"title\":\"1 Room\"}, {\"id\":\"2\",\"title\":\"2 Room\"}, {\"id\":\"3\",\"title\":\"3 Room\"}, {\"id\":\"4\",\"title\":\"4 Room\"}, {\"id\":\"5\",\"title\":\"5 Room\"}]");
         this.productSizeList = JSON.parse("[{\"id\":\"1\",\"title\":\"1 Bed\"}, {\"id\":\"2\",\"title\":\"2 Bed\"}, {\"id\":\"3\",\"title\":\"3 Bed\"}, {\"id\":\"4\",\"title\":\"4 Bed\"}, {\"id\":\"5\",\"title\":\"5 Bed\"}]");
         this.productTypeList = JSON.parse("[{\"id\":\"1\",\"title\":\"Flat/Apartment\"}, {\"id\":\"2\",\"title\":\"House\"}, {\"id\":\"3\",\"title\":\"Property\"}]");

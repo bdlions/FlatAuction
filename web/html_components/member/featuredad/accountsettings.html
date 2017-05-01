@@ -10,15 +10,50 @@
         </ul>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-        Account Settings of Featured Ad
-        <br/>Default bid per click<br/>
-        {{accountSettingFA.defaultBidPerClick.currencyUnit.title}}{{accountSettingFA.defaultBidPerClick.amount}}
-
-        <br/>Default Bid<br/>
-        {{accountSettingFA.dailyBudget.amount}}{{accountSettingFA.dailyBudget.currencyUnit.title}}
-
-        <br/>Campaign Status<br/>
-        {{accountSettingFA.campainActive}}
+        <div class="row form-group">
+            <div class="col-xs-12 col-sm-12 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h3>Account Settings of Featured Ad</h3>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                        <h5 class="edit-profile-label">Default Bid Per Click</h5>
+                    </div>
+                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                        <h4>{{accountSettingFA.defaultBidPerClick.currencyUnit.title}}{{accountSettingFA.defaultBidPerClick.amount}}</h4>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                        <h5 class="edit-profile-label">Default Bid</h5>
+                    </div>
+                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                        <h4>{{accountSettingFA.dailyBudget.amount}}{{accountSettingFA.dailyBudget.currencyUnit.title}}</h4>
+                    </div>
+                </div>
+                <div class="row form-group user-account-settings-compaign-status">
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <h5 class="edit-profile-label">Campaign Status</h5>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <p class="fa-success"><i class="fa fa-check" aria-hidden="true"></i></p>
+                        <!--<p class="fa-disable"><i class="fa fa-times" aria-hidden="true"></i> </p>-->
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
+
+<!--Account Settings of Featured Ad
+<br/>Default bid per click<br/>
+{{accountSettingFA.defaultBidPerClick.currencyUnit.title}}{{accountSettingFA.defaultBidPerClick.amount}}
+
+<br/>Default Bid<br/>
+{{accountSettingFA.dailyBudget.amount}}{{accountSettingFA.dailyBudget.currencyUnit.title}}
+
+<br/>Campaign Status<br/>
+{{accountSettingFA.campainActive}}-->

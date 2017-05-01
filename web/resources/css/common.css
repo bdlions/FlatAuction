@@ -140,6 +140,9 @@ table tr:hover{
 .input-custom-field:focus{
     border: 1px solid #00deb6!important;
 }
+textarea{
+    resize: none;
+}
 .select-custom-field{
     border: 1px solid #ccc;
     border-radius: 0px;

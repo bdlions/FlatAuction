@@ -359,7 +359,7 @@ Version: 1.0
     color: #767676;
     line-height: 2em;
 }
-.profile-left-sidebar-ul > li > a:hover{
+.profile-left-sidebar-ul > li > a:hover,profile-left-sidebar-ul > li > a:focus,profile-left-sidebar-ul > li > a:visited{
     font-family: 'effra-regular';
     text-decoration: none;
     padding: 6px 0;
@@ -684,27 +684,50 @@ Version: 1.0
     color: #484848;
     margin: 10px 0;
 }
-.user-profile-dashboard-content-layout .fa-success{
+.user-profile-dashboard-content-layout .fa-success, 
+.user-account-settings-compaign-status .fa-success,
+.individual-ad-bids-table .fa-success{
     font-family: 'effra-regular';
     font-weight: normal;
     color: #006e1f;
     font-size: 14px;
+    margin-top: 12px;
 }
-.user-profile-dashboard-content-layout .fa-disable{
+.user-profile-dashboard-content-layout .fa-disable, 
+.user-account-settings-compaign-status .fa-disable,
+.individual-ad-bids-table .fa-disable{
     font-family: 'effra-regular';
     font-weight: normal;
     color: red;
     font-size: 14px;
+    margin-top: 12px;
 }
 
 /* --------------------- Create Advertise -------------------------------------  */
 .create-ad-label{
     font-family: 'effra-regular';
     font-weight: normal;
-     color: #484848;
+    color: #484848;
     font-size: 16px;
     font-weight: normal;
 }
 .amenity-title{
     margin-bottom: 2px;
+}
+/* --------------------- Edit Profile -------------------------------------  */
+.edit-profile-label{
+    font-family: 'effra-regular';
+    font-weight: normal;
+    color: #484848;
+    font-size: 16px;
+    font-weight: normal;
+}
+/* --------------------- Individual Ad Bids  -------------------------------------  */
+@media screen and (max-width: 600px) {
+    .individual-ad-bids-table .fa-success{
+        margin-top: 0!important;
+    }
+    .individual-ad-bids-table .fa-disable{
+        margin-top: 0!important;
+    }
 }

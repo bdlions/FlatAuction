@@ -10,17 +10,51 @@
         </ul>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-        Individual Ad Bids
-        <br/>product list<br/>
-        ============================<br/>
-        <ul>
-            <li *ngFor="let product of productList">
-                id: {{product.id}}, isFeaturedAdd {{product.isFeaturedAdd}} , title: {{product.title}}, location {{product.location.postCode}}, isDefaultBid {{product.isDefaultBid}}, Amount {{product.adBid.amount}}{{product.adBid.currencyUnit.title}}
-            </li>
-        </ul>
+        <div class="row form-group">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h2 class="text-center">Individual Ad Bids</h2>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <table class="individual-ad-bids-table">
+                    <thead>
+                        <tr>
+                            <th>Featured Add</th>
+                            <th>Title</th>
+                            <th>Location</th>
+                            <th>Default Bid</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of productList">
+                            <td data-label="Featured Add">
+                                <p class="fa-success"><i class="fa fa-check" aria-hidden="true"></i></p>
+                                <!--<p class="fa-disable"><i class="fa fa-times" aria-hidden="true"></i> </p>-->
+                            </td>
+                            <td data-label="Title">{{product.title}}</td>
+                            <td data-label="Location">{{product.location.postCode}}</td>
+                            <td data-label="Default Bid">
+                                <p class="fa-success"><i class="fa fa-check" aria-hidden="true"></i></p>
+                                <!--<p class="fa-disable"><i class="fa fa-times" aria-hidden="true"></i> </p>-->
+                            </td>
+                            <td data-label="Amount">{{product.adBid.amount}}{{product.adBid.currencyUnit.title}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
     </div>
 </div>
-
-
+<!--Individual Ad Bids
+<br/>product list<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let product of productList">
+        id: {{product.id}}, isFeaturedAdd {{product.isFeaturedAdd}} , title: {{product.title}}, location {{product.location.postCode}}, isDefaultBid {{product.isDefaultBid}}, Amount {{product.adBid.amount}}{{product.adBid.currencyUnit.title}}
+</li>
+</ul>-->
 
 
