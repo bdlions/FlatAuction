@@ -55,7 +55,7 @@ public class MockPacketHeader implements IPacketHeader {
 
     @Override
     public String getSessionId() {
-        return "sssss";
+        return sessionId;
     }
 
     public static void main(String[] args) {

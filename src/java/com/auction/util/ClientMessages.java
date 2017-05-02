@@ -15,4 +15,5 @@ public class ClientMessages {
     public static final String USER_NAME_IS_MANDATORY = "User name is mandatory.";
     public static final String INVALID_SIGNIN_REQUEST_FORMAT = "invalid signin request format.";
     public static final String PASSWORD_IS_MANDATORY = "Password is mandatory.";
+    public static final String INVALID_CREDENTIAL = "User name or password is not correct.";
 }

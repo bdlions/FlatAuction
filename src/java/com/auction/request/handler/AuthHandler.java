@@ -12,11 +12,17 @@ import com.auction.session.ISessionManager;
 import com.auction.util.ACTION;
 import com.auction.util.ClientMessages;
 import com.auction.util.ClientResponse;
+import com.auction.util.SessionManager;
 import com.auction.util.SignInResponse;
 import com.auction.util.StringUtils;
 import com.auction.util.annotation.ClientRequest;
 import com.google.gson.Gson;
 import java.util.UUID;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.Subject;
 
 /**
  *
@@ -25,44 +31,66 @@ import java.util.UUID;
 public class AuthHandler {
 
     private final ISessionManager sessionManager;
+
     public AuthHandler(ISessionManager sessionManager) {
         this.sessionManager = sessionManager;
     }
-    
+
     @ClientRequest(action = ACTION.SIGN_IN)
-    public ClientResponse signIn(ISession session, IPacket packet) throws Exception{
+    public ClientResponse signIn(ISession session, IPacket packet) throws Exception {
         SignInResponse response = new SignInResponse();
-        
-        if(StringUtils.isNullOrEmpty(packet.getPacketBody())){
+
+        if (StringUtils.isNullOrEmpty(packet.getPacketBody())) {
             response.setMessage(ClientMessages.INVALID_SIGNIN_REQUEST_FORMAT);
             response.setSuccess(false);
             return response;
         }
-        
+
         Gson gson = new Gson();
         Profile user = gson.fromJson(packet.getPacketBody(), Profile.class);
-        
-        if(StringUtils.isNullOrEmpty(user.getUserName())){
+
+        if (StringUtils.isNullOrEmpty(user.getUserName())) {
             response.setMessage(ClientMessages.USER_NAME_IS_MANDATORY);
             response.setSuccess(false);
             return response;
         }
-        if(StringUtils.isNullOrEmpty(user.getPassword())){
+        if (StringUtils.isNullOrEmpty(user.getPassword())) {
             response.setMessage(ClientMessages.PASSWORD_IS_MANDATORY);
             response.setSuccess(false);
             return response;
         }
-        
-        response.setSessionId(UUID.randomUUID() + user.getUserName());
-        response.setSuccess(true);
-        response.setAddress("Dhaka");
-        response.setUserName("dddd");
+
+        Subject currentUser = SessionManager.getInstance().getCurrentUser();
+
+        try {
+            if (!currentUser.isAuthenticated()) {
+                //collect user principals and credentials in a gui specific manner
+                //such as username/password html form, X509 certificate, OpenID, etc.
+                //We'll use the username/password example here since it is the most common.
+                //(do you know what movie this is from? ;)
+                UsernamePasswordToken token = new UsernamePasswordToken(user.getUserName(), user.getPassword());
+                //this is all you have to do to support 'remember me' (no config - built in!):
+                token.setRememberMe(true);
+                currentUser.login(token);
+
+                Session userSession = currentUser.getSession();
+
+                response.setSessionId((String)userSession.getId());
+                response.setUserName(user.getUserName());
+                response.setFullName(user.getFirstName() + " " + user.getLastName());
+                response.setSuccess(true);
+            }
+        } catch (AuthenticationException ex) {
+            response.setMessage(ClientMessages.INVALID_CREDENTIAL);
+            response.setSuccess(false);
+            return response;
+        }
 
         return response;
     }
 
     @ClientRequest(action = ACTION.SIGN_OUT)
-    public ClientResponse signOut(ISession session, IPacket packet) throws Exception{
+    public ClientResponse signOut(ISession session, IPacket packet) throws Exception {
         System.out.println("msg" + packet.getPacketBody());
         SignInResponse response = new SignInResponse();
         response.setMessage("Sign out successful");
