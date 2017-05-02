@@ -11,7 +11,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <form action="RequestServlet" method="POST">
+        <form action="RequestServlet" method="POST" enctype="application/json">
             <textarea rows="10" cols="50" name="packetHeader">{"action":"1002","requestType":"1","sessionId":"sessionId-111"}</textarea>
             <br/>
             <textarea rows="10" cols="50" name="packetBody">{"fndId":"100"}</textarea>

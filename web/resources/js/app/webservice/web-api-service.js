@@ -13,25 +13,27 @@ var http_1 = require("@angular/http");
 require("rxjs/add/operator/catch");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/toPromise");
-var Packet_1 = require("./Packet");
 var WebAPIService = (function () {
     function WebAPIService(http) {
         this.http = http;
         this.actionUrl = window.SUB_DIRECTORY + '/RequestServlet';
     }
     WebAPIService.prototype.getResponse = function (packetHeader, packetBody) {
+        //var packet = new Packet();
         if (packetBody === void 0) { packetBody = null; }
-        var packet = new Packet_1.Packet();
-        packet.packetHeader = packetHeader;
-        if (packetBody != null && packetBody != "") {
-            //            packet.packetBody = JSON.parse(packetBody);
-            packet.packetBody = packetBody;
-        }
+        //packet.packetHeader = packetHeader;
+        //        if (packetBody != null && packetBody != "" ){
+        ////            packet.packetBody = JSON.parse(packetBody);
+        //            packet.packetBody = packetBody;
+        //        }
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        var body = new http_1.URLSearchParams();
+        body.set('packetHeader', JSON.stringify(packetHeader));
+        body.set('packetBody', packetBody);
         //        headers.append('Content-Type', 'application/json');
         var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.post(this.actionUrl, packet, options).
+        return this.http.post(this.actionUrl, body, options).
             map(function (res) { return res.json(); }).
             toPromise().
             then(function (response) {

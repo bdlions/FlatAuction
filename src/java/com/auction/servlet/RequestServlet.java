@@ -15,6 +15,7 @@ import com.auction.util.ClientRequestHandler;
 import com.auction.util.ClientResponse;
 import com.auction.util.REQUEST_TYPE;
 import com.auction.util.StringUtils;
+import com.auction.util.UrlEncodedQueryString;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -57,9 +58,9 @@ public class RequestServlet extends HttpServlet {
             request.setCharacterEncoding("UTF-8");
      
             JsonParser parser = new JsonParser();
-            JsonObject jsonObject = (JsonObject)parser.parse(request.getReader());
-            JsonElement packetHeaderText = jsonObject.get("packetHeader");
-            JsonElement packetBody = jsonObject.get("packetBody");
+            //JsonObject jsonObject = (JsonObject)parser.parse(request.getReader());
+            JsonElement packetHeaderText = parser.parse(request.getParameter("packetHeader"));
+            String packetBody = request.getParameter("packetBody");
             if(packetHeaderText == null){
                 ClientResponse cr = new ClientFailedResponse();
                 cr.setMessage(ClientMessages.PACKET_HEADER_MISSING);
@@ -80,7 +81,7 @@ public class RequestServlet extends HttpServlet {
 
                 @Override
                 public String getPacketBody() {
-                    return packetBody != null ? packetBody.getAsString() : null;
+                    return packetBody != null ? packetBody : null;
                 }
             });
             
