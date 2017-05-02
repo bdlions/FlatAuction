@@ -7,6 +7,9 @@ import {Location} from '../dto/Location';
 import {Price} from '../dto/Price';
 import {General} from '../dto/General';
 import {SebmGoogleMap} from 'angular2-google-maps/core';
+import {WebAPIService} from './../webservice/web-api-service';
+import {PacketHeaderFactory} from './../webservice/PacketHeaderFactory';
+import {ACTION} from './../webservice/ACTION';
 
 @Component({
     styles:[
@@ -16,9 +19,10 @@ import {SebmGoogleMap} from 'angular2-google-maps/core';
     ],
     selector: 'data-content',
     templateUrl: window.SUB_DIRECTORY + "/html_components/public/search.html",
+    providers: [WebAPIService]
 })
 export class Search implements OnInit, OnDestroy {
-
+    private webAPIService: WebAPIService;
     private locationList: Location[];
     private radiusList: General[];
     private minPriceList: Price[];
@@ -32,17 +36,25 @@ export class Search implements OnInit, OnDestroy {
     private productList: Product[];
     private subscribe: Subscription;
     private id: number;
-    private title: string = 'Products location';
-    private lat: number = 23.777176;
-    private lng: number = 90.399452;
+    private title: string = 'Property locations';
+    private lat: number = 55.014566;
+    private lng: number = -3.751245;
     
     @ViewChild(SebmGoogleMap) private sebmGoogMap: SebmGoogleMap;
 
     
 
-    constructor(public router: Router, public route: ActivatedRoute) {
+    constructor(public router: Router, public route: ActivatedRoute, webAPIService: WebAPIService) {
 
-        this.locationList = JSON.parse("[{\"id\":\"1\",\"locationType\":\"area\",\"searchString\":\"London\"}, {\"id\":\"2\",\"locationType\":\"area\",\"searchString\":\"London 123\"}]");
+        this.webAPIService = webAPIService;
+
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_LOCATION_LIST)).then(result => {
+            this.locationList = result.locations;
+            console.log(result);
+        });
+
+        //this.locationList = JSON.parse("[{\"id\":\"1\",\"locationType\":\"area\",\"searchString\":\"London\"}, {\"id\":\"2\",\"locationType\":\"area\",\"searchString\":\"London 123\"}]");
+        
         this.radiusList = JSON.parse("[{\"id\":\"1\",\"title\":\"+0 miles\"}, {\"id\":\"2\",\"title\":\"+1/4 miles\"}, {\"id\":\"3\",\"title\":\"+1/2 miles\"}]");
         this.minPriceList = JSON.parse("[{\"id\":\"1\",\"symbol\":\"\",\"amount\":\"Min Price\"}, {\"id\":\"2\",\"symbol\":\"£\",\"amount\":\"500\"}, {\"id\":\"3\",\"symbol\":\"£\",\"amount\":\"600\"}]");
         this.maxPriceList = JSON.parse("[{\"id\":\"1\",\"symbol\":\"\",\"amount\":\"Max Price\"}, {\"id\":\"2\",\"symbol\":\"£\",\"amount\":\"500\"}, {\"id\":\"3\",\"symbol\":\"£\",\"amount\":\"600\"}]");

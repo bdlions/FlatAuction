@@ -19,6 +19,9 @@ export class PacketHeaderFactory {
             case ACTION.FETCH_PRODUCT_LIST:
                 packetHeader.requestType = REQUEST_TYPE.REQUEST
                 break;
+            case ACTION.FETCH_LOCATION_LIST:
+                packetHeader.requestType = REQUEST_TYPE.REQUEST
+                break;
             default:
                 packetHeader.requestType = REQUEST_TYPE.NONE
         }

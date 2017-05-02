@@ -18,6 +18,8 @@ public enum ACTION {
     SIGN_OUT(1002, REQUEST_TYPE.AUTH),
     @SerializedName("1003")
     FETCH_PRODUCT_LIST(1003, REQUEST_TYPE.REQUEST),
+    @SerializedName("2001")
+    FETCH_LOCATION_LIST(2001, REQUEST_TYPE.REQUEST),
     ;
 
     private int id;

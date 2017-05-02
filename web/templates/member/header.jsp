@@ -72,8 +72,8 @@
 
                                     <div class="collapse navbar-collapse" id="member-header">
                                         <ul class="nav navbar-nav header-custom-nav">
-                                            <li class="active"><a href="home.jsp">Home</a></li>
-                                            <li><a href="member.jsp">Dashboard</a></li>
+                                            <li><a href="home.jsp">Home</a></li>
+                                            <li class="active"><a href="member.jsp">Dashboard</a></li>
                                             <li><a href="manage-product.jsp">Add Advert</a></li>
                                             <li class="dropdown">
                                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Search <span class="caret"></span></a>

@@ -2,5 +2,6 @@ export enum ACTION{
     SIGN_IN = 1001,
     SIGN_OUT = 1002,
     FETCH_PRODUCT_LIST = 1003,
-    SIGN_UP = 1004
+    SIGN_UP = 1004,
+    FETCH_LOCATION_LIST = 2001
 }
