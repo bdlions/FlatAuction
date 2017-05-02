@@ -1,106 +1,180 @@
-<div class="container">
-    {{errorMsg}}
-    
-    <div class="row form-group steps">
-        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group">
-            <img src="resources/images/steps1.png">
-            <span class="hd-content">Create a <a [routerLink]="['/signup']" (click)="signup($event)">free account</a> and log in!</span>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group">
-            <img src="resources/images/steps2.png">
-            <span class="hd-content">Bid and Win</span>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group">
-            <img src="resources/images/steps3.png">
-            <span class="hd-content">Pay the seller</span>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group">
-            <img src="resources/images/steps4.png">
-            <span class="hd-content">Enjoy your purchase</span>
-        </div>
-    </div>
-    <div class="row form-group">
-        <div class="col-xs-12 col-sm-7 col-md-8 col-lg-8 form-group">
-            <div class="search-box-pagelet form-group">
-                <form role="form" (submit)="search($event, locationSelector.value)">
-                      <div class="row form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <h1 for="id" class="text-center landing-page-search-box-header-text">Find your soltion</h1>
-                            <h3 for="id" class="text-center landing-page-search-box-small-text">Search properties for sale and to rent</h3>
+<div class="non-member-bg">
+    <div class="steps">
+        <div class="container">
+            {{errorMsg}}
+            <div class="row form-group">
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group">
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                            <img src="resources/images/steps1.png">
+                        </div>
+                        <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
+                            <span class="hd-content">Create an account and login</span>
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 form-group">
-                            <div class="landing-page-search-box-layout">
-                                <input #locationSelector name="locationSelector" [(ngModel)]="selectedLocation"
-                                    [typeahead]="locationList"
-                                    typeaheadOptionField="searchString"
-                                    class="form-control search-input-field">
-                            </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group">
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                            <img src="resources/images/steps2.png">
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 form-group">
-                            <button type="submit" class="form-control common-custom-button">Rent</button>
+                        <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
+                            <span class="hd-content">Bid and Win</span>
                         </div>
                     </div>
-                </form> 
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group">
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                            <img src="resources/images/steps3.png">
+                        </div>
+                        <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
+                            <span class="hd-content">Pay the seller</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group">
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                            <img src="resources/images/steps4.png">
+                        </div>
+                        <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
+                            <span class="hd-content">Enjoy your purchase</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
-            <form role="form" (submit)="login($event, username.value, password.value)">
-                  <div class="login-pagelet">
-                    <div class="login-block">
-                        <h1>Login</h1>
+    </div>
+    <div class="container">
+        <div class="row form-group search-login-top-bottom-margin">
+            <div class="col-xs-12 col-sm-7 col-md-8 col-lg-8">
+                <div class="search-box-pagelet form-group">
+                    <form role="form" (submit)="search($event, locationSelector.value)">
+                          <div class="row form-group">
+                            <div class="col-xs-12 col-sm-12 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8 form-group">
+                                <div class="landing-page-search-box-layout">
+                                    <input #locationSelector name="locationSelector" [(ngModel)]="selectedLocation"
+                                        [typeahead]="locationList"
+                                        typeaheadOptionField="searchString"
+                                        class="form-control search-input-field">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 form-group">
+                                <button type="submit" class="form-control common-custom-button non-member-search-input">Rent</button>
+                            </div>
+                        </div>
                         <div class="row form-group">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <button type="submit" class="form-control login-facebook-button"><i class="fa fa-facebook"></i>&nbsp;&nbsp; Log in with Facebook</button> 
+                                <h1 for="id" class="text-center landing-page-search-box-header-text">Find your solution</h1>
+                                <h3 for="id" class="text-center landing-page-search-box-small-text">Search properties for sale and to rent</h3>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <input type="text" #username id="username" class="form-control input-custom-field" placeholder="Username"/>
-                                <input type="text" #password id="password" class="form-control input-custom-field" placeholder="Password"/>
+                    </form> 
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
+                <form role="form" (submit)="login($event, username.value, password.value)" >
+                      <div class="login-pagelet">
+                        <div class="login-block">
+                            <h1>Login</h1>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <input type="text" #username id="username" class="form-control input-custom-field" placeholder="Your Name"/>
+                                    <input type="text" #password id="password" class="form-control input-custom-field" placeholder="Your Password"/>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 form-group">
-                                <button type="submit" class="form-control common-custom-button">Submit</button> 
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                <div class="sign-up-anchor">
-                                    <a [routerLink]="['/signup']" (click)="signup($event)">Click here to Signup</a>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 form-group">
+                                    <div class="password-forgotten-anchor">
+                                        <a href="">Password forgotten</a>
+                                    </div>
+                                    <!--                                    <div class="sign-up-anchor">
+                                                                            <a [routerLink]="['/signup']" (click)="signup($event)">Click here to Signup</a>
+                                                                        </div>-->
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 form-group">
+                                    <button type="submit" class="form-control common-custom-button">Login</button> 
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-    <div class="row form-group margin-top-50px">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h2 class="featured-product-list-heading">Featured Product List</h2>
-        </div>
-    </div>
+</div>
+<div class="container margin-top-bottom-50px">
     <div class="row form-group">
-        <div *ngFor="let product of featuredProductList" class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group" >
+        <div *ngFor="let product of featuredProductList" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group" >
             <div class="product-auction-head">
                 <div class="product-auction-img">
                     <a href=""><img class="img-responsive" src="resources/images/{{product.img}}"></a>
                 </div>
-                <div class="product-auction-time text-center" id="{{product.id}}">{{product.time}}</div>
                 <div class="product-auction-title margin-bottom-5px">
                     <h3>{{product.title}}</h3>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" >
-                        <div class="product-auction-price">
-                            <h3>{{product.price}}</h3>
+                    <div class="col-xs-12 col-sm-6 col-md-offset-1 col-md-4 col-lg-offset-1 col-lg-4 margin-bottom-15px" >
+                        <button class="form-control product-details-bid-button">Bid</button>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-offset-1 col-md-4 col-lg-offset-1 col-lg-4" >
+                        <div class="form-control product-auction-price">
+                            <span>{{product.price}}</span>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" >
-                        <a class="product-details-button-anchor" href=""> <button class="form-control common-custom-button">Details</button> </a>
-                    </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="landing-page-footer-top-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-offset-1 col-md-2 col-lg-offset-1 col-lg-2 form-group" >
+                <h2 class="landing-page-footer-top-section-header">QUICKLINKS</h2>
+                <ul class="landing-page-footer-top-section-ul">
+                    <li><a>About</a></li>
+                    <li><a>Buy and Sell</a></li>
+                    <li><a>Find Out</a></li>
+                    <li><a>Search</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 form-group" >
+                <h2 class="landing-page-footer-top-section-header">QUICKLINKS</h2>
+                <ul class="landing-page-footer-top-section-ul">
+                    <li><a>About</a></li>
+                    <li><a>Buy and Sell</a></li>
+                    <li><a>Find Out</a></li>
+                    <li><a>Search</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 form-group" >
+                <h2 class="landing-page-footer-top-section-header">QUICKLINKS</h2>
+                <ul class="landing-page-footer-top-section-ul">
+                    <li><a>About</a></li>
+                    <li><a>Buy and Sell</a></li>
+                    <li><a>Find Out</a></li>
+                    <li><a>Search</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 form-group" >
+                <h2 class="landing-page-footer-top-section-header">QUICKLINKS</h2>
+                <ul class="landing-page-footer-top-section-ul">
+                    <li><a>About</a></li>
+                    <li><a>Buy and Sell</a></li>
+                    <li><a>Find Out</a></li>
+                    <li><a>Search</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 form-group" >
+                <h2 class="landing-page-footer-top-section-header">QUICKLINKS</h2>
+                <ul class="landing-page-footer-top-section-ul">
+                    <li><a>About</a></li>
+                    <li><a>Buy and Sell</a></li>
+                    <li><a>Find Out</a></li>
+                    <li><a>Search</a></li>
+                </ul>
             </div>
         </div>
     </div>

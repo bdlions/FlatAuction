@@ -30,6 +30,9 @@ Version: 1.0
     .landing-page-search-box-layout > typeahead-container > ul > li > a{
         width: 348px;
     }
+    .non-member-search-input{
+        margin-left: -34px;
+    }
 }
 /* --------------------- Medium Device -------------------------------------  */
 @media (min-width : 992px) and (max-width : 1199px) {
@@ -39,6 +42,9 @@ Version: 1.0
     }
     .landing-page-search-box-layout > typeahead-container > ul > li > a{
         width: 360px;
+    }
+    .non-member-search-input{
+        margin-left: -34px;
     }
 }
 /* --------------------- Large Device -------------------------------------  */
@@ -50,6 +56,9 @@ Version: 1.0
     .landing-page-search-box-layout > typeahead-container > ul > li > a{
         width: 450px;
     }
+    .non-member-search-input{
+        margin-left: -34px;
+    }
 }
 /* --------------------- Login Box -------------------------------------  */
 
@@ -60,20 +69,19 @@ Version: 1.0
     box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
 }
 .pagelet_divider{
+    background-color: #ebc27f;
     margin-top: 15px;
     margin-bottom: 15px;
-    border-bottom: 1px solid lightgray;
 }
 .login-block {
     width: 100%;
-    padding: 20px;
-    background: #fff;
+    padding: 1px 20px;
+    background: #ebc27f;
     border-radius: 5px;
-    border-top: 5px solid #00deb6;
     margin: 0 auto;
 }
 .login-facebook-button{
-    font-family: 'effra-regular';
+    font-family: "tw-cen-mt";
     background-color: #4568b2;
     border: 1px solid #4568b2;
     color: #fff;
@@ -87,23 +95,22 @@ Version: 1.0
     border: 1px solid #4568b2 !important;
 }
 .login-block h1 {
-    font-family: 'effra-regular';
-    color: #00deb6!important;
-    font-size: 24px!important;
+    font-family: "tw-cen-mt";
+    color: #4568b2!important;
+    font-size: 28px!important;
     font-weight: bold!important;
-    text-align: center!important;
-    margin-bottom: 20px!important;
+    margin-bottom: 0px!important;
 }
 
 .login-block input {
     width: 100%;
     height: 42px;
     box-sizing: border-box;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    border-radius: 6px!important
+        border: 1px solid #ccc;
     margin-bottom: 20px;
-    font-size: 14px;
-    font-family: 'effra-regular';
+    font-size: 16px;
+    font-family: "tw-cen-mt";
     padding: 0 20px 0 50px!important;
     outline: none;
 }
@@ -113,18 +120,8 @@ Version: 1.0
     background-size: 16px 80px;
 }
 
-.login-block input#username:focus {
-    background: #fff url('../images/user.png') 20px bottom no-repeat;
-    background-size: 16px 80px;
-}
-
 .login-block input#password {
     background: #fff url('../images/password.png') 20px top no-repeat;
-    background-size: 16px 80px;
-}
-
-.login-block input#password:focus {
-    background: #fff url('../images/password.png') 20px bottom no-repeat;
     background-size: 16px 80px;
 }
 
@@ -132,7 +129,12 @@ Version: 1.0
     border: 1px solid #ff656c;
 }
 
-
+.password-forgotten-anchor{
+    font-family: "tw-cen-mt";
+    font-size: 16px;
+    font-style: italic;
+    margin-top: 5px;
+}
 /* --------------------- Registration Box -------------------------------------  */
 
 .signup-pagelet{
@@ -146,11 +148,11 @@ Version: 1.0
     padding: 20px;
     background: #fff;
     border-radius: 5px;
-    border-top: 5px solid #00deb6;
+    border-top: 5px solid #4568b2;
     margin: 0 auto;
 }
 .signup-facebook-button{
-    font-family: 'effra-regular';
+    font-family: "tw-cen-mt";
     background-color: #4568b2;
     border: 1px solid #4568b2;
     color: #fff;
@@ -164,8 +166,8 @@ Version: 1.0
     border: 1px solid #4568b2 !important;
 }
 .signup-block h1 {
-    font-family: 'effra-regular';
-    color: #00deb6!important;
+    font-family: "tw-cen-mt";
+    color: #4568b2!important;
     font-size: 24px!important;
     font-weight: bold!important;
     text-align: center!important;
@@ -180,7 +182,7 @@ Version: 1.0
     border: 1px solid #ccc;
     margin-bottom: 20px;
     font-size: 14px;
-    font-family: 'effra-regular';
+    font-family: "tw-cen-mt";
     padding: 0 20px 0 50px!important;
     outline: none;
 }
@@ -209,36 +211,68 @@ Version: 1.0
     border: 1px solid #ff656c;
 }
 
+/* --------------------- Landing Page -------------------------------------  */
+.non-member-bg{
+    background-image: url("../images/bg.jpg");
+}
 /* --------------------- Landing Page Search Box -------------------------------------  */
 
 .landing-page-search-box-layout > typeahead-container > ul{
     border-radius: 0!important;
 }
 .landing-page-search-box-layout > typeahead-container > ul > li > a{
-    font-family: 'effra-regular';
+    font-family: "tw-cen-mt";
     color: #484848;
     background-image: none!important;
     background-color: #fff!important;
-    border-top: 1px solid #00DEB6;
+    border-top: 1px solid #f16c26;
 }
 .landing-page-search-box-layout > typeahead-container > ul > li > a:hover,
 .landing-page-search-box-layout > typeahead-container > ul > li > a:focus,
 .landing-page-search-box-layout > typeahead-container > ul > li > a:visited{
-    font-family: 'effra-regular';
+    font-family: "tw-cen-mt";
     background-image: none!important;
-    background-color: #00DEB6!important;
+    background-color: #f16c26!important;
     color: #FFF!important;
 }
 .landing-page-search-box-header-text{
-    font-family: 'effra-medium';
-    color: #00deb6;
-    line-height: 1.5em;
-    font-size: 28px;
+    font-family: "tw-cen-mt";
+    color: #2572b7;
+    line-height: 1em;
+    font-size: 48px;
 }
 .landing-page-search-box-small-text{
-    font-family: 'effra-regular';
-    color: #fff;
-    line-height: 1.2em;
-    font-size: 16px;
+    font-family: "tw-cen-mt";
+    color: #f16c26;
+    line-height: 1em;
+    font-size: 28px;
     font-weight: normal;
+}
+
+/* --------------------- landing page footer top section -------------------------------------  */
+.landing-page-footer-top-section{
+    font-family: "tw-cen-mt";
+    background-color: #d6d6d6;
+    color: #272727;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.landing-page-footer-top-section-header{
+    font-size: 24px;
+    text-transform: uppercase;
+}
+.landing-page-footer-top-section-ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 5px 25px;
+}
+.landing-page-footer-top-section-ul li{
+    margin: 5px 0;
+}
+.landing-page-footer-top-section-ul li a{
+    color: #272727;
+    font-size: 16px;
+}
+.landing-page-footer-top-section-ul li a:hover{
+    text-decoration: none;
 }
