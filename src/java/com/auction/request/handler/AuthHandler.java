@@ -17,8 +17,6 @@ import com.auction.util.SignInResponse;
 import com.auction.util.StringUtils;
 import com.auction.util.annotation.ClientRequest;
 import com.google.gson.Gson;
-import java.util.UUID;
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
@@ -64,22 +62,15 @@ public class AuthHandler {
 
         try {
             if (!currentUser.isAuthenticated()) {
-                //collect user principals and credentials in a gui specific manner
-                //such as username/password html form, X509 certificate, OpenID, etc.
-                //We'll use the username/password example here since it is the most common.
-                //(do you know what movie this is from? ;)
                 UsernamePasswordToken token = new UsernamePasswordToken(user.getUserName(), user.getPassword());
-                //this is all you have to do to support 'remember me' (no config - built in!):
                 token.setRememberMe(true);
                 currentUser.login(token);
-
-                Session userSession = currentUser.getSession();
-
-                response.setSessionId((String)userSession.getId());
-                response.setUserName(user.getUserName());
-                response.setFullName(user.getFirstName() + " " + user.getLastName());
-                response.setSuccess(true);
             }
+            Session userSession = currentUser.getSession();
+            response.setSessionId((String) userSession.getId());
+            response.setUserName(user.getUserName());
+            response.setFullName(user.getFirstName() + " " + user.getLastName());
+            response.setSuccess(true);
         } catch (AuthenticationException ex) {
             response.setMessage(ClientMessages.INVALID_CREDENTIAL);
             response.setSuccess(false);
