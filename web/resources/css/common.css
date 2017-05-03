@@ -105,18 +105,8 @@ a{
 }
 /* --------------------- Landing Page -------------------------------------  */
 .search-box-layout-bg{
-    background-image: url("../images/bg.jpg");
-    /*    background-attachment: fixed;
-        background-repeat: no-repeat;
-        background-size: cover;*/
-    /*    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin-bottom: 1px;
-    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
-    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
-    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
-    border-radius: 4px;*/
+    background: url("../images/bg.jpg") no-repeat scroll 0 0;
+     background-size:100% 100%
 }
 /* --------------------- Landing Page & member Home Search Box -------------------------------------  */
 
