@@ -32,13 +32,13 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Min Price <span class="caret"></span></a>
                     <ul class="dropdown-menu product-info-detail-custom-dropdown-menu">
-                        <li *ngFor="let minPrice of minPriceList" ><a href="" id="{{minPrice.id}}">{{minPrice.symbol}}{{minPrice.amount}}</a></li>
+                        <li *ngFor="let minPrice of minPriceList" ><a href="" id="{{minPrice.id}}">{{minPrice.currencyUnit.title}}{{minPrice.amount}}</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Max Price <span class="caret"></span></a>
                     <ul class="dropdown-menu product-info-detail-custom-dropdown-menu">
-                        <li *ngFor="let maxPrice of maxPriceList" ><a href="" id="{{maxPrice.id}}">{{maxPrice.symbol}}{{maxPrice.amount}}</a></li>
+                        <li *ngFor="let maxPrice of maxPriceList" ><a href="" id="{{maxPrice.id}}">{{maxPrice.currencyUnit.title}}{{maxPrice.amount}}</a></li>
                     </ul>
                 </li>
                 <button type="button" class="common-custom-button custom-nav-button" data-toggle="collapse" data-target="#filsters">Filters <span class="caret"></span></button>
@@ -199,7 +199,7 @@
                                             <div class="row">
                                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                                     <div class="grid-property-title">
-                                                        <h4>{{product.title}}</h4>
+                                                        <h4><a [routerLink]="['/productInfo']" (click)="selectProduct($event, 1)">{{product.title}}</a></h4>
                                                     </div>
                                                 </div>
                                             </div>

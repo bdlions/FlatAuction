@@ -22,6 +22,30 @@ export class PacketHeaderFactory {
             case ACTION.FETCH_LOCATION_LIST:
                 packetHeader.requestType = REQUEST_TYPE.REQUEST
                 break;
+            case ACTION.FETCH_RADIUS_LIST:
+                packetHeader.requestType = REQUEST_TYPE.REQUEST
+                break;
+            case ACTION.FETCH_PRODUCT_TYPE_LIST:
+                packetHeader.requestType = REQUEST_TYPE.REQUEST
+                break;
+            case ACTION.FETCH_OCCUPATION_LIST:
+                packetHeader.requestType = REQUEST_TYPE.REQUEST
+                break;
+            case ACTION.FETCH_GENDER_LIST:
+                packetHeader.requestType = REQUEST_TYPE.REQUEST
+                break;
+            case ACTION.FETCH_ROOM_SIZE_LIST:
+                packetHeader.requestType = REQUEST_TYPE.REQUEST
+                break;
+            case ACTION.FETCH_DURATION_LIST:
+                packetHeader.requestType = REQUEST_TYPE.REQUEST
+                break;
+            case ACTION.FETCH_MIN_PRICE_LIST:
+                packetHeader.requestType = REQUEST_TYPE.REQUEST
+                break;
+            case ACTION.FETCH_MAX_PRICE_LIST:
+                packetHeader.requestType = REQUEST_TYPE.REQUEST
+                break;
             default:
                 packetHeader.requestType = REQUEST_TYPE.NONE
         }

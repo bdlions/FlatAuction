@@ -24,6 +24,30 @@ var PacketHeaderFactory = (function () {
             case ACTION_1.ACTION.FETCH_LOCATION_LIST:
                 packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
                 break;
+            case ACTION_1.ACTION.FETCH_RADIUS_LIST:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
+                break;
+            case ACTION_1.ACTION.FETCH_PRODUCT_TYPE_LIST:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
+                break;
+            case ACTION_1.ACTION.FETCH_OCCUPATION_LIST:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
+                break;
+            case ACTION_1.ACTION.FETCH_GENDER_LIST:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
+                break;
+            case ACTION_1.ACTION.FETCH_ROOM_SIZE_LIST:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
+                break;
+            case ACTION_1.ACTION.FETCH_DURATION_LIST:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
+                break;
+            case ACTION_1.ACTION.FETCH_MIN_PRICE_LIST:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
+                break;
+            case ACTION_1.ACTION.FETCH_MAX_PRICE_LIST:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
+                break;
             default:
                 packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.NONE;
         }
