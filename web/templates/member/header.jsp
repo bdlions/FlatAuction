@@ -21,7 +21,7 @@
 
         <!-- Latest compiled and minified JavaScript -->
         <script src="resources/js/jquery.min.js"></script>
-        <!--<script src="resources/js/bootstrap.min.js"></script>-->
+        <script src="resources/js/bootstrap.min.js"></script>
 
         <!-- Polyfills -->
         <script src="resources/js/node_modules/core-js/client/shim.min.js"></script>
@@ -32,7 +32,7 @@
         
     </head>
     <body class="margin-bottom-100px">
-        <header class="form-group">
+        <header>
             <div  class="header-white-bg">
                 <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 form-group">

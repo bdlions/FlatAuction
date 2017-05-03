@@ -38,12 +38,18 @@ a{
 .margin-top-50px{
     margin-top: 50px;
 }
+.margin-top-95px{
+    margin-top: 95px!important;
+}
 .margin-bottom-50px{
     margin-bottom: 50px;
 }
 .margin-top-bottom-50px{
     margin-top: 50px;
     margin-bottom: 50px;
+}
+.divider{
+    border-bottom: 1px solid #ccc;
 }
 /* ---------------------------- Header -------------------------------- */
 
@@ -90,10 +96,60 @@ a{
     box-shadow: inset 0 1px 0 #ddd;
     text-align: center;
     font-size: 24px;
+    /*    position: fixed;
+        bottom: 0;*/
 }
 .footer-border{
     border-top: 1px solid #ccc;
     padding: 8px 2px;
+}
+/* --------------------- Landing Page -------------------------------------  */
+.search-box-layout-bg{
+    background-image: url("../images/bg.jpg");
+    /*    background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;*/
+    /*    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 1px;
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    border-radius: 4px;*/
+}
+/* --------------------- Landing Page & member Home Search Box -------------------------------------  */
+
+.landing-page-search-box-layout > typeahead-container > ul{
+    border-radius: 0!important;
+}
+.landing-page-search-box-layout > typeahead-container > ul > li > a{
+    font-family: "tw-cen-mt";
+    color: #484848;
+    background-image: none!important;
+    background-color: #fff!important;
+    border-top: 1px solid #f16c26;
+}
+.landing-page-search-box-layout > typeahead-container > ul > li > a:hover,
+.landing-page-search-box-layout > typeahead-container > ul > li > a:focus,
+.landing-page-search-box-layout > typeahead-container > ul > li > a:visited{
+    font-family: "tw-cen-mt";
+    background-image: none!important;
+    background-color: #f16c26!important;
+    color: #FFF!important;
+}
+.landing-page-search-box-header-text{
+    font-family: "tw-cen-mt";
+    color: #2572b7;
+    line-height: 1em;
+    font-size: 48px;
+}
+.landing-page-search-box-small-text{
+    font-family: "tw-cen-mt";
+    color: #f16c26;
+    line-height: 1em;
+    font-size: 28px;
+    font-weight: normal;
 }
 /* ---------------------------- Table -------------------------------- */
 table {
@@ -503,6 +559,7 @@ input[type=checkbox]:checked {
     .search-login-top-bottom-margin{
         margin: 30px 0;
     }
+    
 }
 
 /* --------------------- Tablet Device -------------------------------------  */
@@ -556,6 +613,25 @@ input[type=checkbox]:checked {
     .advanced-search-page-search-box-layout > typeahead-container > ul > li > a{
         width: 715px!important;
     }
+    .search-login-top-bottom-margin{
+        margin: 30px 0;
+    }
+     .search-box-pagelet{
+        padding: 30px;
+    }
+    .landing-page-search-box-layout > typeahead-container {
+        position: relative!important;
+        display: block!important;
+        top: 0!important;
+        left: 0!important;
+    }
+    .landing-page-search-box-layout > typeahead-container > ul {
+        width: 100%!important;
+    }
+    .landing-page-search-box-layout > typeahead-container > ul > li > a{
+        width: 327px;
+    }
+    
 }
 /* --------------------- Medium Device -------------------------------------  */
 @media (min-width : 992px) and (max-width : 1199px) {
@@ -616,6 +692,15 @@ input[type=checkbox]:checked {
     .header-menu-layout .navbar-nav{
         margin-left: 45px;
     }
+    .search-login-top-bottom-margin{
+        margin: 50px 0;
+    }
+     .landing-page-search-box-layout > typeahead-container > ul > li > a{
+        width: 360px;
+    }
+    .non-member-search-input{
+        margin-left: -34px;
+    }
 }
 /* --------------------- Large Device -------------------------------------  */
 @media only screen and (min-width : 1200px) {
@@ -674,6 +759,15 @@ input[type=checkbox]:checked {
     }
     .header-menu-layout .navbar-nav{
         margin-left: 45px;
+    }
+    .search-login-top-bottom-margin{
+        margin: 55px 0;
+    }
+     .landing-page-search-box-layout > typeahead-container > ul > li > a{
+        width: 435px;
+    }
+    .non-member-search-input{
+        margin-left: -34px;
     }
 }
 
@@ -1111,71 +1205,81 @@ input[type=checkbox]:checked {
     font-family: "tw-cen-mt";
     font-size: 20px;
     color: #484848;
-    padding: 10px;
+    padding: 0;
     font-weight: normal;
+    margin: 10px;
 }
 .product-info-details-right-panel-product-description{
     font-family: "tw-cen-mt";
     font-size: 16px;
     color: #484848;
-    padding: 10px;
+    padding: 0;
     font-weight: normal;
+    margin: 10px;
 }
 .product-info-details-right-panel-product-availability-header{
     font-family: "tw-cen-mt";
     font-size: 20px;
     color: #484848;
-    padding: 10px;
+    padding: 0;
     font-weight: normal;
+    margin: 10px;
 }
 .product-info-details-right-panel-product-availability-content{
     font-family: "tw-cen-mt";
-    font-size: 14px;
+    font-size: 16px;
     color: #484848;
-    padding: 10px;
+    padding: 0;
     font-weight: normal;
+    margin: 10px;
 }
 .product-info-details-right-panel-product-extra-cost-header{
     font-family: "tw-cen-mt";
     font-size: 20px;
     color: #484848;
-    padding: 10px;
+    padding: 0;
     font-weight: normal;
+    margin: 10px;
 }
 .product-info-details-right-panel-product-extra-cost-content{
     font-family: "tw-cen-mt";
-    font-size: 14px;
+    font-size: 16px;
     color: #484848;
-    padding: 10px;
+    padding: 0;
     font-weight: normal;
+    margin: 10px;
 }
 .product-info-details-right-panel-product-amenities-header{
     font-family: "tw-cen-mt";
     font-size: 20px;
     color: #484848;
-    padding: 10px;
+    padding: 0;
     font-weight: normal;
+    margin: 10px;
 }
 .product-info-details-right-panel-product-amenities-content{
     font-family: "tw-cen-mt";
-    font-size: 14px;
+    font-size: 16px;
     color: #484848;
-    padding: 10px;
+    padding: 0;
     font-weight: normal;
+    margin: 10px;
 }
 .product-info-details-right-panel-product-tenant-preferences-header{
     font-family: "tw-cen-mt";
     font-size: 20px;
     color: #484848;
-    padding: 10px;
+    padding: 0;
     font-weight: normal;
+    margin: 10px;
 }
 .product-info-details-right-panel-product-tenant-preferences-content{
     font-family: "tw-cen-mt";
-    font-size: 14px;
+    font-size: 16px;
     color: #484848;
-    padding: 10px;
+    padding: 0;
     font-weight: normal;
+    margin: 10px;
 }
 /* --------------------- Product Info Details Carousel-------------------------------------  */
 #quote-carousel 
@@ -1439,9 +1543,9 @@ input[type=checkbox]:checked {
     font-family: "tw-cen-mt";
     color: #484848;
     font-size: 18px;
-    line-height: 30px;
-    margin-left: 5px;
-    opacity: 1!important;
+    line-height: 1em;
+    position: relative;
+    top: 10px;
 }
 
 /* --------------------- Bid History -------------------------------------  */

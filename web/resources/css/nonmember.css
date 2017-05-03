@@ -8,30 +8,13 @@ Version: 1.0
     .sign-up-anchor{
         float: right;
     }
-    .search-box-pagelet{
-        padding: 30px;
-    }
-    .landing-page-search-box-layout > typeahead-container {
-        position: relative!important;
-        display: block!important;
-        top: 0!important;
-        left: 0!important;
-    }
-    .landing-page-search-box-layout > typeahead-container > ul {
-        width: 100%!important;
-    }
+   
 }
 
 /* --------------------- Tablet Device -------------------------------------  */
 @media (min-width : 768px) and (max-width : 991px) {
     .sign-up-anchor{
         float: right;
-    }
-    .landing-page-search-box-layout > typeahead-container > ul > li > a{
-        width: 348px;
-    }
-    .non-member-search-input{
-        margin-left: -34px;
     }
 }
 /* --------------------- Medium Device -------------------------------------  */
@@ -40,11 +23,8 @@ Version: 1.0
         float: right;
         margin-top: 6px;
     }
-    .landing-page-search-box-layout > typeahead-container > ul > li > a{
-        width: 360px;
-    }
-    .non-member-search-input{
-        margin-left: -34px;
+    .hd-content{
+        margin-left: 10px; 
     }
 }
 /* --------------------- Large Device -------------------------------------  */
@@ -52,12 +32,6 @@ Version: 1.0
     .sign-up-anchor{
         float: right;
         margin-top: 6px;
-    }
-    .landing-page-search-box-layout > typeahead-container > ul > li > a{
-        width: 450px;
-    }
-    .non-member-search-input{
-        margin-left: -34px;
     }
 }
 /* --------------------- Login Box -------------------------------------  */
@@ -211,43 +185,8 @@ Version: 1.0
     border: 1px solid #ff656c;
 }
 
-/* --------------------- Landing Page -------------------------------------  */
-.non-member-bg{
-    background-image: url("../images/bg.jpg");
-}
-/* --------------------- Landing Page Search Box -------------------------------------  */
 
-.landing-page-search-box-layout > typeahead-container > ul{
-    border-radius: 0!important;
-}
-.landing-page-search-box-layout > typeahead-container > ul > li > a{
-    font-family: "tw-cen-mt";
-    color: #484848;
-    background-image: none!important;
-    background-color: #fff!important;
-    border-top: 1px solid #f16c26;
-}
-.landing-page-search-box-layout > typeahead-container > ul > li > a:hover,
-.landing-page-search-box-layout > typeahead-container > ul > li > a:focus,
-.landing-page-search-box-layout > typeahead-container > ul > li > a:visited{
-    font-family: "tw-cen-mt";
-    background-image: none!important;
-    background-color: #f16c26!important;
-    color: #FFF!important;
-}
-.landing-page-search-box-header-text{
-    font-family: "tw-cen-mt";
-    color: #2572b7;
-    line-height: 1em;
-    font-size: 48px;
-}
-.landing-page-search-box-small-text{
-    font-family: "tw-cen-mt";
-    color: #f16c26;
-    line-height: 1em;
-    font-size: 28px;
-    font-weight: normal;
-}
+
 
 /* --------------------- landing page footer top section -------------------------------------  */
 .landing-page-footer-top-section{
