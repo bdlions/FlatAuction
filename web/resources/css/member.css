@@ -162,6 +162,12 @@ Version: 1.0
     .tabs-left .nav-tabs li {
         float: none!important; 
     }
+    .margin-top-align{
+        margin-top: 20px!important;
+    }
+    .profile-left-sidebar-margin-top-align{
+        margin-top: 20px!important;
+    }
 }
 
 /* --------------------- Tablet Device -------------------------------------  */
@@ -195,6 +201,12 @@ Version: 1.0
     }
     .tabs-left .nav-tabs li {
         float: none!important; 
+    }
+    .margin-top-align{
+        margin-top: 80px!important;
+    }
+    .profile-left-sidebar-margin-top-align{
+        margin-top: 50px!important;
     }
 }
 /* --------------------- Medium Device -------------------------------------  */
@@ -230,6 +242,12 @@ Version: 1.0
     .tabs-left > .nav-tabs > li > a {
         width: 140px;
     }
+    .margin-top-align{
+        margin-top: 80px!important;
+    }
+    .profile-left-sidebar-margin-top-align{
+        margin-top: 50px!important;
+    }
 }
 /* --------------------- Large Device -------------------------------------  */
 @media (min-width : 1200px) {
@@ -264,6 +282,12 @@ Version: 1.0
     }
     .tabs-left > .nav-tabs > li > a {
         width: 140px;
+    }
+    .margin-top-align{
+        margin-top: 80px!important;
+    }
+    .profile-left-sidebar-margin-top-align{
+        margin-top: 50px!important;
     }
 }
 /* -------------------------------- Common ----------------------------- */
@@ -745,6 +769,7 @@ Version: 1.0
     color: #484848;
     font-size: 16px;
     font-weight: normal;
+    margin-top: 5px;
 }
 /* --------------------- Individual Ad Bids  -------------------------------------  */
 @media screen and (max-width: 600px) {
