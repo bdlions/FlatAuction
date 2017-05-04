@@ -5,11 +5,13 @@
  */
 package com.auction.request.handler;
 
+import com.auction.dto.BidList;
 import com.auction.dto.CurrencyList;
 import com.auction.dto.DurationList;
 import com.auction.dto.GenderList;
 import com.auction.dto.LocationList;
 import com.auction.dto.OccupationList;
+import com.auction.dto.Product;
 import com.auction.dto.ProductList;
 import com.auction.dto.ProductTypeList;
 import com.auction.dto.RadiusList;
@@ -99,6 +101,21 @@ public class RequestHandler {
     @ClientRequest(action = ACTION.FETCH_MAX_PRICE_LIST)
     public ClientResponse getMaxPriceList(ISession session, IPacket packet){
         CurrencyList response = new Gson().fromJson("{\"currencies\":[{\"id\":\"1\",\"title\":\"£\",\"amount\":\"100\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, {\"id\":\"1\",\"title\":\"£\",\"amount\":\"200\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, {\"id\":\"1\",\"title\":\"£\",\"amount\":\"300\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}]}", CurrencyList.class );
+        response.setSuccess(true);
+        return response;
+    }
+    
+    
+    @ClientRequest(action = ACTION.FETCH_BID_LIST)
+    public ClientResponse getBidList(ISession session, IPacket packet){
+        BidList response = new Gson().fromJson("{\"bids\":[{\"bidId\":\"1\",\"time\":\"21 Apr 2017 9:38:35AM\",\"amount\":\"1000\", \"currency\":{\"id\":\"1\",\"title\":\"£\",\"amount\":\"4.00\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, \"user\":{\"firstName\":\"Nazmul\", \"lastName\":\"Hasan\"}}, {\"bidId\":\"2\",\"time\":\"20 Apr 2017 9:38:35AM\",\"amount\":\"2000\", \"currency\":{\"id\":\"1\",\"title\":\"£\",\"amount\":\"4.00\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, \"user\":{\"firstName\":\"Alamgir\", \"lastName\":\"Kabir\"}}]}", BidList.class );
+        response.setSuccess(true);
+        return response;
+    }
+    
+    @ClientRequest(action = ACTION.FETCH_PRODUCT_INFO)
+    public ClientResponse getProductInfo(ISession session, IPacket packet){
+        Product response = new Gson().fromJson("{\"id\":\"1\",\"title\":\"Fun at the Bowling Alley1\", \"description\":\"Double room in E16 available from 17/04/2017, short walk away from Prince Regent Lane DLR1.\", \"basePrice\":{\"id\":\"1\",\"title\":\"£\",\"amount\":\"200\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, \"time\":\"1000\", \"location\":{\"locationId\":\"1\", \"locationType\":\"area\", \"searchString\":\"London\", \"postCode\":\"AB2 8YR\"}, \"img\":\"a.jpg\", \"price\":\"£100\", \"price_type\":\"pw\", \"size\":\"single\", \"images\":[{\"id\":\"1\", \"url\":\"a.jpg\"}, {\"id\":\"2\", \"url\":\"b.jpg\"}], \"startDate\":\"2017-04-18\", \"endDate\":\"2017-04-18\", \"totalBidders\":\"10\", \"timeLeft\":\"1 day 13 hours 30 mins\", \"totalBids\":\"39\"}", Product.class );
         response.setSuccess(true);
         return response;
     }

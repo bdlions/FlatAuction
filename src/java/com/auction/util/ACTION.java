@@ -36,6 +36,10 @@ public enum ACTION {
     FETCH_MIN_PRICE_LIST(2009, REQUEST_TYPE.REQUEST),
     @SerializedName("2010")
     FETCH_MAX_PRICE_LIST(2010, REQUEST_TYPE.REQUEST),
+    @SerializedName("2011")
+    FETCH_BID_LIST(2011, REQUEST_TYPE.REQUEST),
+    @SerializedName("3001")
+    FETCH_PRODUCT_INFO(3001, REQUEST_TYPE.REQUEST),
     ;
 
     private int id;

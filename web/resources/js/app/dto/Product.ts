@@ -4,6 +4,9 @@ import {General} from "./General";
 import {Currency} from "./Currency";
 
 export class Product {
+    reasonCode:number;
+    success: boolean;
+    message:string;
     id:number;
     productId:string;
     location: Location;

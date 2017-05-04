@@ -48,6 +48,12 @@ var PacketHeaderFactory = (function () {
             case ACTION_1.ACTION.FETCH_MAX_PRICE_LIST:
                 packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
                 break;
+            case ACTION_1.ACTION.FETCH_BID_LIST:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
+                break;
+            case ACTION_1.ACTION.FETCH_PRODUCT_INFO:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
+                break;
             default:
                 packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.NONE;
         }

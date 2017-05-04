@@ -9,7 +9,7 @@ package com.auction.dto;
  *
  * @author alamgir
  */
-public class ProductImage {
+public class Image {
     private String id;
     private String url;
     

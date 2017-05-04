@@ -29,13 +29,13 @@
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
             <h3 class="advanced-search-selection-title">Min Price</h3>
             <select class="form-control select-custom-field">
-                <option *ngFor="let minPrice of minPriceList" value="{{minPrice.symbol}}{{minPrice.amount}}"><a id="{{minPrice.id}}">{{minPrice.symbol}}{{minPrice.amount}}</a></option>
+                <option *ngFor="let minPrice of minPriceList" value="{{minPrice.currencyUnit.title}}{{minPrice.amount}}"><a id="{{minPrice.id}}">{{minPrice.currencyUnit.title}}{{minPrice.amount}}</a></option>
             </select> 
         </div>
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
             <h3 class="advanced-search-selection-title">Max Price</h3>
             <select class="form-control select-custom-field">
-                <option *ngFor="let maxPrice of maxPriceList" value="{{maxPrice.symbol}}{{maxPrice.amount}}"><a id="{{maxPrice.id}}">{{maxPrice.symbol}}{{maxPrice.amount}}</a></option>
+                <option *ngFor="let maxPrice of maxPriceList" value="{{maxPrice.currencyUnit.title}}{{maxPrice.amount}}"><a id="{{maxPrice.id}}">{{maxPrice.currencyUnit.title}}{{maxPrice.amount}}</a></option>
             </select> 
         </div>
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">

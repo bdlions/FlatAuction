@@ -46,6 +46,12 @@ export class PacketHeaderFactory {
             case ACTION.FETCH_MAX_PRICE_LIST:
                 packetHeader.requestType = REQUEST_TYPE.REQUEST
                 break;
+            case ACTION.FETCH_BID_LIST:
+                packetHeader.requestType = REQUEST_TYPE.REQUEST
+                break;
+            case ACTION.FETCH_PRODUCT_INFO:
+                packetHeader.requestType = REQUEST_TYPE.REQUEST
+                break;
             default:
                 packetHeader.requestType = REQUEST_TYPE.NONE
         }

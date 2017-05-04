@@ -31,7 +31,7 @@
                             <tbody>
                                 <tr *ngFor="let bid of bidList">
                                     <td data-label="Bidder">{{bid.user.firstName}} {{bid.user.lastName}}</td>
-                                    <td data-label="Bid Amount">{{bid.currency.title}} {{bid.amount}}</td>
+                                    <td data-label="Bid Amount">{{bid.currency.currencyUnit.title}} {{bid.currency.amount}}</td>
                                     <td data-label="Bid Time">{{bid.time}}</td>
                                 </tr>
                             </tbody>

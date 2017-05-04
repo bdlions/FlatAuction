@@ -1,7 +1,8 @@
 import {User} from "./User";
 import {Currency} from "./Currency";
 export class Bid {
-    id:string;
+    bidId:string;
+    productId:string;
     time:string;
     amount:number;
     currency:Currency;
