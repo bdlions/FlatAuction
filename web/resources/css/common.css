@@ -534,6 +534,15 @@ input[type=checkbox]:checked {
     .advanced-search-page-search-box-layout > typeahead-container > ul {
         width: 100%!important;
     }
+    .landing-page-search-box-layout > typeahead-container {
+        position: relative!important;
+        display: block!important;
+        top: 0!important;
+        left: 0!important;
+    }
+    .landing-page-search-box-layout > typeahead-container > ul {
+        width: 100%!important;
+    }
     .margin-bottom-15px{
         margin-bottom: 15px;
     }
@@ -771,14 +780,14 @@ input[type=checkbox]:checked {
     color: #484848;
     background-image: none!important;
     background-color: #fff!important;
-    border-top: 1px solid #00DEB6;
+    border-top: 1px solid #f16c26;
 }
 .property-search-page-search-box-layout > typeahead-container > ul > li > a:hover,
 .property-search-page-search-box-layout > typeahead-container > ul > li > a:focus,
 .property-search-page-search-box-layout > typeahead-container > ul > li > a:visited{
     font-family: "tw-cen-mt";
     background-image: none!important;
-    background-color: #00DEB6!important;
+    background-color: #f16c26!important;
     color: #FFF!important;
 }
 .property-search-page-search-box-header-text{
@@ -1614,14 +1623,14 @@ input[type=checkbox]:checked {
     color: #484848;
     background-image: none!important;
     background-color: #fff!important;
-    border-top: 1px solid #00DEB6;
+    border-top: 1px solid #f16c26;
 }
 .basic-search-page-search-box-layout > typeahead-container > ul > li > a:hover,
 .basic-search-page-search-box-layout > typeahead-container > ul > li > a:focus,
 .basic-search-page-search-box-layout > typeahead-container > ul > li > a:visited{
     font-family: "tw-cen-mt";
     background-image: none!important;
-    background-color: #00DEB6!important;
+    background-color: #f16c26!important;
     color: #FFF!important;
 }
 .basic-search-page-search-box-header-text{
@@ -1646,7 +1655,7 @@ input[type=checkbox]:checked {
     font-family: "tw-cen-mt";
     font-size: 14px;
     color: #484848;
-    padding-bottom: 5px;
+    margin-top: 5px;
 }
 /* --------------------- Advanced Search Page Search Box -------------------------------------  */
 
@@ -1658,14 +1667,14 @@ input[type=checkbox]:checked {
     color: #484848;
     background-image: none!important;
     background-color: #fff!important;
-    border-top: 1px solid #00DEB6;
+    border-top: 1px solid #f16c26;
 }
 .advanced-search-page-search-box-layout > typeahead-container > ul > li > a:hover,
 .advanced-search-page-search-box-layout > typeahead-container > ul > li > a:focus,
 .advanced-search-page-search-box-layout > typeahead-container > ul > li > a:visited{
     font-family: "tw-cen-mt";
     background-image: none!important;
-    background-color: #00DEB6!important;
+    background-color: #f16c26!important;
     color: #FFF!important;
 }
 .advanced-search-page-search-box-header-text{
