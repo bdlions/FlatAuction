@@ -1,10 +1,12 @@
 package com.auction.dto;
 
+import com.auction.util.ClientResponse;
+
 /**
  *
  * @author nazmul hasan
  */
-public class User {
+public class User extends ClientResponse{
     private String userId;
     private String firstName;
     private String lastName;

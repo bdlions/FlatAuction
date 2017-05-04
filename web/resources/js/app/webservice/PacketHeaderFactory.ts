@@ -52,6 +52,12 @@ export class PacketHeaderFactory {
             case ACTION.FETCH_PRODUCT_INFO:
                 packetHeader.requestType = REQUEST_TYPE.REQUEST
                 break;
+            case ACTION.FETCH_USER_INFO:
+                packetHeader.requestType = REQUEST_TYPE.REQUEST
+                break;
+            case ACTION.FETCH_ACCOUNT_SETTING_FA:
+                packetHeader.requestType = REQUEST_TYPE.REQUEST
+                break;
             default:
                 packetHeader.requestType = REQUEST_TYPE.NONE
         }

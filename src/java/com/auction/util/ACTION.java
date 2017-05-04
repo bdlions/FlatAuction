@@ -40,6 +40,10 @@ public enum ACTION {
     FETCH_BID_LIST(2011, REQUEST_TYPE.REQUEST),
     @SerializedName("3001")
     FETCH_PRODUCT_INFO(3001, REQUEST_TYPE.REQUEST),
+    @SerializedName("3002")
+    FETCH_USER_INFO(3002, REQUEST_TYPE.REQUEST),
+    @SerializedName("3003")
+    FETCH_ACCOUNT_SETTING_FA(3003, REQUEST_TYPE.REQUEST),
     ;
 
     private int id;
