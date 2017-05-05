@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.auction.util;
+package com.auction.commons;
 
 /**
  *
@@ -16,4 +16,5 @@ public class ClientMessages {
     public static final String INVALID_SIGNIN_REQUEST_FORMAT = "invalid signin request format.";
     public static final String PASSWORD_IS_MANDATORY = "Password is mandatory.";
     public static final String INVALID_CREDENTIAL = "User name or password is not correct.";
+    public static final String ALREADY_LOGGED_IN = "User already logged in.";
 }

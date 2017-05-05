@@ -5,28 +5,25 @@
  */
 package com.auction.util;
 
+import org.bdlions.util.StringUtils;
+import com.auction.dto.response.ClientResponse;
 import com.auction.exceptions.InvalidRequestException;
-import com.auction.packet.IPacket;
-import com.auction.packet.IPacketHeader;
+import org.bdlions.packet.IPacket;
+import org.bdlions.packet.IPacketHeader;
 import com.auction.request.handler.AuthHandler;
 import com.auction.request.handler.RequestExecutorInfo;
 import com.auction.request.handler.RequestHandler;
-import com.auction.session.ISession;
-import com.auction.session.ISessionManager;
-import com.auction.session.Session;
-import com.auction.session.SessionManager;
-import com.auction.util.annotation.ClientRequest;
+import org.bdlions.session.ISession;
+import org.bdlions.session.ISessionManager;
+import org.bdlions.util.annotation.ClientRequest;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
-import java.lang.invoke.MethodHandles.Lookup;
-import static java.lang.invoke.MethodHandles.lookup;
 import java.lang.invoke.MethodType;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
+import org.bdlions.session.UserSessionManagerImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,11 +35,12 @@ public class ClientRequestHandler {
 
     private final Logger logger = LoggerFactory.getLogger(ClientRequestHandler.class);
     private final Map<REQUEST_TYPE, Map<Integer, RequestExecutorInfo>> actionMap = new HashMap<>();
-    private SessionManager sessionManager;
+    private UserSessionManagerImpl sessionManager;
 
     private static ClientRequestHandler instance;
 
     private ClientRequestHandler() {
+        sessionManager = new UserSessionManagerImpl(new DBUserProvider());
         buildActionMap();
     }
 
@@ -147,7 +145,11 @@ public class ClientRequestHandler {
 
             RequestExecutorInfo clientRequestExecutorInfo = getRequest(packetHeader.getRequestType(), packetHeader.getAction());
 
-            ISession session = new Session();
+            ISession session = null;
+            String sessionId = packetHeader.getSessionId();
+            if(!StringUtils.isNullOrEmpty(sessionId)){
+                session = sessionManager.getSessionBySessionId(sessionId);
+            }
             if (clientRequestExecutorInfo != null) {
                 //execute request
                 logger.debug("method for action : " + packetHeader.getAction() + " is " + clientRequestExecutorInfo.toString());

@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.auction.util;
+package com.auction.dto.response;
+
+import com.auction.util.ReasonCode;
 
 /**
  *

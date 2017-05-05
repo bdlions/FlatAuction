@@ -1,10 +1,8 @@
 package com.auction.packet;
 
-import com.auction.packet.IPacket;
+import org.bdlions.packet.IPacketHeader;
 import com.auction.util.ACTION;
 import com.auction.util.REQUEST_TYPE;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,7 +13,7 @@ import com.google.gson.GsonBuilder;
  *
  * @author alamgir
  */
-public class MockPacketHeader implements IPacketHeader {
+public class PacketHeaderImpl implements IPacketHeader {
 
     private ACTION action;
     private REQUEST_TYPE requestType;
@@ -56,22 +54,6 @@ public class MockPacketHeader implements IPacketHeader {
     @Override
     public String getSessionId() {
         return sessionId;
-    }
-
-    public static void main(String[] args) {
-        MockPacketHeader mockPacket = new MockPacketHeader();
-        mockPacket.setAction(ACTION.SIGN_IN);
-        mockPacket.setRequestType(REQUEST_TYPE.AUTH);
-        mockPacket.setSessionId("sessionId-111");
-
-        String gson = new GsonBuilder().create().toJson(mockPacket);
-        System.out.println(gson);
-
-        mockPacket = new GsonBuilder().create().fromJson(gson, MockPacketHeader.class);
-
-        gson = new GsonBuilder().create().toJson(mockPacket);
-        System.out.println(gson);
-
     }
 
 }

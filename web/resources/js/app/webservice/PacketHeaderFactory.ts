@@ -6,7 +6,14 @@ import {UUID} from './../../node_modules/angular2-uuid/index.js';
 export class PacketHeaderFactory {
     public static getHeader(action: ACTION):PacketHeader{
         let packetHeader = new PacketHeader();
-        packetHeader.sessionId = "sessionId";
+        let sessionId = localStorage.getItem("sessionId");
+        if (sessionId == "" || sessionId == null){
+            packetHeader.sessionId = null;
+        }
+        else{
+            packetHeader.sessionId = sessionId;
+        }
+      
         packetHeader.action = action;
         packetHeader.packetId = UUID.UUID();
         switch(action){

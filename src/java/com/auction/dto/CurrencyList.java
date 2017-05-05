@@ -1,6 +1,6 @@
 package com.auction.dto;
 
-import com.auction.util.ClientResponse;
+import com.auction.dto.response.ClientResponse;
 import java.util.ArrayList;
 
 /**

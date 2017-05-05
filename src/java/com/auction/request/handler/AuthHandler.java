@@ -5,22 +5,23 @@
  */
 package com.auction.request.handler;
 
-import com.auction.dto.Profile;
-import com.auction.packet.IPacket;
-import com.auction.session.ISession;
-import com.auction.session.ISessionManager;
+import com.auction.dto.Credential;
+import org.bdlions.packet.IPacket;
+import org.bdlions.session.ISession;
+import org.bdlions.session.ISessionManager;
 import com.auction.util.ACTION;
-import com.auction.util.ClientMessages;
-import com.auction.util.ClientResponse;
-import com.auction.util.SessionManager;
-import com.auction.util.SignInResponse;
-import com.auction.util.StringUtils;
-import com.auction.util.annotation.ClientRequest;
+import com.auction.commons.ClientMessages;
+import com.auction.dto.response.ClientResponse;
+import com.auction.dto.response.SignInResponse;
+import org.bdlions.util.StringUtils;
+import org.bdlions.util.annotation.ClientRequest;
 import com.google.gson.Gson;
 import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
-import org.apache.shiro.subject.Subject;
+import org.apache.shiro.subject.Subject;;
+import org.bdlions.session.UserSessionManagerImpl;
 
 /**
  *
@@ -36,8 +37,15 @@ public class AuthHandler {
 
     @ClientRequest(action = ACTION.SIGN_IN)
     public ClientResponse signIn(ISession session, IPacket packet) throws Exception {
-        SignInResponse response = new SignInResponse();
 
+        SignInResponse response = new SignInResponse();
+        if(session != null){
+            response.setMessage(ClientMessages.ALREADY_LOGGED_IN);
+            response.setSessionId(session.getSessionId());
+            response.setUserName(session.getUserName());
+            response.setSuccess(true);
+            return response;
+        }
         if (StringUtils.isNullOrEmpty(packet.getPacketBody())) {
             response.setMessage(ClientMessages.INVALID_SIGNIN_REQUEST_FORMAT);
             response.setSuccess(false);
@@ -45,37 +53,40 @@ public class AuthHandler {
         }
 
         Gson gson = new Gson();
-        Profile user = gson.fromJson(packet.getPacketBody(), Profile.class);
+        Credential credential = gson.fromJson(packet.getPacketBody(), Credential.class);
 
-        if (StringUtils.isNullOrEmpty(user.getUserName())) {
+        if (StringUtils.isNullOrEmpty(credential.getUserName())) {
             response.setMessage(ClientMessages.USER_NAME_IS_MANDATORY);
             response.setSuccess(false);
             return response;
         }
-        if (StringUtils.isNullOrEmpty(user.getPassword())) {
+        if (StringUtils.isNullOrEmpty(credential.getPassword())) {
             response.setMessage(ClientMessages.PASSWORD_IS_MANDATORY);
             response.setSuccess(false);
             return response;
         }
 
-        Subject currentUser = SessionManager.getInstance().getCurrentUser();
-
-        try {
-            if (!currentUser.isAuthenticated()) {
-                UsernamePasswordToken token = new UsernamePasswordToken(user.getUserName(), user.getPassword());
-                token.setRememberMe(true);
-                currentUser.login(token);
-            }
-            Session userSession = currentUser.getSession();
-            response.setSessionId((String) userSession.getId());
-            response.setUserName(user.getUserName());
-            response.setFullName(user.getFirstName() + " " + user.getLastName());
-            response.setSuccess(true);
-        } catch (AuthenticationException ex) {
+        try{
+            session = sessionManager.createSession(credential);
+        }catch(UnknownAccountException uae){
             response.setMessage(ClientMessages.INVALID_CREDENTIAL);
             response.setSuccess(false);
             return response;
         }
+        
+        if(session == null){
+            response.setMessage(ClientMessages.INVALID_CREDENTIAL);
+            response.setSuccess(false);
+            return response;
+        }
+        
+        session.setRemotePort(packet.getRemotePort());
+        session.setRemoteIP(packet.getRemoteIP());
+        response.setSessionId((String) session.getSessionId());
+        response.setUserName(credential.getUserName());
+        response.setFullName(credential.getFirstName() + " " + credential.getLastName());
+        response.setSuccess(true);
+        
 
         return response;
     }

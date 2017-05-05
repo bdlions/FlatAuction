@@ -5,13 +5,13 @@ package com.auction.servlet;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import com.auction.packet.IPacket;
-import com.auction.packet.IPacketHeader;
-import com.auction.packet.MockPacketHeader;
-import com.auction.util.ClientFailedResponse;
-import com.auction.util.ClientMessages;
+import org.bdlions.packet.IPacket;
+import org.bdlions.packet.IPacketHeader;
+import com.auction.packet.PacketHeaderImpl;
+import com.auction.dto.response.ClientFailedResponse;
+import com.auction.commons.ClientMessages;
 import com.auction.util.ClientRequestHandler;
-import com.auction.util.ClientResponse;
+import com.auction.dto.response.ClientResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.bdlions.packet.RequestPacketImpl;
 
 /**
  *
@@ -43,7 +44,7 @@ public class RequestServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("application/json");
-        response.addHeader("Access-Control-Allow-Origin", "*");
+        //response.addHeader("Access-Control-Allow-Origin", "*");
         Gson gson = new GsonBuilder().create();
 
         PrintWriter out = response.getWriter();
@@ -62,21 +63,10 @@ public class RequestServlet extends HttpServlet {
             }
             
             /* TODO output your page here. You may use following sample code. */
-            IPacketHeader packetHeader = gson.fromJson(packetHeaderText, MockPacketHeader.class);
+            IPacketHeader packetHeader = gson.fromJson(packetHeaderText, PacketHeaderImpl.class);
 
-            
-            ClientResponse clientResponse = (ClientResponse)ClientRequestHandler.getInstance().executeRequest(
-            new IPacket() {
-                @Override
-                public IPacketHeader getPacketHeader() {
-                    return packetHeader;
-                }
-
-                @Override
-                public String getPacketBody() {
-                    return packetBody != null ? packetBody : null;
-                }
-            });
+            IPacket packet = new RequestPacketImpl(packetHeader, packetBody, request.getRemoteAddr(), request.getRemotePort());
+            ClientResponse clientResponse = (ClientResponse)ClientRequestHandler.getInstance().executeRequest(packet);
             
             if (clientResponse != null) {
                 out.println(gson.toJson(clientResponse));

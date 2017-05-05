@@ -8,7 +8,13 @@ var PacketHeaderFactory = (function () {
     }
     PacketHeaderFactory.getHeader = function (action) {
         var packetHeader = new PacketHeader_1.PacketHeader();
-        packetHeader.sessionId = "sessionId";
+        var sessionId = localStorage.getItem("sessionId");
+        if (sessionId == "" || sessionId == null) {
+            packetHeader.sessionId = null;
+        }
+        else {
+            packetHeader.sessionId = sessionId;
+        }
         packetHeader.action = action;
         packetHeader.packetId = index_js_1.UUID.UUID();
         switch (action) {
