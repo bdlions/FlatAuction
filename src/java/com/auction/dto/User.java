@@ -7,7 +7,10 @@ import com.auction.dto.response.ClientResponse;
  * @author nazmul hasan
  */
 public class User extends ClientResponse{
-    private String userId;
+    private int id;
+    private int userId;
+    private String userName;
+    private String password;
     private String firstName;
     private String lastName;
     private String email;
@@ -15,19 +18,44 @@ public class User extends ClientResponse{
     private String document;
     private String cellNo;
     private boolean isVerified;
+    private int accountStatusId;
     public User()
     {
     
     }
 
-    public String getUserId() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
     public String getFirstName() {
         return firstName;
     }
@@ -82,6 +110,14 @@ public class User extends ClientResponse{
 
     public void setIsVerified(boolean isVerified) {
         this.isVerified = isVerified;
+    }
+
+    public int getAccountStatusId() {
+        return accountStatusId;
+    }
+
+    public void setAccountStatusId(int accountStatusId) {
+        this.accountStatusId = accountStatusId;
     }
     
 }
