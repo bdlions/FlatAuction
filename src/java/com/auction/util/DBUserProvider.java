@@ -31,7 +31,7 @@ public class DBUserProvider implements IDBUserProvider{
             String userName = credential.getUserName();
             String password = credential.getPassword();
             UserManager userManager = new UserManager();
-            User user = userManager.checkUser(userName, password);
+            User user = userManager.getUserByCredential(userName, password);
             if(user != null)
             {
                 credential.setAppType(100);

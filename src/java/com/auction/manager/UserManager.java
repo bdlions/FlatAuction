@@ -1,9 +1,10 @@
 package com.auction.manager;
 
-import com.auction.db.Database;
-import com.auction.db.model.UserModel;
+import com.auction.db.HibernateUtil;
 import com.auction.dto.User;
-import java.sql.Connection;
+import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,48 +13,45 @@ import org.slf4j.LoggerFactory;
  * @author nazmul hasan
  */
 public class UserManager {
+
     private final Logger logger = LoggerFactory.getLogger(UserManager.class);
-    public UserManager()
-    {
-    
-    }
-    
-    public User checkUser(String userName, String password)
-    {
-        User user = null;
-        Connection connection = null;
-        try
-        {
-            connection = Database.getInstance().getConnection();
-            UserModel userModel = new UserModel(connection);
-            user = userModel.checkUser(userName, password);
-            connection.close();
+
+    public User getUserByCredential(String userName, String password) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Query query = session.getNamedQuery("getUserByCredential")
+                .setString("userName", userName)
+                .setString("password", password);
+
+        List<User> users = query.list();
+        session.close();
+        
+        if (users.size() >= 1) {
+            logger.debug("user credential is OK! for : " + userName);
+            return users.get(0);
         }
-        catch(Exception ex)
-        {
-            logger.error(ex.toString());
-            try 
-            {
-                if(connection != null)
-                {
-                    connection.close();
-                }
-            } 
-            catch (Exception ex1) 
-            {
-                logger.error(ex1.toString());
-            }
-        } 
-        return user;
+        return null;
     }
-    
-    public void getUserRoles()
-    {
-    
+
+    public void addUserProfile(User user) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.save(user);
+        session.getTransaction().commit();
+        session.close();
     }
-    
-    public void getActionsRoles()
-    {
-    
+
+    public void updateUserProfile(User user){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.update(user);
+        session.getTransaction().commit();
+        session.close();
+    }
+    public void getUserRoles() {
+
+    }
+
+    public void getActionsRoles() {
+
     }
 }

@@ -2,6 +2,7 @@ package com.auction.dto;
 
 import com.auction.dto.response.ClientResponse;
 
+
 /**
  *
  * @author nazmul hasan
@@ -18,11 +19,10 @@ public class User extends ClientResponse{
     private String document;
     private String cellNo;
     private boolean isVerified;
-    private int accountStatusId;
-    public User()
-    {
-    
-    }
+    private int accountStatusId = 1;
+    private long lastAccessTime;
+    private long createdOn;
+    private long modifiedOn;
 
     public int getId() {
         return id;
@@ -119,5 +119,30 @@ public class User extends ClientResponse{
     public void setAccountStatusId(int accountStatusId) {
         this.accountStatusId = accountStatusId;
     }
+
+    public long getLastAccessTime() {
+        return lastAccessTime;
+    }
+
+    public void setLastAccessTime(long lastAccessTime) {
+        this.lastAccessTime = lastAccessTime;
+    }
+
+    public long getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(long createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public long getModifiedOn() {
+        return modifiedOn;
+    }
+
+    public void setModifiedOn(long modifiedOn) {
+        this.modifiedOn = modifiedOn;
+    }
+
     
 }
