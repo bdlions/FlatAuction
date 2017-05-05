@@ -25,7 +25,7 @@
                                 Current Bid:
                             </h5>
                             <h3 class="product-info-details-left-panel-current-price">
-                                {{product.price}}
+                                {{product?.basePrice?.currencyUnit?.title}} {{product?.basePrice?.amount}}
                             </h3>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                 </div>
                 <div class="row form-group">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <h3 class="product-info-details-left-panel-location"></h3>
+                        <h3 class="product-info-details-left-panel-location">{{product?.location?.searchString}} {{product?.location?.postCode}}</h3>
                     </div>
                 </div>
             </div>
