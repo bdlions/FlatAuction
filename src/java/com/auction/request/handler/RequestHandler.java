@@ -117,7 +117,7 @@ public class RequestHandler {
     
     @ClientRequest(action = ACTION.FETCH_PRODUCT_INFO)
     public ClientResponse getProductInfo(ISession session, IPacket packet){
-        Product response = new Gson().fromJson("{\"id\":\"1\",\"title\":\"Fun at the Bowling Alley1\", \"description\":\"Double room in E16 available from 17/04/2017, short walk away from Prince Regent Lane DLR1.\", \"basePrice\":{\"id\":\"1\",\"title\":\"£\",\"amount\":\"200\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, \"time\":\"1000\", \"location\":{\"locationId\":\"1\", \"locationType\":\"area\", \"searchString\":\"London\", \"postCode\":\"AB2 8YR\"}, \"img\":\"a.jpg\", \"price\":\"£100\", \"price_type\":\"pw\", \"size\":\"single\", \"images\":[{\"id\":\"1\", \"url\":\"a.jpg\"}, {\"id\":\"2\", \"url\":\"b.jpg\"}], \"startDate\":\"2017-04-18\", \"endDate\":\"2017-04-18\", \"totalBidders\":\"10\", \"timeLeft\":\"1 day 13 hours 30 mins\", \"totalBids\":\"39\"}", Product.class );
+        Product response = new Gson().fromJson("{\"id\":\"1\",\"title\":\"Fun at the Bowling Alley1\", \"description\":\"Double room in E16 available from 17/04/2017, short walk away from Prince Regent Lane DLR1.\", \"basePrice\":{\"id\":\"1\",\"title\":\"£\",\"amount\":\"200\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, \"time\":\"3 Days 23 Hours 17 Minutes\", \"location\":{\"locationId\":\"1\", \"locationType\":\"area\", \"searchString\":\"London\", \"postCode\":\"AB2 8YR\"}, \"img\":\"a.jpg\", \"price\":\"£100\", \"price_type\":\"pw\", \"size\":\"single\", \"images\":[{\"id\":\"1\", \"url\":\"a.jpg\"}, {\"id\":\"2\", \"url\":\"b.jpg\"}], \"startDate\":\"2017-04-18\", \"endDate\":\"2017-04-18\", \"totalBidders\":\"10\", \"timeLeft\":\"1 day 13 hours 30 mins\", \"totalBids\":\"39\"}", Product.class );
         response.setSuccess(true);
         return response;
     }
@@ -131,7 +131,7 @@ public class RequestHandler {
     
     @ClientRequest(action = ACTION.FETCH_ACCOUNT_SETTING_FA)
     public ClientResponse getAccountSettingFAInfo(ISession session, IPacket packet){
-        AccountSettingFA response = new Gson().fromJson("{\"defaultBidPerClick\":\"{\"id\":\"1\",\"title\":\"£\",\"amount\":\"9.60\",\"currencyUnit\":{\"id\":\"2\",\"title\":\"p\"}}\", \"dailyBudget\":\"{\"id\":\"1\",\"title\":\"£\",\"amount\":\"4.00\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}\", \"campainActive\":\"true\"}", AccountSettingFA.class );
+        AccountSettingFA response = new Gson().fromJson("{\"defaultBidPerClick\":{\"id\":\"1\",\"title\":\"£\",\"amount\":\"9.90\",\"currencyUnit\":{\"id\":\"2\",\"title\":\"p\"}}, \"dailyBudget\":{\"id\":\"1\",\"title\":\"£\",\"amount\":\"4.40\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, \"campainActive\":\"true\"}", AccountSettingFA.class );
         response.setSuccess(true);
         return response;
     }
