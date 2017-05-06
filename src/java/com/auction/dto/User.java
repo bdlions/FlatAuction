@@ -2,12 +2,11 @@ package com.auction.dto;
 
 import com.auction.dto.response.ClientResponse;
 
-
 /**
  *
  * @author nazmul hasan
  */
-public class User extends ClientResponse{
+public class User extends ClientResponse implements java.io.Serializable{
     private int id;
     private int userId;
     private String userName;
@@ -19,7 +18,7 @@ public class User extends ClientResponse{
     private String document;
     private String cellNo;
     private boolean isVerified;
-    private int accountStatusId = 1;
+    private int accountStatusId;
     private long lastAccessTime;
     private long createdOn;
     private long modifiedOn;

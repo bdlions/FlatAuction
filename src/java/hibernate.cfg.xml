@@ -45,7 +45,11 @@ Contributor(s):
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/auction_db</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.hbm2ddl.auto" >update</property>
+        <property name="hibernate.hbm2ddl.import_files">auction_db.sql</property>
+        <property name="hibernate.hbm2ddl.auto">validate</property>
+        <property name="hibernate.show_sql">true</property>
+        <!--<property name="javax.persistence.sql-load-script-source">auction_db.sql</property>-->
         <mapping resource="hibernate.hbm.xml"/>
+        
     </session-factory>
 </hibernate-configuration>

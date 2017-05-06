@@ -5,10 +5,13 @@
  */
 
 import com.auction.db.HibernateUtil;
+import com.auction.dto.Role;
+import com.auction.dto.Stock;
 import com.auction.dto.User;
 import com.auction.manager.UserManager;
 import java.util.List;
 import java.util.Random;
+import javax.persistence.Persistence;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.junit.After;
@@ -56,29 +59,63 @@ public class UserManagerTest {
         user.setPassword("pass");
         user.setEmail("alamgir@gmail.com");
         user.setCreatedOn(System.currentTimeMillis());
-        
+
         UserManager manager = new UserManager();
         manager.addUserProfile(user);
     }
-    
+
     //@Test
-    public void getUserByCredential(){
+    public void getUserByCredential() {
         UserManager manager = new UserManager();
         User user = manager.getUserByCredential("alamgir", "kabir");
-        if(user != null){
+        if (user != null) {
             System.out.println("first name: " + user.getFirstName());
         }
     }
-    @Test
-    public void updateUserProfile(){
-        User user = new UserManager().getUserByCredential("alamgir59216", "pass");
-        
-        user.setLastName("Kabir1");
+//    @Test
+
+    public void updateUserProfile() {
+//        User user = new UserManager().getUserByCredential("alamgir87750", "pass");
+        //Persistence.generateSchema("samplePU", null);
+        User user = new User();
+        user.setId(1);
+        user.setLastName("Kabir11111111111");
         user.setFirstName("Alamgir1");
-        
+
         user.setModifiedOn(System.currentTimeMillis());
-        
+
         UserManager manager = new UserManager();
         manager.updateUserProfile(user);
+    }
+
+//    @Test
+    public void getRoles() {
+        UserManager user = new UserManager();
+        for (Role role : user.getRoles()) {
+            System.out.println(role.getId() + " " + role.getName() + " " + role.getDescription());
+        }
+    }
+
+    @Test
+    public void getUserRoles() {
+        UserManager user = new UserManager();
+        List<Role> roles = user.getUserRolesByUserId(1);
+
+//        System.out.println("Role size: " + role.getRole().size());
+        for (Role role1 : roles) {
+            System.out.println(role1.getName());
+        }
+
+    }
+//    
+//    @Test
+
+    public void getStocks() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Query query = session.getNamedQuery("getStocks");
+
+        List<Stock> users = query.list();
+        System.out.println("size " + users.size());
+        session.close();
     }
 }

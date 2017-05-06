@@ -40,7 +40,8 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-mapping>
-    <class name="com.auction.dto.User" table="users">
+    <class name="com.auction.dto.User" table="users" 
+           dynamic-update="true" dynamic-insert="true" select-before-update="true">
         <id name="id" type="int">
             <generator class="increment"/>
         </id>
@@ -52,12 +53,24 @@ Contributor(s):
         <property name="cellNo" column="cell_no" type="string"/>
         <property name="accountStatusId" column="account_status_id" type="int"/>
         <property name="lastAccessTime" column="last_access_time" type="long"/>
-        <property name="createdOn" column="created_on" type="long"/>
-        <property name="modifiedOn" column="modified_on" type="long"/>
- 
-       
+        <property name="createdOn" column="created_on" type="long" update="false"/>
+        <property name="modifiedOn" column="modified_on" type="long"/>       
     </class>
+    <class name="com.auction.dto.Role" table="roles" 
+           dynamic-update="true" dynamic-insert="true" select-before-update="true">
+        <id name="id" type="int">
+            <generator class="increment"/>
+        </id>
+        <property name="name" column="name" unique="true" type="string"/>
+        <property name="description" column="description" unique="true" type="string"/>
+    </class>
+
     <query name="getUserByCredential">
         <![CDATA[FROM User WHERE user_name = :userName AND password = :password]]>
     </query>
+    <query name="getRoles">
+        <![CDATA[FROM Role]]>
+    </query>
+    
+    
 </hibernate-mapping>
