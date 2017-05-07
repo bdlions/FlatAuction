@@ -23,6 +23,7 @@ body{
 h1,h2,h3,h4,h5,h6{
     font-family: "tw-cen-mt";
     color: #484848;
+    margin-top: 10px;
     line-height: 150%;
 }
 a{
@@ -103,10 +104,37 @@ a{
     border-top: 1px solid #ccc;
     padding: 8px 2px;
 }
+/* --------------------- footer top section -------------------------------------  */
+.landing-page-footer-top-section{
+    font-family: "tw-cen-mt";
+    background-color: #d6d6d6;
+    color: #272727;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.landing-page-footer-top-section-header{
+    font-size: 24px;
+    text-transform: uppercase;
+}
+.landing-page-footer-top-section-ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 5px 25px;
+}
+.landing-page-footer-top-section-ul li{
+    margin: 5px 0;
+}
+.landing-page-footer-top-section-ul li a{
+    color: #272727;
+    font-size: 16px;
+}
+.landing-page-footer-top-section-ul li a:hover{
+    text-decoration: none;
+}
 /* --------------------- Landing Page -------------------------------------  */
 .search-box-layout-bg{
     background: url("../images/bg.jpg") no-repeat scroll 0 0;
-     background-size:100% 100%
+    background-size:100% 100%
 }
 /* --------------------- Landing Page & member Home Search Box -------------------------------------  */
 
@@ -213,22 +241,24 @@ table tr:hover{
 /* ---------------------------- Component -------------------------------- */
 .input-custom-field{
     border-radius: 0px!important;
-    border: 1px solid #ccc!important;
+    border: 2px solid #f49726!important;
     padding: 6px 12px!important;
+    border-radius: 8px;
 }
 .input-custom-field:focus{
-    border: 1px solid #4568b2!important;
+    border: 2px solid #f49726!important;
 }
 textarea{
     resize: none;
 }
 .select-custom-field{
-    border: 1px solid #ccc;
+    border: 2px solid #f49726;
     border-radius: 0px;
     padding: 6px 12px;
+    border-radius: 8px;
 }
 .select-custom-field:focus{
-    border: 1px solid #4568b2;
+    border: 2px solid #f49726;
 }
 .common-custom-button{
     font-family: "tw-cen-mt";
@@ -261,7 +291,7 @@ textarea{
     border-color: #245580;
     text-shadow: 0 -1px 0 rgba(0,0,0,.2);
     box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 1px rgba(0,0,0,.075);
-
+    text-transform: uppercase;
 
 }
 
@@ -558,7 +588,7 @@ input[type=checkbox]:checked {
     .search-login-top-bottom-margin{
         margin: 30px 0;
     }
-    
+
 }
 
 /* --------------------- Tablet Device -------------------------------------  */
@@ -615,7 +645,7 @@ input[type=checkbox]:checked {
     .search-login-top-bottom-margin{
         margin: 30px 0;
     }
-     .search-box-pagelet{
+    .search-box-pagelet{
         padding: 30px;
     }
     .landing-page-search-box-layout > typeahead-container {
@@ -630,7 +660,7 @@ input[type=checkbox]:checked {
     .landing-page-search-box-layout > typeahead-container > ul > li > a{
         width: 327px;
     }
-    
+
 }
 /* --------------------- Medium Device -------------------------------------  */
 @media (min-width : 992px) and (max-width : 1199px) {
@@ -694,7 +724,7 @@ input[type=checkbox]:checked {
     .search-login-top-bottom-margin{
         margin: 50px 0;
     }
-     .landing-page-search-box-layout > typeahead-container > ul > li > a{
+    .landing-page-search-box-layout > typeahead-container > ul > li > a{
         width: 360px;
     }
     .non-member-search-input{
@@ -762,7 +792,7 @@ input[type=checkbox]:checked {
     .search-login-top-bottom-margin{
         margin: 55px 0;
     }
-     .landing-page-search-box-layout > typeahead-container > ul > li > a{
+    .landing-page-search-box-layout > typeahead-container > ul > li > a{
         width: 435px;
     }
     .non-member-search-input{
@@ -1094,13 +1124,14 @@ input[type=checkbox]:checked {
     background-color: #fff;
     padding: 10px;
 }
-.product-info-details-left-panel h1{
+.product-info-details-left-panel-heading{
     font-family: "tw-cen-mt";
-    color: #4568b2!important;
-    font-weight: normal;
+    color: #226eb2!important;
+    font-weight: bold;
+    font-size: 18px;
 }
 .hr{
-    border-bottom: 1px solid #ccc!important;
+    border-bottom: 1px solid #5a5b5d!important;
 }
 .product-info-details-left-panel-auction-timeblock{
     text-align: center;
@@ -1109,75 +1140,75 @@ input[type=checkbox]:checked {
     padding: 20px 5px 5px 5px;
 }
 .product-info-details-left-panel-timeheader{
-    font-size: 13px;
     font-family: "tw-cen-mt";
-    color: #484848!important;
+    font-size: 14px;
+    color: #616161!important;
     font-weight: normal;
 }
 .product-info-details-left-panel-auction-time{
-    font-size: 13px;
     font-family: "tw-cen-mt";
-    color: #484848!important;
+    font-size: 14px;
+    color: #2571b5!important;
     font-weight: normal;
 }
 .product-info-details-left-panel-timeheader{
-    font-size: 13px;
     font-family: "tw-cen-mt";
-    color: #484848!important;
+    font-size: 14px;
+    color: #616161!important;
     font-weight: normal;
 }
 .product-info-details-left-panel-current-price-header{
-    font-size: 13px;
     font-family: "tw-cen-mt";
-    color: #484848!important;
+    font-size: 14px;
+    color: #616161!important;
     font-weight: normal;
 }
 .product-info-details-left-panel-current-price{
-    font-size: 20px;
     font-family: "tw-cen-mt";
-    color: #4568b2;
+    font-size: 20px;
+    color: #2571b5;
     font-weight: normal;
 }
 .product-info-details-input-custom-field {
     border-radius: 0px!important;
-    border: 1px solid #ccc!important;
+    border: 2px solid #f49726!important;
     padding: 6px 12px!important;
+    border-radius: 4px!important;
 }
 .product-info-details-input-custom-field:focus {
-    border: 1px solid #4568b2!important;
+    border: 1px solid #f49726!important;
 }
 .product-info-details-custom-button {
     background-color: #4568b2!important;
-    border: 1px solid #4568b2!important;
     color: #ffffff;
-    border-radius: 0px!important;
+    border-radius: 4px!important;
     border: 1px solid #ccc!important;
     padding: 6px 12px!important;
+    font-weight: bold;
 }
 .product-info-details-custom-button:focus {
     border: 1px solid #4568b2!important;
 }
 .product-info-details-left-panel-bid-label{
-    font-size: 14px;
+    font-size: 18px;
     font-family: "tw-cen-mt";
-    color: #484848!important;
+    color: #2672b7!important;
     font-weight: normal;
 }
 .product-info-details-left-panel-previous-bids-header{
     font-family: "tw-cen-mt";
-    color: #484848;
-    font-size: 14px;
+    font-size: 18px;
+    color: #2672b7!important;
     font-weight: normal;
-    margin-top: 10px;
-    padding: 10px;
 }
 .product-info-details-left-panel-previous-bids{
+    margin-top: 8px;
+}
+.product-info-details-left-panel-previous-bids a{
     font-family: "tw-cen-mt";
-    color: #484848;
-    font-size: 20px;
+    color: #f16529;
+    font-size:24px;
     font-weight: normal;
-    max-height: 250px;
-    overflow-y: auto;
     padding: 10px;
 }
 .product-info-details-left-panel-location{
@@ -1189,12 +1220,21 @@ input[type=checkbox]:checked {
 }
 .product-info-details-right-panel-product-title{
     font-family: "tw-cen-mt";
-    color: #484848;
+    color: #216db1;
+    font-size: 27px;
     padding: 5px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     font-weight: 400;
+}
+.product-info-details-right-panel-product-price{
+    font-family: "tw-cen-mt";
+    color: #f06226;
+    font-size: 22px;
+    padding: 5px 0;
+    font-weight: normal;
+    margin-top: 15px;
 }
 .product-info-details-right-panel-carousel-img-adjust{
     height: 300px!important;  

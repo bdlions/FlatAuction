@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="resources/css/common.css" >
         <link rel="stylesheet" href="resources/css/nonmember.css" >
         <link rel="stylesheet" href="resources/css/font-awesome.min.css" >
+        <link rel="stylesheet" href="resources/css/tabbed-panels.css" >
         <!--<link rel="stylesheet" href="resources/css/autocomplete-style.css" >-->
 
 

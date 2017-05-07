@@ -41,7 +41,7 @@ export class Landing {
         let password = localStorage.getItem("password");
         
         if (username != null && username != "" && password != null && password != ""){
-            this.loginUser(username,password);
+            //this.loginUser(username,password);
         }
         
     }

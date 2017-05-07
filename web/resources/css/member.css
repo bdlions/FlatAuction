@@ -298,7 +298,7 @@ Version: 1.0
     .profile-left-sidebar-margin-top-align{
         margin-top: 50px!important;
     }
-     .featured-ad-left-sidebar-margin-top-align{
+    .featured-ad-left-sidebar-margin-top-align{
         margin-top: 95px!important;
     }
 }
@@ -423,8 +423,12 @@ Version: 1.0
 }
 
 .tabs-left  .nav-tabs  li  a {
-    background-color: #bbb;
-    color: #484848;
+    background: #2b79bf; 
+    background: -moz-linear-gradient(top, #2b79bf 0%, #0a4f7d 100%); 
+    background: -webkit-linear-gradient(top, #2b79bf 0%,#0a4f7d 100%); 
+    background: linear-gradient(to bottom, #2b79bf 0%,#0a4f7d 100%); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2b79bf', endColorstr='#0a4f7d',GradientType=0 ); 
+    color: #fff;
     margin-right: -1px;
     -webkit-border-radius: 4px 0 0 4px;
     -moz-border-radius: 4px 0 0 4px;
@@ -432,20 +436,28 @@ Version: 1.0
     padding: 10px 20px;
     text-align: center;
     margin-bottom: 2px;
+    text-transform: uppercase;
 }
 
 .tabs-left .nav-tabs  li  a:hover,
 .tabs-left  .nav-tabs  li  a:focus {
-    background-color: #00DEB6;
+    background: #f6a224; 
+    background: -moz-linear-gradient(top, #f6a224 0%, #f75d1e 100%); 
+    background: -webkit-linear-gradient(top, #f6a224 0%,#f75d1e 100%); 
+    background: linear-gradient(to bottom, #f6a224 0%,#f75d1e 100%); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6a224', endColorstr='#f75d1e',GradientType=0 );
     color: #fff;
 }
 
 .tabs-left  .nav-tabs .active  a,
 .tabs-left .nav-tabs .active a:hover,
 .tabs-left  .nav-tabs .active  a:focus {
-    background-color: #00DEB6;
+    background: #f6a224; 
+    background: -moz-linear-gradient(top, #f6a224 0%, #f75d1e 100%); 
+    background: -webkit-linear-gradient(top, #f6a224 0%,#f75d1e 100%); 
+    background: linear-gradient(to bottom, #f6a224 0%,#f75d1e 100%); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6a224', endColorstr='#f75d1e',GradientType=0 );
     color: #fff;
-
 }
 
 
@@ -767,7 +779,7 @@ Version: 1.0
 .create-ad-label{
     font-family: "tw-cen-mt";
     font-weight: normal;
-    color: #484848;
+    color: #2672b7;
     font-size: 16px;
     font-weight: normal;
 }
