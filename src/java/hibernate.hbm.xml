@@ -55,6 +55,14 @@ Contributor(s):
         <property name="lastAccessTime" column="last_access_time" type="long"/>
         <property name="createdOn" column="created_on" type="long" update="false"/>
         <property name="modifiedOn" column="modified_on" type="long"/>       
+        <one-to-one name="accountStatus" class="com.auction.dto.AccountStatus" cascade="all" />
+        <bag name="roles" table="users_roles"
+             inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" not-null="true" />
+            </key>
+            <one-to-many class="com.auction.dto.Role" />
+        </bag>
     </class>
     <class name="com.auction.dto.Role" table="roles" 
            dynamic-update="true" dynamic-insert="true" select-before-update="true">
@@ -64,13 +72,40 @@ Contributor(s):
         <property name="name" column="name" unique="true" type="string"/>
         <property name="description" column="description" unique="true" type="string"/>
     </class>
+    <class name="com.auction.dto.UserRoles" table="users_roles" 
+           dynamic-update="true" dynamic-insert="true" select-before-update="true">
+        <id name="id" type="int">
+            <generator class="increment"/>
+        </id>
+        <many-to-one name="user"  class="com.auction.dto.User" fetch="select">
+            <column name="user_id" not-null="true"></column>
+        </many-to-one>
+        <many-to-one name="role" unique="true" class="com.auction.dto.Role" fetch="select">
+            <column name="role_id" not-null="true"></column>
+        </many-to-one>
+    </class>
 
-    <query name="getUserByCredential">
-        <![CDATA[FROM User WHERE user_name = :userName AND password = :password]]>
-    </query>
-    <query name="getRoles">
-        <![CDATA[FROM Role]]>
-    </query>
+    <class name="com.auction.dto.AccountStatus" table="account_statuses" 
+               dynamic-update="true" dynamic-insert="true" select-before-update="true">
+        <id name="id" type="int">
+            <generator class="increment"/>
+        </id>
+        <property name="description" column="description" unique="true" type="string"/>
+    </class>
+    
+    <sql-query name="getUserByCredential">
+        <return class="com.auction.dto.User"/>
+        <![CDATA[SELECT * FROM USERS WHERE USER_NAME = :userName AND PASSWORD = :password]]>
+    </sql-query>
+    
+    <sql-query name="getRoles">
+        <return class="com.auction.dto.Role"/>
+        <![CDATA[SELECT * FROM ROLES]]>
+    </sql-query>
+    <sql-query name="getUserById">
+        <return class="com.auction.dto.User"/>
+        <![CDATA[SELECT * FROM USERS WHERE ID = :userId]]>
+    </sql-query>
     
     
 </hibernate-mapping>

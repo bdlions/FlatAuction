@@ -11,6 +11,7 @@ import com.auction.dto.User;
 import com.auction.manager.UserManager;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import javax.persistence.Persistence;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -58,16 +59,17 @@ public class UserManagerTest {
         user.setUserName("alamgir" + new Random().nextInt(100000));
         user.setPassword("pass");
         user.setEmail("alamgir@gmail.com");
+        user.setAccountStatusId(1);
         user.setCreatedOn(System.currentTimeMillis());
 
         UserManager manager = new UserManager();
         manager.addUserProfile(user);
     }
 
-    //@Test
+    @Test
     public void getUserByCredential() {
         UserManager manager = new UserManager();
-        User user = manager.getUserByCredential("alamgir", "kabir");
+        User user = manager.getUserByCredential("alamgir", "pass");
         if (user != null) {
             System.out.println("first name: " + user.getFirstName());
         }
@@ -88,7 +90,7 @@ public class UserManagerTest {
         manager.updateUserProfile(user);
     }
 
-//    @Test
+    @Test
     public void getRoles() {
         UserManager user = new UserManager();
         for (Role role : user.getRoles()) {
@@ -100,22 +102,12 @@ public class UserManagerTest {
     public void getUserRoles() {
         UserManager user = new UserManager();
         List<Role> roles = user.getUserRolesByUserId(1);
-
-//        System.out.println("Role size: " + role.getRole().size());
-        for (Role role1 : roles) {
-            System.out.println(role1.getName());
+        System.out.println("roles are : ");
+        for(int i = 0; i < roles.size() ; i ++){
+            Role role = roles.get(i);
+            System.out.println("Role id: " + role.getId() + ", Role Name: " + role.getName());
         }
+        
+    }  
 
-    }
-//    
-//    @Test
-
-    public void getStocks() {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Query query = session.getNamedQuery("getStocks");
-
-        List<Stock> users = query.list();
-        System.out.println("size " + users.size());
-        session.close();
-    }
 }

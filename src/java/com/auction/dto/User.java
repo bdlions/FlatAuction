@@ -1,6 +1,8 @@
 package com.auction.dto;
 
 import com.auction.dto.response.ClientResponse;
+import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -22,6 +24,8 @@ public class User extends ClientResponse implements java.io.Serializable{
     private long lastAccessTime;
     private long createdOn;
     private long modifiedOn;
+    private AccountStatus accountStatus;
+    private List<Role> roles;
 
     public int getId() {
         return id;
@@ -143,5 +147,19 @@ public class User extends ClientResponse implements java.io.Serializable{
         this.modifiedOn = modifiedOn;
     }
 
-    
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public AccountStatus getAccountStatus() {
+        return accountStatus;
+    }
+
+    public void setAccountStatus(AccountStatus accountStatus) {
+        this.accountStatus = accountStatus;
+    }
 }
