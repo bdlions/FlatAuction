@@ -22,7 +22,7 @@ body{
 }
 h1,h2,h3,h4,h5,h6{
     font-family: "tw-cen-mt";
-    color: #484848;
+    color: #216db1;
     margin-top: 10px;
     line-height: 150%;
 }
@@ -197,6 +197,7 @@ table th {
     font-size: .85em;
     letter-spacing: .1em;
     text-transform: uppercase;
+    color: #216db1;
 }
 table tr:hover{
     color: #484848;
@@ -904,8 +905,8 @@ input[type=checkbox]:checked {
 .with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
 .with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
     color: #484848;
-    border-left: 1px solid #ddd!important;
-    border-right: 1px solid #ddd!important;
+    border-left: 1px solid #216db1!important;
+    border-right: 1px solid #216db1!important;
     border-top-left-radius: 0px!important;
     border-top-right-radius: 0px!important;
     margin-right: -5px!important;
@@ -929,8 +930,8 @@ input[type=checkbox]:checked {
     border-bottom-color: transparent;
     border-top-left-radius: 0px!important;
     border-top-right-radius: 0px!important;
-    border-left: 1px solid #ddd!important;
-    border-right: 1px solid #ddd!important;
+    border-left: 1px solid #216db1!important;
+    border-right: 1px solid #216db1!important;
     margin-right: -5px!important;
 }
 .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu {
@@ -951,7 +952,7 @@ input[type=checkbox]:checked {
 }
 .custom-panel{
     border-radius: 0px!important;
-    border: 1px solid #ddd!important;
+    border: 1px solid #216db1!important;
     border-top-left-radius: 0px!important;
     border-top-right-radius: 0px!important;
 }
@@ -961,7 +962,7 @@ input[type=checkbox]:checked {
 }
 .custom-panel-heading{
     padding: 0px!important;
-    border-bottom: 1px solid #ddd!important;
+    border-bottom: 1px solid #216db1!important;
 }
 .panel-primary > .custom-panel-heading{
     font-family: "tw-cen-mt";
@@ -978,6 +979,7 @@ input[type=checkbox]:checked {
 .grid-property-section{
     background-color: #fff;
     margin-bottom: 1px;
+    border: 1px solid #216db1;
     -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
     -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
     box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
@@ -990,7 +992,7 @@ input[type=checkbox]:checked {
 }
 .grid-property-price h3{
     font-family: "tw-cen-mt";
-    color: #484848;
+    color: #f68521;
     font-size: 24px;
     padding: 5px;
     line-height: 1.2em;
@@ -1022,7 +1024,7 @@ input[type=checkbox]:checked {
     padding: 8px;
     line-height: 1.2em;
     float: right;
-    border: 1px solid #ccc;
+    border: 1px solid #216db1;
     border-radius: 50%;
     margin-right: 5px;
 }
@@ -1033,17 +1035,21 @@ input[type=checkbox]:checked {
     padding: 8px;
     line-height: 1.2em;
     float: left;
-    border: 1px solid #ccc;
+    border: 1px solid #216db1;
     border-radius: 50%;
     margin-left: 5px;
+}
+.grid-property-img{
+    padding: 8px;
 }
 /* --------------------- Search Result List Property Section -------------------------------------  */
 .list-property-section{
     background-color: #fff;
     margin-bottom: 1px;
-    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
-    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
-    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    border: 1px solid #216db1;
+    -webkit-box-shadow: 0px 2px 3px 0px #216db1;
+    -moz-box-shadow: 0px 2px 3px 0px #216db1;
+    box-shadow: 0px 2px 3px 0px #216db1;
 }
 .list-property-big-img{
     width: 100%;
@@ -1054,10 +1060,10 @@ input[type=checkbox]:checked {
 }
 .list-property-left-bottom-section{
     background-color: #0499A8;
-    border: 1px solid #ccc;
+    border: 1px solid #0499A8;
 }
 .list-property-right-bottom-section{
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #216db1;
 }
 .list-property-price h2{
     font-family: "tw-cen-mt";
@@ -1096,7 +1102,7 @@ input[type=checkbox]:checked {
     padding: 8px;
     line-height: 1.2em;
     float: left;
-    border: 1px solid #ccc;
+    border: 1px solid #216db1;
     border-radius: 50%;
     margin-left: 5px;
     margin-right: 10px;
@@ -1109,7 +1115,7 @@ input[type=checkbox]:checked {
     padding: 8px;
     line-height: 1.2em;
     float: right;
-    border: 1px solid #ccc;
+    border: 1px solid #216db1;
     border-radius: 50%;
     margin-right: 10px;
     margin-top: 12px;
@@ -1537,7 +1543,7 @@ input[type=checkbox]:checked {
 }
 .custom-nav-button{
     font-size: 16px;
-    padding: 12px 16px;
+    padding: 14px 16px;
     font-family: "tw-cen-mt";
     background-color: #262637;
     border: 1px solid #262637;
@@ -1591,10 +1597,8 @@ input[type=checkbox]:checked {
 
 .bid-history-title{
     font-family: "tw-cen-mt";
-    color: #484848;
-    font-size: 1.5em;
-    line-height: 1.5em;
-    font-weight: normal;
+    font-size: 24px;
+    color: #216db1;
 }
 .bid-history-table-layout,.bid-history-product-item-layout{
     padding: 10px;
@@ -1606,11 +1610,11 @@ input[type=checkbox]:checked {
 }
 .bidders-title,.bids-title,.bids-time-left-title{
     font-family: "tw-cen-mt";
-    color: #777;
+    color: #216db1;
 }
 .bidders-content,.bids-content,.bids-time-left-content{
     font-family: "tw-cen-mt";
-    color: #222;
+    color: #f68521;
     font-size: 16px;
 }
 .bidders-bid-table tr:hover{
@@ -1619,7 +1623,7 @@ input[type=checkbox]:checked {
 
 .bid-history-product-item-title{
     font-family: "tw-cen-mt";
-    color: #484848;
+    color: #216db1;
     font-size: 16px;
     line-height: 1.5em;
     font-weight: normal;
@@ -1633,11 +1637,14 @@ input[type=checkbox]:checked {
 }
 .bid-history-product-item-price-title{
     font-family: "tw-cen-mt";
-    color: #777;
+    color: #216db1;
+    font-size: 14px;
+    line-height: 1.5em;
+    font-weight: normal;
 }
 .bid-history-product-item-price-content{
     font-family: "tw-cen-mt";
-    color: #484848;
+    color: #f68521;
     font-size: 14px;
     line-height: 1.5em;
     font-weight: normal;

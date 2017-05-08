@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="resources/images/favicon.ico" type="image/x-icon"> 
-        
+
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="resources/css/wave.css" >
         <link rel="stylesheet" href="resources/css/bootstrap.min.css" >
@@ -29,15 +29,16 @@
         <script src="resources/js/node_modules/systemjs/dist/system.src.js"></script>
         <script src="resources/js/non-member-template.config.js"></script>
         <script src="resources/js/global.js"></script>
-        
+
     </head>
     <body class="margin-bottom-100px">
         <header>
             <div  class="header-white-bg">
+            <div  class="container">
                 <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 form-group">
                         <a href="">
-                            <img id="rm-site-logo" src="resources/images/logo.png" class="header-logo" alt="Logo">
+                            <img id="rm-site-logo" src="resources/images/logo.png" class="img-responsive header-logo" alt="Logo">
                         </a>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-offset-6 col-md-3 col-lg-offset-6 col-lg-3 pull-right">
@@ -53,6 +54,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
             <div class="header-black-bg">
                 <div class="container">
