@@ -51,14 +51,14 @@ public class UserManager {
         return roles;
     }
 
-    public List<Role> getUserRolesByUserId(int userId) {
+    public Set<Role> getUserRolesByUserId(int userId) {
         Session session = HibernateUtil.getSession();
         Query query = session.getNamedQuery("getUserById")
                 .setInteger("userId", userId);
 
         User user = (User)query.uniqueResult();
         
-        List<Role> roles = null;
+        Set<Role> roles = null;
         
         if(user != null){
             roles = user.getRoles();

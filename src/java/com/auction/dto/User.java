@@ -25,7 +25,7 @@ public class User extends ClientResponse implements java.io.Serializable{
     private long createdOn;
     private long modifiedOn;
     private AccountStatus accountStatus;
-    private List<Role> roles;
+    private Set<Role> roles;
 
     public int getId() {
         return id;
@@ -147,11 +147,11 @@ public class User extends ClientResponse implements java.io.Serializable{
         this.modifiedOn = modifiedOn;
     }
 
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 

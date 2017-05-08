@@ -43,7 +43,7 @@ Contributor(s):
     <class name="com.auction.dto.User" table="users" 
            dynamic-update="true" dynamic-insert="true" select-before-update="true">
         <id name="id" type="int">
-            <generator class="increment"/>
+            <generator class="native"/>
         </id>
         <property name="userName" column="user_name" unique="true" type="string"/>
         <property name="password" column="password" type="string"/>
@@ -56,26 +56,31 @@ Contributor(s):
         <property name="createdOn" column="created_on" type="long" update="false"/>
         <property name="modifiedOn" column="modified_on" type="long"/>       
         <one-to-one name="accountStatus" class="com.auction.dto.AccountStatus" cascade="all" />
-        <bag name="roles" table="users_roles"
-             inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="user_id" not-null="true" />
-            </key>
-            <one-to-many class="com.auction.dto.Role" />
-        </bag>
+        <set name="roles" table="users_roles" inverse="true">
+            <key column="user_id"/>
+            <many-to-many class="com.auction.dto.Role">
+                <column name="role_id" not-null="true"></column>
+            </many-to-many>
+        </set>
     </class>
     <class name="com.auction.dto.Role" table="roles" 
            dynamic-update="true" dynamic-insert="true" select-before-update="true">
         <id name="id" type="int">
-            <generator class="increment"/>
+            <generator class="native"/>
         </id>
         <property name="name" column="name" unique="true" type="string"/>
         <property name="description" column="description" unique="true" type="string"/>
+        <set name="users" table="users_roles" inverse="true" lazy="true" fetch="select">
+            <key column="role_id" not-null="true" />
+            <many-to-many class="com.auction.dto.User" unique="true">
+                <column name="user_id" not-null="true"></column>
+            </many-to-many>
+        </set>
     </class>
     <class name="com.auction.dto.UserRoles" table="users_roles" 
            dynamic-update="true" dynamic-insert="true" select-before-update="true">
         <id name="id" type="int">
-            <generator class="increment"/>
+            <generator class="native"/>
         </id>
         <many-to-one name="user"  class="com.auction.dto.User" fetch="select">
             <column name="user_id" not-null="true"></column>
@@ -88,7 +93,7 @@ Contributor(s):
     <class name="com.auction.dto.AccountStatus" table="account_statuses" 
                dynamic-update="true" dynamic-insert="true" select-before-update="true">
         <id name="id" type="int">
-            <generator class="increment"/>
+            <generator class="native"/>
         </id>
         <property name="description" column="description" unique="true" type="string"/>
     </class>
