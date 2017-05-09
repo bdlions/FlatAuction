@@ -214,6 +214,33 @@ Contributor(s):
         <property name="url" column="url" type="string"/>
 
     </class>
+    
+    <class name="com.auction.dto.PropertyAmenity" table="property_amenity" 
+               dynamic-update="true" dynamic-insert="true" select-before-update="true">
+        <id name="id" type="int">
+            <generator class="native"/>
+        </id>
+        <many-to-one name="product"  class="com.auction.dto.Product" fetch="select">
+            <column name="product_id" not-null="true"></column>
+        </many-to-one>
+        <many-to-one name="amenity" unique="true" class="com.auction.dto.Amenity" fetch="select">
+            <column name="amenity_id" not-null="true"></column>
+        </many-to-one>
+    </class>
+    
+    <class name="com.auction.dto.PropertyDuration" table="property_duration" 
+               dynamic-update="true" dynamic-insert="true" select-before-update="true">
+        <id name="id" type="int">
+            <generator class="native"/>
+        </id>
+        <many-to-one name="product"  class="com.auction.dto.Product" fetch="select">
+            <column name="product_id" not-null="true"></column>
+        </many-to-one>
+        <many-to-one name="duration" unique="true" class="com.auction.dto.Duration" fetch="select">
+            <column name="duration_id" not-null="true"></column>
+        </many-to-one>
+    </class>
+    
     <class name="com.auction.dto.Product" table="product" 
            dynamic-update="true" dynamic-insert="true" select-before-update="true">
         <id name="id" type="int">
@@ -238,7 +265,9 @@ Contributor(s):
         <list name="amenities" cascade="all">
             <key column="id"/>
             <list-index column="title"/>
-            <one-to-many class="com.auction.dto.Amenity"/>
+            <many-to-many class="com.auction.dto.Amenity">
+                <column name="amenity_id" not-null="true"></column>
+            </many-to-many>
         </list>
         <many-to-one name="smoking" column="smoking" class="com.auction.dto.Smoking"/>
         <many-to-one name="gender" column="gender" class="com.auction.dto.Gender"/>
@@ -247,7 +276,9 @@ Contributor(s):
          <list name="durationList" cascade="all">
             <key column="id"/>
             <list-index column="title"/>
-            <one-to-many class="com.auction.dto.Duration"/>
+            <many-to-many class="com.auction.dto.Duration">
+                <column name="duration_id" not-null="true"></column>
+            </many-to-many>
         </list>
         <many-to-one name="basePrice" column="base_price" class="com.auction.dto.Currency"/>
         <many-to-one name="securityDeposit" column="security_deposit" class="com.auction.dto.Currency"/>
