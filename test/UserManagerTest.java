@@ -102,7 +102,7 @@ public class UserManagerTest {
         }
     }
 
-    @Test
+    //@Test
     public void getUserRoles() {
         UserManager user = new UserManager();
         Set<Role> roles = user.getUserRolesByUserId(1);
@@ -122,7 +122,7 @@ public class UserManagerTest {
         
     }  
     
-//    @Test
+    //@Test
     public void defaultData(){
         
         Role role = new Role();

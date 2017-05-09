@@ -11,7 +11,7 @@ public class Product extends ClientResponse
 {
     private int id;
     private String productId;
-    private int userId;
+    private User user;
     private String title;
     private String description;
     private String firstName;
@@ -73,14 +73,6 @@ public class Product extends ClientResponse
 
     public void setProductId(String productId) {
         this.productId = productId;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     public String getTitle() {
@@ -281,6 +273,14 @@ public class Product extends ClientResponse
 
     public void setAdBid(Currency adBid) {
         this.adBid = adBid;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     
