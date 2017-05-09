@@ -31,30 +31,34 @@
         <script src="resources/js/global.js"></script>
 
     </head>
-    <body class="margin-bottom-100px">
+    <body>
         <header>
             <div  class="header-white-bg">
-            <div  class="container">
-                <div class="row">
-                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 form-group">
-                        <a href="">
-                            <img id="rm-site-logo" src="resources/images/logo.png" class="img-responsive header-logo" alt="Logo">
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-offset-6 col-md-3 col-lg-offset-6 col-lg-3 pull-right">
-                        <div class="dropdown dropdown-img">
-                            <button class="dropdown-img-custom-button dropdown-toggle  pull-right" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <img class="img-responsive" src="resources/images/member_icon.png">
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li><a href="profile.jsp">Edit Profile</a></li>
-                                <li><a href="featured-ad.jsp">Featured Ad Settings</a></li>
-                                <li><a href="#">Logout</a></li>
-                            </ul>
+                <div  class="container">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 form-group">
+                            <a href="home.jsp">
+                                <img id="rm-site-logo" src="resources/images/logo.png" class="img-responsive header-logo" alt="Logo">
+                            </a>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-offset-6 col-md-3 col-lg-offset-6 col-lg-3 pull-right">
+                            <div class="dropdown dropdown-img">
+                                <button class="dropdown-img-custom-button dropdown-toggle  pull-right" type="button" id="dropdownMenuMember" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <img class="img-responsive" src="resources/images/member_icon.png">
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuMember">
+                                    <li><a href="member.jsp">Dashboard</a></li>
+                                    <li><a href="manage-product.jsp">Manage Adverts</a></li>
+                                    <li><a href="">Messages</a></li>
+                                    <li><a href="">Account</a></li>
+                                    <li><a href="profile.jsp">Profile</a></li>
+                                    <li><a href="">Search</a></li>
+                                    <li><a href="#">Logout</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             </div>
             <div class="header-black-bg">
                 <div class="container">
@@ -74,18 +78,19 @@
 
                                     <div class="collapse navbar-collapse" id="member-header">
                                         <ul class="nav navbar-nav header-custom-nav">
-                                            <li><a href="home.jsp">Home</a></li>
                                             <li class="active"><a href="member.jsp">Dashboard</a></li>
-                                            <li><a href="manage-product.jsp">Add Advert</a></li>
-                                            <li class="dropdown">
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Search <span class="caret"></span></a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a href="">Basic Search</a></li>
-                                                    <li><a href="">Advanced Search</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="">About</a></li>
-                                            <li><a href="">Contact</a></li>
+                                            <li><a href="manage-product.jsp">Manage Adverts</a></li>
+                                            <li><a href="">Messages</a></li>
+                                            <li><a href="">Account</a></li>
+                                            <li><a href="profile.jsp">Profile</a></li>
+                                            <li><a href="">Search</a></li>
+                                            <!--                                            <li class="dropdown">
+                                                                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Search <span class="caret"></span></a>
+                                                                                            <ul class="dropdown-menu">
+                                                                                                <li><a href="">Basic Search</a></li>
+                                                                                                <li><a href="">Advanced Search</a></li>
+                                                                                            </ul>
+                                                                                        </li>-->
                                         </ul>
                                     </div>
                                 </div>
@@ -93,6 +98,7 @@
                         </div>
                     </div>
                 </div> 
+            </div> 
         </header>
 
 

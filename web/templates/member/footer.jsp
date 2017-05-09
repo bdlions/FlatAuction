@@ -83,7 +83,7 @@
         </div>
     </div>
 </div>
-<div id="footer-section" class="footer-bg margin-bottom-50px">
+<div id="footer-section" class="footer-bg">
     <div class="footer-border">
         <div class="container">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

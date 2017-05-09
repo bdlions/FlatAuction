@@ -1,4 +1,4 @@
-<jsp:include page="templates/member/header.jsp"></jsp:include>
+<jsp:include page="templates/member/header-home.jsp"></jsp:include>
     <script>
         System.import('resources/js/home-template.js').catch(function (err) {
             console.error(err);

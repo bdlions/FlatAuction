@@ -1130,14 +1130,22 @@ input[type=checkbox]:checked {
     background-color: #fff;
     padding: 10px;
 }
-.product-info-details-left-panel-heading{
+.product-info-details-left-panel-top-heading{
     font-family: "tw-cen-mt";
-    color: #226eb2!important;
+    color: #216db1;
+    font-size: 32px;
     font-weight: bold;
-    font-size: 18px;
+    text-align: center;
+}
+.product-info-details-left-panel-middle-heading{
+    font-family: "tw-cen-mt";
+    color: #216db1;
+    font-size: 24px;
+    font-weight: normal;
 }
 .hr{
     border-bottom: 1px solid #5a5b5d!important;
+    margin-top: -3px;
 }
 .product-info-details-left-panel-auction-timeblock{
     text-align: center;
@@ -1227,20 +1235,21 @@ input[type=checkbox]:checked {
 .product-info-details-right-panel-product-title{
     font-family: "tw-cen-mt";
     color: #216db1;
-    font-size: 27px;
+    font-size: 24px;
     padding: 5px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-weight: 400;
+    font-weight: normal;
 }
 .product-info-details-right-panel-product-price{
     font-family: "tw-cen-mt";
     color: #f06226;
-    font-size: 22px;
+    font-size: 20px;
     padding: 5px 0;
-    font-weight: normal;
+    font-weight: bold;
     margin-top: 15px;
+    float: right;
 }
 .product-info-details-right-panel-carousel-img-adjust{
     height: 300px!important;  

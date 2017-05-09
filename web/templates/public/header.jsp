@@ -44,7 +44,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-sm-4 col-md-5 col-lg-6">
-                        <img id="logo" src="resources/images/logo.png" class="img-responsive" alt="Logo">
+                        <a href="non-member.jsp"><img id="logo" src="resources/images/logo.png" class="img-responsive" alt="Logo"> </a>
                     </div>
                     <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6">
                         <div class="row">
