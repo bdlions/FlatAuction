@@ -1,6 +1,7 @@
 package com.auction.dto;
 
 import com.auction.dto.response.ClientResponse;
+import java.util.ArrayList;
 
 /**
  *
@@ -10,28 +11,38 @@ public class Product extends ClientResponse
 {
     private int id;
     private String productId;
+    private int userId;
     private String title;
     private String description;
-    private Currency basePrice;
-    private String time;
-    private Location location;
-    private String img;
+    private String firstName;
+    private String lastName;
+    private String phone;
     private Image[] images;
+    private Location location;
+    private ProductType productType;
+    private ProductSize productSize;
+    private ProductCategory productCategory;
+    private ArrayList<Amenity> amenities;
+    private Smoking smoking;
+    private Occupation occupation;
+    private Pet pet;
+    private Currency basePrice;
     private String startDate;
     private String endDate;
-    private String timeLeft;
-    private int totalBidders;
-    private int totalBids;
+    
 
-    private String price_type;
-    private String price;
-    private String available;
-    private String size;
     
     public Product()
     {
-        this.basePrice = new Currency();
         this.location = new Location();
+        this.productType = new ProductType();
+        this.productSize = new ProductSize();
+        this.productCategory = new ProductCategory();
+        this.amenities = new ArrayList<>();
+        this.smoking = new Smoking();
+        this.occupation = new Occupation();
+        this.pet = new Pet();
+        this.basePrice = new Currency();        
     }
 
     public int getId() {
@@ -50,6 +61,14 @@ public class Product extends ClientResponse
         this.productId = productId;
     }
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -66,20 +85,36 @@ public class Product extends ClientResponse
         this.description = description;
     }
 
-    public Currency getBasePrice() {
-        return basePrice;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setBasePrice(Currency basePrice) {
-        this.basePrice = basePrice;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getTime() {
-        return time;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Image[] getImages() {
+        return images;
+    }
+
+    public void setImages(Image[] images) {
+        this.images = images;
     }
 
     public Location getLocation() {
@@ -90,20 +125,68 @@ public class Product extends ClientResponse
         this.location = location;
     }
 
-    public String getImg() {
-        return img;
+    public ProductType getProductType() {
+        return productType;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setProductType(ProductType productType) {
+        this.productType = productType;
     }
 
-    public Image[] getImages() {
-        return images;
+    public ProductSize getProductSize() {
+        return productSize;
     }
 
-    public void setImages(Image[] images) {
-        this.images = images;
+    public void setProductSize(ProductSize productSize) {
+        this.productSize = productSize;
+    }
+
+    public ProductCategory getProductCategory() {
+        return productCategory;
+    }
+
+    public void setProductCategory(ProductCategory productCategory) {
+        this.productCategory = productCategory;
+    }
+
+    public ArrayList<Amenity> getAmenities() {
+        return amenities;
+    }
+
+    public void setAmenities(ArrayList<Amenity> amenities) {
+        this.amenities = amenities;
+    }
+
+    public Smoking getSmoking() {
+        return smoking;
+    }
+
+    public void setSmoking(Smoking smoking) {
+        this.smoking = smoking;
+    }
+
+    public Occupation getOccupation() {
+        return occupation;
+    }
+
+    public void setOccupation(Occupation occupation) {
+        this.occupation = occupation;
+    }
+
+    public Pet getPet() {
+        return pet;
+    }
+
+    public void setPet(Pet pet) {
+        this.pet = pet;
+    }
+
+    public Currency getBasePrice() {
+        return basePrice;
+    }
+
+    public void setBasePrice(Currency basePrice) {
+        this.basePrice = basePrice;
     }
 
     public String getStartDate() {
@@ -120,62 +203,6 @@ public class Product extends ClientResponse
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
-    }
-
-    public String getTimeLeft() {
-        return timeLeft;
-    }
-
-    public void setTimeLeft(String timeLeft) {
-        this.timeLeft = timeLeft;
-    }
-
-    public int getTotalBidders() {
-        return totalBidders;
-    }
-
-    public void setTotalBidders(int totalBidders) {
-        this.totalBidders = totalBidders;
-    }
-
-    public int getTotalBids() {
-        return totalBids;
-    }
-
-    public void setTotalBids(int totalBids) {
-        this.totalBids = totalBids;
-    }
-
-    public String getPrice_type() {
-        return price_type;
-    }
-
-    public void setPrice_type(String price_type) {
-        this.price_type = price_type;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
-    public String getAvailable() {
-        return available;
-    }
-
-    public void setAvailable(String available) {
-        this.available = available;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
     }
 
     

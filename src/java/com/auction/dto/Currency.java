@@ -8,10 +8,10 @@ public class Currency {
     private String id;
     private String title;
     private double amount;
-    private Common currencyUnit;
+    private CurrencyUnit currencyUnit;
     public Currency()
     {
-        currencyUnit = new Common();
+        currencyUnit = new CurrencyUnit();
     }
 
     public String getId() {
@@ -38,11 +38,11 @@ public class Currency {
         this.amount = amount;
     }
 
-    public Common getCurrencyUnit() {
+    public CurrencyUnit getCurrencyUnit() {
         return currencyUnit;
     }
 
-    public void setCurrencyUnit(Common currencyUnit) {
+    public void setCurrencyUnit(CurrencyUnit currencyUnit) {
         this.currencyUnit = currencyUnit;
     }
     
