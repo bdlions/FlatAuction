@@ -27,7 +27,7 @@ public class Product extends ClientResponse
     private Gender gender;
     private Occupation occupation;
     private Pet pet;
-    private ArrayList<Duration> durationList;
+    private ArrayList<Duration> durations;
     private Currency basePrice;
     private Currency securityDeposit;
     private String startDate;
@@ -51,7 +51,7 @@ public class Product extends ClientResponse
         this.occupation = new Occupation();
         this.gender = new Gender();
         this.pet = new Pet();
-        this.durationList = new ArrayList<>();
+        this.durations = new ArrayList<>();
         this.basePrice = new Currency();   
         this.securityDeposit = new Currency();
         this.minStay = new Stay();
@@ -219,12 +219,12 @@ public class Product extends ClientResponse
         this.gender = gender;
     }
 
-    public ArrayList<Duration> getDurationList() {
-        return durationList;
+    public ArrayList<Duration> getDurations() {
+        return durations;
     }
 
-    public void setDurationList(ArrayList<Duration> durationList) {
-        this.durationList = durationList;
+    public void setDurations(ArrayList<Duration> durations) {
+        this.durations = durations;
     }
 
     public Currency getSecurityDeposit() {

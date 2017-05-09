@@ -40,268 +40,227 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-mapping>
-    <class name="com.auction.dto.User" table="users" 
-           dynamic-update="true" dynamic-insert="true" select-before-update="true">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <property name="userName" column="user_name" unique="true" type="string"/>
-        <property name="password" column="password" type="string"/>
-        <property name="firstName" column="first_name" type="string"/>
-        <property name="lastName" column="last_name" type="string"/>
-        <property name="email" column="email" type="string"/>
-        <property name="cellNo" column="cell_no" type="string"/>
-        <property name="accountStatusId" column="account_status_id" type="int"/>
-        <property name="lastAccessTime" column="last_access_time" type="long"/>
-        <property name="createdOn" column="created_on" type="long" update="false"/>
-        <property name="modifiedOn" column="modified_on" type="long"/>       
-        <one-to-one name="accountStatus" constrained="true"
-                    class="com.auction.dto.AccountStatus" cascade="all" />
-        <set name="roles" table="users_roles" inverse="true" lazy="true">
-            <key column="user_id"/>
-            <many-to-many class="com.auction.dto.Role">
-                <column name="role_id" not-null="true"></column>
-            </many-to-many>
-        </set>
-    </class>
-    <class name="com.auction.dto.Role" table="roles" 
-           dynamic-update="true" dynamic-insert="true" select-before-update="true">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <property name="name" column="name" unique="true" type="string"/>
-        <property name="description" column="description" unique="true" type="string"/>
-        <set name="users" table="users_roles" inverse="true" lazy="true" fetch="select">
-            <key column="role_id" not-null="true" />
-            <many-to-many class="com.auction.dto.User" unique="true">
-                <column name="user_id" not-null="true"></column>
-            </many-to-many>
-        </set>
-    </class>
-    <class name="com.auction.dto.UserRoles" table="users_roles" 
-           dynamic-update="true" dynamic-insert="true" select-before-update="true">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <many-to-one name="user"  class="com.auction.dto.User" fetch="select">
-            <column name="user_id" not-null="true"></column>
-        </many-to-one>
-        <many-to-one name="role" unique="true" class="com.auction.dto.Role" fetch="select">
-            <column name="role_id" not-null="true"></column>
-        </many-to-one>
-    </class>
-
-    <class name="com.auction.dto.AccountStatus" table="account_statuses" 
-           dynamic-update="true" dynamic-insert="true" select-before-update="true">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <property name="description" column="description" unique="true" type="string"/>
-    </class>
-    
-    <class name="com.auction.dto.CurrencyUnit" table="currency_unit" 
-           dynamic-update="true" dynamic-insert="true" select-before-update="true">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <property name="title" column="title" type="string"/>
-    </class>
-    
-    <class name="com.auction.dto.Currency" table="currency" 
-           dynamic-update="true" dynamic-insert="true" select-before-update="true">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <property name="title" column="title" type="string"/>
-        <property name="amount" column="amount" type="double"/>
-        <one-to-one name="currencyUnit" class="com.auction.dto.CurrencyUnit" 
-                    constrained="true" cascade="all">
+  <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.User" select-before-update="true" table="users">
+    <id name="id" type="int">
+      <generator class="native"/>
+    </id>
+    <property column="user_name" name="userName" type="string" unique="true"/>
+    <property column="password" name="password" type="string"/>
+    <property column="first_name" name="firstName" type="string"/>
+    <property column="last_name" name="lastName" type="string"/>
+    <property column="email" name="email" type="string"/>
+    <property column="cell_no" name="cellNo" type="string"/>
+    <property column="account_status_id" name="accountStatusId" type="int"/>
+    <property column="last_access_time" name="lastAccessTime" type="long"/>
+    <property column="created_on" name="createdOn" type="long" update="false"/>
+    <property column="modified_on" name="modifiedOn" type="long"/>
+    <one-to-one cascade="all" class="com.auction.dto.AccountStatus" constrained="true" name="accountStatus"/>
+    <set inverse="true" lazy="true" name="roles" table="users_roles">
+      <key column="user_id"/>
+      <many-to-many class="com.auction.dto.Role">
+        <column name="role_id" not-null="true"/>
+      </many-to-many>
+    </set>
+  </class>
+  <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.Role" select-before-update="true" table="roles">
+    <id name="id" type="int">
+      <generator class="native"/>
+    </id>
+    <property column="name" name="name" type="string" unique="true"/>
+    <property column="description" name="description" type="string" unique="true"/>
+    <set fetch="select" inverse="true" lazy="true" name="users" table="users_roles">
+      <key column="role_id" not-null="true"/>
+      <many-to-many class="com.auction.dto.User" unique="true">
+        <column name="user_id" not-null="true"/>
+      </many-to-many>
+    </set>
+  </class>
+  <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.UserRoles" select-before-update="true" table="users_roles">
+    <id name="id" type="int">
+      <generator class="native"/>
+    </id>
+    <many-to-one class="com.auction.dto.User" fetch="select" name="user">
+      <column name="user_id" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.auction.dto.Role" fetch="select" name="role" unique="true">
+      <column name="role_id" not-null="true"/>
+    </many-to-one>
+  </class>
+  <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.AccountStatus" select-before-update="true" table="account_statuses">
+    <id name="id" type="int">
+      <generator class="native"/>
+    </id>
+    <property column="description" name="description" type="string" unique="true"/>
+  </class>
+  <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.CurrencyUnit" select-before-update="true" table="currency_unit">
+    <id name="id" type="int">
+      <generator class="native"/>
+    </id>
+    <property column="title" name="title" type="string"/>
+  </class>
+  <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.Currency" select-before-update="true" table="currency">
+    <id name="id" type="int">
+      <generator class="native"/>
+    </id>
+    <property column="title" name="title" type="string"/>
+    <property column="amount" name="amount" type="double"/>
+    <one-to-one cascade="all" class="com.auction.dto.CurrencyUnit" constrained="true" name="currencyUnit">
         </one-to-one>
-    </class>
-    <class name="com.auction.dto.Location" table="location" 
-           dynamic-update="true" dynamic-insert="true" select-before-update="true">
-        <id name="locationId" column="location_id" type="int">
-            <generator class="native"/>
-        </id>
-        <property name="locationType" column="location_type" type="string"/>
-        <property name="searchString" column="search_string" type="string"/>
-        <property name="postCode" column="post_code" type="string"/>
-
-    </class>
-    
-    <class name="com.auction.dto.ProductType" table="product_type" 
-           dynamic-update="true" dynamic-insert="true" select-before-update="true">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <property name="title" column="title" type="string"/>
-
-    </class>
-    <class name="com.auction.dto.ProductSize" table="product_size" 
-           dynamic-update="true" dynamic-insert="true" select-before-update="true">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <property name="title" column="title" type="string"/>
-
-    </class>
-    <class name="com.auction.dto.ProductCategory" table="product_category" 
-           dynamic-update="true" dynamic-insert="true" select-before-update="true">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <property name="title" column="title" type="string"/>
-
-    </class>
-    <class name="com.auction.dto.Amenity" table="amenity" 
-           dynamic-update="true" dynamic-insert="true" select-before-update="true">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <property name="title" column="title" type="string"/>
-
-    </class>
-    <class name="com.auction.dto.Smoking" table="smoking" 
-           dynamic-update="true" dynamic-insert="true" select-before-update="true">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <property name="title" column="title" type="string"/>
-
-    </class>
-    <class name="com.auction.dto.Gender" table="gender" 
-           dynamic-update="true" dynamic-insert="true" select-before-update="true">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <property name="title" column="title" type="string"/>
-    </class>
-    <class name="com.auction.dto.Occupation" table="occupation" 
-           dynamic-update="true" dynamic-insert="true" select-before-update="true">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <property name="title" column="title" type="string"/>
-
-    </class>
-    <class name="com.auction.dto.Pet" table="pet" 
-           dynamic-update="true" dynamic-insert="true" select-before-update="true">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <property name="title" column="title" type="string"/>
-    </class>
-    <class name="com.auction.dto.Duration" table="duration" 
-           dynamic-update="true" dynamic-insert="true" select-before-update="true">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <property name="title" column="title" type="string"/>
-    </class>
-    <class name="com.auction.dto.Stay" table="stay" 
-           dynamic-update="true" dynamic-insert="true" select-before-update="true">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <property name="title" column="title" type="string"/>
-
-    </class>
-    <class name="com.auction.dto.Image" table="image" 
-           dynamic-update="true" dynamic-insert="true" select-before-update="true">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <property name="url" column="url" type="string"/>
-
-    </class>
-    
-    <class name="com.auction.dto.PropertyAmenity" table="property_amenity" 
-               dynamic-update="true" dynamic-insert="true" select-before-update="true">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <many-to-one name="product"  class="com.auction.dto.Product" fetch="select">
-            <column name="product_id" not-null="true"></column>
-        </many-to-one>
-        <many-to-one name="amenity" unique="true" class="com.auction.dto.Amenity" fetch="select">
-            <column name="amenity_id" not-null="true"></column>
-        </many-to-one>
-    </class>
-    
-    <class name="com.auction.dto.PropertyDuration" table="property_duration" 
-               dynamic-update="true" dynamic-insert="true" select-before-update="true">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <many-to-one name="product"  class="com.auction.dto.Product" fetch="select">
-            <column name="product_id" not-null="true"></column>
-        </many-to-one>
-        <many-to-one name="duration" unique="true" class="com.auction.dto.Duration" fetch="select">
-            <column name="duration_id" not-null="true"></column>
-        </many-to-one>
-    </class>
-    
-    <class name="com.auction.dto.Product" table="product" 
-           dynamic-update="true" dynamic-insert="true" select-before-update="true">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <property name="productId" column="product_id" type="string"/>
-        <many-to-one name="user" class="com.auction.dto.User" fetch="select" column="user_id" not-null="true" />
-        <property name="title" column="title" type="string"/>
-        <property name="description" column="description" type="string"/>
-        <property name="firstName" column="first_name" type="string"/>
-        <property name="lastName" column="last_name" type="string"/>
-        <property name="phone" column="phone" type="string"/>
-        <array name="images" table="image">
-            <key column="id" />
-            <index column="title" />
-            <one-to-many class="com.auction.dto.Image" />
-        </array>
-        <many-to-one name="location" column="location" fetch="select" class="com.auction.dto.Location"/>
-        <many-to-one name="productType" column="product_type" class="com.auction.dto.ProductType"/>
-        <many-to-one name="productSize" column="product_size" class="com.auction.dto.ProductSize"/>
-        <many-to-one name="productCategory" column="product_category" class="com.auction.dto.ProductCategory"/>
-        <list name="amenities" cascade="all">
-            <key column="id"/>
-            <list-index column="title"/>
-            <many-to-many class="com.auction.dto.Amenity">
-                <column name="amenity_id" not-null="true"></column>
-            </many-to-many>
-        </list>
-        <many-to-one name="smoking" column="smoking" class="com.auction.dto.Smoking"/>
-        <many-to-one name="gender" column="gender" class="com.auction.dto.Gender"/>
-        <many-to-one name="occupation" column="occupation" class="com.auction.dto.Occupation"/>
-        <many-to-one name="pet" column="pet" class="com.auction.dto.Pet"/>
-         <list name="durationList" cascade="all">
-            <key column="id"/>
-            <list-index column="title"/>
-            <many-to-many class="com.auction.dto.Duration">
-                <column name="duration_id" not-null="true"></column>
-            </many-to-many>
-        </list>
-        <many-to-one name="basePrice" column="base_price" class="com.auction.dto.Currency"/>
-        <many-to-one name="securityDeposit" column="security_deposit" class="com.auction.dto.Currency"/>
-        <property name="startDate" column="start_date" type="string"/>
-        <property name="endDate" column="end_date" type="string"/>
-        <many-to-one name="minStay" column="min_stay" class="com.auction.dto.Stay"/>
-        <many-to-one name="maxStay" column="max_stay" class="com.auction.dto.Stay"/>
-        <property name="isFeaturedAd" column="is_featured_ad" type="boolean"/>
-        <property name="isDefaultBid" column="is_default_bid" type="boolean"/>
-        <many-to-one name="adBid" column="ad_bid" class="com.auction.dto.Currency"/>
-    </class>
-    
-    <sql-query name="getUserByCredential">
+  </class>
+  <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.Location" select-before-update="true" table="location">
+    <id column="location_id" name="locationId" type="int">
+      <generator class="native"/>
+    </id>
+    <property column="location_type" name="locationType" type="string"/>
+    <property column="search_string" name="searchString" type="string"/>
+    <property column="post_code" name="postCode" type="string"/>
+  </class>
+  <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.ProductType" select-before-update="true" table="product_type">
+    <id name="id" type="int">
+      <generator class="native"/>
+    </id>
+    <property column="title" name="title" type="string"/>
+  </class>
+  <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.ProductSize" select-before-update="true" table="product_size">
+    <id name="id" type="int">
+      <generator class="native"/>
+    </id>
+    <property column="title" name="title" type="string"/>
+  </class>
+  <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.ProductCategory" select-before-update="true" table="product_category">
+    <id name="id" type="int">
+      <generator class="native"/>
+    </id>
+    <property column="title" name="title" type="string"/>
+  </class>
+  <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.Amenity" select-before-update="true" table="amenity">
+    <id name="id" type="int">
+      <generator class="native"/>
+    </id>
+    <property column="title" name="title" type="string"/>
+  </class>
+  <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.Smoking" select-before-update="true" table="smoking">
+    <id name="id" type="int">
+      <generator class="native"/>
+    </id>
+    <property column="title" name="title" type="string"/>
+  </class>
+  <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.Gender" select-before-update="true" table="gender">
+    <id name="id" type="int">
+      <generator class="native"/>
+    </id>
+    <property column="title" name="title" type="string"/>
+  </class>
+  <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.Occupation" select-before-update="true" table="occupation">
+    <id name="id" type="int">
+      <generator class="native"/>
+    </id>
+    <property column="title" name="title" type="string"/>
+  </class>
+  <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.Pet" select-before-update="true" table="pet">
+    <id name="id" type="int">
+      <generator class="native"/>
+    </id>
+    <property column="title" name="title" type="string"/>
+  </class>
+  <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.Duration" select-before-update="true" table="duration">
+    <id name="id" type="int">
+      <generator class="native"/>
+    </id>
+    <property column="title" name="title" type="string"/>
+  </class>
+  <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.Stay" select-before-update="true" table="stay">
+    <id name="id" type="int">
+      <generator class="native"/>
+    </id>
+    <property column="title" name="title" type="string"/>
+  </class>
+  <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.Image" select-before-update="true" table="image">
+    <id name="id" type="int">
+      <generator class="native"/>
+    </id>
+    <property column="url" name="url" type="string"/>
+  </class>
+  <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.PropertyAmenity" select-before-update="true" table="product_amenities">
+    <id name="id" type="int">
+      <generator class="native"/>
+    </id>
+    <many-to-one class="com.auction.dto.Product" fetch="select" name="product">
+      <column name="product_id" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.auction.dto.Amenity" fetch="select" name="amenity" unique="true">
+      <column name="amenity_id" not-null="true"/>
+    </many-to-one>
+  </class>
+  <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.PropertyDuration" select-before-update="true" table="product_durations">
+    <id name="id" type="int">
+      <generator class="native"/>
+    </id>
+    <many-to-one class="com.auction.dto.Product" fetch="select" name="product">
+      <column name="product_id" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.auction.dto.Duration" fetch="select" name="duration" unique="true">
+      <column name="duration_id" not-null="true"/>
+    </many-to-one>
+  </class>
+  <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.Product" select-before-update="true" table="product">
+    <id name="id" type="int">
+      <generator class="native"/>
+    </id>
+    <property column="product_id" name="productId" type="string"/>
+    <many-to-one class="com.auction.dto.User" column="user_id" fetch="select" name="user" not-null="true"/>
+    <property column="title" name="title" type="string"/>
+    <property column="description" name="description" type="string"/>
+    <property column="first_name" name="firstName" type="string"/>
+    <property column="last_name" name="lastName" type="string"/>
+    <property column="phone" name="phone" type="string"/>
+    <array name="images" table="image">
+      <key column="id"/>
+      <index column="title"/>
+      <one-to-many class="com.auction.dto.Image"/>
+    </array>
+    <many-to-one class="com.auction.dto.Location" column="location" fetch="select" name="location"/>
+    <many-to-one class="com.auction.dto.ProductType" column="product_type" name="productType"/>
+    <many-to-one class="com.auction.dto.ProductSize" column="product_size" name="productSize"/>
+    <many-to-one class="com.auction.dto.ProductCategory" column="product_category" name="productCategory"/>
+    <list cascade="all" name="amenities">
+      <key column="id"/>
+      <list-index column="title"/>
+      <many-to-many class="com.auction.dto.Amenity">
+        <column name="amenity_id" not-null="true"/>
+      </many-to-many>
+    </list>
+    <many-to-one class="com.auction.dto.Smoking" column="smoking" name="smoking"/>
+    <many-to-one class="com.auction.dto.Gender" column="gender" name="gender"/>
+    <many-to-one class="com.auction.dto.Occupation" column="occupation" name="occupation"/>
+    <many-to-one class="com.auction.dto.Pet" column="pet" name="pet"/>
+    <list cascade="all" name="durations">
+      <key column="id"/>
+      <list-index column="title"/>
+      <many-to-many class="com.auction.dto.Duration">
+        <column name="duration_id" not-null="true"/>
+      </many-to-many>
+    </list>
+    <many-to-one class="com.auction.dto.Currency" column="base_price" name="basePrice"/>
+    <many-to-one class="com.auction.dto.Currency" column="security_deposit" name="securityDeposit"/>
+    <property column="start_date" name="startDate" type="string"/>
+    <property column="end_date" name="endDate" type="string"/>
+    <many-to-one class="com.auction.dto.Stay" column="min_stay" name="minStay"/>
+    <many-to-one class="com.auction.dto.Stay" column="max_stay" name="maxStay"/>
+    <property column="is_featured_ad" name="isFeaturedAd" type="boolean"/>
+    <property column="is_default_bid" name="isDefaultBid" type="boolean"/>
+    <many-to-one class="com.auction.dto.Currency" column="ad_bid" name="adBid"/>
+  </class>
+  <sql-query name="getUserByCredential">
         <return class="com.auction.dto.User"/>
-        <![CDATA[SELECT * FROM USERS WHERE USER_NAME = :userName AND PASSWORD = :password]]>
+        SELECT * FROM USERS WHERE USER_NAME = :userName AND PASSWORD = :password
     </sql-query>
-    
-    <sql-query name="getRoles">
+  <sql-query name="getRoles">
         <return class="com.auction.dto.Role"/>
-        <![CDATA[SELECT * FROM ROLES]]>
+        SELECT * FROM ROLES
     </sql-query>
-    <sql-query name="getUserById">
+  <sql-query name="getUserById">
         <return class="com.auction.dto.User"/>
-        <![CDATA[SELECT * FROM USERS WHERE ID = :userId]]>
+        SELECT * FROM USERS WHERE ID = :userId
     </sql-query>
 </hibernate-mapping>
