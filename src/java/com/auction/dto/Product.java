@@ -24,11 +24,19 @@ public class Product extends ClientResponse
     private ProductCategory productCategory;
     private ArrayList<Amenity> amenities;
     private Smoking smoking;
+    private Gender gender;
     private Occupation occupation;
     private Pet pet;
+    private ArrayList<Duration> durationList;
     private Currency basePrice;
+    private Currency securityDeposit;
     private String startDate;
     private String endDate;
+    private Stay minStay;
+    private Stay maxStay;
+    private boolean isFeaturedAd;
+    private boolean isDefaultBid;
+    private Currency adBid;
     
 
     
@@ -41,8 +49,14 @@ public class Product extends ClientResponse
         this.amenities = new ArrayList<>();
         this.smoking = new Smoking();
         this.occupation = new Occupation();
+        this.gender = new Gender();
         this.pet = new Pet();
-        this.basePrice = new Currency();        
+        this.durationList = new ArrayList<>();
+        this.basePrice = new Currency();   
+        this.securityDeposit = new Currency();
+        this.minStay = new Stay();
+        this.maxStay = new Stay();
+        this.adBid = new Currency();
     }
 
     public int getId() {
@@ -203,6 +217,70 @@ public class Product extends ClientResponse
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public ArrayList<Duration> getDurationList() {
+        return durationList;
+    }
+
+    public void setDurationList(ArrayList<Duration> durationList) {
+        this.durationList = durationList;
+    }
+
+    public Currency getSecurityDeposit() {
+        return securityDeposit;
+    }
+
+    public void setSecurityDeposit(Currency securityDeposit) {
+        this.securityDeposit = securityDeposit;
+    }
+
+    public Stay getMinStay() {
+        return minStay;
+    }
+
+    public void setMinStay(Stay minStay) {
+        this.minStay = minStay;
+    }
+
+    public Stay getMaxStay() {
+        return maxStay;
+    }
+
+    public void setMaxStay(Stay maxStay) {
+        this.maxStay = maxStay;
+    }
+
+    public boolean isIsFeaturedAd() {
+        return isFeaturedAd;
+    }
+
+    public void setIsFeaturedAd(boolean isFeaturedAd) {
+        this.isFeaturedAd = isFeaturedAd;
+    }
+
+    public boolean isIsDefaultBid() {
+        return isDefaultBid;
+    }
+
+    public void setIsDefaultBid(boolean isDefaultBid) {
+        this.isDefaultBid = isDefaultBid;
+    }
+
+    public Currency getAdBid() {
+        return adBid;
+    }
+
+    public void setAdBid(Currency adBid) {
+        this.adBid = adBid;
     }
 
     
