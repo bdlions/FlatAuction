@@ -2,23 +2,34 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Http} from '@angular/http';
 import {Subscription} from 'rxjs';
-
-import {Product} from '../dto/product';
-
+import {AccountSettingFA} from '../dto/AccountSettingFA';
+import {WebAPIService} from './../webservice/web-api-service';
+import {PacketHeaderFactory} from './../webservice/PacketHeaderFactory';
+import {ACTION} from './../webservice/ACTION';
 
 
 @Component({
     selector: 'data-content',
-    templateUrl: window.SUB_DIRECTORY +"/html_components/member/featuredad/individualadbids.html",
+    templateUrl: window.SUB_DIRECTORY +"/html_components/member/featuredad/faq.html",
+    providers: [WebAPIService]
 })
-export class IndividualAdBids implements OnInit, OnDestroy {
-    private productList: Product[];
+export class Faq implements OnInit, OnDestroy {
+    private webAPIService: WebAPIService;
+    private accountSettingFA: AccountSettingFA;
     
     private subscribe:Subscription;
     private id:number;
     
-    constructor(public router:Router, public route: ActivatedRoute) {
-        this.productList = JSON.parse("[{\"id\":\"1\",\"isFeaturedAdd\":\"true\",\"isDefaultBid\":\"true\",\"title\":\"Property 1\",\"location\":{\"postCode\":\"LU4 0HL\"},\"adBid\":{\"id\":\"1\",\"title\":\"£\",\"amount\":\"4\",\"currencyUnit\":{\"id\":\"2\",\"title\":\"p\"}}}, {\"id\":\"2\",\"isFeaturedAdd\":\"true\",\"isDefaultBid\":\"true\",\"title\":\"Property 2\",\"location\":{\"postCode\":\"LU4 0HL\"},\"adBid\":{\"id\":\"1\",\"title\":\"£\",\"amount\":\"5\",\"currencyUnit\":{\"id\":\"2\",\"title\":\"p\"}}}, {\"id\":\"3\",\"isFeaturedAdd\":\"true\",\"isDefaultBid\":\"true\",\"title\":\"Property 3\",\"location\":{\"postCode\":\"LU4 0HL\"},\"adBid\":{\"id\":\"1\",\"title\":\"£\",\"amount\":\"6\",\"currencyUnit\":{\"id\":\"2\",\"title\":\"p\"}}}]");
+    constructor(public router:Router, public route: ActivatedRoute, webAPIService: WebAPIService) {
+        this.webAPIService = webAPIService;
+        this.accountSettingFA = new AccountSettingFA();
+        /*this.accountSettingFA.defaultBidPerClick = JSON.parse("{\"id\":\"1\",\"title\":\"£\",\"amount\":\"9.60\",\"currencyUnit\":{\"id\":\"2\",\"title\":\"p\"}}");
+        this.accountSettingFA.dailyBudget = JSON.parse("{\"id\":\"1\",\"title\":\"£\",\"amount\":\"4.00\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}");
+        this.accountSettingFA.campainActive = true;*/
+        
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_ACCOUNT_SETTING_FA)).then(result => {
+            this.accountSettingFA = result;
+        });    
     }
     
     

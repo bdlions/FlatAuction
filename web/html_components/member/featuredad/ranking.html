@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-3 col-md-2 col-lg-2">
+        <ul class="featured-ad-left-sidebar-ul featured-ad-left-sidebar-margin-top-align">
+            <li><a class="active" [routerLink]="['/accountsettings']" (click)="accountsettings($event)">Account Settings</a></li>
+            <li><a [routerLink]="['/individualadbids']" (click)="individualadbids($event)">Individual Ad Bids</a></li>
+            <li><a>Payment</a></li>
+            <li><a [routerLink]="['/stats']" (click)="stats($event)">Stats</a></li>
+            <li><a [routerLink]="['/ranking']" (click)="ranking($event)">Ranking</a></li>
+            <li><a [routerLink]="['/faq']" (click)="faq($event)">FAQ</a></li>
+        </ul>
+    </div>
+
+    <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+        Ranking page
+        
+    </div>
+</div>
+
+
+Ranking list<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let ranking of rankingList">
+        id: {{ranking.rankId}}
+        property : {{ranking?.product?.title}}
+        current bid : {{ranking?.currentBid?.currencyUnit?.title}}{{ranking?.currentBid?.amount}}
+        top bid : {{ranking?.topBid?.currencyUnit?.title}}{{ranking?.topBid?.amount}}
+</li>
+</ul>
+
+<!--Account Settings of Featured Ad
+<br/>Default bid per click<br/>
+{{accountSettingFA.defaultBidPerClick.currencyUnit.title}}{{accountSettingFA.defaultBidPerClick.amount}}
+
+<br/>Default Bid<br/>
+{{accountSettingFA.dailyBudget.amount}}{{accountSettingFA.dailyBudget.currencyUnit.title}}
+
+<br/>Campaign Status<br/>
+{{accountSettingFA.campainActive}}-->

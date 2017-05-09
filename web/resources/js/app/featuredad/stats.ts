@@ -103,4 +103,14 @@ export class Stats implements OnInit, OnDestroy {
         event.preventDefault();
         this.router.navigate(['stats']);
     }
+    
+    ranking(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['ranking']);
+    }
+    
+    faq(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['faq']);
+    }
 }
