@@ -1,6 +1,11 @@
 import {Currency} from "./Currency";
+import {User} from "./User";
 export class AccountSettingFA {
-    defaultBidPerClick:Currency;
-    dailyBudget:Currency;
+    id: number;
+    user: User;
+    defaultBidPerClick: number;    
+    defaultBidPerClickUnit: Currency;
+    dailyBudget:number;
+    dailyBudgetUnit:Currency;
     campainActive:boolean;
 }

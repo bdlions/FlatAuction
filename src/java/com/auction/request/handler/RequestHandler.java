@@ -131,7 +131,7 @@ public class RequestHandler {
     
     @ClientRequest(action = ACTION.FETCH_ACCOUNT_SETTING_FA)
     public ClientResponse getAccountSettingFAInfo(ISession session, IPacket packet){
-        AccountSettingFA response = new Gson().fromJson("{\"defaultBidPerClick\":{\"id\":\"1\",\"title\":\"£\",\"amount\":\"9.90\",\"currencyUnit\":{\"id\":\"2\",\"title\":\"p\"}}, \"dailyBudget\":{\"id\":\"1\",\"title\":\"£\",\"amount\":\"4.40\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, \"campainActive\":\"true\"}", AccountSettingFA.class );
+        AccountSettingFA response = new Gson().fromJson("{\"id\":\"1\",\"user\":{\"id\":\"1\"},\"defaultBidPerClick\":\"4\", \"defaultBidPerClickUnit\":{\"id\":\"1\",\"title\":\"p\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}},\"dailyBudget\":\"6\", \"dailyBudgetUnit\":{\"id\":\"1\",\"title\":\"£\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, \"campainActive\":\"true\"}", AccountSettingFA.class );
         response.setSuccess(true);
         return response;
     }
