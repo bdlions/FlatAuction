@@ -7,7 +7,6 @@ package com.auction.dto;
 public class Currency {
     private String id;
     private String title;
-    private double amount;
     private CurrencyUnit currencyUnit;
     public Currency()
     {
@@ -28,14 +27,6 @@ public class Currency {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
     }
 
     public CurrencyUnit getCurrencyUnit() {

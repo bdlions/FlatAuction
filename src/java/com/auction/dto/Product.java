@@ -28,15 +28,18 @@ public class Product extends ClientResponse
     private Occupation occupation;
     private Pet pet;
     private ArrayList<Duration> durations;
-    private Currency basePrice;
-    private Currency securityDeposit;
+    private double basePrice;
+    private Currency basePriceUnit;
+    private double securityDeposit;
+    private Currency securityDepositUnit;
     private String startDate;
     private String endDate;
     private Stay minStay;
     private Stay maxStay;
     private boolean isFeaturedAd;
     private boolean isDefaultBid;
-    private Currency adBid;
+    private double adBid;
+    private Currency adBidUnit;
     
 
     
@@ -52,11 +55,11 @@ public class Product extends ClientResponse
         this.gender = new Gender();
         this.pet = new Pet();
         this.durations = new ArrayList<>();
-        this.basePrice = new Currency();   
-        this.securityDeposit = new Currency();
+        this.basePriceUnit = new Currency();   
+        this.securityDepositUnit = new Currency();
         this.minStay = new Stay();
         this.maxStay = new Stay();
-        this.adBid = new Currency();
+        this.adBidUnit = new Currency();
     }
 
     public int getId() {
@@ -187,14 +190,6 @@ public class Product extends ClientResponse
         this.pet = pet;
     }
 
-    public Currency getBasePrice() {
-        return basePrice;
-    }
-
-    public void setBasePrice(Currency basePrice) {
-        this.basePrice = basePrice;
-    }
-
     public String getStartDate() {
         return startDate;
     }
@@ -225,14 +220,6 @@ public class Product extends ClientResponse
 
     public void setDurations(ArrayList<Duration> durations) {
         this.durations = durations;
-    }
-
-    public Currency getSecurityDeposit() {
-        return securityDeposit;
-    }
-
-    public void setSecurityDeposit(Currency securityDeposit) {
-        this.securityDeposit = securityDeposit;
     }
 
     public Stay getMinStay() {
@@ -267,14 +254,6 @@ public class Product extends ClientResponse
         this.isDefaultBid = isDefaultBid;
     }
 
-    public Currency getAdBid() {
-        return adBid;
-    }
-
-    public void setAdBid(Currency adBid) {
-        this.adBid = adBid;
-    }
-
     public User getUser() {
         return user;
     }
@@ -283,5 +262,53 @@ public class Product extends ClientResponse
         this.user = user;
     }
 
+    public double getBasePrice() {
+        return basePrice;
+    }
+
+    public void setBasePrice(double basePrice) {
+        this.basePrice = basePrice;
+    }
+
+    public Currency getBasePriceUnit() {
+        return basePriceUnit;
+    }
+
+    public void setBasePriceUnit(Currency basePriceUnit) {
+        this.basePriceUnit = basePriceUnit;
+    }
+
+    public double getSecurityDeposit() {
+        return securityDeposit;
+    }
+
+    public void setSecurityDeposit(double securityDeposit) {
+        this.securityDeposit = securityDeposit;
+    }
+
+    public Currency getSecurityDepositUnit() {
+        return securityDepositUnit;
+    }
+
+    public void setSecurityDepositUnit(Currency securityDepositUnit) {
+        this.securityDepositUnit = securityDepositUnit;
+    }
+
+    public double getAdBid() {
+        return adBid;
+    }
+
+    public void setAdBid(double adBid) {
+        this.adBid = adBid;
+    }
+
+    public Currency getAdBidUnit() {
+        return adBidUnit;
+    }
+
+    public void setAdBidUnit(Currency adBidUnit) {
+        this.adBidUnit = adBidUnit;
+    }
+    
     
 }

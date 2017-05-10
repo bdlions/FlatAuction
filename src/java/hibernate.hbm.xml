@@ -103,9 +103,8 @@ Contributor(s):
       <generator class="native"/>
     </id>
     <property column="title" name="title" type="string"/>
-    <property column="amount" name="amount" type="double"/>
     <one-to-one cascade="all" class="com.auction.dto.CurrencyUnit" constrained="true" name="currencyUnit">
-        </one-to-one>
+    </one-to-one>
   </class>
   <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.Location" select-before-update="true" table="location">
     <id column="location_id" name="locationId" type="int">
@@ -241,15 +240,18 @@ Contributor(s):
         <column name="duration_id" not-null="true"/>
       </many-to-many>
     </list>
-    <many-to-one class="com.auction.dto.Currency" column="base_price" name="basePrice"/>
-    <many-to-one class="com.auction.dto.Currency" column="security_deposit" name="securityDeposit"/>
+    <property column="base_price" name="basePrice" type="double"/>
+    <many-to-one class="com.auction.dto.Currency" column="base_price_unit" name="basePriceUnit"/>
+    <property column="security_deposit" name="securityDeposit" type="double"/>
+    <many-to-one class="com.auction.dto.Currency" column="security_deposit_unit" name="securityDepositUnit"/>
     <property column="start_date" name="startDate" type="string"/>
     <property column="end_date" name="endDate" type="string"/>
     <many-to-one class="com.auction.dto.Stay" column="min_stay" name="minStay"/>
     <many-to-one class="com.auction.dto.Stay" column="max_stay" name="maxStay"/>
     <property column="is_featured_ad" name="isFeaturedAd" type="boolean"/>
     <property column="is_default_bid" name="isDefaultBid" type="boolean"/>
-    <many-to-one class="com.auction.dto.Currency" column="ad_bid" name="adBid"/>
+    <property column="ad_bid" name="adBid" type="double"/>
+    <many-to-one class="com.auction.dto.Currency" column="ad_bid_unit" name="adBidUnit"/>
   </class>
   <sql-query name="getUserByCredential">
         <return class="com.auction.dto.User"/>
