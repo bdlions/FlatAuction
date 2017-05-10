@@ -17,6 +17,7 @@ public class Product extends ClientResponse
     private String firstName;
     private String lastName;
     private String phone;
+    private String img;
     private Image[] images;
     private Location location;
     private ProductType productType;
@@ -308,6 +309,14 @@ public class Product extends ClientResponse
 
     public void setAdBidUnit(Currency adBidUnit) {
         this.adBidUnit = adBidUnit;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
     
     

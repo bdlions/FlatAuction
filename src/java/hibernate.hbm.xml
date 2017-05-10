@@ -213,6 +213,7 @@ Contributor(s):
     <property column="first_name" name="firstName" type="string"/>
     <property column="last_name" name="lastName" type="string"/>
     <property column="phone" name="phone" type="string"/>
+    <property column="img" name="img" type="string"/>
     <array name="images" table="image">
       <key column="id"/>
       <index column="title"/>
