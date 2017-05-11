@@ -1,10 +1,13 @@
 import {User} from "./User";
+import {Product} from "./Product";
 import {Currency} from "./Currency";
 export class Bid {
+    id: number;
     bidId:string;
-    productId:string;
-    time:string;
-    amount:number;
-    currency:Currency;
     user:User;
+    product: Product;
+    bidTime:string;
+    bidAmount:number;
+    bidAmountUnit:Currency;
+    
 }

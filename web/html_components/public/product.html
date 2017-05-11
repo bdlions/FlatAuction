@@ -89,7 +89,7 @@
                         <h1 class="product-info-details-right-panel-product-title">{{product.title}}</h1>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-                        <h1 class="product-info-details-right-panel-product-price">{{product.price}}</h1>
+                        <h1 class="product-info-details-right-panel-product-price">{{product?.basePriceUnit?.title}}{{product?.basePrice}}</h1>
                     </div>
                 </div>
                 <div class="row form-group">

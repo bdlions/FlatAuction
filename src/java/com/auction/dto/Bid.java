@@ -5,15 +5,28 @@ package com.auction.dto;
  * @author nazmul hasan
  */
 public class Bid {
+    private int id;
     private String bidId;
-    private String productId;
-    private String time;
-    private double amount;
-    private Currency currency;
     private User user;
+    private Product product;
+    private long createdOn;
+    private double bidAmount;
+    private Currency bidAmountUnit;
+    
+    //this will not be added into database. 
+    private String bidTime;
     public Bid()
     {
-    
+        this.user = new User();
+        this.product = new Product();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getBidId() {
@@ -24,38 +37,6 @@ public class Bid {
         this.bidId = bidId;
     }
 
-    public String getProductId() {
-        return productId;
-    }
-
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
-    public Currency getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(Currency currency) {
-        this.currency = currency;
-    }
-
     public User getUser() {
         return user;
     }
@@ -63,5 +44,47 @@ public class Bid {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public long getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(long createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public double getBidAmount() {
+        return bidAmount;
+    }
+
+    public void setBidAmount(double bidAmount) {
+        this.bidAmount = bidAmount;
+    }
+
+    public Currency getBidAmountUnit() {
+        return bidAmountUnit;
+    }
+
+    public void setBidAmountUnit(Currency bidAmountUnit) {
+        this.bidAmountUnit = bidAmountUnit;
+    }
+
+    public String getBidTime() {
+        return bidTime;
+    }
+
+    public void setBidTime(String bidTime) {
+        this.bidTime = bidTime;
+    }
+
+    
     
 }
