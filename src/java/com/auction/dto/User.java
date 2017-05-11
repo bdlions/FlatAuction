@@ -10,7 +10,6 @@ import java.util.Set;
  */
 public class User extends ClientResponse implements java.io.Serializable{
     private int id;
-    private int userId;
     private String userName;
     private String password;
     private String firstName;
@@ -33,14 +32,6 @@ public class User extends ClientResponse implements java.io.Serializable{
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     public String getUserName() {

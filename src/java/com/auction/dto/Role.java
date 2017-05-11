@@ -15,7 +15,6 @@ public class Role implements java.io.Serializable {
     private int id;
     private String name;
     private String description;
-    private Set<User> users;
 
     public int getId() {
         return id;
@@ -41,13 +40,4 @@ public class Role implements java.io.Serializable {
         this.description = description;
     }
 
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
-    
-    
 }

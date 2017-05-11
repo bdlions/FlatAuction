@@ -1,16 +1,18 @@
 package com.auction.dto;
 
 import com.auction.dto.response.ClientResponse;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Set;
 
 /**
  *
  * @author nazmul hasan
  */
-public class Product extends ClientResponse
+public class Product extends ClientResponse implements Serializable
 {
     private int id;
-    private String productId;
+//    private String productId;
     private User user;
     private String title;
     private String description;
@@ -23,12 +25,12 @@ public class Product extends ClientResponse
     private ProductType productType;
     private ProductSize productSize;
     private ProductCategory productCategory;
-    private ArrayList<Amenity> amenities;
+    private Set<Amenity> amenities;
     private Smoking smoking;
     private Gender gender;
     private Occupation occupation;
     private Pet pet;
-    private ArrayList<Duration> durations;
+    private Set<Duration> durations;
     private double basePrice;
     private Currency basePriceUnit;
     private double securityDeposit;
@@ -44,24 +46,6 @@ public class Product extends ClientResponse
     
 
     
-    public Product()
-    {
-        this.location = new Location();
-        this.productType = new ProductType();
-        this.productSize = new ProductSize();
-        this.productCategory = new ProductCategory();
-        this.amenities = new ArrayList<>();
-        this.smoking = new Smoking();
-        this.occupation = new Occupation();
-        this.gender = new Gender();
-        this.pet = new Pet();
-        this.durations = new ArrayList<>();
-        this.basePriceUnit = new Currency();   
-        this.securityDepositUnit = new Currency();
-        this.minStay = new Stay();
-        this.maxStay = new Stay();
-        this.adBidUnit = new Currency();
-    }
 
     public int getId() {
         return id;
@@ -71,13 +55,13 @@ public class Product extends ClientResponse
         this.id = id;
     }
 
-    public String getProductId() {
-        return productId;
-    }
-
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
+//    public String getProductId() {
+//        return productId;
+//    }
+//
+//    public void setProductId(String productId) {
+//        this.productId = productId;
+//    }
 
     public String getTitle() {
         return title;
@@ -159,11 +143,11 @@ public class Product extends ClientResponse
         this.productCategory = productCategory;
     }
 
-    public ArrayList<Amenity> getAmenities() {
+    public Set<Amenity> getAmenities() {
         return amenities;
     }
 
-    public void setAmenities(ArrayList<Amenity> amenities) {
+    public void setAmenities(Set<Amenity> amenities) {
         this.amenities = amenities;
     }
 
@@ -215,11 +199,11 @@ public class Product extends ClientResponse
         this.gender = gender;
     }
 
-    public ArrayList<Duration> getDurations() {
+    public Set<Duration> getDurations() {
         return durations;
     }
 
-    public void setDurations(ArrayList<Duration> durations) {
+    public void setDurations(Set<Duration> durations) {
         this.durations = durations;
     }
 

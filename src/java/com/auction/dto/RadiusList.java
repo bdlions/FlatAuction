@@ -8,17 +8,17 @@ import java.util.ArrayList;
  * @author nazmul hasan
  */
 public class RadiusList extends ClientResponse{
-    private ArrayList<Common> radiuses;
+    private ArrayList<Radius> radiuses;
     public RadiusList()
     {
         this.radiuses = new ArrayList<>();
     }
 
-    public ArrayList<Common> getRadiuses() {
+    public ArrayList<Radius> getRadiuses() {
         return radiuses;
     }
 
-    public void setRadiuses(ArrayList<Common> radiuses) {
+    public void setRadiuses(ArrayList<Radius> radiuses) {
         this.radiuses = radiuses;
     }
     

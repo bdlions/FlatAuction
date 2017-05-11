@@ -8,17 +8,17 @@ import java.util.ArrayList;
  * @author nazmul hasan
  */
 public class RoomSizeList extends ClientResponse{
-    private ArrayList<Common> roomSizes;
+    private ArrayList<RoomSize> roomSizes;
     public RoomSizeList()
     {
         this.roomSizes = new ArrayList<>();
     }   
 
-    public ArrayList<Common> getRoomSizes() {
+    public ArrayList<RoomSize> getRoomSizes() {
         return roomSizes;
     }
 
-    public void setRoomSizes(ArrayList<Common> roomSizes) {
+    public void setRoomSizes(ArrayList<RoomSize> roomSizes) {
         this.roomSizes = roomSizes;
     }
     

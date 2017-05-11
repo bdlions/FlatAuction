@@ -18,7 +18,7 @@ public class SchemaGenerator {
     public static void main(String[] args) {
         try {
             HibernateUtil.getSession();
-            Class<?> c = Class.forName(Image.class.getName());
+            Class<?> c = Class.forName(AccountSettingFA.class.getName());
             Object t = c.newInstance();
             
             Field[] fields = c.getDeclaredFields();
@@ -28,9 +28,6 @@ public class SchemaGenerator {
             for (int i = 0; i < fields.length; i++) {
                 Field f = fields[ i ];
                 f.setAccessible(true);
-//                System.out.println("name: "+f.getName());
-//                System.out.println("Type: "+f.getGenericType());
-//                System.out.println("mysql: "+covertName(f.getName()));
                 if(f.getName().equals("id")){
                     continue;
                 }
@@ -75,8 +72,8 @@ public class SchemaGenerator {
     }
     public static String getIdTag(){
         String tag = "<id name=\"id\" type=\"int\">\n" +
-"            <generator class=\"native\"/>\n" +
-"        </id>\n";
+                        "<generator class=\"native\"/>\n" +
+                         "</id>\n";
         return tag;
     }
     

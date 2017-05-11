@@ -5,6 +5,7 @@
  */
 
 import com.auction.db.HibernateUtil;
+import com.auction.dto.AccountStatus;
 import com.auction.dto.Role;
 import com.auction.dto.Stock;
 import com.auction.dto.User;
@@ -122,7 +123,7 @@ public class UserManagerTest {
         
     }  
     
-    //@Test
+    @Test
     public void defaultData(){
         
         Role role = new Role();
@@ -132,11 +133,21 @@ public class UserManagerTest {
         Role role2 = new Role();
         role2.setName("Admin2");
         role2.setDescription("Admin2");
-        
+                
         Session session = HibernateUtil.getSession();
         session.beginTransaction();
         session.save(role);
         session.save(role2);
+        session.getTransaction().commit();
+        
+        AccountStatus activeStatus = new AccountStatus();
+        activeStatus.setDescription("Active");
+        AccountStatus inActiveStatus = new AccountStatus();
+        inActiveStatus.setDescription("Inactive");
+        session = HibernateUtil.getSession();
+        session.beginTransaction();
+        session.save(activeStatus);
+        session.save(inActiveStatus);
         session.getTransaction().commit();
         
         Session session2 = HibernateUtil.getSession();
@@ -146,6 +157,7 @@ public class UserManagerTest {
         user.setLastName("kabir");
         user.setUserName("alamgir");
         user.setPassword("pass");
+        user.setAccountStatus(activeStatus);
 
         session2.save(user);
         session2.getTransaction().commit();

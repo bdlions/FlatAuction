@@ -9,34 +9,17 @@ package com.auction.dto;
  *
  * @author alamgir
  */
-public class Image {
-    private int id;
-    private int productId;
-    private String url;
+public class RoomSize {
+
+    private String id;
     private String title;
-    
-    public int getId() {
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
     }
 
     public String getTitle() {
@@ -46,6 +29,4 @@ public class Image {
     public void setTitle(String title) {
         this.title = title;
     }
-    
-    
 }
