@@ -267,6 +267,19 @@ Contributor(s):
         <property name="campainActive" column="campain_active" type="boolean"/>
 
     </class>
+    <class name="com.auction.dto.Bid" table="bid" 
+           dynamic-update="true" dynamic-insert="true" select-before-update="true">
+        <id name="id" type="int">
+            <generator class="native"/>
+        </id>
+        <property name="bidId" column="bid_id" type="string"/>
+        <many-to-one class="com.auction.dto.User" column="user_id"  fetch="select" name="user" not-null="true"/>
+        <many-to-one class="com.auction.dto.Product" column="product_id"  fetch="select" name="product" not-null="true"/>
+        <property name="createdOn" column="created_on" type="long"/>
+        <property name="bidAmount" column="bid_amount" type="double"/>
+        <many-to-one class="com.auction.dto.Currency" column="bid_amount_unit"  fetch="select" name="bidAmountUnit" not-null="true"/>
+        <property name="bidTime" column="bid_time" type="string"/>
+    </class>
     <sql-query name="getUserByCredential">
         <return class="com.auction.dto.User"/>
         SELECT * FROM USERS WHERE USER_NAME = :userName AND PASSWORD = :password
