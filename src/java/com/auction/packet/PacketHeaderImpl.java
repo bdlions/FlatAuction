@@ -1,6 +1,6 @@
 package com.auction.packet;
 
-import org.bdlions.packet.IPacketHeader;
+import org.bdlions.transport.packet.IPacketHeader;
 import com.auction.util.ACTION;
 import com.auction.util.REQUEST_TYPE;
 
@@ -54,6 +54,11 @@ public class PacketHeaderImpl implements IPacketHeader {
     @Override
     public String getSessionId() {
         return sessionId;
+    }
+
+    @Override
+    public boolean isBroken() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -4,8 +4,10 @@ import com.auction.dto.response.ClientResponse;
 import com.auction.request.handler.RequestHandler;
 import com.google.gson.Gson;
 import java.net.InetAddress;
-import org.bdlions.packet.IPacket;
-import org.bdlions.packet.IPacketHeader;
+import org.bdlions.transport.packet.IPacket;
+import org.bdlions.transport.packet.IPacketHeader;
+import org.bdlions.transport.sender.IClientPacketSender;
+import org.bdlions.transport.sender.IRelayPacketSender;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -38,6 +40,41 @@ public class ResponseTester {
 
             @Override
             public int getRemotePort() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public long getSentTime() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public int getSentCount() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public int setSentCount(int count) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public IClientPacketSender getClientPacketSender() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public IRelayPacketSender getRelayPacketSender() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public int getAction() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public int getServerPacketId() {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });

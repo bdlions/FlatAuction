@@ -5,8 +5,8 @@ package com.auction.servlet;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import org.bdlions.packet.IPacket;
-import org.bdlions.packet.IPacketHeader;
+import org.bdlions.transport.packet.IPacket;
+import org.bdlions.transport.packet.IPacketHeader;
 import com.auction.packet.PacketHeaderImpl;
 import com.auction.dto.response.ClientFailedResponse;
 import com.auction.commons.ClientMessages;
@@ -23,7 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.bdlions.packet.RequestPacketImpl;
+import org.bdlions.transport.packet.RequestPacketImpl;
 
 /**
  *

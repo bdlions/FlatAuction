@@ -2,6 +2,7 @@
 import java.net.InetAddress;
 import org.apache.shiro.subject.Subject;
 import org.bdlions.session.ISession;
+import org.bdlions.transport.sender.IClientPacketSender;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -87,6 +88,11 @@ public class MockSession implements ISession{
 
     @Override
     public Subject getUser() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IClientPacketSender getClientChannel() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

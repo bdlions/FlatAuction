@@ -19,7 +19,7 @@ import com.auction.dto.ProductTypeList;
 import com.auction.dto.RadiusList;
 import com.auction.dto.RoomSizeList;
 import com.auction.dto.User;
-import org.bdlions.packet.IPacket;
+import org.bdlions.transport.packet.IPacket;
 import org.bdlions.session.ISession;
 import org.bdlions.session.ISessionManager;
 import com.auction.util.ACTION;

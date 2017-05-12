@@ -8,8 +8,8 @@ package com.auction.util;
 import org.bdlions.util.StringUtils;
 import com.auction.dto.response.ClientResponse;
 import com.auction.exceptions.InvalidRequestException;
-import org.bdlions.packet.IPacket;
-import org.bdlions.packet.IPacketHeader;
+import org.bdlions.transport.packet.IPacket;
+import org.bdlions.transport.packet.IPacketHeader;
 import com.auction.request.handler.AuthHandler;
 import com.auction.request.handler.RequestExecutorInfo;
 import com.auction.request.handler.RequestHandler;
@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import org.bdlions.session.UserSessionManagerImpl;
+import org.bdlions.util.handler.request.IClientRequestHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,7 +32,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author alamgir
  */
-public class ClientRequestHandler {
+public class ClientRequestHandler implements IClientRequestHandler{
 
     private final Logger logger = LoggerFactory.getLogger(ClientRequestHandler.class);
     private final Map<REQUEST_TYPE, Map<Integer, RequestExecutorInfo>> actionMap = new HashMap<>();
@@ -135,6 +136,7 @@ public class ClientRequestHandler {
         return null;
     }
 
+    @Override
     public Object executeRequest(IPacket packet) throws InvalidRequestException, Throwable {
         logger.debug("Request is going to be processed.");
         if (packet != null) {
