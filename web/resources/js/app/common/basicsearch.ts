@@ -76,4 +76,14 @@ export class BasicSearch implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.subscribe.unsubscribe();
     }
+    
+    sent(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['sent']);
+    }
+    
+    advancedsearch(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['advancedsearch']);
+    }
 }

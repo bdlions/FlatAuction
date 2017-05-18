@@ -74,4 +74,14 @@ export class Faq implements OnInit, OnDestroy {
         event.preventDefault();
         this.router.navigate(['faq']);
     }
+    
+    myads(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['myads']);
+    }
+    
+    savedads(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['savedads']);
+    }
 }

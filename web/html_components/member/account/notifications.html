@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+         <ul class="dashboard-left-sidebar-ul margin-top-align">
+            <li><a [routerLink]="['/notifications']" (click)="notifications($event)">Notifications</a></li>
+        </ul>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="message-inbox-header-layout margin-top-align">
+                    <h3 class="message-inbox-header-title">Notifications</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                This is notification page. This page will be implemented soon.
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--
+Message Panel
+
+inbox<br/>
+============================<br/>
+<ul>
+    <li *ngFor="let message of inbox">
+        id: {{message.id}} , subject {{message.subject}}, To : {{message.to.firstName}} {{message.to.lastName}}
+        <br/>
+        Messages :
+        <div *ngFor="let messageText of message.messageList">
+            Id:{{messageText.id}} , Text: {{messageText.text}}, Time: {{messageText.time}},User : {{messageText.user.img}}, User : {{messageText.user.firstName}} {{messageText.user.lastName}}
+    </div>
+</li>
+</ul>-->
