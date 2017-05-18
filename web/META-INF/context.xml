@@ -1,2 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context path="/FlatAuction"/>
+<!--<Host name="localhost" appBase="webapps"
+      unpackWARs="true" autoDeploy="false"
+      xmlValidation="false" xmlNamespaceAware="false">
+
+    <Context path="/FlatAuction" docBase="localhost" reloadable="true" debug="0"/>
+
+</Host>-->
