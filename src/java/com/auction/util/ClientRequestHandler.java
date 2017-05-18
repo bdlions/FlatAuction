@@ -36,7 +36,7 @@ public class ClientRequestHandler implements IClientRequestHandler{
 
     private final Logger logger = LoggerFactory.getLogger(ClientRequestHandler.class);
     private final Map<REQUEST_TYPE, Map<Integer, RequestExecutorInfo>> actionMap = new HashMap<>();
-    private UserSessionManagerImpl sessionManager;
+    private final UserSessionManagerImpl sessionManager;
 
     private static ClientRequestHandler instance;
 
@@ -50,6 +50,9 @@ public class ClientRequestHandler implements IClientRequestHandler{
             instance = new ClientRequestHandler();
         }
         return instance;
+    }
+    public UserSessionManagerImpl getSessionManager(){
+        return sessionManager;
     }
 
     private void buildActionMap() {
