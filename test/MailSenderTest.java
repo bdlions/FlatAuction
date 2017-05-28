@@ -31,7 +31,7 @@ public class MailSenderTest {
         input.put("email", mailTo);
 
         //HTML mail content
-        String htmlText = MailUtil.readEmailFromHtml("mail-verification.html", input);
+        String htmlText = MailUtil.readEmailFromHtml("mail-templates/mail-verification.html", input);
 
         MailSender mailer = new MailSender();
 
