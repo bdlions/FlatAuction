@@ -1,9 +1,12 @@
 <div class="row margin-top-align">
     <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
         <ul class="featured-ad-left-sidebar-ul">
-            <li><a class="active" [routerLink]="['/accountsettings']" (click)="accountsettings($event)">Account Settings</a></li>
+            <li><a href="manage-product.jsp">Create Ads</a></li>
+            <li><a class="active" [routerLink]="['/myads']" (click)="myads($event)">My Ads</a></li>
+            <li><a [routerLink]="['/savedads']" (click)="savedads($event)">Saved Ads</a></li>
+            <li>Featured Ads</li>
+            <li><a [routerLink]="['/accountsettings']" (click)="accountsettings($event)">Account Settings</a></li>
             <li><a [routerLink]="['/individualadbids']" (click)="individualadbids($event)">Individual Ad Bids</a></li>
-            <li><a>Payment</a></li>
             <li><a [routerLink]="['/stats']" (click)="stats($event)">Stats</a></li>
             <li><a [routerLink]="['/ranking']" (click)="ranking($event)">Ranking</a></li>
             <li><a [routerLink]="['/faq']" (click)="faq($event)">FAQ</a></li>

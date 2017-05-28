@@ -57,4 +57,29 @@ export class MyAds implements OnInit, OnDestroy {
         event.preventDefault();
         this.router.navigate(['messages']);
     }
+    
+    accountsettings(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['accountsettings']);
+    }
+    
+    individualadbids(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['individualadbids']);
+    }
+    
+    stats(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['stats']);
+    }
+    
+    ranking(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['ranking']);
+    }
+    
+    faq(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['faq']);
+    }
 }
