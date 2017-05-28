@@ -7,7 +7,9 @@ import com.auction.manager.UserManager;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import org.bdlions.roles.USER_ROLE;
 import org.bdlions.session.db.IDBUserProvider;
@@ -25,6 +27,12 @@ import org.bdlions.util.StringUtils;
  */
 public class DBUserProvider implements IDBUserProvider{
 
+    private Map<String, Credential> users = new HashMap();
+    @Override
+    public Credential getLoggedInUserByUserName(String userName){
+        return users.get(userName);
+    }
+    
     @Override
     public Credential getUser(Credential credential) {
         if( !StringUtils.isNullOrEmpty(credential.getUserName()) && !StringUtils.isNullOrEmpty(credential.getPassword()) ){
@@ -37,7 +45,9 @@ public class DBUserProvider implements IDBUserProvider{
                 credential.setAppType(100);
                 credential.setFirstName(user.getFirstName());
                 credential.setLastName(user.getLastName());
-                credential.setUserId(user.getId());
+//                credential.setUserId(user.getId());
+                credential.setUserId(1000000);
+                users.put(credential.getUserName(), credential);
                 return credential;
             }
             return null;            
