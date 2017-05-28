@@ -123,7 +123,7 @@ public class UserManagerTest {
         
     }  
     
-    @Test
+    //@Test
     public void defaultData(){
         
         Role role = new Role();
