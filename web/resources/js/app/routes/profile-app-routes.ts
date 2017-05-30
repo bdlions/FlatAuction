@@ -10,6 +10,7 @@ import {UploadDocument} from "../profile/uploaddocument";
 // Define which component should be loaded based on the current URL
 export const routes: Routes = [
     {path: '', component: DashBoard},
+    {path: 'profile', component: DashBoard},
     {path: 'editprofile', component: EditProfile},
     {path: 'uploadimg', component: UploadImg},
     {path: 'uploaddocument', component: UploadDocument},

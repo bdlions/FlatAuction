@@ -27,8 +27,25 @@ export class EditProfile {
         this.user.isVerified = true;*/
         
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_USER_INFO)).then(result => {
-            this.user = result;
+            this.user = <User>result;
         });
+    }
+    updateUserprofile(event: Event) {
+        let requestBody: string = JSON.stringify(this.user);
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.UPDATE_USER_INFO), requestBody).then(result =>{
+            let response  = result;
+            if (response.success){
+                //show success message
+            }
+            else{
+                //show error message at this page
+            }
+        });
+    }
+    
+    profile(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['profile']);
     }
     
     editprofile(event: Event) {

@@ -66,6 +66,18 @@ var PacketHeaderFactory = (function () {
             case ACTION_1.ACTION.FETCH_ACCOUNT_SETTING_FA:
                 packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
                 break;
+            case ACTION_1.ACTION.UPDATE_USER_INFO:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.UPDATE;
+                break;
+            case ACTION_1.ACTION.UPDATE_USER_PROFILE_PICTURE:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.UPDATE;
+                break;
+            case ACTION_1.ACTION.UPDATE_USER_DOCUMENT:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.UPDATE;
+                break;
+            case ACTION_1.ACTION.ADD_PRODUCT:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.UPDATE;
+                break;
             default:
                 packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.NONE;
         }

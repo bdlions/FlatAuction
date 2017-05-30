@@ -30,6 +30,12 @@ export class DashBoard {
             this.user = result;
         });
     }
+    
+    profile(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['profile']);
+    }
+    
     editprofile(event: Event) {
         event.preventDefault();
         this.router.navigate(['editprofile']);

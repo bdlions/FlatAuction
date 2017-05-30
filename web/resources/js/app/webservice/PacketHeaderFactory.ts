@@ -65,6 +65,18 @@ export class PacketHeaderFactory {
             case ACTION.FETCH_ACCOUNT_SETTING_FA:
                 packetHeader.requestType = REQUEST_TYPE.REQUEST
                 break;
+            case ACTION.UPDATE_USER_INFO:
+                packetHeader.requestType = REQUEST_TYPE.UPDATE
+                break;
+            case ACTION.UPDATE_USER_PROFILE_PICTURE:
+                packetHeader.requestType = REQUEST_TYPE.UPDATE
+                break;
+            case ACTION.UPDATE_USER_DOCUMENT:
+                packetHeader.requestType = REQUEST_TYPE.UPDATE
+                break;
+            case ACTION.ADD_PRODUCT:
+                packetHeader.requestType = REQUEST_TYPE.UPDATE
+                break;
             default:
                 packetHeader.requestType = REQUEST_TYPE.NONE
         }

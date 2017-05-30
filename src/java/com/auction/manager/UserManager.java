@@ -19,9 +19,9 @@ import org.slf4j.LoggerFactory;
 public class UserManager {
 
     private final Logger logger = LoggerFactory.getLogger(UserManager.class);
-
+    Session session = HibernateUtil.getSession();
     public User getUserByCredential(String userName, String password) {
-        Session session = HibernateUtil.getSession();
+        //Session session = HibernateUtil.getSession();
         Query query = session.getNamedQuery("getUserByCredential")
                 .setString("userName", userName)
                 .setString("password", password);
@@ -31,28 +31,28 @@ public class UserManager {
     }
 
     public void addUserProfile(User user) {
-        Session session = HibernateUtil.getSession();
+        //Session session = HibernateUtil.getSession();
         session.beginTransaction();
         session.save(user);
         session.getTransaction().commit();
     }
 
     public void updateUserProfile(User user) {
-        Session session = HibernateUtil.getSession();
+        //Session session = HibernateUtil.getSession();
         session.beginTransaction();
         session.update(user);
         session.getTransaction().commit();
     }
 
     public List<Role> getRoles() {
-        Session session = HibernateUtil.getSession();
+        //Session session = HibernateUtil.getSession();
         Query query = session.getNamedQuery("getRoles");
         List<Role> roles = query.list();
         return roles;
     }
 
     public Set<Role> getUserRolesByUserId(int userId) {
-        Session session = HibernateUtil.getSession();
+        
         Query query = session.getNamedQuery("getUserById")
                 .setInteger("userId", userId);
 
@@ -70,5 +70,30 @@ public class UserManager {
 
     public void getActionsRoles() {
 
+    }
+    
+    /**
+     * This method will update user profile
+     * @param userId, user id
+     * @return User
+     * @author nazmul hasan on 29th May 2017
+    */
+    public User getUserProfileById(int userId) 
+    {
+        User user = null;
+        try
+        {
+            session.beginTransaction();
+            Query query = session.getNamedQuery("getUserById")
+                    .setInteger("id", userId);
+            user = (User)query.uniqueResult();
+            session.getTransaction().commit();
+        }
+        catch(Exception ex)
+        {
+            logger.error(ex.toString());
+        }
+        
+        return user;
     }
 }

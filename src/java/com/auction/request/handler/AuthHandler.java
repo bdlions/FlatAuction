@@ -11,8 +11,13 @@ import org.bdlions.session.ISession;
 import org.bdlions.session.ISessionManager;
 import com.auction.util.ACTION;
 import com.auction.commons.ClientMessages;
+import com.auction.dto.AccountStatus;
+import com.auction.dto.User;
 import com.auction.dto.response.ClientResponse;
 import com.auction.dto.response.SignInResponse;
+import com.auction.library.SendMail;
+import com.auction.manager.UserManager;
+import com.auction.util.Constants;
 import org.bdlions.util.StringUtils;
 import org.bdlions.util.annotation.ClientRequest;
 import com.google.gson.Gson;
@@ -88,6 +93,37 @@ public class AuthHandler {
         response.setSuccess(true);
         
 
+        return response;
+    }
+    
+    @ClientRequest(action = ACTION.SIGN_UP)
+    public ClientResponse signUp(ISession session, IPacket packet) throws Exception 
+    {
+        Gson gson = new Gson();
+        User user = gson.fromJson(packet.getPacketBody(), User.class);
+        AccountStatus accountStatus = new AccountStatus();
+        accountStatus.setId(Constants.ACCOUNT_STATUS_ID_ACTIVE);
+        user.setAccountStatus(accountStatus);
+        UserManager userManager = new UserManager();
+        //send user role also
+        userManager.addUserProfile(user);
+        
+        //Once sign up is complete send account activation email to the user
+        SendMail sendMail = new SendMail();
+        //sendMail.sendSignUpMail("");
+        
+        SignInResponse response = new SignInResponse();
+        response.setMessage("Sign up successful");
+        response.setSuccess(true);
+        return response;
+    }
+    
+    @ClientRequest(action = ACTION.ADD_PRODUCT)
+    public ClientResponse addProduct(ISession session, IPacket packet) throws Exception 
+    {
+        SignInResponse response = new SignInResponse();
+        response.setMessage("Product is created successfully");
+        response.setSuccess(true);
         return response;
     }
 

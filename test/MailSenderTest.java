@@ -23,8 +23,8 @@ public class MailSenderTest {
     public static void main(String[] args) {
 
         // outgoing message information
-        String mailTo = "alamgirkabir7@gmail.com";
-        String subject = "Hello my friend";
+        String mailTo = "nazhasan15@yopmail.com";
+        String subject = "Room Auction Email Test2";
 
         Map<String, String> input = new HashMap<>();
         input.put("v_link", "http://property-auction.com/verify?vCode=" + UUID.randomUUID().toString());

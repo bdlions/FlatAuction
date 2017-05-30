@@ -40,9 +40,22 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-mapping>
+    <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.AccountStatus" select-before-update="true" table="account_statuses">
+        <id name="id" type="int">
+            <generator class="increment"/>
+        </id>
+        <property column="description" name="description" type="string" unique="true"/>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.Role" select-before-update="true" table="roles">
+        <id name="id" type="int">
+            <generator class="increment"/>
+        </id>
+        <property column="name" name="name" type="string" unique="true"/>
+        <property column="description" name="description" type="string" unique="true"/>
+    </class>
     <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.User" select-before-update="true" table="users">
         <id name="id" type="int">
-            <generator class="native"/>
+            <generator class="increment"/>
         </id>
         <property column="user_name" name="userName" type="string" unique="true"/>
         <property column="password" name="password" type="string"/>
@@ -50,25 +63,16 @@ Contributor(s):
         <property column="last_name" name="lastName" type="string"/>
         <property column="email" name="email" type="string"/>
         <property column="cell_no" name="cellNo" type="string"/>
-        <property column="account_status_id" name="accountStatusId" type="int"/>
+        <property column="img" name="img" type="string"/>
+        <property column="document" name="document" type="string"/>
+        <property column="is_verified" name="isVerified" type="boolean"/>
         <property column="last_access_time" name="lastAccessTime" type="long"/>
         <property column="created_on" name="createdOn" type="long" update="false"/>
         <property column="modified_on" name="modifiedOn" type="long"/>
-        <one-to-one cascade="all" class="com.auction.dto.AccountStatus" constrained="true" name="accountStatus"/>
-        <set inverse="true" lazy="true" name="roles" table="users_roles">
-            <key column="user_id"/>
-            <many-to-many class="com.auction.dto.Role">
-                <column name="role_id" not-null="true"/>
-            </many-to-many>
-        </set>
-    </class>
-    <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.Role" select-before-update="true" table="roles">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <property column="name" name="name" type="string" unique="true"/>
-        <property column="description" name="description" type="string" unique="true"/>
-    </class>
+        <many-to-one class="com.auction.dto.AccountStatus" fetch="select" name="accountStatus">
+            <column name="account_status_id" not-null="true"/>
+        </many-to-one>
+    </class>    
     <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.UserRoles" select-before-update="true" table="users_roles">
         <id name="id" type="int">
             <generator class="native"/>
@@ -80,12 +84,7 @@ Contributor(s):
             <column name="role_id" not-null="true"/>
         </many-to-one>
     </class>
-    <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.AccountStatus" select-before-update="true" table="account_statuses">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <property column="description" name="description" type="string" unique="true"/>
-    </class>
+
     <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.CurrencyUnit" select-before-update="true" table="currency_unit">
         <id name="id" type="int">
             <generator class="native"/>
@@ -290,7 +289,7 @@ Contributor(s):
     </sql-query>
     <sql-query name="getUserById">
         <return class="com.auction.dto.User"/>
-        SELECT * FROM USERS WHERE ID = :userId
+        SELECT * FROM USERS WHERE id = :id
     </sql-query>
     <sql-query name="getProducts">
         <!--<return class="com.auction.dto.Product"/>-->

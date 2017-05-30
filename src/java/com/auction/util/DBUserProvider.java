@@ -45,8 +45,8 @@ public class DBUserProvider implements IDBUserProvider{
                 credential.setAppType(100);
                 credential.setFirstName(user.getFirstName());
                 credential.setLastName(user.getLastName());
-//                credential.setUserId(user.getId());
-                credential.setUserId(1000000);
+                credential.setUserId(user.getId());
+                //credential.setUserId(1000000);
                 users.put(credential.getUserName(), credential);
                 return credential;
             }

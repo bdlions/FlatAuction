@@ -24,7 +24,13 @@ import org.bdlions.session.ISession;
 import org.bdlions.session.ISessionManager;
 import com.auction.util.ACTION;
 import com.auction.dto.response.ClientResponse;
+import com.auction.dto.response.SignInResponse;
 import com.auction.manager.ProductManager;
+import com.auction.manager.UserManager;
+import com.auction.util.Constants;
+import com.auction.util.FileUtils;
+import com.auction.util.ServerPropertyProvider;
+import com.auction.util.StringUtils;
 import org.bdlions.util.annotation.ClientRequest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -137,7 +143,17 @@ public class RequestHandler {
     
     @ClientRequest(action = ACTION.FETCH_USER_INFO)
     public ClientResponse getUserInfo(ISession session, IPacket packet){
-        User response = new Gson().fromJson("{\"userId\":\"1\", \"firstName\":\"Nazmul\", \"lastName\":\"Hasan\", \"email\":\"bdlions@gmail.com\", \"cellNo\":\"8801678112509\", \"img\":\"user.jpg\", \"document\":\"document.jpg\", \"isVerified\":\"true\"}", User.class );
+        int userId = (int)session.getUserId();
+        UserManager userManager = new UserManager();
+        
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+        Gson gson = gsonBuilder.create();
+        String userProfileString = gson.toJson(userManager.getUserProfileById(userId));
+        User response = gson.fromJson(userProfileString, User.class);
+        
+        //User response = userManager.getUserProfileById(userId);
+        //User response = new Gson().fromJson("{\"userId\":\"1\", \"firstName\":\"Nazmul\", \"lastName\":\"Hasan\", \"email\":\"bdlions@gmail.com\", \"cellNo\":\"8801678112509\", \"img\":\"user.jpg\", \"document\":\"document.jpg\", \"isVerified\":\"true\"}", User.class );
         response.setSuccess(true);
         return response;
     }
@@ -145,6 +161,69 @@ public class RequestHandler {
     @ClientRequest(action = ACTION.FETCH_ACCOUNT_SETTING_FA)
     public ClientResponse getAccountSettingFAInfo(ISession session, IPacket packet){
         AccountSettingFA response = new Gson().fromJson("{\"id\":\"1\",\"user\":{\"id\":\"1\"},\"defaultBidPerClick\":\"4\", \"defaultBidPerClickUnit\":{\"id\":\"1\",\"title\":\"p\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}},\"dailyBudget\":\"6\", \"dailyBudgetUnit\":{\"id\":\"1\",\"title\":\"£\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, \"campainActive\":\"true\"}", AccountSettingFA.class );
+        response.setSuccess(true);
+        return response;
+    }
+    
+    @ClientRequest(action = ACTION.UPDATE_USER_INFO)
+    public ClientResponse updateUserInfo(ISession session, IPacket packet){
+        UserManager userManager = new UserManager();
+        Gson gson = new Gson();
+        User user = gson.fromJson(packet.getPacketBody(), User.class);
+        userManager.updateUserProfile(user);
+        
+        SignInResponse response = new SignInResponse();
+        response.setMessage("Profile update successful.");
+        response.setSuccess(true);
+        return response;
+    }
+    
+    @ClientRequest(action = ACTION.UPDATE_USER_PROFILE_PICTURE)
+    public ClientResponse updateUserProfilePicture(ISession session, IPacket packet){
+        Gson gson = new Gson();
+        User user = gson.fromJson(packet.getPacketBody(), User.class);
+        //read image from temp directory and place into user profile picture directory
+        String imageFileName = user.getImg().trim().replaceAll("\n", "");
+        user.setImg(imageFileName);
+        if(!StringUtils.isNullOrEmpty(imageFileName))
+        {
+            //String root = Constants.SERVER_ROOT_DIR;
+            String uploadPath = RequestHandler.class.getClassLoader().getResource(Constants.SERVER_ROOT_DIR + Constants.IMAGE_UPLOAD_PATH).getFile();
+            String profilePicPath = RequestHandler.class.getClassLoader().getResource(Constants.SERVER_ROOT_DIR + Constants.PROFILE_PIC_PATH).getFile();
+            //System.out.println(root);
+            
+            FileUtils.copyFile(uploadPath + imageFileName, profilePicPath + imageFileName);
+        }
+        UserManager userManager = new UserManager();
+        userManager.updateUserProfile(user);
+        
+        SignInResponse response = new SignInResponse();
+        response.setMessage("Profile update successful.");
+        response.setSuccess(true);
+        return response;
+    }
+    
+    @ClientRequest(action = ACTION.UPDATE_USER_DOCUMENT)
+    public ClientResponse updateUserDocument(ISession session, IPacket packet){
+        Gson gson = new Gson();
+        User user = gson.fromJson(packet.getPacketBody(), User.class);
+        //read image from temp directory and place into user profile picture directory
+        String imageFileName = user.getDocument().trim().replaceAll("\n", "");
+        user.setDocument(imageFileName);
+        if(!StringUtils.isNullOrEmpty(imageFileName))
+        {
+            //String root = Constants.SERVER_ROOT_DIR;
+            String uploadPath = RequestHandler.class.getClassLoader().getResource(Constants.SERVER_ROOT_DIR + Constants.IMAGE_UPLOAD_PATH).getFile();
+            String documentPath = RequestHandler.class.getClassLoader().getResource(Constants.SERVER_ROOT_DIR + Constants.USER_DOCUMENT_PATH).getFile();
+            //System.out.println(root);
+            
+            FileUtils.copyFile(uploadPath + imageFileName, documentPath + imageFileName);
+        }
+        UserManager userManager = new UserManager();
+        userManager.updateUserProfile(user);
+        
+        SignInResponse response = new SignInResponse();
+        response.setMessage("Profile update successful.");
         response.setSuccess(true);
         return response;
     }

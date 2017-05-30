@@ -1,5 +1,5 @@
 export class User {
-    userId:number;
+    id:number;
     userName:string;
     password:string;
     firstName:string;
@@ -9,6 +9,8 @@ export class User {
     document:string;
     cellNo:string;
     isVerified:boolean;
+    //the following fields are different from server user dto
+    confirmPassword:string;
 }
 
 

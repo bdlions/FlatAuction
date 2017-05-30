@@ -15,12 +15,14 @@ import {DashBoard} from "../profile/dashboard";
 import {EditProfile} from "../profile/editprofile";
 import {UploadImg} from "../profile/uploadimg";
 import {UploadDocument} from "../profile/uploaddocument";
+import {FileUploadModule } from 'ng2-file-upload';
 //import {Abroad} from './abroad';
 //import {Header} from './header';
 
 
 @NgModule({
     imports: [HttpModule, BrowserModule, FormsModule,
+        FileUploadModule,
         RouterModule.forRoot(routes, {
             useHash: false
         })

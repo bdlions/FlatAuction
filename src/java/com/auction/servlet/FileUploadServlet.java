@@ -5,6 +5,7 @@
  */
 package com.auction.servlet;
 
+import com.auction.util.StringUtils;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -50,13 +51,15 @@ public class FileUploadServlet extends HttpServlet {
                 ServletFileUpload upload = new ServletFileUpload(factory);
 
                 try {
+                    String randomFileName = StringUtils.getRandomString()+".jpg";
                     List items = upload.parseRequest(request);
                     Iterator iterator = items.iterator();
                     while (iterator.hasNext()) {
                         FileItem item = (FileItem) iterator.next();
 
                         if (!item.isFormField()) {
-                            String fileName = item.getName();
+                            //String fileName = item.getName();
+                            
 
                             String root = getServletContext().getRealPath("/");
                             File path = new File(root + "/uploads");
@@ -64,11 +67,13 @@ public class FileUploadServlet extends HttpServlet {
                                 boolean status = path.mkdirs();
                             }
 
-                            File uploadedFile = new File(path + "/" + fileName);
+                            //File uploadedFile = new File(path + "/" + fileName);
+                            File uploadedFile = new File(path + "/" + randomFileName);
                             System.out.println(uploadedFile.getAbsolutePath());
                             item.write(uploadedFile);
                         }
                     }
+                    out.println(randomFileName);
                 } catch (FileUploadException e) {
                     e.printStackTrace();
                 } catch (Exception e) {
