@@ -12,10 +12,12 @@ import org.bdlions.session.ISessionManager;
 import com.auction.util.ACTION;
 import com.auction.commons.ClientMessages;
 import com.auction.dto.AccountStatus;
+import com.auction.dto.Product;
 import com.auction.dto.User;
 import com.auction.dto.response.ClientResponse;
 import com.auction.dto.response.SignInResponse;
 import com.auction.library.SendMail;
+import com.auction.manager.ProductManager;
 import com.auction.manager.UserManager;
 import com.auction.util.Constants;
 import org.bdlions.util.StringUtils;
@@ -121,6 +123,20 @@ public class AuthHandler {
     @ClientRequest(action = ACTION.ADD_PRODUCT)
     public ClientResponse addProduct(ISession session, IPacket packet) throws Exception 
     {
+        Gson gson = new Gson();
+        Product product = gson.fromJson(packet.getPacketBody(), Product.class);
+        
+        int userId = (int)session.getUserId();
+        User user = new User();
+        if(userId > 0)
+        {
+            user.setId(userId);
+            product.setUser(user);
+            ProductManager productManager = new ProductManager();
+            productManager.addProduct(product);
+        }
+        
+        
         SignInResponse response = new SignInResponse();
         response.setMessage("Product is created successfully");
         response.setSuccess(true);

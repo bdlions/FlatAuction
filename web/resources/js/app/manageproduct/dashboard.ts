@@ -8,6 +8,9 @@ import {Location} from '../dto/Location'
 import {WebAPIService} from './../webservice/web-api-service';
 import {PacketHeaderFactory} from './../webservice/PacketHeaderFactory';
 import {ACTION} from './../webservice/ACTION';
+import { FileUploader } from 'ng2-file-upload';
+
+const URL = window.SUB_DIRECTORY + '/FileUploadServlet';
 
 @Component({
     selector: 'data-content1ddd',
@@ -15,6 +18,7 @@ import {ACTION} from './../webservice/ACTION';
     providers: [WebAPIService]
 })
 export class DashBoard {
+    public uploader:FileUploader = new FileUploader({url: URL});
     private webAPIService: WebAPIService;
     private product: Product;
     private roomList: General[];
@@ -42,6 +46,10 @@ export class DashBoard {
         this.petList = JSON.parse("[{\"id\":\"1\",\"title\":\"No Preference\"}, {\"id\":\"2\",\"title\":\"No\"}]");
         this.minStayList = JSON.parse("[{\"id\":\"1\",\"title\":\"No Minimum\"}, {\"id\":\"2\",\"title\":\"1 Day\"}, {\"id\":\"2\",\"title\":\"1 Day\"}, {\"id\":\"3\",\"title\":\"2 Day\"}, {\"id\":\"4\",\"title\":\"3 Day\"}, {\"id\":\"5\",\"title\":\"1 Week\"}, {\"id\":\"6\",\"title\":\"2 Week\"}, {\"id\":\"7\",\"title\":\"1 Month\"}, {\"id\":\"8\",\"title\":\"2 Month\"}]");
         this.maxStayList = JSON.parse("[{\"id\":\"1\",\"title\":\"No Maximum\"}, {\"id\":\"2\",\"title\":\"1 Day\"}, {\"id\":\"2\",\"title\":\"1 Day\"}, {\"id\":\"3\",\"title\":\"2 Day\"}, {\"id\":\"4\",\"title\":\"3 Day\"}, {\"id\":\"5\",\"title\":\"1 Week\"}, {\"id\":\"6\",\"title\":\"2 Week\"}, {\"id\":\"7\",\"title\":\"1 Month\"}, {\"id\":\"8\",\"title\":\"2 Month\"}]");
+        
+        this.uploader.onCompleteItem = (item: any, response: any, status: any, headers:any)=>  {
+            console.log(response);
+        }
     }
     
     addProduct(event: Event) 

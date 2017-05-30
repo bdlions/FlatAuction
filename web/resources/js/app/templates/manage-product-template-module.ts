@@ -12,6 +12,7 @@ import {AuthGuard} from '../common/auth.guard';
 import {ManageProductApp} from '../ManageProductApp';
 //import {App} from './app';
 import {DashBoard} from "../manageproduct/dashboard";
+import {FileUploadModule } from 'ng2-file-upload';
 //import {Abroad} from './abroad';
 //import {Header} from './header';
 import {CarouselModule, TypeaheadModule, DatepickerModule} from "ngx-bootstrap"
@@ -20,6 +21,7 @@ import {CarouselModule, TypeaheadModule, DatepickerModule} from "ngx-bootstrap"
     imports: [HttpModule, BrowserModule, FormsModule,
         CarouselModule.forRoot(), TypeaheadModule.forRoot(),
         DatepickerModule.forRoot(),
+        FileUploadModule,
         RouterModule.forRoot(routes, {
             useHash: false
         })

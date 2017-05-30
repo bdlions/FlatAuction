@@ -19,13 +19,14 @@
                         <li><a href="#step4" data-toggle="tab">STEP 4</a></li>
                         <li><a href="#step5" data-toggle="tab">STEP 5</a></li>
                         <li><a href="#step6" data-toggle="tab">STEP 6</a></li>
+                        <li><a href="#step7" data-toggle="tab">STEP 7</a></li>
                     </ul>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
                     <div class="row form-group">
                         <div class="col-xs-12 col-sm-12 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
                             <div class="tab-content">
-                                <!--<form role="form" (submit)="addProduct($event)" method="post">-->
+                                <form role="form" (submit)="addProduct($event)" method="post">
                                 <div class="tab-pane active" id="step1">
                                     <div class="row form-group">
                                         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
@@ -168,7 +169,7 @@
                                             <h5 class="create-ad-label">Description</h5>
                                         </div>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-                                            <textarea rows="8" class="form-control input-custom-field" placeholder="Description Here..." value="{{product.description}}"></textarea>
+                                            <textarea [(ngModel)]="product.description" name="description" rows="8" class="form-control input-custom-field" placeholder="Description Here..."></textarea>
                                         </div>
                                     </div>
                                     <div class="row form-group">
@@ -176,10 +177,10 @@
                                             <h5 class="create-ad-label">Your Name</h5>
                                         </div>
                                         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                            <input class="form-control input-custom-field" name="displayFirstName" value="{{product.displayFirstName}}" placeholder="First Name" type="text" disabled/>
+                                            <input [(ngModel)]="product.firstName" name="firstName" class="form-control input-custom-field" placeholder="First Name" type="text"/>
                                         </div>
                                         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                            <input class="form-control input-custom-field" name="displayLastName" value="{{product.displayLastName}}" placeholder="Last Name" type="text" disabled>
+                                            <input [(ngModel)]="product.lastName" name="lastName" class="form-control input-custom-field" placeholder="Last Name" type="text">
                                         </div>
                                     </div>
                                     <div class="row form-group">
@@ -187,7 +188,7 @@
                                             <h5 class="create-ad-label">Telephone</h5>
                                         </div>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-                                            <input class="form-control input-custom-field" name="displayCellNo" value="{{product.displayCellNo}}" placeholder="Telephone" type="text"/>
+                                            <input [(ngModel)]="product.phone" name="phone" class="form-control input-custom-field" placeholder="Telephone" type="text"/>
                                         </div>
                                     </div>
                                     <div class="row form-group">
@@ -197,6 +198,105 @@
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="step6">
+                                    <div class="row form-group">
+                                        <style>
+                                            .my-drop-zone { border: dotted 3px lightgray; }
+                                            .nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
+                                            .another-file-over-class { border: dotted 3px green; }
+
+                                            html, body { height: 100%; }
+                                        </style>
+
+                                        <div class="container">
+                                            <br/>
+                                            <br/>
+                                            <br/>
+
+                                            <div class="row">
+                                                <div class="col-md-12" style="margin-bottom: 40px">
+
+                                                    <h5>Select file(can be multiple file selection)</h5>
+                                                    <input type="file" ng2FileSelect [uploader]="uploader" multiple  /><br/>
+
+                                                    <h3>Upload queue</h3>
+                                                    <p>Queue length: {{ uploader?.queue?.length }}</p>
+
+                                                    <table class="table">
+                                                        <thead>
+                                                        <tr>
+                                                            <th width="50%">Name</th>
+                                                            <th>Size</th>
+                                                            <th>Progress</th>
+                                                            <th>Status</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr *ngFor="let item of uploader.queue">
+                                                            <td><strong>{{ item?.file?.name }}</strong></td>
+                                                            <td *ngIf="uploader.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+                                                            <td *ngIf="uploader.isHTML5">
+                                                                <div class="progress" style="margin-bottom: 0;">
+                                                                    <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                                                                <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                                                                <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                                                            </td>
+                                                            <td nowrap>
+                                                                <button type="button" class="btn btn-success btn-xs"
+                                                                        (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                                                                    <span class="glyphicon glyphicon-upload"></span> Upload
+                                                                </button>
+                                                                <button type="button" class="btn btn-warning btn-xs"
+                                                                        (click)="item.cancel()" [disabled]="!item.isUploading">
+                                                                    <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                                                                </button>
+                                                                <button type="button" class="btn btn-danger btn-xs"
+                                                                        (click)="item.remove()">
+                                                                    <span class="glyphicon glyphicon-trash"></span> Remove
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                    <div>
+                                                        <div>
+                                                            Queue progress:
+                                                            <div class="progress" style="">
+                                                                <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" class="btn btn-success btn-s"
+                                                                (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                                                            <span class="glyphicon glyphicon-upload"></span> Upload all
+                                                        </button>
+                                                        <button type="button" class="btn btn-warning btn-s"
+                                                                (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+                                                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger btn-s"
+                                                                (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+                                                            <span class="glyphicon glyphicon-trash"></span> Remove all
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-xs-12 col-sm-offset-8 col-sm-4 col-md-offset-8 col-md-4 col-lg-offset-8 col-lg-4">
+                                            <button id="step4" name="step4" class="form-control common-custom-button">Next Step</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="step7">
                                     <div class="row form-group">
                                         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                                             <h5 class="create-ad-label">Daily Email Alerts</h5>
@@ -219,7 +319,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!--</form>-->
+                                </form>
                             </div>
                         </div>
                     </div>
