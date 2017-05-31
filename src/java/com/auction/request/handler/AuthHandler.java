@@ -12,6 +12,7 @@ import org.bdlions.session.ISessionManager;
 import com.auction.util.ACTION;
 import com.auction.commons.ClientMessages;
 import com.auction.dto.AccountStatus;
+import com.auction.dto.Image;
 import com.auction.dto.Product;
 import com.auction.dto.User;
 import com.auction.dto.response.ClientResponse;
@@ -20,6 +21,7 @@ import com.auction.library.SendMail;
 import com.auction.manager.ProductManager;
 import com.auction.manager.UserManager;
 import com.auction.util.Constants;
+import com.auction.util.FileUtils;
 import org.bdlions.util.StringUtils;
 import org.bdlions.util.annotation.ClientRequest;
 import com.google.gson.Gson;
@@ -134,6 +136,18 @@ public class AuthHandler {
             product.setUser(user);
             ProductManager productManager = new ProductManager();
             productManager.addProduct(product);
+            Image[] images = product.getImages();
+            if (images != null) {
+                for (Image image : images) {
+                    String imageFileName = image.getTitle();
+                    if(!com.auction.util.StringUtils.isNullOrEmpty(imageFileName))
+                    {
+                        String uploadPath = RequestHandler.class.getClassLoader().getResource(Constants.SERVER_ROOT_DIR + Constants.IMAGE_UPLOAD_PATH).getFile();
+                        String profilePicPath = RequestHandler.class.getClassLoader().getResource(Constants.SERVER_ROOT_DIR + Constants.PRODUCT_IMAGE_PATH).getFile();
+                        FileUtils.copyFile(uploadPath + imageFileName, profilePicPath + imageFileName);
+                    }
+                }
+            }
         }
         
         

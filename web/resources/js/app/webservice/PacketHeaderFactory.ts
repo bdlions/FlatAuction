@@ -26,6 +26,9 @@ export class PacketHeaderFactory {
             case ACTION.FETCH_PRODUCT_LIST:
                 packetHeader.requestType = REQUEST_TYPE.REQUEST
                 break;
+            case ACTION.FETCH_MY_PRODUCT_LIST:
+                packetHeader.requestType = REQUEST_TYPE.REQUEST
+                break;
             case ACTION.FETCH_LOCATION_LIST:
                 packetHeader.requestType = REQUEST_TYPE.REQUEST
                 break;
@@ -33,6 +36,21 @@ export class PacketHeaderFactory {
                 packetHeader.requestType = REQUEST_TYPE.REQUEST
                 break;
             case ACTION.FETCH_PRODUCT_TYPE_LIST:
+                packetHeader.requestType = REQUEST_TYPE.REQUEST
+                break;
+            case ACTION.FETCH_PRODUCT_SIZE_LIST:
+                packetHeader.requestType = REQUEST_TYPE.REQUEST
+                break;
+            case ACTION.FETCH_PRODUCT_CATEGORY_LIST:
+                packetHeader.requestType = REQUEST_TYPE.REQUEST
+                break;
+            case ACTION.FETCH_STAY_LIST:
+                packetHeader.requestType = REQUEST_TYPE.REQUEST
+                break;
+            case ACTION.FETCH_SMOKING_LIST:
+                packetHeader.requestType = REQUEST_TYPE.REQUEST
+                break;
+            case ACTION.FETCH_PET_LIST:
                 packetHeader.requestType = REQUEST_TYPE.REQUEST
                 break;
             case ACTION.FETCH_OCCUPATION_LIST:

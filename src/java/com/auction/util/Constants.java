@@ -12,5 +12,6 @@ public class Constants {
     public static final String IMAGE_UPLOAD_PATH = "uploads/";
     public static final String PROFILE_PIC_PATH = "resources/images/profile/";
     public static final String USER_DOCUMENT_PATH = "resources/images/profile/document/";
+    public static final String PRODUCT_IMAGE_PATH = "resources/images/product/";
     
 }

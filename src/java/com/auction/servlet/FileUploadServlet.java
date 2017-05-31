@@ -73,7 +73,7 @@ public class FileUploadServlet extends HttpServlet {
                             item.write(uploadedFile);
                         }
                     }
-                    out.println(randomFileName);
+                    out.print(randomFileName);
                 } catch (FileUploadException e) {
                     e.printStackTrace();
                 } catch (Exception e) {

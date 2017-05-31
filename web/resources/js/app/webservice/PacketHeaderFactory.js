@@ -27,6 +27,9 @@ var PacketHeaderFactory = (function () {
             case ACTION_1.ACTION.FETCH_PRODUCT_LIST:
                 packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
                 break;
+            case ACTION_1.ACTION.FETCH_MY_PRODUCT_LIST:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
+                break;
             case ACTION_1.ACTION.FETCH_LOCATION_LIST:
                 packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
                 break;
@@ -34,6 +37,21 @@ var PacketHeaderFactory = (function () {
                 packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
                 break;
             case ACTION_1.ACTION.FETCH_PRODUCT_TYPE_LIST:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
+                break;
+            case ACTION_1.ACTION.FETCH_PRODUCT_SIZE_LIST:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
+                break;
+            case ACTION_1.ACTION.FETCH_PRODUCT_CATEGORY_LIST:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
+                break;
+            case ACTION_1.ACTION.FETCH_STAY_LIST:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
+                break;
+            case ACTION_1.ACTION.FETCH_SMOKING_LIST:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
+                break;
+            case ACTION_1.ACTION.FETCH_PET_LIST:
                 packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
                 break;
             case ACTION_1.ACTION.FETCH_OCCUPATION_LIST:

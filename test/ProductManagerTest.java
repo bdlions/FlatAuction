@@ -6,8 +6,16 @@
 
 import com.auction.commons.HibernateProxyTypeAdapter;
 import com.auction.dto.Image;
+import com.auction.dto.Location;
+import com.auction.dto.Occupation;
+import com.auction.dto.Pet;
 import com.auction.dto.Product;
+import com.auction.dto.ProductCategory;
 import com.auction.dto.ProductList;
+import com.auction.dto.ProductSize;
+import com.auction.dto.ProductType;
+import com.auction.dto.Smoking;
+import com.auction.dto.Stay;
 import com.auction.dto.User;
 import com.auction.manager.ProductManager;
 import com.google.gson.Gson;
@@ -26,9 +34,9 @@ import static org.junit.Assert.*;
  *
  * @author nazmul
  */
-public class ProductTest {
+public class ProductManagerTest {
     
-    public ProductTest() {
+    public ProductManagerTest() {
     }
     
     @BeforeClass
@@ -45,6 +53,69 @@ public class ProductTest {
     
     @After
     public void tearDown() {
+    }
+    
+    //@Test
+    public void getProductTypesTest(){
+        ProductManager productManager = new ProductManager();
+        List<ProductType> productTypes = productManager.getProductTypes();
+        System.out.println(productTypes.size());
+    }
+    
+    //@Test
+    public void getProductSizesTest(){
+        ProductManager productManager = new ProductManager();
+        List<ProductSize> productSizes = productManager.getProductSizes();
+        System.out.println(productSizes.size());
+    }
+    
+    //@Test
+    public void getProductCategoriesTest(){
+        ProductManager productManager = new ProductManager();
+        List<ProductCategory> productCategories = productManager.getProductCategories();
+        System.out.println(productCategories.size());
+    }
+    
+    //@Test
+    public void getLocationsTest(){
+        ProductManager productManager = new ProductManager();
+        List<Location> locations = productManager.getLocations();
+        System.out.println(locations.size());
+    }
+    
+    //@Test
+    public void getStaysTest(){
+        ProductManager productManager = new ProductManager();
+        List<Stay> stays = productManager.getStays();
+        System.out.println(stays.size());
+    }
+    
+    //@Test
+    public void getSmokingsTest(){
+        ProductManager productManager = new ProductManager();
+        List<Smoking> smokings = productManager.getSmokings();
+        System.out.println(smokings.size());
+    }
+    
+    //@Test
+    public void getOccupationsTest(){
+        ProductManager productManager = new ProductManager();
+        List<Occupation> occupations = productManager.getOccupations();
+        System.out.println(occupations.size());
+    }
+    
+    //@Test
+    public void getPetsTest(){
+        ProductManager productManager = new ProductManager();
+        List<Pet> pets = productManager.getPets();
+        System.out.println(pets.size());
+    }
+    
+    //@Test
+    public void getMyProductsTest(){
+        ProductManager productManager = new ProductManager();
+        List<Product> products = productManager.getMyProducts(1, 0, 100);
+        System.out.println(products.size());
     }
 
     // TODO add test methods here.
@@ -92,9 +163,25 @@ public class ProductTest {
     public void addProduct(){
         Product product = new Product();
         product.setTitle("product1");
+        product.setDescription("description1");
+        product.setFirstName("fn1");
+        product.setLastName("ln1");
+        product.setPhone("01711123456");
         User user = new User();
         user.setId(1);
         product.setUser(user);
+        Image image1 = new Image();
+        image1.setTitle("a.jpg");        
+        Image image2 = new Image();
+        image2.setTitle("b.jpg");        
+        Image image3 = new Image();
+        image3.setTitle("c.jpg");
+        Image[] images = new Image[3];
+        images[0] = image1;
+        images[1] = image2;
+        images[2] = image3;
+        product.setImages(images);
+        
         ProductManager productManager = new ProductManager();
         productManager.addProduct(product);        
     }

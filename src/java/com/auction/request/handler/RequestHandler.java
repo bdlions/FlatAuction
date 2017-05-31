@@ -13,11 +13,16 @@ import com.auction.dto.DurationList;
 import com.auction.dto.GenderList;
 import com.auction.dto.LocationList;
 import com.auction.dto.OccupationList;
+import com.auction.dto.PetList;
 import com.auction.dto.Product;
+import com.auction.dto.ProductCategoryList;
 import com.auction.dto.ProductList;
+import com.auction.dto.ProductSizeList;
 import com.auction.dto.ProductTypeList;
 import com.auction.dto.RadiusList;
 import com.auction.dto.RoomSizeList;
+import com.auction.dto.SmokingList;
+import com.auction.dto.StayList;
 import com.auction.dto.User;
 import org.bdlions.transport.packet.IPacket;
 import org.bdlions.session.ISession;
@@ -47,6 +52,96 @@ public class RequestHandler {
         this.sessionManager = sessionManager;
     }
     
+    @ClientRequest(action = ACTION.FETCH_PRODUCT_TYPE_LIST)
+    public ClientResponse getProductTypeList(ISession session, IPacket packet){
+        ProductManager productManager = new ProductManager();
+        //ProductTypeList response = new Gson().fromJson("{\"productTypes\":[{\"id\":\"1\",\"title\":\"Property\"}, {\"id\":\"2\",\"title\":\"Room\"}]}", ProductTypeList.class );
+        ProductTypeList response = new ProductTypeList();
+        response.setProductTypes(productManager.getProductTypes());
+        response.setSuccess(true);
+        return response;
+    }
+    
+    @ClientRequest(action = ACTION.FETCH_PRODUCT_SIZE_LIST)
+    public ClientResponse getProductSizeList(ISession session, IPacket packet){
+        ProductManager productManager = new ProductManager();
+        ProductSizeList response = new ProductSizeList();
+        response.setProductSizes(productManager.getProductSizes());
+        response.setSuccess(true);
+        return response;
+    }
+    
+    @ClientRequest(action = ACTION.FETCH_PRODUCT_CATEGORY_LIST)
+    public ClientResponse getProductCategoryList(ISession session, IPacket packet){
+        ProductManager productManager = new ProductManager();
+        ProductCategoryList response = new ProductCategoryList();
+        response.setProductCategories(productManager.getProductCategories());
+        response.setSuccess(true);
+        return response;
+    }
+    
+    @ClientRequest(action = ACTION.FETCH_LOCATION_LIST)
+    public ClientResponse getLocationList(ISession session, IPacket packet){
+        ProductManager productManager = new ProductManager();
+        //LocationList response = new Gson().fromJson("{\"locations\":[{\"id\":\"1\",\"locationType\":\"area\",\"searchString\":\"London\",\"postCode\":\"c1\"}, {\"id\":\"2\",\"locationType\":\"area\",\"searchString\":\"London 123\",\"postCode\":\"c2\"}, {\"id\":\"3\",\"locationType\":\"area\",\"searchString\":\"London 456\",\"postCode\":\"c3\"}]}", LocationList.class );
+        LocationList response = new LocationList();
+        response.setLocations(productManager.getLocations());
+        response.setSuccess(true);
+        return response;
+    }
+    
+    @ClientRequest(action = ACTION.FETCH_STAY_LIST)
+    public ClientResponse getStayList(ISession session, IPacket packet){
+        ProductManager productManager = new ProductManager();
+        StayList response = new StayList();
+        response.setStays(productManager.getStays());
+        response.setSuccess(true);
+        return response;
+    }
+    
+    @ClientRequest(action = ACTION.FETCH_SMOKING_LIST)
+    public ClientResponse getSmokingList(ISession session, IPacket packet){
+        ProductManager productManager = new ProductManager();
+        SmokingList response = new SmokingList();
+        response.setSmokings(productManager.getSmokings());
+        response.setSuccess(true);
+        return response;
+    }
+    
+    @ClientRequest(action = ACTION.FETCH_OCCUPATION_LIST)
+    public ClientResponse getOccupationList(ISession session, IPacket packet){
+        ProductManager productManager = new ProductManager();
+        OccupationList response = new OccupationList();
+        response.setOccupations(productManager.getOccupations());
+        response.setSuccess(true);
+        return response;
+    }
+    
+    @ClientRequest(action = ACTION.FETCH_PET_LIST)
+    public ClientResponse getPetList(ISession session, IPacket packet){
+        ProductManager productManager = new ProductManager();
+        PetList response = new PetList();
+        response.setPets(productManager.getPets());
+        response.setSuccess(true);
+        return response;
+    }
+    
+    @ClientRequest(action = ACTION.FETCH_MY_PRODUCT_LIST)
+    public ClientResponse getMyProductList(ISession session, IPacket packet){
+        int userId = (int)session.getUserId();
+        ProductManager productManager = new ProductManager();
+        List<Product> products = productManager.getMyProducts(userId, 0, 100);
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+        Gson gson = gsonBuilder.create();
+        String productString = gson.toJson(products);
+        //System.out.println(productString);
+        ProductList response = gson.fromJson("{\"products\":" +productString +"}", ProductList.class);
+//        ProductList response = new Gson().fromJson("{\"products\":[{\"id\":\"1\",\"title\":\"Fun at the Bowling Alley1\", \"img\":\"a.jpg\", \"price\":\"£100\", \"price_type\":\"pw\", \"size\":\"single\", \"images\":[{\"id\":\"1\", \"url\":\"a.jpg\"}, {\"id\":\"2\", \"url\":\"b.jpg\"}], \"available\":\"2017-04-18\", \"description\":\"Double room in E16 available from 17/04/2017, short walk away from Prince Regent Lane DLR1.\"}, {\"id\":\"2\",\"title\":\"Fun at the Bowling Alley2\", \"img\":\"a.jpg\", \"price\":\"£200\", \"price_type\":\"pw\", \"size\":\"single\", \"images\":[{\"id\":\"1\", \"url\":\"a.jpg\"}, {\"id\":\"2\", \"url\":\"b.jpg\"}], \"available\":\"2017-04-18\", \"description\":\"Double room in E16 available from 17/04/2017, short walk away from Prince Regent Lane DLR2.\"}, {\"id\":\"3\",\"title\":\"Fun at the Bowling Alley3\", \"img\":\"a.jpg\", \"price\":\"£300\", \"price_type\":\"pw\", \"size\":\"single\", \"images\":[{\"id\":\"1\", \"url\":\"a.jpg\"}, {\"id\":\"2\", \"url\":\"b.jpg\"}], \"available\":\"2017-04-18\", \"description\":\"Double room in E16 available from 17/04/2017, short walk away from Prince Regent Lane DLR3.\"}, {\"id\":\"4\",\"title\":\"Fun at the Bowling Alley4\", \"img\":\"a.jpg\", \"price\":\"£400\", \"price_type\":\"pw\", \"size\":\"single\", \"images\":[{\"id\":\"1\", \"url\":\"a.jpg\"}, {\"id\":\"2\", \"url\":\"b.jpg\"}], \"available\":\"2017-04-18\", \"description\":\"Double room in E16 available from 17/04/2017, short walk away from Prince Regent Lane DLR4.\"}, {\"id\":\"5\",\"title\":\"Fun at the Bowling Alley5\", \"img\":\"a.jpg\", \"price\":\"£500\", \"price_type\":\"pw\", \"size\":\"single\", \"images\":[{\"id\":\"1\", \"url\":\"a.jpg\"}, {\"id\":\"2\", \"url\":\"b.jpg\"}], \"available\":\"2017-04-18\", \"description\":\"Double room in E16 available from 17/04/2017, short walk away from Prince Regent Lane DLR5.\"}, {\"id\":\"6\",\"title\":\"Fun at the Bowling Alley6\", \"img\":\"a.jpg\", \"price\":\"£600\", \"price_type\":\"pw\", \"size\":\"single\", \"images\":[{\"id\":\"1\", \"url\":\"a.jpg\"}, {\"id\":\"2\", \"url\":\"b.jpg\"}], \"available\":\"2017-04-18\", \"description\":\"Double room in E16 available from 17/04/2017, short walk away from Prince Regent Lane DLR6.\"} ]}", ProductList.class );
+        response.setSuccess(true);
+        return response;
+    }
+    
     @ClientRequest(action = ACTION.FETCH_PRODUCT_LIST)
     public ClientResponse getProductList(ISession session, IPacket packet){
         ProductManager pm = new ProductManager();
@@ -62,12 +157,7 @@ public class RequestHandler {
         return response;
     }
     
-    @ClientRequest(action = ACTION.FETCH_LOCATION_LIST)
-    public ClientResponse getLocationList(ISession session, IPacket packet){
-        LocationList response = new Gson().fromJson("{\"locations\":[{\"id\":\"1\",\"locationType\":\"area\",\"searchString\":\"London\",\"postCode\":\"c1\"}, {\"id\":\"2\",\"locationType\":\"area\",\"searchString\":\"London 123\",\"postCode\":\"c2\"}, {\"id\":\"3\",\"locationType\":\"area\",\"searchString\":\"London 456\",\"postCode\":\"c3\"}]}", LocationList.class );
-        response.setSuccess(true);
-        return response;
-    }
+    
     
     @ClientRequest(action = ACTION.FETCH_RADIUS_LIST)
     public ClientResponse getRadiusList(ISession session, IPacket packet){
@@ -76,19 +166,14 @@ public class RequestHandler {
         return response;
     }
     
-    @ClientRequest(action = ACTION.FETCH_PRODUCT_TYPE_LIST)
-    public ClientResponse getProductTypeList(ISession session, IPacket packet){
-        ProductTypeList response = new Gson().fromJson("{\"productTypes\":[{\"id\":\"1\",\"title\":\"Property\"}, {\"id\":\"2\",\"title\":\"Room\"}]}", ProductTypeList.class );
-        response.setSuccess(true);
-        return response;
-    }
     
-    @ClientRequest(action = ACTION.FETCH_OCCUPATION_LIST)
-    public ClientResponse getOccupationList(ISession session, IPacket packet){
-        OccupationList response = new Gson().fromJson("{\"occupations\":[{\"id\":\"1\",\"title\":\"Any Occupation\"}, {\"id\":\"2\",\"title\":\"Professional\"}, {\"id\":\"3\",\"title\":\"Student\"}]}", OccupationList.class );
-        response.setSuccess(true);
-        return response;
-    }
+    
+//    @ClientRequest(action = ACTION.FETCH_OCCUPATION_LIST)
+//    public ClientResponse getOccupationList(ISession session, IPacket packet){
+//        OccupationList response = new Gson().fromJson("{\"occupations\":[{\"id\":\"1\",\"title\":\"Any Occupation\"}, {\"id\":\"2\",\"title\":\"Professional\"}, {\"id\":\"3\",\"title\":\"Student\"}]}", OccupationList.class );
+//        response.setSuccess(true);
+//        return response;
+//    }
     
     @ClientRequest(action = ACTION.FETCH_GENDER_LIST)
     public ClientResponse getGenderList(ISession session, IPacket packet){

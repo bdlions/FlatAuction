@@ -7,7 +7,17 @@
 import com.auction.db.HibernateUtil;
 import com.auction.dto.AccountStatus;
 import com.auction.dto.Credential;
+import com.auction.dto.Image;
+import com.auction.dto.Location;
+import com.auction.dto.Occupation;
+import com.auction.dto.Pet;
+import com.auction.dto.Product;
+import com.auction.dto.ProductCategory;
+import com.auction.dto.ProductSize;
+import com.auction.dto.ProductType;
 import com.auction.dto.Role;
+import com.auction.dto.Smoking;
+import com.auction.dto.Stay;
 import com.auction.dto.Stock;
 import com.auction.dto.User;
 import com.auction.dto.UserRoles;
@@ -138,7 +148,7 @@ public class UserManagerTest {
         
     }  
     
-    //@Test
+    @Test
     public void defaultData(){
         
         Role role1 = new Role();
@@ -177,6 +187,8 @@ public class UserManagerTest {
         user.setLastName("Hasan");
         user.setUserName("nazmul");
         user.setPassword("pass");
+        user.setEmail("nazmul@gmail.com");
+        user.setCellNo("01711123456");
         user.setImg("user.jpg");
         user.setIsVerified(false);
         user.setAccountStatus(activeStatus);
@@ -205,6 +217,160 @@ public class UserManagerTest {
         
         session3.getTransaction().commit();
         
+        ProductType productType1 = new ProductType();
+        productType1.setId(1);
+        productType1.setTitle("Flat/Apartment");        
+        ProductType productType2 = new ProductType();
+        productType2.setId(2);
+        productType2.setTitle("House");
+        
+        ProductSize productSize1 = new ProductSize();
+        productSize1.setId(1);
+        productSize1.setTitle("1 Bed");
+        ProductSize productSize2 = new ProductSize();
+        productSize2.setId(2);
+        productSize2.setTitle("2 Bed");
+        ProductSize productSize3 = new ProductSize();
+        productSize3.setId(3);
+        productSize3.setTitle("3 Bed");
+        ProductSize productSize4 = new ProductSize();
+        productSize4.setId(4);
+        productSize4.setTitle("4 Bed");
+        ProductSize productSize5 = new ProductSize();
+        productSize5.setId(5);
+        productSize5.setTitle("5 Bed");
+        
+        ProductCategory productCategory1 = new ProductCategory();
+        productCategory1.setId(1);
+        productCategory1.setTitle("1 Room");
+        ProductCategory productCategory2 = new ProductCategory();
+        productCategory2.setId(2);
+        productCategory2.setTitle("2 Room");
+        ProductCategory productCategory3 = new ProductCategory();
+        productCategory3.setId(3);
+        productCategory3.setTitle("3 Room");
+        
+        Location location1 = new Location();
+        location1.setId(1);
+        location1.setLocationType("type1");
+        location1.setSearchString("london1");
+        location1.setPostCode("c1");
+        Location location2 = new Location();
+        location2.setId(2);
+        location2.setLocationType("type2");
+        location2.setSearchString("london2");
+        location2.setPostCode("c2");
+        Location location3 = new Location();
+        location3.setId(3);
+        location3.setLocationType("type3");
+        location3.setSearchString("london3");
+        location3.setPostCode("c3");
+        
+        Stay stay1 = new Stay();
+        stay1.setId(1);
+        stay1.setTitle("No Limit");
+        Stay stay2 = new Stay();
+        stay2.setId(2);
+        stay2.setTitle("1 day");
+        Stay stay3 = new Stay();
+        stay3.setId(3);
+        stay3.setTitle("3 week");
+        Stay stay4 = new Stay();
+        stay4.setId(4);
+        stay4.setTitle("1 month");
+        
+        
+        Smoking smoking1 = new Smoking();
+        smoking1.setId(1);
+        smoking1.setTitle("No preference");
+        Smoking smoking2 = new Smoking();
+        smoking2.setId(2);
+        smoking2.setTitle("No");
+        
+        Occupation occupation1 = new Occupation();
+        occupation1.setId(1);
+        occupation1.setTitle("No preference");
+        Occupation occupation2 = new Occupation();
+        occupation2.setId(2);
+        occupation2.setTitle("Student");
+        Occupation occupation3 = new Occupation();
+        occupation3.setId(1);
+        occupation3.setTitle("Professional");
+        
+        Pet pet1 = new Pet();
+        pet1.setId(1);
+        pet1.setTitle("No preference");
+        Pet pet2 = new Pet();
+        pet2.setId(2);
+        pet2.setTitle("No");
+        
+        
+        Product product = new Product();
+        product.setUser(user);
+        product.setReferenceId(StringUtils.getProductReferenceId());
+        product.setTitle("product1");
+        product.setDescription("description1");
+        product.setFirstName("fn1");
+        product.setLastName("ln1");
+        product.setPhone("01722123456");
+        product.setProductType(productType2);
+        product.setProductSize(productSize3);
+        product.setProductCategory(productCategory1);
+        product.setLocation(location2);
+        product.setMinStay(stay1);
+        product.setMaxStay(stay3);
+        product.setSmoking(smoking2);
+        product.setOccupation(occupation2);
+        product.setPet(pet2);
+        product.setImg("a.jpg");
+        
+        Image image1 = new Image();
+        image1.setTitle("a.jpg");        
+        Image image2 = new Image();
+        image2.setTitle("b.jpg");        
+        Image image3 = new Image();
+        image3.setTitle("c.jpg");
+        Image[] images = new Image[3];
+        images[0] = image1;
+        images[1] = image2;
+        images[2] = image3;
+        
+        
+        session.beginTransaction();
+        session.save(productType1);
+        session.save(productType2);
+        session.save(productSize1);
+        session.save(productSize2);
+        session.save(productSize3);
+        session.save(productSize4);
+        session.save(productSize5);
+        session.save(productCategory1);
+        session.save(productCategory2);
+        session.save(productCategory3);
+        session.save(location1);
+        session.save(location2);
+        session.save(location3);
+        session.save(stay1);
+        session.save(stay2);
+        session.save(stay3);
+        session.save(stay4);
+        session.save(smoking1);
+        session.save(smoking2);
+        session.save(occupation1);
+        session.save(occupation2);
+        session.save(occupation3);
+        session.save(pet1);
+        session.save(pet2);
+        session.save(product);
+        if (images != null) {
+            for (Image image : images) {
+                image.setProductId(product.getId());
+                session.save(image);
+            }
+        }
+        session.getTransaction().commit();
+        
+        
     }
 
     //@Test
@@ -215,7 +381,7 @@ public class UserManagerTest {
         System.out.println(user.getUserName());
     }
     
-    @Test
+    //@Test
     public void updateUserProfilePictureTest() 
     {
         UserManager userManager = new UserManager();

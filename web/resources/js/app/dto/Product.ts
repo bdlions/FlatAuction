@@ -18,6 +18,7 @@ export class Product {
     message:string;
     
     id:number;
+    referenceId:string;
     productId:string;
     user:User;
     title:string;
@@ -26,11 +27,11 @@ export class Product {
     lastName:string;
     phone:string;
     img:string;
-    images: Array<Image>;
+    images: Array<Image> = new Array<Image>();
     location: Location;
-    productType: ProductType;
-    productSize: ProductSize;
-    productCategory: ProductCategory;
+    productType: ProductType = new ProductType();
+    productSize: ProductSize = new ProductSize;
+    productCategory: ProductCategory = new ProductCategory();
     amenities: Array<Amenity>;
     smoking: Smoking;
     gender: Gender;
