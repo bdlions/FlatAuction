@@ -48,12 +48,12 @@
                                 </button>
                                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuMember">
                                      <li><a href="member.jsp">Dashboard</a></li>
-                                      <li><a href="manage-product.jsp">Manage Adverts</a></li>
-                                      <li><a href="">Messages</a></li>
-                                      <li><a href="">Account</a></li>
-                                      <li><a href="profile.jsp">Profile</a></li>
-                                      <li><a href="">Search</a></li>
-                                    <li><a href="#">Logout</a></li>
+                                    <li><a href="manage-advert.jsp">Manage Adverts</a></li>
+                                    <li><a href="message.jsp">Messages</a></li>
+                                    <li><a href="account.jsp">Account</a></li>
+                                    <li><a href="profile.jsp">Profile</a></li>
+                                    <li><a href="search.jsp">Search</a></li>
+                                    <li><a href="non-member.jsp">Logout</a></li>
                                 </ul>
                             </div>
                         </div>

@@ -152,14 +152,8 @@ public class ProductManagerTest {
 //            System.out.println(((Product)product).getTitle());
 //        });
     }
-//    @Test
-    public void getProductDetail(){
-        ProductManager manager = new ProductManager();
-        Product prod = manager.getProduct(28);
-        System.out.println(prod.getTitle());
-    }
     
-    @Test
+    //@Test
     public void addProduct(){
         Product product = new Product();
         product.setTitle("product1");
@@ -184,5 +178,11 @@ public class ProductManagerTest {
         
         ProductManager productManager = new ProductManager();
         productManager.addProduct(product);        
+    }
+    @Test
+    public void getProductInfoTest(){
+        ProductManager manager = new ProductManager();
+        Product prod = manager.getProductInfo(1);
+        System.out.println(prod.getTitle());
     }
 }

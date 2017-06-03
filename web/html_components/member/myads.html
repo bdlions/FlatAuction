@@ -23,7 +23,7 @@
                  <div class="my-ads-product-layout">
                     <div class="row form-group">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <h2 class="my-ads-product-title"><a>{{product.title}}</a></h2>
+                            <h2 class="my-ads-product-title"><a [routerLink]="['/productInfo']" (click)="selectProduct($event, 1)">{{product.title}}</a></h2>
                         </div>
                     </div>
                     <div class="row">

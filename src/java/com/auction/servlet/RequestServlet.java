@@ -44,7 +44,7 @@ public class RequestServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("application/json");
-        //response.addHeader("Access-Control-Allow-Origin", "*");
+        response.addHeader("Access-Control-Allow-Origin", "*");
         Gson gson = new GsonBuilder().create();
 
         PrintWriter out = response.getWriter();

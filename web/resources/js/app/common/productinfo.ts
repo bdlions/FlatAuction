@@ -14,6 +14,8 @@ import {ACTION} from './../webservice/ACTION';
 })
 export class Productinfo implements OnInit, OnDestroy {
     private webAPIService: WebAPIService;
+    private requetProduct: Product;
+    private productInfo: Product;
     private product: Product;
     private subscribe:Subscription;
     private id:number;
@@ -22,7 +24,7 @@ export class Productinfo implements OnInit, OnDestroy {
         this.webAPIService = webAPIService;
         
         this.product = new Product();
-        /*this.product.id = 1;
+        this.product.id = 1;
         this.product.title = "Fun at the Bowling Alley";
         this.product.description = "Double room in E16 available from 17/04/2017, short walk away from Prince Regent Lane DLR."
         this.product.price = 100;
@@ -35,13 +37,9 @@ export class Productinfo implements OnInit, OnDestroy {
         this.product.totalBids = 36;
         this.product.timeLeft = "1 day 13 hours 30 mins";
         this.product.startDate = "2017-05-11";
-        this.product.endDate = "2017-05-15";*/
+        this.product.endDate = "2017-05-15";
         
-        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_INFO)).then(result => {
-            this.product = result;
-            console.log(result);
-            console.log(this.product);
-        });
+        
     }
     
     public showBids(event: Event, id: number){
@@ -51,7 +49,15 @@ export class Productinfo implements OnInit, OnDestroy {
     ngOnInit() {
         this.subscribe = this.route.params.subscribe(params => {
             this.id = params['id']; 
-            console.log(this.id);
+            this.productInfo = new Product();
+            this.requetProduct = new Product();
+            this.requetProduct.id = this.id;
+            let requestBody: string = JSON.stringify(this.requetProduct);
+            this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_INFO), requestBody).then(result => {
+                this.productInfo = result;
+                console.log(result);
+                console.log(this.product);
+            });
         });
     }
 

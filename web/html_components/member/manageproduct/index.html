@@ -97,8 +97,8 @@
                                             <h5 class="create-ad-label">Min Stay</h5>
                                         </div>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-                                            <select class="form-control select-custom-field">
-                                                <option *ngFor="let minStay of minStayList" value="{{minStay.title}}"><a id="{{minStay.id}}">{{minStay.title}}</a></option>
+                                            <select [(ngModel)]="product.minStay" name="minStay" class="form-control select-custom-field">
+                                                <option *ngFor="let minStay of minStayList" [ngValue]="minStay">{{minStay.title}}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -107,8 +107,8 @@
                                             <h5 class="create-ad-label">Max Stay</h5>
                                         </div>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-                                            <select class="form-control select-custom-field">
-                                                <option *ngFor="let maxStay of maxStayList" value="{{maxStay.title}}"><a id="{{maxStay.id}}">{{maxStay.title}}</a></option>
+                                            <select [(ngModel)]="product.maxStay" name="maxStay" class="form-control select-custom-field">
+                                                <option *ngFor="let maxStay of maxStayList" [ngValue]="maxStay">{{maxStay.title}}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -124,8 +124,8 @@
                                             <h5 class="create-ad-label">Smoking</h5>
                                         </div>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-                                            <select class="form-control select-custom-field">
-                                                <option *ngFor="let smoking of smokingList" value="{{smoking.title}}"><a id="{{smoking.id}}">{{smoking.title}}</a></option>
+                                            <select [(ngModel)]="product.smoking" name="smoking" class="form-control select-custom-field">
+                                                <option *ngFor="let smoking of smokingList" [ngValue]="smoking">{{smoking.title}}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -134,8 +134,8 @@
                                             <h5 class="create-ad-label">Occupation</h5>
                                         </div>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-                                            <select class="form-control select-custom-field">
-                                                <option *ngFor="let occupation of occupationList" value="{{occupation.title}}"><a id="{{occupation.id}}">{{occupation.title}}</a></option>
+                                            <select [(ngModel)]="product.occupation" name="occupation" class="form-control select-custom-field">
+                                                <option *ngFor="let occupation of occupationList" [ngValue]="occupation">{{occupation.title}}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -144,8 +144,8 @@
                                             <h5 class="create-ad-label">Pets</h5>
                                         </div>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-                                            <select class="form-control select-custom-field">
-                                                <option *ngFor="let pet of petList" value="{{pet.title}}"><a id="{{pet.id}}">{{pet.title}}</a></option>
+                                            <select [(ngModel)]="product.pet" name="pet" class="form-control select-custom-field">
+                                                <option *ngFor="let pet of petList" [ngValue]="pet">{{pet.title}}</option>
                                             </select>
                                         </div>
                                     </div>

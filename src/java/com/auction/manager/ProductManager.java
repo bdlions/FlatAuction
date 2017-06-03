@@ -178,6 +178,19 @@ public class ProductManager {
         session.getTransaction().commit();
     }
     
+    public Product getProductInfo(int productId) {
+        Session session = HibernateUtil.getSession();
+        Query query = session.createSQLQuery("select {p.*} from products p where id = :id ")
+                    .addEntity("p",Product.class)
+                    .setInteger("id", productId);
+        List<Product> products =  query.list();
+        if(products != null && products.size() == 1)
+        {
+            return products.get(0);
+        }
+        return null;
+    }
+    
 
     public void addProductImages(int productId, Image[] images) {
         Session session = HibernateUtil.getSession();

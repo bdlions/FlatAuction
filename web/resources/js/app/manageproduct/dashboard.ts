@@ -77,19 +77,24 @@ export class DashBoard {
         
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_STAY_LIST)).then(result => {
             this.minStayList = result.stays;
+            this.product.minStay = this.minStayList[0];
             this.maxStayList = result.stays;
+            this.product.maxStay = this.minStayList[0];
         });
         
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_SMOKING_LIST)).then(result => {
             this.smokingList = result.smokings;
+            this.product.smoking = this.smokingList[0];
         });
         
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_OCCUPATION_LIST)).then(result => {
             this.occupationList = result.occupations;
+            this.product.occupation = this.occupationList[0];
         });
         
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PET_LIST)).then(result => {
             this.petList = result.pets;
+            this.product.pet = this.petList[0];
         });
         
         
@@ -150,7 +155,8 @@ export class DashBoard {
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.ADD_PRODUCT), requestBody).then(result =>{
             let response  = result;
             if (response.success){
-                this.router.navigate(['myads']);
+                window.location.replace("/");
+                window.location.href = "manage-advert.jsp";
             }
             else{
                 //show error message at this page

@@ -13,6 +13,7 @@ import {ManageAdvertApp} from '../ManageAdvertApp';
 //import {App} from './app';
 import {SavedAds} from "../member/savedads";
 import {MyAds} from "../member/myads";
+import {Productinfo} from '../common/productinfo';
 import {AccountSettings} from "../featuredad/accountsettings";
 import {IndividualAdBids} from "../featuredad/individualadbids";
 import {Stats} from "../featuredad/stats";
@@ -30,7 +31,7 @@ import {CarouselModule, TypeaheadModule, DatepickerModule} from "ngx-bootstrap"
             useHash: false
         })
     ],
-    declarations: [ManageAdvertApp, MyAds, SavedAds, AccountSettings, IndividualAdBids, Stats, Ranking, Faq],
+    declarations: [ManageAdvertApp, MyAds, Productinfo, SavedAds, AccountSettings, IndividualAdBids, Stats, Ranking, Faq],
     bootstrap: [ManageAdvertApp],
     providers: [AuthGuard, {provide: LocationStrategy, useClass: HashLocationStrategy}]
 })
