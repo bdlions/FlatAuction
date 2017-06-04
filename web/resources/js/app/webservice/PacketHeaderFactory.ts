@@ -23,6 +23,9 @@ export class PacketHeaderFactory {
             case ACTION.SIGN_IN:
                 packetHeader.requestType = REQUEST_TYPE.AUTH
                 break;
+            case ACTION.SIGN_OUT:
+                packetHeader.requestType = REQUEST_TYPE.AUTH
+                break;
             case ACTION.FETCH_PRODUCT_LIST:
                 packetHeader.requestType = REQUEST_TYPE.REQUEST
                 break;

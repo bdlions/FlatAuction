@@ -39,7 +39,9 @@ export class Signup {
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.SIGN_UP), requestBody).then(result =>{
             let response  = result;
             if (response.success){
-                //navigate to landing page with a message
+                localStorage.setItem("msg", "Account created successfully. Please login.");
+                window.location.replace("/");
+                window.location.href = "non-member.jsp";
             }
             else{
                 //show error message at this page

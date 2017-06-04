@@ -24,6 +24,9 @@ var PacketHeaderFactory = (function () {
             case ACTION_1.ACTION.SIGN_IN:
                 packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.AUTH;
                 break;
+            case ACTION_1.ACTION.SIGN_OUT:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.AUTH;
+                break;
             case ACTION_1.ACTION.FETCH_PRODUCT_LIST:
                 packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
                 break;

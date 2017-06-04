@@ -25,6 +25,7 @@ export class Product {
     description:string;
     firstName:string;
     lastName:string;
+    companyName:string;
     phone:string;
     img:string;
     images: Array<Image> = new Array<Image>();

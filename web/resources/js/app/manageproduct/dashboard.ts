@@ -164,4 +164,13 @@ export class DashBoard {
         });
     }
     
+    setCurrentAmenities(id: number)
+    {
+        if(id < 3)
+        {
+            return true;
+        }
+        return false;
+    }
+    
 }

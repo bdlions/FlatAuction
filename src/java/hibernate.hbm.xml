@@ -57,11 +57,11 @@ Contributor(s):
         <id name="id" type="int">
             <generator class="increment"/>
         </id>
-        <property column="user_name" name="userName" type="string" unique="true"/>
+        <property column="user_name" name="userName" type="string"/>
         <property column="password" name="password" type="string"/>
         <property column="first_name" name="firstName" type="string"/>
         <property column="last_name" name="lastName" type="string"/>
-        <property column="email" name="email" type="string"/>
+        <property column="email" name="email" type="string" unique="true"/>
         <property column="cell_no" name="cellNo" type="string"/>
         <property column="img" name="img" type="string"/>
         <property column="document" name="document" type="string"/>
@@ -172,30 +172,6 @@ Contributor(s):
         <property column="title" name="title" type="string"/>
     </class>
     
-    <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.PropertyAmenity" select-before-update="true" table="product_amenities">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <many-to-one class="com.auction.dto.Product" fetch="select" name="product">
-            <column name="product_id" not-null="true"/>
-        </many-to-one>
-        <many-to-one class="com.auction.dto.Amenity" fetch="select" name="amenity" unique="true">
-            <column name="amenity_id" not-null="true"/>
-        </many-to-one>
-    </class>
-    <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.PropertyDuration" select-before-update="true" table="product_durations">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <many-to-one class="com.auction.dto.Product" fetch="select" name="product">
-            <column name="product_id" not-null="true"/>
-        </many-to-one>
-        <many-to-one class="com.auction.dto.Duration" fetch="select" name="duration" unique="true">
-            <column name="duration_id" not-null="true"/>
-        </many-to-one>
-    </class>
-    
-    
     <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.Product" select-before-update="true" table="products">
         <id name="id" type="int">
             <generator class="increment"/>
@@ -207,6 +183,7 @@ Contributor(s):
         <property column="description" name="description" type="string"/>
         <property column="first_name" name="firstName" type="string"/>
         <property column="last_name" name="lastName" type="string"/>
+        <property column="company_name" name="companyName" type="string"/>
         <property column="phone" name="phone" type="string"/>
         <property column="img" name="img" type="string"/>
         <many-to-one class="com.auction.dto.ProductType" column="product_type_id" name="productType"/>
@@ -301,15 +278,19 @@ Contributor(s):
     </class>
     <sql-query name="getUserByCredential">
         <return class="com.auction.dto.User"/>
-        SELECT * FROM USERS WHERE USER_NAME = :userName AND PASSWORD = :password
+        SELECT * FROM users WHERE email = :email AND password = :password
+    </sql-query>
+    <sql-query name="getUserByIdentity">
+        <return class="com.auction.dto.User"/>
+        SELECT * FROM users WHERE email = :email
     </sql-query>
     <sql-query name="getRoles">
         <return class="com.auction.dto.Role"/>
-        SELECT * FROM ROLES
+        SELECT * FROM roles
     </sql-query>
     <sql-query name="getUserById">
         <return class="com.auction.dto.User"/>
-        SELECT * FROM USERS WHERE id = :id
+        SELECT * FROM users WHERE id = :id
     </sql-query>
     <sql-query name="getProductTypes">
         <return class="com.auction.dto.ProductType"/>
@@ -343,13 +324,13 @@ Contributor(s):
         <return class="com.auction.dto.Pet"/>
         SELECT * FROM pets
     </sql-query>
-    <sql-query name="getProducts">
-        <!--<return class="com.auction.dto.Product"/>-->
+<!--    <sql-query name="getProducts">
+        <return class="com.auction.dto.Product"/>
         SELECT product.id as id, product.title as title, first_name as firstName, last_name as lastName, 
-        img, description  FROM product LEFT JOIN image on product.id=image.product_id LIMIT :offset, :limit
-    </sql-query>
+        img, description  FROM products LEFT JOIN image on products.id=image.product_id LIMIT :offset, :limit
+    </sql-query>-->
     <sql-query name="getProductDetail">
         <return class="com.auction.dto.Product"/>
-        SELECT * FROM product WHERE id = :productId
+        SELECT * FROM products WHERE id = :productId
     </sql-query>
 </hibernate-mapping>

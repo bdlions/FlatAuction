@@ -105,20 +105,40 @@ public class AuthHandler {
     {
         Gson gson = new Gson();
         User user = gson.fromJson(packet.getPacketBody(), User.class);
-        AccountStatus accountStatus = new AccountStatus();
-        accountStatus.setId(Constants.ACCOUNT_STATUS_ID_ACTIVE);
-        user.setAccountStatus(accountStatus);
+        
         UserManager userManager = new UserManager();
-        //send user role also
-        userManager.addUserProfile(user);
-        
-        //Once sign up is complete send account activation email to the user
-        SendMail sendMail = new SendMail();
-        //sendMail.sendSignUpMail("");
-        
         SignInResponse response = new SignInResponse();
-        response.setMessage("Sign up successful");
-        response.setSuccess(true);
+        if(user != null)
+        {
+            User tempUser = userManager.getUserByIdentity(user.getEmail());
+            if(tempUser == null)
+            {
+                AccountStatus accountStatus = new AccountStatus();
+                accountStatus.setId(Constants.ACCOUNT_STATUS_ID_ACTIVE);
+                user.setAccountStatus(accountStatus);
+
+                //send user role also
+                userManager.addUserProfile(user);
+
+                //Once sign up is complete send account activation email to the user
+                SendMail sendMail = new SendMail();
+                //sendMail.sendSignUpMail("");
+
+                
+                response.setMessage("Sign up successful");
+                response.setSuccess(true);
+            }
+            else
+            {
+                response.setMessage("Email already used or invalid.");
+                response.setSuccess(false);
+            }
+        }
+        else
+        {
+            response.setMessage("Invalid params to create a new user. Please try again later.");
+            response.setSuccess(false);
+        }        
         return response;
     }
     
@@ -159,6 +179,18 @@ public class AuthHandler {
 
     @ClientRequest(action = ACTION.SIGN_OUT)
     public ClientResponse signOut(ISession session, IPacket packet) throws Exception {
+        if(session != null)
+        {
+            String sessionId = session.getSessionId();
+            try
+            {
+                sessionManager.destroySession(sessionId);
+            }
+            catch(Exception ex)
+            {
+                //add exception in log file
+            }
+        }
         System.out.println("msg" + packet.getPacketBody());
         SignInResponse response = new SignInResponse();
         response.setMessage("Sign out successful");

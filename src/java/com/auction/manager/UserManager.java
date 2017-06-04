@@ -20,11 +20,19 @@ public class UserManager {
 
     private final Logger logger = LoggerFactory.getLogger(UserManager.class);
     Session session = HibernateUtil.getSession();
-    public User getUserByCredential(String userName, String password) {
+    public User getUserByCredential(String identity, String password) {
         //Session session = HibernateUtil.getSession();
         Query query = session.getNamedQuery("getUserByCredential")
-                .setString("userName", userName)
+                .setString("email", identity)
                 .setString("password", password);
+
+        User user = (User)query.uniqueResult();
+        return user;
+    }
+    
+    public User getUserByIdentity(String identity) {
+        Query query = session.getNamedQuery("getUserByIdentity")
+                .setString("email", identity);
 
         User user = (User)query.uniqueResult();
         return user;

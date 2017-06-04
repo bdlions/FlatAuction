@@ -16,6 +16,7 @@ import {EditProfile} from "../profile/editprofile";
 import {UploadImg} from "../profile/uploadimg";
 import {UploadDocument} from "../profile/uploaddocument";
 import {FileUploadModule } from 'ng2-file-upload';
+import {Logout} from '../common/logout';
 //import {Abroad} from './abroad';
 //import {Header} from './header';
 
@@ -27,7 +28,7 @@ import {FileUploadModule } from 'ng2-file-upload';
             useHash: false
         })
     ],
-    declarations: [ProfileApp, DashBoard, EditProfile, UploadImg, UploadDocument],
+    declarations: [ProfileApp, DashBoard, EditProfile, UploadImg, UploadDocument, Logout],
     bootstrap: [ProfileApp],
     providers: [AuthGuard, {provide: LocationStrategy, useClass: HashLocationStrategy}]
 })

@@ -1,6 +1,7 @@
 <div class="search-box-layout-bg">
     <div class="steps">
         <div class="container">
+            {{msg}}
             {{errorMsg}}
             <div class="row form-group">
                 <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group">
@@ -9,7 +10,7 @@
                             <img src="resources/images/steps1.png">
                         </div>
                         <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
-                            <span class="hd-content">Create an account</span> <br><span class="hd-content">and Login</span>
+                            <a href="#signup"><span class="hd-content">Create an account</span></a> <br><span class="hd-content">and Login</span>
                         </div>
                     </div>
                 </div>
@@ -66,8 +67,8 @@
                         </div>
                         <div class="row form-group">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <h1 for="id" class="text-center landing-page-search-box-header-text">Find your solution</h1>
-                                <h3 for="id" class="text-center landing-page-search-box-small-text">Search properties for sale and to rent</h3>
+                                <h1 for="id" class="text-center landing-page-search-box-header-text"></h1>
+                                <h3 for="id" class="text-center landing-page-search-box-small-text"></h3>
                             </div>
                         </div>
                     </form> 
@@ -80,7 +81,7 @@
                             <h1>Login</h1>
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                    <input type="text" #username id="username" class="form-control input-custom-field" placeholder="Your Name"/>
+                                    <input type="text" #username id="username" class="form-control input-custom-field" placeholder="Your Email"/>
                                     <input type="password" #password id="password" class="form-control input-custom-field" placeholder="Your Password"/>
                                 </div>
                             </div>

@@ -206,7 +206,7 @@ public class ProductManager {
     }
 
     public List<Product> getProducts(int offset , int limit) {
-        Session session = HibernateUtil.getSession();
+        /*Session session = HibernateUtil.getSession();
 
         Query query = session.getNamedQuery("getProducts")
                         .setInteger("limit", limit)
@@ -214,6 +214,14 @@ public class ProductManager {
                         .setResultTransformer(Transformers.aliasToBean(Product.class));
         
         List<Product> products = query.list();
+        return products;*/
+        List<Product> products = new ArrayList<>();
+        
+        Query query = session.createSQLQuery("select {p.*} from products p limit :limit offset :offset ")
+                    .addEntity("p",Product.class)
+                    .setInteger("limit", limit)
+                    .setInteger("offset", offset);        
+        products = query.list();
         return products;
     }
     public Product getProduct(int productId) {

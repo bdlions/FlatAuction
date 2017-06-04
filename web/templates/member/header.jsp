@@ -54,7 +54,7 @@
                                     <li><a href="account.jsp">Account</a></li>
                                     <li><a href="profile.jsp">Profile</a></li>
                                     <li><a href="search.jsp">Search</a></li>
-                                    <li><a href="non-member.jsp">Logout</a></li>
+                                    <li><a href="profile.jsp#/logout/">Logout</a></li>
                                 </ul>
                             </div>
                         </div>
