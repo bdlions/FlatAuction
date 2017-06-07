@@ -5,10 +5,12 @@
  */
 package com.auction.db;
 
+import java.util.ArrayList;
 import org.hibernate.Session;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.engine.transaction.spi.LocalStatus;
 
 /**
  * Hibernate Utility class with a convenient method to get Session Factory
@@ -19,6 +21,7 @@ import org.hibernate.cfg.Configuration;
 public class HibernateUtil {
 
     private static final SessionFactory sessionFactory;
+    private static ArrayList<Session> sessions = new ArrayList();
     
     static {
         try {
@@ -35,7 +38,15 @@ public class HibernateUtil {
     }
     
     public static Session getSession() {
-        return sessionFactory.openSession();
+        //getTransaction().getStatus() != TransactionStatus.ACTIVE
+        for(int i = 0; i < sessions.size() ;  i ++){
+            if(sessions.get(i).getTransaction().getLocalStatus() != LocalStatus.ACTIVE){
+                return sessions.get(i);
+            }
+        }
+        Session session = sessionFactory.openSession();
+        sessions.add(session);
+        return session;
     }
     
     
