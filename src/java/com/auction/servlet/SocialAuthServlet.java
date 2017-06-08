@@ -62,7 +62,7 @@ public class SocialAuthServlet extends HttpServlet {
                         //retreive users matched with access token and login
                     //}
                     //else{
-                        FacebookClient facebookClient = new DefaultFacebookClient("EAAJN8HlAVdEBANAPD7u3QN6YKumESMAn6ONP8L2fikMf6w38ooQBtXlj09Xkn1k9tVEdh6ymVfo6VrlxzliysMa7DP9mLZCmr6NJeTcaBS0dg8wLJmMMpyHxQZAoWV0XnemvslLCNrZB9cvkf0rMzZApQ35Fi1oZD", Version.VERSION_2_3);
+                        FacebookClient facebookClient = new DefaultFacebookClient(access_token, Version.VERSION_2_3);
                         User user = facebookClient.fetchObject("me", User.class);
                         out.println("Name: " + user.getName());
                         out.println("</br>");
