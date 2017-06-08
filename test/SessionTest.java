@@ -1,6 +1,7 @@
 
 import com.auction.dto.Credential;
 import com.auction.util.DBUserProvider;
+import org.bdlions.session.ISession;
 import org.bdlions.session.UserSessionManagerImpl;
 
 /*
@@ -20,6 +21,8 @@ public class SessionTest {
         cr.setUserName("alamgir");
         cr.setPassword("pass");
         
-        s.createSession(cr);
+        ISession session = s.createSession(cr);
+        session = s.getSessionBySessionId(session.getSessionId());
+        System.out.println("User id : " + session.getUserId());
     }
 }
