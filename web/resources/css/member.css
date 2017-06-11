@@ -304,6 +304,34 @@ Version: 1.0
 }
 /* -------------------------------- Common ----------------------------- */
 
+.fileContainer {
+    overflow: hidden;
+    position: relative;
+}
+
+.fileContainer [type=file] {
+    cursor: inherit;
+    display: block;
+    font-size: 999px;
+    filter: alpha(opacity=0);
+    min-height: 100%;
+    min-width: 100%;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+}
+
+
+.fileContainer {
+    background: #206BAF;
+    float: left;
+}
+
+.fileContainer [type=file] {
+    cursor: pointer;
+}
 
 /* ---------------------------- Dashboard Left Sidebar Menu -------------------------------- */
 
@@ -324,7 +352,7 @@ Version: 1.0
     text-decoration: none;
     padding: 6px 0;
     font-size: 18px;
-    color: #216db1;
+    color: #000000;
     line-height: 2em;
 }
 .dashboard-left-sidebar-ul > li > a:hover{
@@ -380,7 +408,7 @@ Version: 1.0
     font-family: "tw-cen-mt";
     padding: 6px 0;
     font-size: 18px;
-    color: #216db1;
+    color: #000000;
     line-height: 2em;
 }
 .profile-left-sidebar-ul > li > a:hover,profile-left-sidebar-ul > li > a:focus,profile-left-sidebar-ul > li > a:visited{
@@ -739,7 +767,7 @@ Version: 1.0
 .user-profile-dashboard-content-layout{
     background-color: #ccc;
     padding: 15px!important;
-    margin: 0!important;
+    margin-bottom: 10px!important;
 }
 .user-profile-dashboard-content-layout{
     font-family: "tw-cen-mt";
@@ -865,14 +893,17 @@ Version: 1.0
     font-weight: normal;
     margin-top: 0;
 }
-.edit-profile-label{
+/* --------------------- Profile Verification -------------------------------------  */
+.profile-verification-heading{
     font-family: "tw-cen-mt";
-    font-weight: normal;
     color: #216db1;
-    font-size: 16px;
+    font-size: 24px;
     font-weight: normal;
-    margin-top: 5px;
+    margin-top: 0;
 }
+
+
+
 /* --------------------- Individual Ad Bids  -------------------------------------  */
 @media screen and (max-width: 600px) {
     .individual-ad-bids-table .fa-success{
@@ -886,4 +917,9 @@ Version: 1.0
 .start-date{
     position: absolute; 
     z-index: 99999; 
+}
+
+
+.display-hidden{
+    display: none;
 }

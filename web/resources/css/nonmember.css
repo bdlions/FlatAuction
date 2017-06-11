@@ -186,5 +186,14 @@ Version: 1.0
 }
 
 
+/* --------------------- Landing Page -------------------------------------  */
 
-
+#signup{
+    color: #fff!important;
+}
+.error-msg{
+    color: red;
+}
+.msg{
+    color: green;
+}
