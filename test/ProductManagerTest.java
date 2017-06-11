@@ -5,11 +5,14 @@
  */
 
 import com.auction.commons.HibernateProxyTypeAdapter;
+import com.auction.dto.Currency;
+import com.auction.dto.CurrencyUnit;
 import com.auction.dto.Image;
 import com.auction.dto.Location;
 import com.auction.dto.Occupation;
 import com.auction.dto.Pet;
 import com.auction.dto.Product;
+import com.auction.dto.ProductBid;
 import com.auction.dto.ProductCategory;
 import com.auction.dto.ProductList;
 import com.auction.dto.ProductSize;
@@ -179,10 +182,37 @@ public class ProductManagerTest {
         ProductManager productManager = new ProductManager();
         productManager.addProduct(product);        
     }
-    @Test
+    
+    //@Test
     public void getProductInfoTest(){
         ProductManager manager = new ProductManager();
         Product prod = manager.getProductInfo(1);
         System.out.println(prod.getTitle());
+    }
+    
+    //@Test
+    public void addProductBidTest(){
+        ProductManager productManager = new ProductManager();
+        ProductBid productBid = new ProductBid();
+        User user = new User();
+        user.setId(1);
+        Product product = new Product();
+        product.setId(1);
+        Currency currency = new Currency();
+        currency.setId(1);
+        CurrencyUnit currencyUnit = new CurrencyUnit();
+        currencyUnit.setId(1);
+        productBid.setUser(user);
+        productBid.setProduct(product);
+        productBid.setCurrency(currency);
+        productBid.setCurrencyUnit(currencyUnit);
+        productManager.addProductBid(productBid);
+    }
+    
+    @Test
+    public void getProductBidListTest(){
+        ProductManager productManager = new ProductManager();
+        List<ProductBid> productBids = productManager.getProductBidList(1);
+        System.out.println(productBids.size());
     }
 }

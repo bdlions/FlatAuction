@@ -2,7 +2,8 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Http} from '@angular/http';
 import {Subscription} from 'rxjs';
-import {Bid} from '../dto/bid';
+import {Bid} from '../dto/Bid';
+import {ProductBid} from '../dto/ProductBid';
 import {Product} from '../dto/Product';
 import {WebAPIService} from './../webservice/web-api-service';
 import {PacketHeaderFactory} from './../webservice/PacketHeaderFactory';
@@ -17,8 +18,10 @@ export class Bids implements OnInit, OnDestroy {
     private webAPIService: WebAPIService;
     private product: Product;
     private bidList: Bid[];
+    private productBidList: ProductBid[];
     private subscribe:Subscription;
-    private id:number;
+    //private id:number;
+    //private productId:number;
     
     constructor(public router: ActivatedRoute, webAPIService: WebAPIService) {
         this.webAPIService = webAPIService;
@@ -38,19 +41,30 @@ export class Bids implements OnInit, OnDestroy {
         this.product.timeLeft = "1 day 13 hours 30 mins";*/
         
         //this.bidList = JSON.parse("[{\"bidId\":\"1\",\"time\":\"21 Apr 2017 9:38:35AM\",\"amount\":\"1000\", \"currency\":{\"id\":\"1\",\"title\":\"£\",\"amount\":\"4.00\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, \"user\":{\"firstName\":\"Nazmul\", \"lastName\":\"Hasan\"}}, {\"bidId\":\"2\",\"time\":\"20 Apr 2017 9:38:35AM\",\"amount\":\"2000\", \"currency\":{\"id\":\"1\",\"title\":\"£\",\"amount\":\"4.00\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, \"user\":{\"firstName\":\"Alamgir\", \"lastName\":\"Kabir\"}}]");
-        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_INFO)).then(result => {
-            this.product = result;
-        });
+//        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_INFO)).then(result => {
+//            this.product = result;
+//        });
             
-        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_BID_LIST)).then(result => {
-            this.bidList = result.bids;
-        });
+//        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_BID_LIST)).then(result => {
+//            this.bidList = result.productBidList;
+//        });
     }
     
     ngOnInit() {
         this.subscribe = this.router.params.subscribe(params => {
-            this.id = params['id']; 
-            console.log(this.id);
+            //this.id = params['id']; 
+            //this.productId = params['id'];
+            this.product = new Product();
+            this.product.id =  params['id'];
+            let requestBody: string = JSON.stringify(this.product);
+            this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_BID_LIST), requestBody).then(result => {
+                this.productBidList = result.productBidList;
+            });
+            
+            let requestBody2: string = JSON.stringify(this.product);
+            this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_INFO), requestBody2).then(result => {
+                this.product = result;
+            });
         });
     }
 

@@ -6,16 +6,20 @@
 package com.auction.manager;
 
 import com.auction.db.HibernateUtil;
+import com.auction.dto.Currency;
+import com.auction.dto.CurrencyUnit;
 import com.auction.dto.Image;
 import com.auction.dto.Location;
 import com.auction.dto.Occupation;
 import com.auction.dto.Pet;
 import com.auction.dto.Product;
+import com.auction.dto.ProductBid;
 import com.auction.dto.ProductCategory;
 import com.auction.dto.ProductSize;
 import com.auction.dto.ProductType;
 import com.auction.dto.Smoking;
 import com.auction.dto.Stay;
+import com.auction.dto.User;
 import com.auction.util.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
@@ -160,7 +164,6 @@ public class ProductManager {
     /**
      * This method will create a new product
      * @param product product info
-     * @param images image array
      * @author nazmul hasan on 31st May 2017
      */
     public void addProduct(Product product) {
@@ -176,6 +179,36 @@ public class ProductManager {
             }
         }
         session.getTransaction().commit();
+    }
+    
+    /**
+     * This method will create a new product
+     * @param productBid product bid info
+     * @author nazmul hasan on 11th June 2017
+     */
+    public void addProductBid(ProductBid productBid) {
+        session.beginTransaction();
+        session.save(productBid);
+        session.getTransaction().commit();
+    }
+    
+    public List<ProductBid> getProductBidList(int productId)
+    {
+    List<ProductBid> productBidList = new ArrayList<>();
+        Session session = HibernateUtil.getSession();
+        Query query = session.createSQLQuery("select {pb.*}, {p.*}, {u.*}, {c.*}, {cu.*} from product_bids pb join products p on pb.product_id = p.id join users u on pb.user_id = u.id join currencies c on pb. currency_id = c.id join currency_units cu on pb.currency_unit_id = cu.id where pb.product_id = :product_id ")
+                    .addEntity("pb", ProductBid.class)
+                    .addEntity("p", Product.class)
+                    .addEntity("u", User.class)
+                    .addEntity("c", Currency.class)
+                    .addEntity("cu", CurrencyUnit.class)
+                    .setInteger("product_id", productId);
+        List<Object[]> rows =  query.list();
+        for(Object[] row: rows)
+        {
+            productBidList.add((ProductBid)row[0]);
+        }
+        return productBidList;
     }
     
     public Product getProductInfo(int productId) {

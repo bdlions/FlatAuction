@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Http} from '@angular/http';
 import {Subscription} from 'rxjs';
 import {Product} from '../dto/Product';
+import {ProductBid} from '../dto/ProductBid';
 import {WebAPIService} from './../webservice/web-api-service';
 import {PacketHeaderFactory} from './../webservice/PacketHeaderFactory';
 import {ACTION} from './../webservice/ACTION';
@@ -17,6 +18,7 @@ export class Productinfo implements OnInit, OnDestroy {
     private requetProduct: Product;
     private productInfo: Product;
     private product: Product;
+    private productBid:ProductBid;
     private subscribe:Subscription;
     private id:number;
     
@@ -24,6 +26,7 @@ export class Productinfo implements OnInit, OnDestroy {
         this.webAPIService = webAPIService;
         
         this.product = new Product();
+        this.productBid = new ProductBid();
         this.product.id = 1;
         this.product.title = "Fun at the Bowling Alley";
         this.product.description = "Double room in E16 available from 17/04/2017, short walk away from Prince Regent Lane DLR."
@@ -42,7 +45,27 @@ export class Productinfo implements OnInit, OnDestroy {
         
     }
     
+    postBid(event: Event) 
+    {
+        this.productBid.product = new Product();
+        this.productBid.product.id = this.product.id;
+        //ser user id from session at server
+        //set currency and currency unit at server.
+        let requestBody: string = JSON.stringify(this.productBid);
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.ADD_PRODUCT_BID), requestBody).then(result =>{
+            let response  = result;
+            if (response.success){
+                this.productBid = new ProductBid();
+                //set a message that product bid is placed successfully
+            }
+            else{
+                //show error message at this page
+            }
+        });
+    }
+    
     public showBids(event: Event, id: number){
+        //retrieve bids from the server for this product
         this.router.navigate(['bids', {id: this.id }]);
     }
     

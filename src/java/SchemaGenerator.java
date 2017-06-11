@@ -18,7 +18,7 @@ public class SchemaGenerator {
     public static void main(String[] args) {
         try {
             HibernateUtil.getSession();
-            Class<?> c = Class.forName(Bid.class.getName());
+            Class<?> c = Class.forName(ProductBid.class.getName());
             Object t = c.newInstance();
             
             Field[] fields = c.getDeclaredFields();

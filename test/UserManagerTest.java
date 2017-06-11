@@ -6,7 +6,11 @@
 
 import com.auction.db.HibernateUtil;
 import com.auction.dto.AccountStatus;
+import com.auction.dto.Amenity;
+import com.auction.dto.ProductBid;
 import com.auction.dto.Credential;
+import com.auction.dto.Currency;
+import com.auction.dto.CurrencyUnit;
 import com.auction.dto.Image;
 import com.auction.dto.Location;
 import com.auction.dto.Occupation;
@@ -266,6 +270,23 @@ public class UserManagerTest {
         location3.setSearchString("london3");
         location3.setPostCode("c3");
         
+        Amenity amenity1 = new Amenity();
+        amenity1.setId(1);
+        amenity1.setTitle("Parking");
+        Amenity amenity2 = new Amenity();
+        amenity2.setId(2);
+        amenity2.setTitle("Balcony/patio");
+        Amenity amenity3 = new Amenity();
+        amenity3.setId(3);
+        amenity3.setTitle("Garden/roof terrace");
+        Amenity amenity4 = new Amenity();
+        amenity4.setId(4);
+        amenity4.setTitle("Disabled access");
+        Amenity amenity5 = new Amenity();
+        amenity5.setId(5);
+        amenity5.setTitle("Garage");
+        
+        
         Stay stay1 = new Stay();
         stay1.setId(1);
         stay1.setTitle("No Limit");
@@ -310,8 +331,9 @@ public class UserManagerTest {
         product.setReferenceId(StringUtils.getProductReferenceId());
         product.setTitle("product1");
         product.setDescription("description1");
-        product.setFirstName("fn1");
-        product.setLastName("ln1");
+        product.setFirstName("firstn1");
+        product.setLastName("lastn1");
+        product.setCompanyName("company1");
         product.setPhone("01722123456");
         product.setProductType(productType2);
         product.setProductSize(productSize3);
@@ -350,6 +372,11 @@ public class UserManagerTest {
         session.save(location1);
         session.save(location2);
         session.save(location3);
+        session.save(amenity1);
+        session.save(amenity2);
+        session.save(amenity3);
+        session.save(amenity4);
+        session.save(amenity5);
         session.save(stay1);
         session.save(stay2);
         session.save(stay3);
@@ -368,8 +395,35 @@ public class UserManagerTest {
                 session.save(image);
             }
         }
-        session.getTransaction().commit();
         
+        
+        Currency currency1 = new Currency();
+        currency1.setTitle("£");        
+        Currency currency2 = new Currency();
+        currency2.setTitle("$");
+        session.save(currency1);
+        session.save(currency2);
+        
+        CurrencyUnit currencyUnit1 = new CurrencyUnit();
+        currencyUnit1.setTitle("default");
+        CurrencyUnit currencyUnit2 = new CurrencyUnit();
+        currencyUnit2.setTitle("p");
+        session.save(currencyUnit1);
+        session.save(currencyUnit2);
+        
+        
+        //add a default bid
+        ProductBid bid = new ProductBid();
+        bid.setReferenceId("abcd1234");
+        bid.setUser(user);
+        bid.setProduct(product);
+        bid.setCreatedOn(1234567);
+        bid.setPrice(100);
+        bid.setCurrency(currency1);
+        bid.setCurrencyUnit(currencyUnit1);
+        session.save(bid);
+        
+        session.getTransaction().commit();
         
     }
 

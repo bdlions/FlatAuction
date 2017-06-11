@@ -98,6 +98,9 @@ export class PacketHeaderFactory {
             case ACTION.ADD_PRODUCT:
                 packetHeader.requestType = REQUEST_TYPE.UPDATE
                 break;
+            case ACTION.ADD_PRODUCT_BID:
+                packetHeader.requestType = REQUEST_TYPE.UPDATE
+                break;
             default:
                 packetHeader.requestType = REQUEST_TYPE.NONE
         }

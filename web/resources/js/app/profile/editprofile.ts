@@ -36,6 +36,7 @@ export class EditProfile {
             let response  = result;
             if (response.success){
                 //show success message
+                this.router.navigate(['profile']);
             }
             else{
                 //show error message at this page

@@ -111,6 +111,12 @@ Contributor(s):
         <property column="search_string" name="searchString" type="string"/>
         <property column="post_code" name="postCode" type="string"/>
     </class>
+    <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.Amenity" select-before-update="true" table="amenities">
+        <id name="id" type="int">
+            <generator class="increment"/>
+        </id>
+        <property column="title" name="title" type="string"/>
+    </class>   
     <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.Stay" select-before-update="true" table="stays">
         <id name="id" type="int">
             <generator class="increment"/>
@@ -135,30 +141,23 @@ Contributor(s):
         </id>
         <property column="title" name="title" type="string"/>
     </class>
-    
+    <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.CurrencyUnit" select-before-update="true" table="currency_units">
+        <id name="id" type="int">
+            <generator class="increment"/>
+        </id>
+        <property column="title" name="title" type="string"/>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.Currency" select-before-update="true" table="currencies">
+        <id name="id" type="int">
+            <generator class="increment"/>
+        </id>
+        <property column="title" name="title" type="string"/>
+    </class>
     
     
 
-    <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.CurrencyUnit" select-before-update="true" table="currency_unit">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <property column="title" name="title" type="string"/>
-    </class>
-    <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.Currency" select-before-update="true" table="currency">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <property column="title" name="title" type="string"/>
-        <one-to-one cascade="all" class="com.auction.dto.CurrencyUnit" constrained="true" name="currencyUnit">
-        </one-to-one>
-    </class>
-    <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.Amenity" select-before-update="true" table="amenity">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <property column="title" name="title" type="string"/>
-    </class>    
+    
+     
     <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.Gender" select-before-update="true" table="gender">
         <id name="id" type="int">
             <generator class="native"/>
@@ -202,10 +201,11 @@ Contributor(s):
             <index column="id"/>
             <one-to-many class="com.auction.dto.Image"/>
         </array>-->
-        <set inverse="true" lazy="true" name="amenities" table="product_amenities">
+<!--        <set inverse="true" lazy="true" name="amenities" table="product_amenities">
             <key column="product_id"/>
             <many-to-many class="com.auction.dto.Amenity" column="amenity_id" />
-        </set>
+        </set>-->
+        
         <many-to-one class="com.auction.dto.Gender" column="gender" name="gender"/>        
         <set inverse="true" lazy="true" name="durations" table="product_durations">
             <key column="product_id"/>
@@ -230,8 +230,31 @@ Contributor(s):
         <property column="title" name="title" type="string"/>
         <property column="product_id" name="productId" type="int"/>
     </class>
+    <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.ProductAmenities" select-before-update="true" table="products_amenities">
+        <id name="id" type="int">
+            <generator class="increment"/>
+        </id>
+        <many-to-one class="com.auction.dto.Amenity" fetch="select" name="amenity">
+            <column name="amenity_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.auction.dto.Product" fetch="select" name="product">
+            <column name="product_id" not-null="true"/>
+        </many-to-one>
+        <property column="status" name="status" type="boolean"/>
+    </class>
     
-    
+    <class name="com.auction.dto.ProductBid" table="product_bids" dynamic-update="true" dynamic-insert="true" select-before-update="true">
+        <id name="id" type="int">
+            <generator class="increment"/>
+        </id>
+        <property column="reference_id" name="referenceId" type="string"/>
+        <many-to-one class="com.auction.dto.User" column="user_id"  fetch="select" name="user" not-null="true"/>
+        <many-to-one class="com.auction.dto.Product" column="product_id"  fetch="select" name="product" not-null="true"/>
+        <property name="createdOn" column="created_on" type="long"/>
+        <property name="price" column="price" type="double"/>
+        <many-to-one class="com.auction.dto.Currency" column="currency_id"  fetch="select" name="currency" not-null="true"/>
+        <many-to-one class="com.auction.dto.CurrencyUnit" column="currency_unit_id"  fetch="select" name="currencyUnit" not-null="true"/>
+    </class>
     
     
     
@@ -263,19 +286,8 @@ Contributor(s):
         <property name="campainActive" column="campain_active" type="boolean"/>
 
     </class>
-    <class name="com.auction.dto.Bid" table="bid" 
-           dynamic-update="true" dynamic-insert="true" select-before-update="true">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <property name="bidId" column="bid_id" type="string"/>
-        <many-to-one class="com.auction.dto.User" column="user_id"  fetch="select" name="user" not-null="true"/>
-        <many-to-one class="com.auction.dto.Product" column="product_id"  fetch="select" name="product" not-null="true"/>
-        <property name="createdOn" column="created_on" type="long"/>
-        <property name="bidAmount" column="bid_amount" type="double"/>
-        <many-to-one class="com.auction.dto.Currency" column="bid_amount_unit"  fetch="select" name="bidAmountUnit" not-null="true"/>
-        <property name="bidTime" column="bid_time" type="string"/>
-    </class>
+    
+    
     <sql-query name="getUserByCredential">
         <return class="com.auction.dto.User"/>
         SELECT * FROM users WHERE email = :email AND password = :password

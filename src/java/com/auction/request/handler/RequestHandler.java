@@ -7,7 +7,7 @@ package com.auction.request.handler;
 
 import com.auction.commons.HibernateProxyTypeAdapter;
 import com.auction.dto.AccountSettingFA;
-import com.auction.dto.BidList;
+import com.auction.dto.ProductBidList;
 import com.auction.dto.CurrencyList;
 import com.auction.dto.DurationList;
 import com.auction.dto.GenderList;
@@ -15,6 +15,7 @@ import com.auction.dto.LocationList;
 import com.auction.dto.OccupationList;
 import com.auction.dto.PetList;
 import com.auction.dto.Product;
+import com.auction.dto.ProductBid;
 import com.auction.dto.ProductCategoryList;
 import com.auction.dto.ProductList;
 import com.auction.dto.ProductSizeList;
@@ -213,8 +214,18 @@ public class RequestHandler {
     
     @ClientRequest(action = ACTION.FETCH_BID_LIST)
     public ClientResponse getBidList(ISession session, IPacket packet){
-        //BidList response = new Gson().fromJson("{\"bids\":[{\"bidId\":\"1\",\"time\":\"21 Apr 2017 9:38:35AM\",\"amount\":\"1000\", \"currency\":{\"id\":\"1\",\"title\":\"£\",\"amount\":\"4.00\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, \"user\":{\"firstName\":\"Nazmul\", \"lastName\":\"Hasan\"}}, {\"bidId\":\"2\",\"time\":\"20 Apr 2017 9:38:35AM\",\"amount\":\"2000\", \"currency\":{\"id\":\"1\",\"title\":\"£\",\"amount\":\"4.00\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, \"user\":{\"firstName\":\"Alamgir\", \"lastName\":\"Kabir\"}}]}", BidList.class );
-        BidList response = new Gson().fromJson("{\"bids\":[{\"id\":1,\"bidId\":\"1\",\"bidTime\":\"2017-04-25 9:38:35AM\",\"bidAmount\":\"1000\", \"bidAmountUnit\":{\"id\":\"1\",\"title\":\"£\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, \"user\":{\"userId\":1,\"firstName\":\"Nazmul\", \"lastName\":\"Hasan\"}, \"product\":{\"productId\":\"p1\"}}, {\"id\":2,\"bidId\":\"2\",\"bidTime\":\"2017-04-27 9:38:35AM\",\"bidAmount\":\"2000\", \"bidAmountUnit\":{\"id\":\"1\",\"title\":\"£\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, \"user\":{\"userId\":2,\"firstName\":\"Alamgir\", \"lastName\":\"Kabir\"}, \"product\":{\"productId\":\"p1\"}}, {\"id\":1,\"bidId\":\"3\",\"bidTime\":\"2017-04-28 9:38:35AM\",\"bidAmount\":\"3000\", \"bidAmountUnit\":{\"id\":\"1\",\"title\":\"£\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, \"user\":{\"userId\":3,\"firstName\":\"Shem\", \"lastName\":\"Haye\"}, \"product\":{\"productId\":\"p1\"}}]}", BidList.class );
+        //BidList response = new Gson().fromJson("{\"bids\":[{\"bidId\":\"1\",\"time\":\"21 Apr 2017 9:38:35AM\",\"amount\":\"1000\", \"currency\":{\"id\":\"1\",\"title\":\"£\",\"amount\":\"4.00\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, \"user\":{\"firstName\":\"Nazmul\", \"lastName\":\"Hasan\"}}, {\"bidId\":\"2\",\"time\":\"20 Apr 2017 9:38:35AM\",\"amount\":\"2000\", \"currency\":{\"id\":\"1\",\"title\":\"£\",\"amount\":\"4.00\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, \"user\":{\"firstName\":\"Alamgir\", \"lastName\":\"Kabir\"}}]}", ProductBidList.class );
+        //ProductBidList response = new Gson().fromJson("{\"productBidList\":[{\"id\":1,\"bidId\":\"1\",\"bidTime\":\"2017-04-25 9:38:35AM\",\"bidAmount\":\"1000\", \"bidAmountUnit\":{\"id\":\"1\",\"title\":\"£\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, \"user\":{\"userId\":1,\"firstName\":\"Nazmul\", \"lastName\":\"Hasan\"}, \"product\":{\"productId\":\"p1\"}}, {\"id\":2,\"bidId\":\"2\",\"bidTime\":\"2017-04-27 9:38:35AM\",\"bidAmount\":\"2000\", \"bidAmountUnit\":{\"id\":\"1\",\"title\":\"£\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, \"user\":{\"userId\":2,\"firstName\":\"Alamgir\", \"lastName\":\"Kabir\"}, \"product\":{\"productId\":\"p1\"}}, {\"id\":1,\"bidId\":\"3\",\"bidTime\":\"2017-04-28 9:38:35AM\",\"bidAmount\":\"3000\", \"bidAmountUnit\":{\"id\":\"1\",\"title\":\"£\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, \"user\":{\"userId\":3,\"firstName\":\"Shem\", \"lastName\":\"Haye\"}, \"product\":{\"productId\":\"p1\"}}]}", ProductBidList.class );
+        Gson gson1 = new Gson();
+        Product product = gson1.fromJson(packet.getPacketBody(), Product.class);
+        ProductManager productManager = new ProductManager();
+        List<ProductBid> productBidList = productManager.getProductBidList(product.getId());
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+        Gson gson = gsonBuilder.create();
+        String productBidListString = gson.toJson(productBidList);
+        ProductBidList response = gson.fromJson("{\"productBidList\":" +productBidListString +"}", ProductBidList.class);
+        
         response.setSuccess(true);
         return response;
     }

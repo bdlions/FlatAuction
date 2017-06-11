@@ -29,9 +29,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let bid of bidList">
+                                <tr *ngFor="let bid of productBidList">
                                     <td data-label="Bidder">{{bid.user.firstName}} {{bid.user.lastName}}</td>
-                                    <td data-label="Bid Amount">{{bid?.bidAmountUnit?.title}} {{bid.bidAmount}}</td>
+                                    <td data-label="Bid Amount">{{bid?.currency?.title}} {{bid.price}}</td>
                                     <td data-label="Bid Time">{{bid.bidTime}}</td>
                                 </tr>
                             </tbody>
@@ -68,7 +68,7 @@
                         <h3 class="bid-history-product-item-price-title">Item number: </h3>
                     </div>
                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-                        <h2 class="bid-history-product-item-price-content">{{product.id}}</h2>
+                        <h2 class="bid-history-product-item-price-content">{{product.referenceId}}</h2>
                     </div>
                 </div>
             </div>

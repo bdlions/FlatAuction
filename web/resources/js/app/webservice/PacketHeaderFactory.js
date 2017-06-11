@@ -99,6 +99,9 @@ var PacketHeaderFactory = (function () {
             case ACTION_1.ACTION.ADD_PRODUCT:
                 packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.UPDATE;
                 break;
+            case ACTION_1.ACTION.ADD_PRODUCT_BID:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.UPDATE;
+                break;
             default:
                 packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.NONE;
         }

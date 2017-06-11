@@ -12,10 +12,14 @@ import org.bdlions.session.ISessionManager;
 import com.auction.util.ACTION;
 import com.auction.commons.ClientMessages;
 import com.auction.dto.AccountStatus;
+import com.auction.dto.Currency;
+import com.auction.dto.CurrencyUnit;
 import com.auction.dto.Image;
 import com.auction.dto.Product;
+import com.auction.dto.ProductBid;
 import com.auction.dto.User;
 import com.auction.dto.response.ClientResponse;
+import com.auction.dto.response.GeneralResponse;
 import com.auction.dto.response.SignInResponse;
 import com.auction.library.SendMail;
 import com.auction.manager.ProductManager;
@@ -173,6 +177,40 @@ public class AuthHandler {
         
         SignInResponse response = new SignInResponse();
         response.setMessage("Product is created successfully");
+        response.setSuccess(true);
+        return response;
+    }
+    
+    @ClientRequest(action = ACTION.ADD_PRODUCT_BID)
+    public ClientResponse addProductBid(ISession session, IPacket packet) throws Exception 
+    {
+        Gson gson = new Gson();
+        ProductBid productBid = gson.fromJson(packet.getPacketBody(), ProductBid.class);
+        
+        int userId = (int)session.getUserId();
+        User user = new User();
+        if(userId > 0)
+        {
+            user.setId(userId);
+            productBid.setUser(user);
+            //in future set this id based on user currency profile. right now default pound is used
+            Currency currency = new Currency();
+            currency.setId(1);
+            //by default setting 1, later set it from configuration file
+            CurrencyUnit currencyUnit = new CurrencyUnit();
+            currencyUnit.setId(Constants.CURRENCY_UNIT_DEFAULT);
+            productBid.setCurrency(currency);
+            productBid.setCurrencyUnit(currencyUnit);
+            
+            productBid.setReferenceId(StringUtils.getRandomString());
+            
+            ProductManager productManager = new ProductManager();
+            productManager.addProductBid(productBid);
+            
+        }
+        
+        GeneralResponse response = new GeneralResponse();
+        response.setMessage("Bid is added successfully");
         response.setSuccess(true);
         return response;
     }
