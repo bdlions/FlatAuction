@@ -479,7 +479,11 @@ Version: 1.0
 .dashboard-box-option-layout{
     border: 2px solid #216db1;
     text-align: center;
-    padding: 50px;
+    padding: 25px;
+}
+.dashboard-box-option-layout img{
+    margin-left: auto; 
+    margin-right: auto;
 }
 .dashboard-box-option-layout h2{
     font-size: 18px;
@@ -729,8 +733,8 @@ Version: 1.0
     font-weight: normal;
     color: #fff;
     line-height: 1em;
-    font-size: 28px;
-    text-align: center;
+    font-size: 24px;
+    margin-left: 15px; 
 }
 .user-profile-dashboard-content-layout{
     background-color: #ccc;
@@ -853,7 +857,22 @@ Version: 1.0
     font-weight: normal;
     margin-top: 5px;
 }
-
+/* --------------------- Upload Profile -------------------------------------  */
+.upload-profile-heading{
+    font-family: "tw-cen-mt";
+    color: #216db1;
+    font-size: 24px;
+    font-weight: normal;
+    margin-top: 0;
+}
+.edit-profile-label{
+    font-family: "tw-cen-mt";
+    font-weight: normal;
+    color: #216db1;
+    font-size: 16px;
+    font-weight: normal;
+    margin-top: 5px;
+}
 /* --------------------- Individual Ad Bids  -------------------------------------  */
 @media screen and (max-width: 600px) {
     .individual-ad-bids-table .fa-success{
