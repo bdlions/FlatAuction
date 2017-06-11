@@ -21,9 +21,10 @@ body{
     overflow-x: hidden;
 }
 h1,h2,h3,h4,h5,h6{
-    font-family: "tw-cen-mt";
+    font-family: "tw-cen-mt"!important;
     color: #216db1;
-    margin-top: 10px;
+    margin-top: 5px!important;
+    margin-bottom: 5px!important;
     line-height: 150%;
 }
 a{
@@ -256,7 +257,6 @@ textarea{
     border: 2px solid #f49726;
     border-radius: 0px;
     padding: 6px 12px;
-    border-radius: 8px;
 }
 .select-custom-field:focus{
     border: 2px solid #f49726;
@@ -497,10 +497,9 @@ input[type=checkbox]:checked {
         border-radius: 4px;*/
 }
 .search-input-field{
-    border: 2px solid #f16c26!important;
+    border: 2px solid #f49726!important;
     padding: 6px 12px !important;
-    border-bottom-left-radius: 4px;
-    border-top-left-radius: 4px;
+    border-radius: 0px!important;
 }
 .search-field:focus{
     border: 1px solid #4568b2!important;
@@ -1703,15 +1702,16 @@ input[type=checkbox]:checked {
     font-weight: normal;
 }
 .basic-search-header{
+    font-size: 28px;
     font-family: "tw-cen-mt";
-    color: #484848;
-    padding-bottom: 25px;
+    color: #216db1;
 }
 .basic-search-selection-title{
     font-family: "tw-cen-mt";
-    font-size: 14px;
-    color: #484848;
-    margin-top: 5px;
+    font-weight: normal;
+    color: #2672b7;
+    font-size: 16px;
+    font-weight: normal;
 }
 /* --------------------- Advanced Search Page Search Box -------------------------------------  */
 
@@ -1747,13 +1747,14 @@ input[type=checkbox]:checked {
     font-weight: normal;
 }
 .advanced-search-header{
+    font-size: 28px;
     font-family: "tw-cen-mt";
-    color: #484848;
-    padding-bottom: 25px;
+    color: #216db1;
 }
 .advanced-search-selection-title{
     font-family: "tw-cen-mt";
-    font-size: 14px;
-    color: #484848;
-    padding-bottom: 5px;
+    font-weight: normal;
+    color: #2672b7;
+    font-size: 16px;
+    font-weight: normal;
 }

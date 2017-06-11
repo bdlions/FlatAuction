@@ -523,7 +523,7 @@ Version: 1.0
     font-size: 28px;
     font-family: "tw-cen-mt";
     color: #216db1;
-    margin-top: 25px;
+    margin-top: 10px !important;
 }
 .saved-ads-product-layout{
     padding: 0px 25px;
@@ -563,10 +563,10 @@ Version: 1.0
 }
 /* ---------------------------- My Ads -------------------------------- */
 .my-ads-product-heading{
-    font-size: 28px;
     font-family: "tw-cen-mt";
+    font-size: 28px;
     color: #216db1;
-    margin-top: 25px;
+    margin-top: 10px !important;
 }
 .my-ads-product-layout{
     padding: 0px 25px;
@@ -621,8 +621,8 @@ Version: 1.0
 }
 .message-inbox-header-title{
     font-family: "tw-cen-mt";
+    font-size: 28px;
     color: #fff;
-    font-size: 16px;
 }
 .message-inbox-content-layout{
     background-color: #FFFFFF;
@@ -752,17 +752,13 @@ Version: 1.0
 }
 /* --------------------- User Profile DashBoard -------------------------------------  */
 .user-profile-dashboard-header-layout{
-    background-color: #f68521;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
+   background-color: #216db1;
+    padding: 1px 15px;
 }
 .user-profile-dashboard-header{
     font-family: "tw-cen-mt";
-    font-weight: normal;
-    color: #fff;
-    line-height: 1em;
-    font-size: 24px;
-    margin-left: 15px; 
+    font-size: 28px;
+    color: #fff; 
 }
 .user-profile-dashboard-content-layout{
     background-color: #ccc;
@@ -851,9 +847,8 @@ Version: 1.0
 /* --------------------- Featured Ad -------------------------------------  */
 .featured-ad-heading{
     font-family: "tw-cen-mt";
-    font-size: 24px;
+    font-size: 28px;
     color: #216db1;
-    margin-top: 0;
 }
 .featured-ad-label{
     font-family: "tw-cen-mt";
@@ -872,10 +867,8 @@ Version: 1.0
 /* --------------------- Edit Profile -------------------------------------  */
 .edit-profile-heading{
     font-family: "tw-cen-mt";
+    font-size: 28px;
     color: #216db1;
-    font-size: 24px;
-    font-weight: normal;
-    margin-top: 0;
 }
 .edit-profile-label{
     font-family: "tw-cen-mt";
@@ -887,19 +880,15 @@ Version: 1.0
 }
 /* --------------------- Upload Profile -------------------------------------  */
 .upload-profile-heading{
-    font-family: "tw-cen-mt";
+   font-family: "tw-cen-mt";
+    font-size: 28px;
     color: #216db1;
-    font-size: 24px;
-    font-weight: normal;
-    margin-top: 0;
 }
 /* --------------------- Profile Verification -------------------------------------  */
 .profile-verification-heading{
-    font-family: "tw-cen-mt";
+   font-family: "tw-cen-mt";
+    font-size: 28px;
     color: #216db1;
-    font-size: 24px;
-    font-weight: normal;
-    margin-top: 0;
 }
 
 
