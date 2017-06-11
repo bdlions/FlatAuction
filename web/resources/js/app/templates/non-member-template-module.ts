@@ -16,6 +16,8 @@ import {AdvancedSearch} from '../common/advancedsearch';
 import {Search} from '../common/search';
 import {Productinfo} from '../common/productinfo';
 import {Bids} from '../common/bids';
+import {Terms} from '../common/terms';
+import {Privacypolicy} from '../common/privacypolicy';
 import {CarouselModule, TypeaheadModule, DatepickerModule} from "ngx-bootstrap"
 import {FileUploadModule } from 'ng2-file-upload';
 import { AgmCoreModule } from 'angular2-google-maps/core';
@@ -32,7 +34,7 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
             useHash: false
         })
     ],
-    declarations: [Signup, NonMemberApp, Landing, BasicSearch, AdvancedSearch, Search, Productinfo, Bids],
+    declarations: [Signup, NonMemberApp, Landing, BasicSearch, AdvancedSearch, Search, Productinfo, Bids, Terms, Privacypolicy],
     bootstrap: [NonMemberApp],
     providers: [AuthGuard, {provide: LocationStrategy, useClass: HashLocationStrategy}]
 })

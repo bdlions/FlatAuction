@@ -12,6 +12,8 @@ import {BasicSearch} from '../common/basicsearch';
 import {AdvancedSearch} from '../common/advancedsearch';
 import {Productinfo} from '../common/productinfo';
 import {Bids} from '../common/bids';
+import {Terms} from '../common/terms';
+import {Privacypolicy} from '../common/privacypolicy';
 //import {AutoComplete} from '../autocomplete';
 //import {Angular2Autocomplete} from '../autocomplete/autocomplete-example';
 
@@ -24,6 +26,8 @@ export const routes: Routes = [
     {path: 'search', component: Search},
     {path: 'productinfo', component: Productinfo},
     {path: 'bids', component: Bids},
+    {path: 'terms', component: Terms},
+    {path: 'privacypolicy', component: Privacypolicy},
 //    {path: 'complete', component: AutoComplete},
     //  { path: 'home',   component: Home, canActivate: [AuthGuard] },
     //  { path: 'abroad',   component: Abroad, canActivate: [AuthGuard] },
