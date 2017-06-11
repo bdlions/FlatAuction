@@ -21,9 +21,9 @@
             </div>
             <div class="row form-group">
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 form-group">
-                    <div class="row">
+                    <div class="row form-group">
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <h5> Select an Advert to view its statistics...</h5>
+                            <h5 class="featured-ad-label"> Select an Advert to view its statistics...</h5>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                             <select class="form-control select-custom-field">
@@ -31,9 +31,9 @@
                             </select> 
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row form-group">
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <h5>From</h5>
+                            <h5 class="featured-ad-label">From</h5>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                             <input class="form-control input-custom-field" type="text" [ngModel]="fromDate" (focus)="showDatePicker = true" (focusout)="showDatePicker = false" >
@@ -42,9 +42,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row form-group">
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <h5>To</h5>
+                            <h5 class="featured-ad-label">To</h5>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                             <input class="form-control input-custom-field" type="text" id="datepicker">
