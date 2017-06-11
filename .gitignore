@@ -26,3 +26,7 @@
 /web/resources/js/app/manageproduct/*.map
 /web/resources/js/app/home/*.js
 /web/resources/js/app/home/*.map
+/web/resources/js/app/message/*.js
+/web/resources/js/app/message/*.map
+/web/resources/js/app/account/*.js
+/web/resources/js/app/account/*.map

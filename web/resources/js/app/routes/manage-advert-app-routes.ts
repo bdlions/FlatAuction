@@ -9,12 +9,14 @@ import {IndividualAdBids} from "../featuredad/individualadbids";
 import {Stats} from "../featuredad/stats";
 import {Ranking} from "../featuredad/ranking";
 import {Faq} from "../featuredad/faq";
+import {Sendmessage} from "../message/sendmessage";
 
 // Define which component should be loaded based on the current URL
 export const routes: Routes = [
     { path: '', component: MyAds},
     { path: 'productinfo', component: Productinfo},
-    {path: 'bids', component: Bids},
+    { path: 'sendmessage', component: Sendmessage},
+    { path: 'bids', component: Bids},
     { path: 'savedads', component: SavedAds},
     { path: 'accountsettings', component: AccountSettings },
     { path: 'individualadbids', component: IndividualAdBids },

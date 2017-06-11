@@ -20,6 +20,7 @@ import {IndividualAdBids} from "../featuredad/individualadbids";
 import {Stats} from "../featuredad/stats";
 import {Ranking} from "../featuredad/ranking";
 import {Faq} from "../featuredad/faq";
+import {Sendmessage} from "../message/sendmessage";
 //import {Abroad} from './abroad';
 //import {Header} from './header';
 import {CarouselModule, TypeaheadModule, DatepickerModule} from "ngx-bootstrap"
@@ -32,7 +33,7 @@ import {CarouselModule, TypeaheadModule, DatepickerModule} from "ngx-bootstrap"
             useHash: false
         })
     ],
-    declarations: [ManageAdvertApp, MyAds, Productinfo, Bids, SavedAds, AccountSettings, IndividualAdBids, Stats, Ranking, Faq],
+    declarations: [ManageAdvertApp, MyAds, Productinfo, Bids, SavedAds, AccountSettings, IndividualAdBids, Stats, Ranking, Faq, Sendmessage],
     bootstrap: [ManageAdvertApp],
     providers: [AuthGuard, {provide: LocationStrategy, useClass: HashLocationStrategy}]
 })
