@@ -1,15 +1,22 @@
 <div class="row">
     <div class="col-xs-12 col-sm-3 col-md-2 col-lg-2 form-group">
-         <ul class="dashboard-left-sidebar-ul margin-top-align">
+        <ul class="dashboard-left-sidebar-ul margin-top-align">
             <li><a href="manage-product.jsp">Create Ads</a></li>
             <li><a class="active" [routerLink]="['/myads']" (click)="myads($event)">My Ads</a></li>
             <li><a [routerLink]="['/savedads']" (click)="savedads($event)">Saved Ads</a></li>
-            <li>Featured Ads</li>
-            <li><a [routerLink]="['/accountsettings']" (click)="accountsettings($event)">Account Settings</a></li>
-            <li><a [routerLink]="['/individualadbids']" (click)="individualadbids($event)">Individual Ad Bids</a></li>
-            <li><a [routerLink]="['/stats']" (click)="stats($event)">Stats</a></li>
-            <li><a [routerLink]="['/ranking']" (click)="ranking($event)">Ranking</a></li>
-            <li><a [routerLink]="['/faq']" (click)="faq($event)">FAQ</a></li>
+            <li><ul class="nav nav-pills nav-stacked" id="stacked-menu">
+                    <li>
+                        <a class="nav-container" data-toggle="collapse" data-parent="#stacked-menu" href="#p1">Featured Ads <span class="caret"></span></a>          
+                        <ul class="nav nav-pills nav-stacked collapse" id="p1">
+                            <li><a [routerLink]="['/accountsettings']" (click)="accountsettings($event)">Account Settings</a></li>
+                            <li><a [routerLink]="['/individualadbids']" (click)="individualadbids($event)">Individual Ad Bids</a></li>
+                            <li><a [routerLink]="['/stats']" (click)="stats($event)">Stats</a></li>
+                            <li><a [routerLink]="['/ranking']" (click)="ranking($event)">Ranking</a></li>
+                            <li><a [routerLink]="['/faq']" (click)="faq($event)">FAQ</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
     <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
@@ -36,7 +43,7 @@
                     </div>
                     <div class="row form-group">
                         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
-                             <div class="saved-ads-product-price-title">Price</div>
+                            <div class="saved-ads-product-price-title">Price</div>
                         </div>
                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 form-group">
                             <div class="saved-ads-product-price-amount">{{product.price}}</div>
@@ -44,7 +51,7 @@
                     </div>
                     <div class="row form-group">
                         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
-                             <div class="saved-ads-product-id-title">Reference Id</div>
+                            <div class="saved-ads-product-id-title">Reference Id</div>
                         </div>
                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 form-group">
                             <div class="saved-ads-product-id">{{product.id}}</div>

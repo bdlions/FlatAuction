@@ -4,12 +4,19 @@
             <li><a href="manage-product.jsp">Create Ads</a></li>
             <li><a class="active" [routerLink]="['/myads']" (click)="myads($event)">My Ads</a></li>
             <li><a [routerLink]="['/savedads']" (click)="savedads($event)">Saved Ads</a></li>
-            <li>Featured Ads</li>
-            <li><a [routerLink]="['/accountsettings']" (click)="accountsettings($event)">Account Settings</a></li>
-            <li><a [routerLink]="['/individualadbids']" (click)="individualadbids($event)">Individual Ad Bids</a></li>
-            <li><a [routerLink]="['/stats']" (click)="stats($event)">Stats</a></li>
-            <li><a [routerLink]="['/ranking']" (click)="ranking($event)">Ranking</a></li>
-            <li><a [routerLink]="['/faq']" (click)="faq($event)">FAQ</a></li>
+            <li><ul class="nav nav-pills nav-stacked" id="stacked-menu">
+                    <li>
+                        <a class="nav-container" data-toggle="collapse" data-parent="#stacked-menu" href="#p1">Featured Ads <span class="caret"></span></a>          
+                        <ul class="nav nav-pills nav-stacked collapse" id="p1">
+                            <li><a [routerLink]="['/accountsettings']" (click)="accountsettings($event)">Account Settings</a></li>
+                            <li><a [routerLink]="['/individualadbids']" (click)="individualadbids($event)">Individual Ad Bids</a></li>
+                            <li><a [routerLink]="['/stats']" (click)="stats($event)">Stats</a></li>
+                            <li><a [routerLink]="['/ranking']" (click)="ranking($event)">Ranking</a></li>
+                            <li><a [routerLink]="['/faq']" (click)="faq($event)">FAQ</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">

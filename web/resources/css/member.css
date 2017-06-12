@@ -380,7 +380,7 @@ Version: 1.0
     font-family: "tw-cen-mt";
     padding: 6px 0;
     font-size: 18px;
-    color: #216db1;
+    color: #000;
     line-height: 2em;
 }
 .featured-ad-left-sidebar-ul > li > a:hover{
@@ -488,8 +488,28 @@ Version: 1.0
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6a224', endColorstr='#f75d1e',GradientType=0 );
     color: #fff;
 }
-
-
+#stacked-menu{
+    margin: 0;
+    padding: 0;
+}
+#stacked-menu > li > a, #p1 > li > a{
+    font-family: "tw-cen-mt";
+    padding: 6px 0;
+    color: #000;
+    
+}
+#stacked-menu > li > a:hover, #p1 > li > a:hover{
+    color: #f68521;
+}
+#stacked-menu > li > a{
+    font-size: 18px;
+    line-height: 2em;
+}
+#p1 > li > a{
+   font-size: 16px;
+   line-height: 1.5em;
+   margin-left: 10px;
+}
 
 
 
