@@ -1,13 +1,63 @@
+<div class="row margin-top-align">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <span class="message_from_details-label">To: </span><span class="message_from_details_text"> {{message.to.firstName}} {{message.to.lastName}}</span>
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <span class="message_from_details-label">Subject:</span><span class="message_from_details_text"> {{message.subject}}</span>
+    </div>
+</div>
+<div class="row form-group" *ngFor="let messageText of message.messageList" >
+     <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+        <div class="message_from_details_layout_other_user" >
+            <div class="row form-group">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="message_from_details_text">{{messageText.text}}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="message_from_details_time">{{messageText.time}}</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+        <div class="row message_from_details">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <img class="img-responsive" src="resources/images/user.jpg">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="message_from_details_user"> {{messageText.user.firstName}} {{messageText.user.lastName}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row form-group">
+     <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+         <textarea class="form-control" rows="5"></textarea>
+    </div>
+</div>
+<div class="row form-group">
+     <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+         <button id="message-from-details-button" name="message-from-details-button" class="common-custom-button pull-right">Send</button>
+    </div>
+     
+</div>
 Show my message
 
 
 ============================<br/>
 
-   
-id: {{message.id}} , subject {{message.subject}}, To : {{message.to.firstName}} {{message.to.lastName}}
+
+<!--id: {{message.id}} , subject {{message.subject}}, To : {{message.to.firstName}} {{message.to.lastName}}
 <br/>
 Messages :
 <div *ngFor="let messageText of message.messageList">
     Id:{{messageText.id}} , Text: {{messageText.text}}, Time: {{messageText.time}},Img : {{messageText.user.img}}, User : {{messageText.user.firstName}} {{messageText.user.lastName}}
-</div>
+</div>-->
 

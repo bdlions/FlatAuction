@@ -496,7 +496,7 @@ Version: 1.0
     font-family: "tw-cen-mt";
     padding: 6px 0;
     color: #000;
-    
+
 }
 #stacked-menu > li > a:hover, #p1 > li > a:hover{
     color: #f68521;
@@ -506,9 +506,9 @@ Version: 1.0
     line-height: 2em;
 }
 #p1 > li > a{
-   font-size: 16px;
-   line-height: 1.5em;
-   margin-left: 10px;
+    font-size: 16px;
+    line-height: 1.5em;
+    margin-left: 10px;
 }
 
 
@@ -693,6 +693,44 @@ Version: 1.0
 .message-inbox-mesage-delete-icon:hover{
     cursor: pointer;
     color: #f68521;
+}
+.message_from_details-label{
+    font-family: "tw-cen-mt";
+    font-weight: normal;
+    color: #2672b7;
+    font-size: 18px;
+    font-weight: normal;
+}
+.message_from_details_layout_other_user{
+    background-color: #D6D6D6 !important;
+    padding: 6px 12px;
+    border-radius: 4px;
+}
+.message_from_details_layout_own{
+    border: 1px solid #D6D6D6 !important;
+    padding: 6px 12px;
+    border-radius: 4px;
+}
+.message_from_details img{
+    max-width: 60px;
+    background: #f77320;
+}
+
+.message_from_details_user{
+    font-family: "tw-cen-mt";
+    font-size: 15px;
+    color: #216db1;
+}
+.message_from_details_text{
+    font-family: "tw-cen-mt";
+    font-size: 16px;
+    color: #000;
+    font-weight: normal;
+}
+.message_from_details_time{
+    font-family: "tw-cen-mt";
+    font-size: 14px;
+    color: #f77320;
 }
 /* ---------------------------- Featured Ad Stats -------------------------------- */
 .featured-ad-stats-layout{
