@@ -51,23 +51,46 @@ export class DashBoard {
     constructor(public router: Router, public http: Http, webAPIService: WebAPIService) {
         this.webAPIService = webAPIService;
         this.product = new Product();
+        this.productTypeList = new Array<ProductType>();
+        this.product.productType = new ProductType();
+        this.productSizeList = new Array<ProductSize>();
+        this.product.productSize = new ProductSize();
+        this.productCategoryList = new Array<ProductCategory>();
+        this.product.productCategory = new ProductCategory();
         //this.selectedProductType = new ProductType();
         //this.selectedProductSize = new ProductSize();
         //this.selectedProductCategory = new ProductCategory();
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_TYPE_LIST)).then(result => {
-            this.productTypeList = result.productTypes;
-            //this.selectedProductType = this.productTypeList[0];
-            this.product.productType = this.productTypeList[0];
+            
+            if(result.productTypes != null)
+            {
+                this.productTypeList = result.productTypes;
+                if (this.productTypeList.length > 0)
+                {
+                    this.product.productType = this.productTypeList[0];
+                }
+            }
+            
         });
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_SIZE_LIST)).then(result => {
-            this.productSizeList = result.productSizes;
-            //this.selectedProductSize = this.productSizeList[0];
-            this.product.productSize = this.productSizeList[0];
+            if(result.productSizes != null)
+            {
+                this.productSizeList = result.productSizes;
+                if (this.productSizeList.length > 0)
+                {
+                    this.product.productSize = this.productSizeList[0];
+                }
+            }            
         });
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_CATEGORY_LIST)).then(result => {
-            this.productCategoryList = result.productCategories;
-            //this.selectedProductCategory = this.productCategoryList[0];
-            this.product.productCategory = this.productCategoryList[0];
+            if(result.productCategories != null)
+            {
+                this.productCategoryList = result.productCategories;
+                if (this.productCategoryList.length > 0)
+                {
+                    this.product.productCategory = this.productCategoryList[0];
+                }
+            }
         });
         
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_LOCATION_LIST)).then(result => {
