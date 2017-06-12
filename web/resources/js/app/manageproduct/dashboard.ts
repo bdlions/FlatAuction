@@ -94,30 +94,75 @@ export class DashBoard {
         });
         
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_LOCATION_LIST)).then(result => {
-            this.locationList = result.locations;
-            this.product.location = this.locationList[0];
+            if(result.locations != null)
+            {
+                this.locationList = result.locations;
+                if (this.locationList.length > 0)
+                {
+                    this.product.location = this.locationList[0];
+                }
+            }
+            //this.locationList = result.locations;
+            //this.product.location = this.locationList[0];
         });
         
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_STAY_LIST)).then(result => {
-            this.minStayList = result.stays;
-            this.product.minStay = this.minStayList[0];
-            this.maxStayList = result.stays;
-            this.product.maxStay = this.minStayList[0];
+            if(result.stays != null)
+            {
+                this.minStayList = result.stays;
+                if (this.minStayList.length > 0)
+                {
+                    this.product.minStay = this.minStayList[0];
+                }
+                this.maxStayList = result.stays;
+                if (this.maxStayList.length > 0)
+                {
+                    this.product.maxStay = this.maxStayList[0];
+                }
+            }
+            //this.minStayList = result.stays;
+            //this.product.minStay = this.minStayList[0];
+            //this.maxStayList = result.stays;
+            //this.product.maxStay = this.minStayList[0];
         });
         
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_SMOKING_LIST)).then(result => {
-            this.smokingList = result.smokings;
-            this.product.smoking = this.smokingList[0];
+            if(result.smokings != null)
+            {
+                this.smokingList = result.smokings;
+                if (this.smokingList.length > 0)
+                {
+                    this.product.smoking = this.smokingList[0];
+                }
+            }
+            //this.smokingList = result.smokings;
+            //this.product.smoking = this.smokingList[0];
         });
         
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_OCCUPATION_LIST)).then(result => {
-            this.occupationList = result.occupations;
-            this.product.occupation = this.occupationList[0];
+            if(result.occupations != null)
+            {
+                this.occupationList = result.occupations;
+                if (this.occupationList.length > 0)
+                {
+                    this.product.occupation = this.occupationList[0];
+                }
+            }
+            //this.occupationList = result.occupations;
+            //this.product.occupation = this.occupationList[0];
         });
         
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PET_LIST)).then(result => {
-            this.petList = result.pets;
-            this.product.pet = this.petList[0];
+            if(result.pets != null)
+            {
+                this.petList = result.pets;
+                if (this.petList.length > 0)
+                {
+                    this.product.pet = this.petList[0];
+                }
+            }
+            //this.petList = result.pets;
+            //this.product.pet = this.petList[0];
         });
         
         

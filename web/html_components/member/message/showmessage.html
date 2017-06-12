@@ -1,0 +1,13 @@
+Show my message
+
+
+============================<br/>
+
+   
+id: {{message.id}} , subject {{message.subject}}, To : {{message.to.firstName}} {{message.to.lastName}}
+<br/>
+Messages :
+<div *ngFor="let messageText of message.messageList">
+    Id:{{messageText.id}} , Text: {{messageText.text}}, Time: {{messageText.time}},Img : {{messageText.user.img}}, User : {{messageText.user.firstName}} {{messageText.user.lastName}}
+</div>
+

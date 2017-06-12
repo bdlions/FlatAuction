@@ -13,6 +13,7 @@ import {MessageApp} from '../MessageApp';
 //import {App} from './app';
 import {Inbox} from "../message/inbox";
 import {Sent} from "../message/sent";
+import {Showmessage} from "../message/showmessage";
 import {Saved} from "../message/saved";
 //import {Abroad} from './abroad';
 //import {Header} from './header';
@@ -26,7 +27,7 @@ import {CarouselModule, TypeaheadModule, DatepickerModule} from "ngx-bootstrap"
             useHash: false
         })
     ],
-    declarations: [MessageApp, Inbox, Sent, Saved],
+    declarations: [MessageApp, Inbox, Sent, Saved, Showmessage],
     bootstrap: [MessageApp],
     providers: [AuthGuard, {provide: LocationStrategy, useClass: HashLocationStrategy}]
 })
