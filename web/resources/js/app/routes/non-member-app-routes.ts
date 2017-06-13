@@ -13,6 +13,8 @@ import {AdvancedSearch} from '../common/advancedsearch';
 import {Productinfo} from '../common/productinfo';
 import {Bids} from '../common/bids';
 import {Terms} from '../common/terms';
+import {AppHeader} from '../common/header';
+import {AppFooter} from '../common/footer';
 import {Privacypolicy} from '../common/privacypolicy';
 //import {AutoComplete} from '../autocomplete';
 //import {Angular2Autocomplete} from '../autocomplete/autocomplete-example';
@@ -32,4 +34,6 @@ export const routes: Routes = [
     //  { path: 'home',   component: Home, canActivate: [AuthGuard] },
     //  { path: 'abroad',   component: Abroad, canActivate: [AuthGuard] },
     {path: '**', component: Landing},
+    {path: '', component: AppHeader},
+    {path: '', component: AppFooter},
 ];

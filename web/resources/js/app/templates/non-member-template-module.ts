@@ -21,6 +21,8 @@ import {Privacypolicy} from '../common/privacypolicy';
 import {CarouselModule, TypeaheadModule, DatepickerModule} from "ngx-bootstrap"
 import {FileUploadModule } from 'ng2-file-upload';
 import { AgmCoreModule } from 'angular2-google-maps/core';
+import {AppHeader} from '../common/header';
+import {AppFooter} from '../common/footer';
 
 @NgModule({
     imports: [HttpModule, BrowserModule, FormsModule, 
@@ -34,7 +36,9 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
             useHash: false
         })
     ],
-    declarations: [Signup, NonMemberApp, Landing, BasicSearch, AdvancedSearch, Search, Productinfo, Bids, Terms, Privacypolicy],
+    declarations: [
+        Signup, NonMemberApp, Landing, BasicSearch, AdvancedSearch, Search, 
+        Productinfo, Bids, Terms, Privacypolicy, AppHeader, AppFooter],
     bootstrap: [NonMemberApp],
     providers: [AuthGuard, {provide: LocationStrategy, useClass: HashLocationStrategy}]
 })
