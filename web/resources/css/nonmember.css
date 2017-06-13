@@ -197,3 +197,18 @@ Version: 1.0
 .msg{
     color: green;
 }
+/* --------------------- Product Info -------------------------------------  */
+
+.message_from_details-label{
+    font-family: "tw-cen-mt";
+    font-weight: normal;
+    color: #2672b7;
+    font-size: 18px;
+    font-weight: normal;
+}
+.message_from_details_text{
+    font-family: "tw-cen-mt";
+    font-size: 16px;
+    color: #000;
+    font-weight: normal;
+}
