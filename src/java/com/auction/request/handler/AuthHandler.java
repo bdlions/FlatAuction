@@ -195,7 +195,7 @@ public class AuthHandler {
             productBid.setUser(user);
             //in future set this id based on user currency profile. right now default pound is used
             Currency currency = new Currency();
-            currency.setId(1);
+            //currency.setId(1);
             //by default setting 1, later set it from configuration file
             CurrencyUnit currencyUnit = new CurrencyUnit();
             currencyUnit.setId(Constants.CURRENCY_UNIT_DEFAULT);

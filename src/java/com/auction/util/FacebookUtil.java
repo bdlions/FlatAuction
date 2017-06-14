@@ -5,7 +5,6 @@
  */
 package com.auction.util;
 
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.io.BufferedReader;
@@ -15,8 +14,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -27,9 +24,10 @@ public class FacebookUtil {
     public static String getAccessToken(String code) {
 
         try {
-            String clientId = "648645175170513";
-            String redirectURI = "http://localhost:8080/FlatAuction/SocialAuthServlet";
-            String clientSecret = "55b6fff3a717b0c16936b4353e9b2f73";
+            String clientId = FacebookConfig.getInstance().get(FacebookConfig.APP_ID);
+            String redirectURI = FacebookConfig.getInstance().get(FacebookConfig.CALLBACK_URL);
+            String clientSecret = FacebookConfig.getInstance().get(FacebookConfig.APP_SECRET);
+            
             URL url = new URL("https://graph.facebook.com/oauth/access_token?client_id="
                     + clientId + "&redirect_uri=" + redirectURI
                     + "&client_secret=" + clientSecret
@@ -99,5 +97,13 @@ public class FacebookUtil {
             ex.printStackTrace();
         }
         return null;
+    }
+    
+    public static void main(String[] args) {
+        URIBuilder uriBuilder = new URIBuilder("https://www.facebook.com/dialog/oauth");
+        uriBuilder.addParameter("client_id", FacebookConfig.getInstance().get(FacebookConfig.APP_ID));
+        uriBuilder.addParameter("redirect_uri", FacebookConfig.getInstance().get(FacebookConfig.CALLBACK_URL));
+        uriBuilder.addParameter("scope", FacebookConfig.getInstance().get(FacebookConfig.SCOPE));
+        System.out.println(uriBuilder.toString());
     }
 }
