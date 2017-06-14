@@ -41,6 +41,12 @@ export class Inbox implements OnInit, OnDestroy {
         this.subscribe.unsubscribe();
     }
     
+    public selectedMessage(event: Event, id: number){
+        this.router.navigate(['showmessage', {id: id }]);
+    }
+    
+    
+    
     dashboard(event: Event) {
         event.preventDefault();
         this.router.navigate(['dashboard']);

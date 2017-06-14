@@ -20,22 +20,24 @@
                      <div class="row">
                         <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
                             <input id="message-inbox-message-id-{{message.id}}" type="checkbox" class="checkbox message-inbox-checkbox"> <img class="img-responsive message-inbox-user-image"  src="resources/images/member_icon.png">
-                        </div>
+                        </div>                           
                         <div class="col-xs-7 col-sm-8 col-md-9 col-lg-9">
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                    <h3 class="message-inbox-sender-name">{{message.to.firstName}} {{message.to.lastName}}</h3>
+                            <a [routerLink]="['/showmessage']" (click)="selectedMessage($event, 1)">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <h3 class="message-inbox-sender-name">{{message.to.firstName}} {{message.to.lastName}}</h3>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                    <a><h4 class="message-inbox-message-subject">{{message.subject}}</h4></a>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <h4 class="message-inbox-message-subject">{{message.subject}}</h4>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                            </a>
+                        </div>                        
                         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                             <div class="message-inbox-mesage-delete-icon"><i class="fa fa-times" aria-hidden="true"></i></div>
-                        </div>
+                        </div>                        
                     </div>
                 </div>
             </div>

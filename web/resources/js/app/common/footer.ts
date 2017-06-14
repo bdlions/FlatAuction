@@ -14,8 +14,14 @@ export class AppFooter {
     constructor(public router: Router, public http: Http, webAPIService: WebAPIService) {
         this.webAPIService = webAPIService;
     }
-    goToAbout(event: Event) {
+    
+    goToTerms(event: Event) {
         event.preventDefault();
-        this.router.navigate(['signup']);
+        this.router.navigate(['terms']);
+    }
+    
+    goToPrivacyPolicy(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['privacypolicy']);
     }
 }

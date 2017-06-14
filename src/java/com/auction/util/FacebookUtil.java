@@ -28,7 +28,7 @@ public class FacebookUtil {
 
         try {
             String clientId = "648645175170513";
-            String redirectURI = "http://localhost:8084/FlatAuction/SocialAuthServlet";
+            String redirectURI = "http://localhost:8080/FlatAuction/SocialAuthServlet";
             String clientSecret = "55b6fff3a717b0c16936b4353e9b2f73";
             URL url = new URL("https://graph.facebook.com/oauth/access_token?client_id="
                     + clientId + "&redirect_uri=" + redirectURI
@@ -66,7 +66,7 @@ public class FacebookUtil {
             String clientId = "648645175170513";
             String clientSecret = "55b6fff3a717b0c16936b4353e9b2f73";
             
-            String redirectURI = "http://localhost:8084/FlatAuction/SocialAuthServlet";
+            String redirectURI = "http://localhost:8080/FlatAuction/SocialAuthServlet";
             
             URL url = new URL("https://graph.facebook.com/oauth/access_token?client_id="
                     + clientId + "&redirect_uri=" + redirectURI
