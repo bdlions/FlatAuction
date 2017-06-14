@@ -16,6 +16,7 @@ import {Terms} from '../common/terms';
 import {AppHeader} from '../common/header';
 import {AppFooter} from '../common/footer';
 import {Privacypolicy} from '../common/privacypolicy';
+import {Contactus} from '../common/contactus';
 //import {AutoComplete} from '../autocomplete';
 //import {Angular2Autocomplete} from '../autocomplete/autocomplete-example';
 
@@ -30,6 +31,7 @@ export const routes: Routes = [
     {path: 'bids', component: Bids},
     {path: 'terms', component: Terms},
     {path: 'privacypolicy', component: Privacypolicy},
+    {path: 'contactus', component: Contactus},
 //    {path: 'complete', component: AutoComplete},
     //  { path: 'home',   component: Home, canActivate: [AuthGuard] },
     //  { path: 'abroad',   component: Abroad, canActivate: [AuthGuard] },
