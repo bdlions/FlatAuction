@@ -79,40 +79,36 @@ public class SocialAuthServlet extends HttpServlet {
                         if (StringUtils.isNullOrEmpty(accessToken.getAccessToken())) {
                             //unauthorized access
                         } else {
-                            //if(access_token exists in db){
-                                //retreive users matched with access token and login
+                            facebookClient = new DefaultFacebookClient(accessToken.getAccessToken(), clientSecret, Version.VERSION_2_3);
+                            //accessToken = facebookClient.obtainExtendedAccessToken(clientId, clientSecret);
+                            //facebookClient = new DefaultFacebookClient(accessToken.getAccessToken(), Version.VERSION_2_3);
+                            User user = facebookClient.fetchObject("me", User.class);
+                            String userId = user.getId();
+                            
+                            out.println("User Id: " + userId);
+                            out.println("</br>");
+                            out.println("Name: " + user.getName());
+                            out.println("</br>");
+                            out.println("Email: " + user.getEmail());
+                            out.println("</br>");
+                            out.println("Date of birth: " + user.getBirthday());
+                            out.println("</br>");
+                            out.println("Gender: " + user.getGender());
+                            out.println("</br>");
+                            com.restfb.json.JsonObject js = facebookClient.fetchObject("/me/picture", com.restfb.json.JsonObject.class,
+                                    Parameter.with("type", "large"), // the image size
+                                    Parameter.with("redirect", "false")); // don't redirect
+                            out.println("profile picture: " + ((com.restfb.json.JsonObject) js.get("data")).get("url"));
+                            
+                            //if(userId exists in db){
+                                //user already exist
+                                //login and fetch all data
                             //}
                             //else{
-                                facebookClient = new DefaultFacebookClient(accessToken.getAccessToken(), clientSecret, Version.VERSION_2_3);
-                                DebugTokenInfo debugToken = facebookClient.debugToken(accessToken.getAccessToken());
-                                //if(debugToken.isValid()){
-                                    //if(debugToken.getUserId() exists in db){
-                                        //retreive users matched with access token and login
-                                    //}
-                                    //else{
-                                        //first time in this site
-                                        //insert access token and user id
-                                    //}
-                                    accessToken = facebookClient.obtainExtendedAccessToken(clientId, clientSecret);
-                                    facebookClient = new DefaultFacebookClient(accessToken.getAccessToken(), Version.VERSION_2_3);
-                                    User user = facebookClient.fetchObject("me", User.class);
-                                    out.println("Name: " + user.getName());
-                                    out.println("</br>");
-                                    out.println("Email: " + user.getEmail());
-                                    out.println("</br>");
-                                    out.println("Date of birth: " + user.getBirthday());
-                                    out.println("</br>");
-                                    out.println("Gender: " + user.getGender());
-                                    out.println("</br>");
-                                    com.restfb.json.JsonObject js = facebookClient.fetchObject("/me/picture", com.restfb.json.JsonObject.class,
-                                            Parameter.with("type", "large"), // the image size
-                                            Parameter.with("redirect", "false")); // don't redirect
-                                    out.println("profile picture: " + ((com.restfb.json.JsonObject) js.get("data")).get("url"));
-                                //}
-                                //else{
-                                    //invalid accss token
-                                //}
+                               //insert into db fb user id and access token
                             //}
+                            
+                              
                         }
                     }
                     else{

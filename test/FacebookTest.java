@@ -1,4 +1,5 @@
 
+import com.auction.util.FacebookConfig;
 import com.google.gson.JsonObject;
 import com.restfb.BinaryAttachment;
 import com.restfb.DefaultFacebookClient;
@@ -26,7 +27,17 @@ public class FacebookTest {
     private static FacebookClient facebookClient;
 
     public FacebookTest() {
-        facebookClient = new DefaultFacebookClient("EAAJN8HlAVdEBANAPD7u3QN6YKumESMAn6ONP8L2fikMf6w38ooQBtXlj09Xkn1k9tVEdh6ymVfo6VrlxzliysMa7DP9mLZCmr6NJeTcaBS0dg8wLJmMMpyHxQZAoWV0XnemvslLCNrZB9cvkf0rMzZApQ35Fi1oZD","55b6fff3a717b0c16936b4353e9b2f73" ,Version.VERSION_2_3);
+        
+//        facebookClient = new DefaultFacebookClient("EAAJN8HlAVdEBANAPD7u3QN6YKumESMAn6ONP8L2fikMf6w38ooQBtXlj09Xkn1k9tVEdh6ymVfo6VrlxzliysMa7DP9mLZCmr6NJeTcaBS0dg8wLJmMMpyHxQZAoWV0XnemvslLCNrZB9cvkf0rMzZApQ35Fi1oZD","55b6fff3a717b0c16936b4353e9b2f73" ,Version.VERSION_2_3);
+        facebookClient = new DefaultFacebookClient("EAAJN8HlAVdEBANAPD7u3QN6YKumESMAn6ONP8L2fikMf6w38ooQBtXlj09Xkn1k9tVEdh6ymVfo6VrlxzliysMa7DP9mLZCmr6NJeTcaBS0dg8wLJmMMpyHxQZAoWV0XnemvslLCNrZB9cvkf0rMzZApQ35Fi1oZD","55b6fff3a717b0c16936b4353e9b2f73" ,Version.VERSION_2_9);
+        
+        FacebookClient.AccessToken token = facebookClient.obtainExtendedAccessToken("648645175170513", "55b6fff3a717b0c16936b4353e9b2f73");
+        
+        System.out.println(token.getExpires());
+        FacebookClient.DebugTokenInfo debug = facebookClient.debugToken(token.getAccessToken());
+        System.out.println(debug.getUserId());
+        System.out.println(debug.isValid());
+        
         
     }
     
@@ -49,6 +60,8 @@ public class FacebookTest {
     public void printProfile(){
         
         User user = facebookClient.fetchObject("me", User.class);
+        
+        System.out.println(user.getId());
         System.out.println(user.getName());
         System.out.println(user.getEmail());
         System.out.println(user.getBio());
