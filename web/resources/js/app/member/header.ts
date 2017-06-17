@@ -14,13 +14,48 @@ export class AppHeader {
         this.webAPIService = webAPIService;
     }
     
+    dashboard(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['']);
+    }
+    
+    myhome(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['myhome']);
+    }
+    
     myads(event: Event) {
         event.preventDefault();
         this.router.navigate(['myads']);
     }
     
-    savedads(event: Event) {
+//    savedads(event: Event) {
+//        event.preventDefault();
+//        this.router.navigate(['savedads']);
+//    }
+    
+    inbox(event: Event) {
         event.preventDefault();
-        this.router.navigate(['savedads']);
+        this.router.navigate(['inbox']);
+    }
+    
+    notifications(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['notifications']);
+    }
+    
+    myprofile(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['myprofile']);
+    }
+    
+    basicsearch(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['basicsearch']);
+    }
+    
+    logout(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['logout']);
     }
 }

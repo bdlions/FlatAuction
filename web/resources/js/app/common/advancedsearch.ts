@@ -102,11 +102,15 @@ export class AdvancedSearch implements OnInit, OnDestroy {
         this.subscribe.unsubscribe();
     }
     
-    sent(event: Event) {
-        event.preventDefault();
-        this.router.navigate(['sent']);
-    }
+//    sent(event: Event) {
+//        event.preventDefault();
+//        this.router.navigate(['sent']);
+//    }
     
+    basicsearch(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['basicsearch']);
+    }
     advancedsearch(event: Event) {
         event.preventDefault();
         this.router.navigate(['advancedsearch']);

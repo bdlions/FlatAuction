@@ -30,6 +30,7 @@ import org.bdlions.session.ISession;
 import org.bdlions.session.ISessionManager;
 import com.auction.util.ACTION;
 import com.auction.dto.response.ClientResponse;
+import com.auction.dto.response.GeneralResponse;
 import com.auction.dto.response.SignInResponse;
 import com.auction.manager.ProductManager;
 import com.auction.manager.UserManager;
@@ -403,6 +404,19 @@ public class RequestHandler {
         
         SignInResponse response = new SignInResponse();
         response.setMessage("Profile update successful.");
+        response.setSuccess(true);
+        return response;
+    }
+    
+    @ClientRequest(action = ACTION.UPDATE_PRODUCT_INFO)
+    public ClientResponse updateProductInfo(ISession session, IPacket packet){
+        ProductManager productManager = new ProductManager();
+        Gson gson = new Gson();
+        Product product = gson.fromJson(packet.getPacketBody(), Product.class);
+        productManager.updateProduct(product);
+        
+        GeneralResponse response = new GeneralResponse();
+        response.setMessage("Product is updated successfully.");
         response.setSuccess(true);
         return response;
     }

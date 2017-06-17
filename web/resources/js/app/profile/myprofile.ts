@@ -2,20 +2,16 @@ import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {Http} from '@angular/http';
 import {User} from '../dto/User'
-import { FileUploader } from 'ng2-file-upload';
 import {WebAPIService} from './../webservice/web-api-service';
 import {PacketHeaderFactory} from './../webservice/PacketHeaderFactory';
 import {ACTION} from './../webservice/ACTION';
 
-const URL = window.SUB_DIRECTORY + '/FileUploadServlet';
-
 @Component({
     selector: 'data-content1ddd',
-    templateUrl: window.SUB_DIRECTORY +"/html_components/member/profile/uploadimg.html",
+    templateUrl: window.SUB_DIRECTORY +"/html_components/member/profile/index.html",
     providers: [WebAPIService]
 })
-export class UploadImg {
-    public uploader:FileUploader = new FileUploader({url: URL});
+export class MyProfile {
     private webAPIService: WebAPIService;
     private user: User;
     constructor(public router: Router, public http: Http, webAPIService: WebAPIService) {
@@ -29,22 +25,7 @@ export class UploadImg {
         this.user.img = "user.jpg";
         this.user.document = "document.jpg";
         this.user.isVerified = true;*/
-        this.uploader.onCompleteItem = (item: any, response: any, status: any, headers:any)=>  {
-            //console.log(response);
-            //once image is uploaded then save it into the database
-            this.user.img = response;
-            let requestBody: string = JSON.stringify(this.user);
-            this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.UPDATE_USER_PROFILE_PICTURE), requestBody).then(result =>{
-                let response  = result;
-                if (response.success){
-                    //show success message
-                    this.router.navigate(['profile']);
-                }
-                else{
-                    //show error message at this page
-                }
-            });
-        };
+        
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_USER_INFO)).then(result => {
             this.user = result;
         });
@@ -54,6 +35,8 @@ export class UploadImg {
         event.preventDefault();
         this.router.navigate(['profile']);
     }
+    
+    
     
     
     myprofile(event: Event) {

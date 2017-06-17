@@ -15,7 +15,7 @@
         </div>
         <div class="row form-group">
             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
-                <a href="manage-advert.jsp">
+                <a (click)="myads($event)">
                     <div class="dashboard-box-option-layout">
                         <img class="img-responsive" src="resources/images/manage-advert.png">
                         <h2>Manage Advert </h2>
@@ -23,7 +23,7 @@
                 </a>
             </div>
             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
-                <a href="message.jsp">
+                <a (click)="inbox($event)">
                     <div class="dashboard-box-option-layout">
                           <img class="img-responsive" src="resources/images/message.png">
                         <h2>Messages </h2>
@@ -31,7 +31,7 @@
                 </a>
             </div>            
             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
-                <a href="account.jsp">
+                <a (click)="notifications($event)">
                     <div class="dashboard-box-option-layout">
                          <img class="img-responsive" src="resources/images/account-settings.png">
                         <h2>Account </h2>
@@ -41,7 +41,7 @@
         </div>
         <div class="row">
             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
-                <a href="profile.jsp">
+                <a (click)="myprofile($event)">
                     <div class="dashboard-box-option-layout">
                          <img class="img-responsive" src="resources/images/profile.png">
                         <h2>Profile </h2>
@@ -49,7 +49,7 @@
                 </a>
             </div>
             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
-                <a href="search.jsp">
+                <a (click)="basicsearch($event)">
                     <div class="dashboard-box-option-layout">
                          <img class="img-responsive" src="resources/images/search.png">
                         <h2>Search </h2>

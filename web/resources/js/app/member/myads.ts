@@ -29,11 +29,16 @@ export class MyAds implements OnInit, OnDestroy {
         console.log(this.productList);
     }
     
-    
-    public selectProduct(event: Event, id: number){
+    public myproduct(event: Event, id: number){
         event.preventDefault();
-        this.router.navigate(['productinfo', {id: id }]);
+        this.router.navigate(['myproduct', {id: id }]);
     }
+    
+    
+//    public selectProduct(event: Event, id: number){
+//        event.preventDefault();
+//        this.router.navigate(['productinfo', {id: id }]);
+//    }
     
 //    ngOnInit() {
 //        this.subscribe = this.route.params.subscribe(params => {

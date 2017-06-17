@@ -3,7 +3,7 @@
         <div  class="container">
             <div class="row">
                 <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 form-group">
-                    <a href="home.jsp">
+                    <a (click)="myhome($event)">
                         <img id="rm-site-logo" src="resources/images/logo.png" class="img-responsive header-logo" alt="Logo">
                     </a>
                 </div>
@@ -13,13 +13,13 @@
                             <img class="img-responsive" src="resources/images/member_icon.png">
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuMember">
-                            <li><a href="member.jsp">Dashboard</a></li>
+                            <li><a (click)="dashboard($event)">Dashboard</a></li>
                             <li><a (click)="myads($event)">Manage Adverts</a></li>
-                            <li><a href="message.jsp">Messages</a></li>
-                            <li><a href="account.jsp">Account</a></li>
-                            <li><a href="profile.jsp">Profile</a></li>
-                            <li><a href="search.jsp">Search</a></li>
-                            <li><a href="profile.jsp#/logout/">Logout</a></li>
+                            <li><a (click)="inbox($event)">Messages</a></li>
+                            <li><a (click)="notifications($event)">Account</a></li>
+                            <li><a (click)="myprofile($event)">Profile</a></li>
+                            <li><a (click)="basicsearch($event)">Search</a></li>
+                            <li><a (click)="logout($event)">Logout</a></li>
                         </ul>
                     </div>
                 </div>
@@ -44,12 +44,12 @@
 
                             <div class="collapse navbar-collapse" id="member-header">
                                 <ul class="nav navbar-nav header-custom-nav">
-                                    <li class="active"><a href="member.jsp">Dashboard</a></li>
-                                    <li><a href="manage-advert.jsp">Manage Adverts</a></li>
-                                    <li><a href="message.jsp">Messages</a></li>
-                                    <li><a href="account.jsp">Account</a></li>
-                                    <li><a href="profile.jsp">Profile</a></li>
-                                    <li><a href="search.jsp">Search</a></li>
+                                    <li class="active"><a (click)="dashboard($event)">Dashboard</a></li>
+                                    <li><a (click)="myads($event)">Manage Adverts</a></li>
+                                    <li><a (click)="inbox($event)">Messages</a></li>
+                                    <li><a (click)="notifications($event)">Account</a></li>
+                                    <li><a (click)="myprofile($event)">Profile</a></li>
+                                    <li><a (click)="basicsearch($event)">Search</a></li>
                                 </ul>
                             </div>
                         </div>

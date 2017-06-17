@@ -58,8 +58,33 @@ export class DashBoard {
 //        this.router.navigate(['savedads']);
 //    }
     
-    messages(event: Event) {
+//    messages(event: Event) {
+//        event.preventDefault();
+//        this.router.navigate(['messages']);
+//    }
+    
+    myads(event: Event) {
         event.preventDefault();
-        this.router.navigate(['messages']);
+        this.router.navigate(['myads']);
+    }
+    
+    inbox(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['inbox']);
+    }
+    
+    notifications(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['notifications']);
+    }
+    
+    myprofile(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['myprofile']);
+    }
+    
+    basicsearch(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['basicsearch']);
     }
 }

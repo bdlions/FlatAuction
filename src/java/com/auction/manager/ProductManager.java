@@ -212,6 +212,19 @@ public class ProductManager {
         session.getTransaction().commit();
     }
     
+    /**
+     * This method will update product info
+     * @param product product info
+     * @author nazmul hasan on 17th June 2017
+     */
+    public void updateProduct(Product product) {
+        Session session = HibernateUtil.getSession();
+        session.clear();
+        session.beginTransaction();
+        session.update(product);
+        session.getTransaction().commit();
+    }
+    
     public List<ProductBid> getProductBidList(int productId)
     {
     List<ProductBid> productBidList = new ArrayList<>();

@@ -82,6 +82,12 @@ export class BasicSearch implements OnInit, OnDestroy {
         this.router.navigate(['sent']);
     }
     
+    
+    
+    basicsearch(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['basicsearch']);
+    }
     advancedsearch(event: Event) {
         event.preventDefault();
         this.router.navigate(['advancedsearch']);
