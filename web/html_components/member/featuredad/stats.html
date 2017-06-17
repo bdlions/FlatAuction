@@ -1,7 +1,7 @@
 <div class="row margin-top-align">
     <div class="col-xs-12 col-sm-3 col-md-2 col-lg-2 form-group">
         <ul class="featured-ad-left-sidebar-ul">
-            <li><a href="manage-product.jsp">Create Ads</a></li>
+            <li><a (click)="myproduct($event, 0)">Create Ads</a></li>
             <li><a class="active" [routerLink]="['/myads']" (click)="myads($event)">My Ads</a></li>
             <li><a [routerLink]="['/savedads']" (click)="savedads($event)">Saved Ads</a></li>
             <li><ul class="nav nav-pills nav-stacked" id="stacked-menu">

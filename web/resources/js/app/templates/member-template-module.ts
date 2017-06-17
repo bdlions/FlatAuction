@@ -16,6 +16,13 @@ import {MyHome} from "../home/myhome";
 import {MyProduct} from "../manageproduct/myproduct";
 import {MyAds} from "../member/myads";
 import {SavedAds} from "../member/savedads";
+import {Productinfo} from '../common/productinfo';
+import {Bids} from '../common/bids';
+import {AccountSettings} from "../featuredad/accountsettings";
+import {IndividualAdBids} from "../featuredad/individualadbids";
+import {Stats} from "../featuredad/stats";
+import {Ranking} from "../featuredad/ranking";
+import {Faq} from "../featuredad/faq";
 //import {Messages} from "../member/messages";
 import {Inbox} from "../message/inbox";
 import {Sent} from "../message/sent";
@@ -30,6 +37,9 @@ import {BasicSearch} from "../common/basicsearch";
 import {AdvancedSearch} from "../common/advancedsearch";
 import {AppHeader} from '../member/header';
 import {AppFooter} from '../member/footer';
+import {Terms} from '../common/terms';
+import {Privacypolicy} from '../common/privacypolicy';
+import {Contactus} from '../common/contactus';
 import {Logout} from '../common/logout';
 import {FileUploadModule } from 'ng2-file-upload';
 import {CarouselModule, TypeaheadModule, DatepickerModule} from "ngx-bootstrap"
@@ -46,7 +56,7 @@ import {CarouselModule, TypeaheadModule, DatepickerModule} from "ngx-bootstrap"
             useHash: false
         })
     ],
-    declarations: [MemberApp, DashBoard, MyHome, MyProduct, MyAds, SavedAds, Inbox, Sent, Saved, Showmessage, Notifications, MyProfile, EditProfile, UploadImg, UploadDocument, BasicSearch, AdvancedSearch, AppHeader, AppFooter, Logout],
+    declarations: [MemberApp, DashBoard, MyHome, MyProduct, MyAds, SavedAds, Productinfo, Bids, AccountSettings, IndividualAdBids, Stats, Ranking, Faq, Inbox, Sent, Saved, Showmessage, Notifications, MyProfile, EditProfile, UploadImg, UploadDocument, BasicSearch, AdvancedSearch, AppHeader, AppFooter, Terms, Privacypolicy, Contactus, Logout],
     bootstrap: [MemberApp],
     providers: [AuthGuard, {provide: LocationStrategy, useClass: HashLocationStrategy}]
 })
