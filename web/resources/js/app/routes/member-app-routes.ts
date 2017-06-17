@@ -6,6 +6,8 @@ import {DashBoard} from "../member/dashboard";
 import {SavedAds} from "../member/savedads";
 import {MyAds} from "../member/myads";
 import {Messages} from "../member/messages";
+import {AppHeader} from '../member/header';
+import {AppFooter} from '../member/footer';
 
 // Define which component should be loaded based on the current URL
 export const routes: Routes = [
@@ -19,4 +21,6 @@ export const routes: Routes = [
     //{path: 'home', component: DashBoard, canActivate: [AuthGuard]},
     //  { path: 'abroad',   component: Abroad, canActivate: [AuthGuard] },
     {path: '**', component: DashBoard},
+    {path: '', component: AppHeader},
+    {path: '', component: AppFooter},
 ];

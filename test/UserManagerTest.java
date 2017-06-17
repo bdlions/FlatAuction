@@ -152,7 +152,7 @@ public class UserManagerTest {
         
     }  
     
-    @Test
+    //@Test
     public void defaultData(){
         
         Role role1 = new Role();
@@ -462,5 +462,20 @@ public class UserManagerTest {
         user.setCellNo("01711123456");
         userManager.updateUserProfile(user);
         System.out.println("User profile is updated successfully.");
+    }
+    
+    @Test
+    public void getUserProfileByCredentialTest() 
+    {
+        UserManager userManager = new UserManager();
+        User user = userManager.getUserByCredential("shopnotori2@gmail.com", "");
+        if(user == null)
+        {
+            System.out.println("User is null");
+        }
+        else
+        {
+            System.out.println(user.getEmail());
+        }
     }
 }

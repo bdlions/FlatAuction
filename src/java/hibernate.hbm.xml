@@ -69,6 +69,7 @@ Contributor(s):
         <property column="last_access_time" name="lastAccessTime" type="long"/>
         <property column="created_on" name="createdOn" type="long" update="false"/>
         <property column="modified_on" name="modifiedOn" type="long"/>
+        <property column="fb_code" name="fbCode" type="string"/>
         <many-to-one class="com.auction.dto.AccountStatus" fetch="select" name="accountStatus">
             <column name="account_status_id" not-null="true"/>
         </many-to-one>
@@ -304,6 +305,10 @@ Contributor(s):
         <return class="com.auction.dto.User"/>
         SELECT * FROM users WHERE id = :id
     </sql-query>
+    <sql-query name="getUserByFbCode">
+        <return class="com.auction.dto.User"/>
+        SELECT * FROM users WHERE fb_code = :fb_code
+    </sql-query>    
     <sql-query name="getProductTypes">
         <return class="com.auction.dto.ProductType"/>
         SELECT * FROM product_types

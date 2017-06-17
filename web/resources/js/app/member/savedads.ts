@@ -43,16 +43,16 @@ export class SavedAds implements OnInit, OnDestroy {
         this.router.navigate(['dashboard']);
     }
     
-    myads(event: Event) {
-        event.preventDefault();
-        this.router.navigate(['myads']);
-    }
+//    myads(event: Event) {
+//        event.preventDefault();
+//        this.router.navigate(['myads']);
+//    }
     
-    savedads(event: Event) {
-        event.preventDefault();
-        this.router.navigate(['savedads']);
-    }
-    
+//    savedads(event: Event) {
+//        event.preventDefault();
+//        this.router.navigate(['savedads']);
+//    }
+//    
     messages(event: Event) {
         event.preventDefault();
         this.router.navigate(['messages']);

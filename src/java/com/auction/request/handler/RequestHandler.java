@@ -57,8 +57,14 @@ public class RequestHandler {
     public ClientResponse getProductTypeList(ISession session, IPacket packet){
         ProductManager productManager = new ProductManager();
         //ProductTypeList response = new Gson().fromJson("{\"productTypes\":[{\"id\":\"1\",\"title\":\"Property\"}, {\"id\":\"2\",\"title\":\"Room\"}]}", ProductTypeList.class );
-        ProductTypeList response = new ProductTypeList();
-        response.setProductTypes(productManager.getProductTypes());
+        //ProductTypeList response = new ProductTypeList();
+        //response.setProductTypes(productManager.getProductTypes());        
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+        Gson gson = gsonBuilder.create();
+        String productString = gson.toJson(productManager.getProductTypes());
+        ProductTypeList response = gson.fromJson("{\"productTypes\":" +productString +"}", ProductTypeList.class);
+        
         response.setSuccess(true);
         return response;
     }
@@ -66,8 +72,15 @@ public class RequestHandler {
     @ClientRequest(action = ACTION.FETCH_PRODUCT_SIZE_LIST)
     public ClientResponse getProductSizeList(ISession session, IPacket packet){
         ProductManager productManager = new ProductManager();
-        ProductSizeList response = new ProductSizeList();
-        response.setProductSizes(productManager.getProductSizes());
+        //ProductSizeList response = new ProductSizeList();
+        //response.setProductSizes(productManager.getProductSizes());
+        
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+        Gson gson = gsonBuilder.create();
+        String productString = gson.toJson(productManager.getProductSizes());
+        ProductSizeList response = gson.fromJson("{\"productSizes\":" +productString +"}", ProductSizeList.class);
+        
         response.setSuccess(true);
         return response;
     }
@@ -75,8 +88,17 @@ public class RequestHandler {
     @ClientRequest(action = ACTION.FETCH_PRODUCT_CATEGORY_LIST)
     public ClientResponse getProductCategoryList(ISession session, IPacket packet){
         ProductManager productManager = new ProductManager();
-        ProductCategoryList response = new ProductCategoryList();
-        response.setProductCategories(productManager.getProductCategories());
+        
+        //ProductCategoryList response = new ProductCategoryList();
+        //response.setProductCategories(productManager.getProductCategories());
+        
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+        Gson gson = gsonBuilder.create();
+        String productString = gson.toJson(productManager.getProductCategories());
+        ProductCategoryList response = gson.fromJson("{\"productCategories\":" +productString +"}", ProductCategoryList.class);
+        
+        
         response.setSuccess(true);
         return response;
     }
@@ -85,8 +107,16 @@ public class RequestHandler {
     public ClientResponse getLocationList(ISession session, IPacket packet){
         ProductManager productManager = new ProductManager();
         //LocationList response = new Gson().fromJson("{\"locations\":[{\"id\":\"1\",\"locationType\":\"area\",\"searchString\":\"London\",\"postCode\":\"c1\"}, {\"id\":\"2\",\"locationType\":\"area\",\"searchString\":\"London 123\",\"postCode\":\"c2\"}, {\"id\":\"3\",\"locationType\":\"area\",\"searchString\":\"London 456\",\"postCode\":\"c3\"}]}", LocationList.class );
-        LocationList response = new LocationList();
-        response.setLocations(productManager.getLocations());
+        //LocationList response = new LocationList();
+        //response.setLocations(productManager.getLocations());
+        
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+        Gson gson = gsonBuilder.create();
+        String productString = gson.toJson(productManager.getLocations());
+        LocationList response = gson.fromJson("{\"locations\":" +productString +"}", LocationList.class);
+        
+        
         response.setSuccess(true);
         return response;
     }
@@ -94,8 +124,17 @@ public class RequestHandler {
     @ClientRequest(action = ACTION.FETCH_STAY_LIST)
     public ClientResponse getStayList(ISession session, IPacket packet){
         ProductManager productManager = new ProductManager();
-        StayList response = new StayList();
-        response.setStays(productManager.getStays());
+        
+        //StayList response = new StayList();
+        //response.setStays(productManager.getStays());
+        
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+        Gson gson = gsonBuilder.create();
+        String productString = gson.toJson(productManager.getStays());
+        StayList response = gson.fromJson("{\"stays\":" +productString +"}", StayList.class);
+        
+        
         response.setSuccess(true);
         return response;
     }
@@ -103,8 +142,17 @@ public class RequestHandler {
     @ClientRequest(action = ACTION.FETCH_SMOKING_LIST)
     public ClientResponse getSmokingList(ISession session, IPacket packet){
         ProductManager productManager = new ProductManager();
-        SmokingList response = new SmokingList();
-        response.setSmokings(productManager.getSmokings());
+        
+        //SmokingList response = new SmokingList();
+        //response.setSmokings(productManager.getSmokings());
+        
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+        Gson gson = gsonBuilder.create();
+        String productString = gson.toJson(productManager.getSmokings());
+        SmokingList response = gson.fromJson("{\"smokings\":" +productString +"}", SmokingList.class);
+        
+        
         response.setSuccess(true);
         return response;
     }
@@ -112,8 +160,17 @@ public class RequestHandler {
     @ClientRequest(action = ACTION.FETCH_OCCUPATION_LIST)
     public ClientResponse getOccupationList(ISession session, IPacket packet){
         ProductManager productManager = new ProductManager();
-        OccupationList response = new OccupationList();
-        response.setOccupations(productManager.getOccupations());
+        
+        //OccupationList response = new OccupationList();
+        //response.setOccupations(productManager.getOccupations());
+        
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+        Gson gson = gsonBuilder.create();
+        String productString = gson.toJson(productManager.getOccupations());
+        OccupationList response = gson.fromJson("{\"occupations\":" +productString +"}", OccupationList.class);
+        
+        
         response.setSuccess(true);
         return response;
     }
@@ -121,8 +178,17 @@ public class RequestHandler {
     @ClientRequest(action = ACTION.FETCH_PET_LIST)
     public ClientResponse getPetList(ISession session, IPacket packet){
         ProductManager productManager = new ProductManager();
-        PetList response = new PetList();
-        response.setPets(productManager.getPets());
+        
+        //PetList response = new PetList();
+        //response.setPets(productManager.getPets());
+        
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+        Gson gson = gsonBuilder.create();
+        String productString = gson.toJson(productManager.getPets());
+        PetList response = gson.fromJson("{\"pets\":" +productString +"}", PetList.class);
+        
+        
         response.setSuccess(true);
         return response;
     }

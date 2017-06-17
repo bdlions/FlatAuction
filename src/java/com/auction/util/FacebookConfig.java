@@ -17,6 +17,7 @@ public class FacebookConfig extends PropertyProvider{
     public static final String APP_ID = "APP_ID";
     public static final String APP_SECRET = "APP_SECRET";
     public static final String SCOPE = "SCOPE";
+    public static final String SCOPE_REQUIRED = "SCOPE_REQUIRED";
     public static final String AUTH_URL = "AUTH_URL";
     
     private FacebookConfig(String fileName) throws IOException {

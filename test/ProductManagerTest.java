@@ -93,7 +93,7 @@ public class ProductManagerTest {
         System.out.println(stays.size());
     }
     
-    //@Test
+    @Test
     public void getSmokingsTest(){
         ProductManager productManager = new ProductManager();
         List<Smoking> smokings = productManager.getSmokings();
@@ -209,7 +209,7 @@ public class ProductManagerTest {
         productManager.addProductBid(productBid);
     }
     
-    @Test
+    //@Test
     public void getProductBidListTest(){
         ProductManager productManager = new ProductManager();
         List<ProductBid> productBids = productManager.getProductBidList(1);

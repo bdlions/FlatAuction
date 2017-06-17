@@ -1,22 +1,63 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Property Auction</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="resources/css/wave.css" >
+        <link rel="stylesheet" href="resources/css/bootstrap.min.css" >
+        <link rel="stylesheet" href="resources/css/bootstrap.min.css.map" >
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css" >
+        <link rel="stylesheet" href="resources/css/common.css" >
+        <link rel="stylesheet" href="resources/css/nonmember.css" >
+        <link rel="stylesheet" href="resources/css/font-awesome.min.css" >
+        <link rel="stylesheet" href="resources/css/tabbed-panels.css" >
+        <!--<link rel="stylesheet" href="resources/css/autocomplete-style.css" >-->
+
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="resources/js/jquery.min.js"></script>
+        <script src="resources/js/bootstrap.min.js"></script>
+
+        <!-- Polyfills -->
+        <script src="resources/js/node_modules/core-js/client/shim.min.js"></script>
+        <script src="resources/js/node_modules/zone.js/dist/zone.js"></script>
+        <script src="resources/js/node_modules/systemjs/dist/system.src.js"></script>
+        <script src="resources/js/non-member-template.config.js"></script>
+        <!-- Polyfills -->
+        <script src="resources/js/global.js"></script>
+        <script>
+            System.import('resources/js/non-member-template.js').catch(function (err) {
+                console.error(err);
+            });
+        </script>
+        <link rel="shortcut icon" href="resources/images/favicon.ico" type="image/x-icon"> 
+
     </head>
     <body>
-        <form action="RequestServlet" method="POST" enctype="application/json">
-            <textarea rows="10" cols="50" name="packetHeader">{"action":"1002","requestType":"1","sessionId":"sessionId-111"}</textarea>
-            <br/>
-            <textarea rows="10" cols="50" name="packetBody">{"fndId":"100"}</textarea>
-            <br/>
-            <input type="submit" name="submit" value="Request"/>
-        </form>
+        <style type="text/css">
+            .vertical-center {
+                min-height: 100%; 
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+            }
+        </style>
+        <data-content>
+            <div class="vertical-center">
+                <div class="sk-wave">
+                    <div class="sk-rect sk-rect1"></div>
+                    <div class="sk-rect sk-rect2"></div>
+                    <div class="sk-rect sk-rect3"></div>
+                    <div class="sk-rect sk-rect4"></div>
+                    <div class="sk-rect sk-rect5"></div>
+                </div>
+            </div>
+        </data-content>
     </body>
 </html>

@@ -19,48 +19,57 @@ import org.slf4j.LoggerFactory;
 public class UserManager {
 
     private final Logger logger = LoggerFactory.getLogger(UserManager.class);
-    Session session = HibernateUtil.getSession();
+    //Session session = HibernateUtil.getSession();
     public User getUserByCredential(String identity, String password) {
-        //Session session = HibernateUtil.getSession();
+        Session session = HibernateUtil.getSession();
+        session.beginTransaction();
         Query query = session.getNamedQuery("getUserByCredential")
                 .setString("email", identity)
                 .setString("password", password);
 
         User user = (User)query.uniqueResult();
+        session.getTransaction().commit();
         return user;
     }
     
     public User getUserByIdentity(String identity) {
+        Session session = HibernateUtil.getSession();
+        session.beginTransaction();
         Query query = session.getNamedQuery("getUserByIdentity")
                 .setString("email", identity);
 
         User user = (User)query.uniqueResult();
+        session.getTransaction().commit();
         return user;
     }
 
     public void addUserProfile(User user) {
-        //Session session = HibernateUtil.getSession();
+        Session session = HibernateUtil.getSession();
         session.beginTransaction();
         session.save(user);
         session.getTransaction().commit();
     }
 
     public void updateUserProfile(User user) {
-        //Session session = HibernateUtil.getSession();
+        Session session = HibernateUtil.getSession();
+        session.clear();
         session.beginTransaction();
         session.update(user);
         session.getTransaction().commit();
     }
 
     public List<Role> getRoles() {
-        //Session session = HibernateUtil.getSession();
+        Session session = HibernateUtil.getSession();
+        session.beginTransaction();
         Query query = session.getNamedQuery("getRoles");
         List<Role> roles = query.list();
+        session.getTransaction().commit();
         return roles;
     }
 
     public Set<Role> getUserRolesByUserId(int userId) {
-        
+        Session session = HibernateUtil.getSession();
+        session.beginTransaction();
         Query query = session.getNamedQuery("getUserById")
                 .setInteger("userId", userId);
 
@@ -71,7 +80,7 @@ public class UserManager {
         if(user != null){
             roles = user.getRoles();
         }
-        
+        session.getTransaction().commit();
         return roles;
     }
 
@@ -88,6 +97,7 @@ public class UserManager {
     */
     public User getUserProfileById(int userId) 
     {
+        Session session = HibernateUtil.getSession();
         User user = null;
         try
         {
@@ -102,6 +112,25 @@ public class UserManager {
             logger.error(ex.toString());
         }
         
+        return user;
+    }
+    
+    public User getUserProfileByFbCode(String fbCode) 
+    {
+        Session session = HibernateUtil.getSession();
+        User user = null;
+        try
+        {
+            session.beginTransaction();
+            Query query = session.getNamedQuery("getUserByFbCode")
+                    .setString("fb_code", fbCode);
+            user = (User)query.uniqueResult();
+            session.getTransaction().commit();
+        }
+        catch(Exception ex)
+        {
+            logger.error(ex.toString());
+        }        
         return user;
     }
 }

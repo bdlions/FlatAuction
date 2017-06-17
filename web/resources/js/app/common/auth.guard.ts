@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate {
         console.log("no user exists");
         // If not, they redirect them to the login page
 //        this.router.navigate(['/login']);
-        window.location.href = "non-member.jsp";
+        window.location.href = "index.jsp";
         return false;
     }
 }
