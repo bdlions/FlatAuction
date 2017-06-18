@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Http} from '@angular/http';
 import {Subscription} from 'rxjs';
 import {Bid} from '../dto/Bid';
@@ -23,7 +23,7 @@ export class Bids implements OnInit, OnDestroy {
     //private id:number;
     //private productId:number;
     
-    constructor(public router: ActivatedRoute, webAPIService: WebAPIService) {
+    constructor(public router:Router, public route: ActivatedRoute, webAPIService: WebAPIService) {
         this.webAPIService = webAPIService;
         
         this.product = new Product();
@@ -51,7 +51,7 @@ export class Bids implements OnInit, OnDestroy {
     }
     
     ngOnInit() {
-        this.subscribe = this.router.params.subscribe(params => {
+        this.subscribe = this.route.params.subscribe(params => {
             //this.id = params['id']; 
             //this.productId = params['id'];
             this.product = new Product();
@@ -70,5 +70,10 @@ export class Bids implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.subscribe.unsubscribe();
+    }
+    
+    public selectProduct(event: Event, id: number){
+        event.preventDefault();
+        this.router.navigate(['productinfo', {id: id }]);
     }
 }

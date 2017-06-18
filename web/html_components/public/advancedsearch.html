@@ -11,65 +11,67 @@
                 <h2 class="advanced-search-header">Advanced Search</h2>
             </div>
         </div>
-        <div class="row form-group">
-            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 form-group">
-                <h3 class="advanced-search-selection-title">Search Location</h3>
-                            <div class="advanced-search-page-search-box-layout">
-                                <input #locationSelector name="locationSelector" [(ngModel)]="selectedLocation"
-                                    [typeahead]="locationList"
-                                    typeaheadOptionField="searchString"
-                                    class="form-control search-input-field" placeholder="Search for Location">
-                            </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
-                <h3 class="advanced-search-selection-title">Property Type</h3>
-                <select class="form-control select-custom-field">
-                    <option *ngFor="let productType of productTypeList" value="{{productType.title}}"><a id="{{productType.id}}">{{productType.title}}</a></option>
-                </select> 
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
-                <h3 class="advanced-search-selection-title">Min Price</h3>
-                <select class="form-control select-custom-field">
-                    <option *ngFor="let minPrice of minPriceList" value="{{minPrice.currencyUnit.title}}{{minPrice.amount}}"><a id="{{minPrice.id}}">{{minPrice.currencyUnit.title}}{{minPrice.amount}}</a></option>
-                </select> 
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
-                <h3 class="advanced-search-selection-title">Max Price</h3>
-                <select class="form-control select-custom-field">
-                    <option *ngFor="let maxPrice of maxPriceList" value="{{maxPrice.currencyUnit.title}}{{maxPrice.amount}}"><a id="{{maxPrice.id}}">{{maxPrice.currencyUnit.title}}{{maxPrice.amount}}</a></option>
-                </select> 
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
-                <h3 class="advanced-search-selection-title">Occupation</h3>
-                <select class="form-control select-custom-field">
-                    <option *ngFor="let occupation of occupationList" value="{{occupation.title}}"><a id="{{occupation.id}}">{{occupation.title}}</a></option>
-                </select> 
-            </div>
+        <form role="form" (submit)="search($event)">
+            <div class="row form-group">
+                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 form-group">
+                    <h3 class="advanced-search-selection-title">Search Location</h3>
+                                <div class="advanced-search-page-search-box-layout">
+                                    <input #locationSelector name="locationSelector" [(ngModel)]="selectedLocation"
+                                        [typeahead]="locationList"
+                                        typeaheadOptionField="searchString"
+                                        class="form-control search-input-field" placeholder="Search for Location">
+                                </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
+                    <h3 class="advanced-search-selection-title">Property Type</h3>
+                    <select class="form-control select-custom-field">
+                        <option *ngFor="let productType of productTypeList" value="{{productType.title}}"><a id="{{productType.id}}">{{productType.title}}</a></option>
+                    </select> 
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
+                    <h3 class="advanced-search-selection-title">Min Price</h3>
+                    <select class="form-control select-custom-field">
+                        <option *ngFor="let minPrice of minPriceList" value="{{minPrice.currencyUnit.title}}{{minPrice.amount}}"><a id="{{minPrice.id}}">{{minPrice.currencyUnit.title}}{{minPrice.amount}}</a></option>
+                    </select> 
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
+                    <h3 class="advanced-search-selection-title">Max Price</h3>
+                    <select class="form-control select-custom-field">
+                        <option *ngFor="let maxPrice of maxPriceList" value="{{maxPrice.currencyUnit.title}}{{maxPrice.amount}}"><a id="{{maxPrice.id}}">{{maxPrice.currencyUnit.title}}{{maxPrice.amount}}</a></option>
+                    </select> 
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
+                    <h3 class="advanced-search-selection-title">Occupation</h3>
+                    <select class="form-control select-custom-field">
+                        <option *ngFor="let occupation of occupationList" value="{{occupation.title}}"><a id="{{occupation.id}}">{{occupation.title}}</a></option>
+                    </select> 
+                </div>
 
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
-                <h3 class="advanced-search-selection-title">Gender</h3>
-                <select class="form-control select-custom-field">
-                    <option *ngFor="let gender of genderList" value="{{gender.title}}"><a id="{{gender.id}}">{{gender.title}}</a></option>
-                </select> 
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
+                    <h3 class="advanced-search-selection-title">Gender</h3>
+                    <select class="form-control select-custom-field">
+                        <option *ngFor="let gender of genderList" value="{{gender.title}}"><a id="{{gender.id}}">{{gender.title}}</a></option>
+                    </select> 
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
+                    <h3 class="advanced-search-selection-title">Room Size</h3>
+                    <select class="form-control select-custom-field">
+                        <option *ngFor="let roomSize of roomSizeList" value="{{roomSize.title}}"><a id="{{roomSize.id}}">{{roomSize.title}}</a></option>
+                    </select> 
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
+                    <h3 class="advanced-search-selection-title">Duration</h3>
+                    <select class="form-control select-custom-field">
+                        <option *ngFor="let duration of durationList" value="{{duration.title}}"><a id="{{duration.id}}">{{duration.title}}</a></option>
+                    </select> 
+                </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
-                <h3 class="advanced-search-selection-title">Room Size</h3>
-                <select class="form-control select-custom-field">
-                    <option *ngFor="let roomSize of roomSizeList" value="{{roomSize.title}}"><a id="{{roomSize.id}}">{{roomSize.title}}</a></option>
-                </select> 
+            <div class="row form-group">
+                <div class="col-xs-12 col-sm-offset-8 col-sm-4 col-md-offset-10 col-md-2 col-lg-offset-10 col-lg-2  form-group">
+                    <button type="submit" id="advancedSearchButton" class="form-control common-custom-button">Search</button>
+                </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
-                <h3 class="advanced-search-selection-title">Duration</h3>
-                <select class="form-control select-custom-field">
-                    <option *ngFor="let duration of durationList" value="{{duration.title}}"><a id="{{duration.id}}">{{duration.title}}</a></option>
-                </select> 
-            </div>
-        </div>
-        <div class="row form-group">
-            <div class="col-xs-12 col-sm-offset-8 col-sm-4 col-md-offset-10 col-md-2 col-lg-offset-10 col-lg-2  form-group">
-                <button id="advancedSearchButton" class="form-control common-custom-button">Search</button>
-            </div>
-        </div>
+        </form>
     </div>    
 </div>
 

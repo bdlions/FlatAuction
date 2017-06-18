@@ -59,21 +59,30 @@ export class Productinfo implements OnInit, OnDestroy {
     
     postBid(event: Event) 
     {
-        this.productBid.product = new Product();
-        this.productBid.product.id = this.product.id;
-        //ser user id from session at server
-        //set currency and currency unit at server.
-        let requestBody: string = JSON.stringify(this.productBid);
-        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.ADD_PRODUCT_BID), requestBody).then(result =>{
-            let response  = result;
-            if (response.success){
-                this.productBid = new ProductBid();
-                //set a message that product bid is placed successfully
-            }
-            else{
-                //show error message at this page
-            }
-        });
+        let username = localStorage.getItem("username");
+        if (username != null && username != "")
+        {
+            this.productBid.product = new Product();
+            this.productBid.product.id = this.product.id;
+            //ser user id from session at server
+            //set currency and currency unit at server.
+            let requestBody: string = JSON.stringify(this.productBid);
+            this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.ADD_PRODUCT_BID), requestBody).then(result =>{
+                let response  = result;
+                if (response.success){
+                    this.productBid = new ProductBid();
+                    //set a message that product bid is placed successfully
+                }
+                else{
+                    //show error message at this page
+                }
+            });
+        }
+        else
+        {
+            //may redirected to login/signup page or show error messaage
+        }
+        
     }
     
     public showBids(event: Event, id: number){

@@ -2,6 +2,7 @@
 import {Routes} from '@angular/router';
 import {AuthGuard} from '../common/auth.guard';
 import {MemberApp} from "../MemberApp";
+import {Search} from '../common/search';
 import {DashBoard} from "../member/dashboard";
 import {MyHome} from "../home/myhome";
 import {MyProduct} from "../manageproduct/myproduct";
@@ -37,6 +38,7 @@ import {Logout} from '../common/logout';
 // Define which component should be loaded based on the current URL
 export const routes: Routes = [
     {path: '', component: DashBoard},
+    {path: 'search', component: Search},
     {path: 'dashboard', component: DashBoard},
     //    {path: 'signup', component: Signup},
     //  { path: 'signup', component: Signup },

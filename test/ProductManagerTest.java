@@ -93,7 +93,7 @@ public class ProductManagerTest {
         System.out.println(stays.size());
     }
     
-    @Test
+    //@Test
     public void getSmokingsTest(){
         ProductManager productManager = new ProductManager();
         List<Smoking> smokings = productManager.getSmokings();
@@ -214,5 +214,17 @@ public class ProductManagerTest {
         ProductManager productManager = new ProductManager();
         List<ProductBid> productBids = productManager.getProductBidList(1);
         System.out.println(productBids.size());
+    }
+    
+    //@Test
+    public void addSavedProductTest(){
+        ProductManager productManager = new ProductManager();
+        System.out.println(productManager.addSavedProduct(1, 1));
+    }
+    
+    @Test
+    public void getSavedProductTest(){
+        ProductManager productManager = new ProductManager();
+        productManager.getSavedProducts(1, 0, 100);
     }
 }

@@ -30,12 +30,12 @@
                  <div class="saved-ads-product-layout">
                     <div class="row form-group">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <h2 class="saved-ads-product-title"><a>{{product.title}}</a></h2>
+                            <h2 class="saved-ads-product-title"><a (click)="selectProduct($event, product.id)">{{product.title}}</a></h2>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
-                            <img class="img-responsive" src="resources/images/{{product.img}}">
+                            <img class="img-responsive" src="resources/images/product/{{product.img}}">
                         </div>
                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 form-group">
                             <div class="saved-ads-product-description">{{product.description}}</div>
@@ -46,7 +46,7 @@
                             <div class="saved-ads-product-price-title">Price</div>
                         </div>
                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 form-group">
-                            <div class="saved-ads-product-price-amount">{{product.price}}</div>
+                            <div class="saved-ads-product-price-amount">{{product.basePrice}}  £</div>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -54,7 +54,7 @@
                             <div class="saved-ads-product-id-title">Reference Id</div>
                         </div>
                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 form-group">
-                            <div class="saved-ads-product-id">{{product.id}}</div>
+                            <div class="saved-ads-product-id">{{product.referenceId}}</div>
                         </div>
                     </div>
                 </div>

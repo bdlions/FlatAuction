@@ -60,9 +60,9 @@ export class BasicSearch implements OnInit, OnDestroy {
     }
     
     
-    public selectProduct(event: Event, id: number){
-        this.router.navigate(['productinfo', {id: this.id }]);
-    }
+//    public selectProduct(event: Event, id: number){
+//        this.router.navigate(['productinfo', {id: this.id }]);
+//    }
     
     ngOnInit() {
         this.subscribe = this.route.params.subscribe(params => {
@@ -77,12 +77,17 @@ export class BasicSearch implements OnInit, OnDestroy {
         this.subscribe.unsubscribe();
     }
     
-    sent(event: Event) {
+//    sent(event: Event) {
+//        event.preventDefault();
+//        this.router.navigate(['sent']);
+//    }
+    
+    search(event: Event) {
         event.preventDefault();
-        this.router.navigate(['sent']);
+        let id:number;
+        id = 1;
+        this.router.navigate(['search', {id: id}]);
     }
-    
-    
     
     basicsearch(event: Event) {
         event.preventDefault();

@@ -85,9 +85,9 @@ export class AdvancedSearch implements OnInit, OnDestroy {
     }
     
     
-    public selectProduct(event: Event, id: number){
-        this.router.navigate(['productinfo', {id: this.id }]);
-    }
+//    public selectProduct(event: Event, id: number){
+//        this.router.navigate(['productinfo', {id: this.id }]);
+//    }
     
     ngOnInit() {
         this.subscribe = this.route.params.subscribe(params => {
@@ -106,6 +106,13 @@ export class AdvancedSearch implements OnInit, OnDestroy {
 //        event.preventDefault();
 //        this.router.navigate(['sent']);
 //    }
+    
+    search(event: Event) {
+        event.preventDefault();
+        let id:number;
+        id = 1;
+        this.router.navigate(['search', {id: id}]);
+    }
     
     basicsearch(event: Event) {
         event.preventDefault();

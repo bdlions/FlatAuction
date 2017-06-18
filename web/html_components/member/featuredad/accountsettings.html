@@ -34,7 +34,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                             <div class="default-bid-per-click">
-                                <input id="default-bid-per-click" name="default-bid-per-click" type="number" class="form-control input-custom-field" value="{{accountSettingFA?.defaultBidPerClick}}"/> <span>{{accountSettingFA?.defaultBidPerClickUnit?.title}}</span>
+                                <input [(ngModel)]="accountSettingFA.defaultBidPerClick" id="default-bid-per-click" name="default-bid-per-click" type="number" class="form-control input-custom-field"/> <span>p</span>
                             </div>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                             <div class="daily-budget">
-                                <input id="daily-budget" name="daily-budget" type="number" class="form-control input-custom-field" value="{{accountSettingFA?.dailyBudget}}"/>  <span>{{accountSettingFA?.dailyBudgetUnit?.title}}</span> 
+                                <input [(ngModel)]="accountSettingFA.dailyBudget" id="daily-budget" name="daily-budget" type="number" class="form-control input-custom-field"/>  <span>£</span> 
                             </div>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                     </div>
                     <div class="row form-group">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <button id="account-settings-update-button" name="account-settings-update-button" class="common-custom-button pull-right">Update</button>
+                            <button (click)="saveaccountsettingfa($event)" id="account-settings-update-button" name="account-settings-update-button" class="common-custom-button pull-right">Update</button>
                         </div>
                     </div>
                 </form>

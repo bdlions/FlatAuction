@@ -9,13 +9,17 @@ import {Product} from '../dto/Product';
 import {Location} from '../dto/Location';
 import {Price} from '../dto/Price';
 import {General} from '../dto/General';
-
+import {WebAPIService} from './../webservice/web-api-service';
+import {PacketHeaderFactory} from './../webservice/PacketHeaderFactory';
+import {ACTION} from './../webservice/ACTION';
 
 @Component({
     selector: 'data-content',
     templateUrl: window.SUB_DIRECTORY +"/html_components/member/featuredad/stats.html",
+    providers: [WebAPIService]
 })
 export class Stats implements OnInit, OnDestroy {
+    private webAPIService: WebAPIService;
     private accountSummaryFA: AccountSummaryFA;
     private productList: Product[];
     private startDate:string;
@@ -40,7 +44,12 @@ export class Stats implements OnInit, OnDestroy {
     public fromDate: Date = new Date();
     public minDate: Date = void 0;
   
-    constructor(public router:Router, public route: ActivatedRoute) {
+    constructor(public router:Router, public route: ActivatedRoute, webAPIService: WebAPIService) {
+        this.webAPIService = webAPIService;
+        
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_MY_PRODUCT_LIST)).then(result => {
+            this.productList = result.products;
+        });
         
         this.accountSummaryFA = new AccountSummaryFA();
         this.accountSummaryFA.totalBalance = JSON.parse("{\"id\":\"1\",\"title\":\"£\",\"amount\":\"9.60\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}");
@@ -49,7 +58,7 @@ export class Stats implements OnInit, OnDestroy {
         this.accountSummaryFA.spentToday = JSON.parse("{\"id\":\"1\",\"title\":\"£\",\"amount\":\"0\",\"currencyUnit\":{\"id\":\"2\",\"title\":\"p\"}}");
         this.accountSummaryFA.leftToday = JSON.parse("{\"id\":\"1\",\"title\":\"£\",\"amount\":\"4.00\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}");
         
-        this.productList = JSON.parse("[{\"id\":\"0\",\"title\":\"All Adverts\"}, {\"id\":\"1\",\"title\":\"Advert1\"}, {\"id\":\"2\",\"title\":\"Advert2\"}, {\"id\":\"3\",\"title\":\"Advert3\"}]");
+        //this.productList = JSON.parse("[{\"id\":\"0\",\"title\":\"All Adverts\"}, {\"id\":\"1\",\"title\":\"Advert1\"}, {\"id\":\"2\",\"title\":\"Advert2\"}, {\"id\":\"3\",\"title\":\"Advert3\"}]");
         
         this.startDate = "2017-04-27";
         this.endDate = "2017-04-27";
@@ -72,9 +81,9 @@ export class Stats implements OnInit, OnDestroy {
     }
     
     
-    public selectProduct(event: Event, id: number){
-        this.router.navigate(['productinfo', {id: this.id }]);
-    }
+//    public selectProduct(event: Event, id: number){
+//        this.router.navigate(['productinfo', {id: this.id }]);
+//    }
     
     ngOnInit() {
         this.subscribe = this.route.params.subscribe(params => {

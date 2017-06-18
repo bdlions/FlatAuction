@@ -34,6 +34,7 @@ import com.auction.util.ACTION;
 import com.auction.dto.response.ClientResponse;
 import com.auction.dto.response.GeneralResponse;
 import com.auction.dto.response.SignInResponse;
+import com.auction.manager.FeaturedAdManager;
 import com.auction.manager.MessageManager;
 import com.auction.manager.ProductManager;
 import com.auction.manager.UserManager;
@@ -213,6 +214,20 @@ public class RequestHandler {
         return response;
     }
     
+    @ClientRequest(action = ACTION.FETCH_SAVED_PRODUCT_LIST)
+    public ClientResponse getSavedProductList(ISession session, IPacket packet){
+        int userId = (int)session.getUserId();
+        ProductManager productManager = new ProductManager();
+        List<Product> products = productManager.getSavedProducts(userId, 0, 100);
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+        Gson gson = gsonBuilder.create();
+        String productString = gson.toJson(products);
+        ProductList response = gson.fromJson("{\"products\":" +productString +"}", ProductList.class);
+        response.setSuccess(true);
+        return response;
+    }
+    
     @ClientRequest(action = ACTION.FETCH_PRODUCT_LIST)
     public ClientResponse getProductList(ISession session, IPacket packet){
         ProductManager pm = new ProductManager();
@@ -344,9 +359,25 @@ public class RequestHandler {
     
     @ClientRequest(action = ACTION.FETCH_ACCOUNT_SETTING_FA)
     public ClientResponse getAccountSettingFAInfo(ISession session, IPacket packet){
-        AccountSettingFA response = new Gson().fromJson("{\"id\":\"1\",\"user\":{\"id\":\"1\"},\"defaultBidPerClick\":\"4\", \"defaultBidPerClickUnit\":{\"id\":\"1\",\"title\":\"p\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}},\"dailyBudget\":\"6\", \"dailyBudgetUnit\":{\"id\":\"1\",\"title\":\"£\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, \"campainActive\":\"true\"}", AccountSettingFA.class );
-        response.setSuccess(true);
-        return response;
+        try
+        {
+            int userId = (int)session.getUserId();
+            FeaturedAdManager featuredAdManager = new FeaturedAdManager();
+            GsonBuilder gsonBuilder = new GsonBuilder();
+            gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+            Gson gson = gsonBuilder.create();
+            AccountSettingFA accountSettingFA = featuredAdManager.getFeaturedAdAccountSetting(userId);            
+            String accountSettingFAString = gson.toJson(accountSettingFA);
+            AccountSettingFA response = new Gson().fromJson(accountSettingFAString, AccountSettingFA.class );
+            response.setSuccess(true);
+            return response;
+        }
+        catch(Exception ex)
+        {
+            GeneralResponse response = new GeneralResponse();
+            response.setSuccess(false);
+            return response;
+        }
     }
     
     @ClientRequest(action = ACTION.FETCH_MESSAGE_INBOX_LIST)

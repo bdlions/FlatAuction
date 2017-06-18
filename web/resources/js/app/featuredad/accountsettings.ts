@@ -28,14 +28,19 @@ export class AccountSettings implements OnInit, OnDestroy {
         this.accountSettingFA.campainActive = true;*/
         
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_ACCOUNT_SETTING_FA)).then(result => {
-            this.accountSettingFA = result;
+            if(result.success)
+            {
+                this.accountSettingFA = result;
+                //converting pound into p
+                this.accountSettingFA.defaultBidPerClick = this.accountSettingFA.defaultBidPerClick * 100;
+            }
         });    
     }
     
     
-    public selectProduct(event: Event, id: number){
-        this.router.navigate(['productinfo', {id: this.id }]);
-    }
+//    public selectProduct(event: Event, id: number){
+//        this.router.navigate(['productinfo', {id: this.id }]);
+//    }
     
     ngOnInit() {
         this.subscribe = this.route.params.subscribe(params => {
@@ -48,6 +53,23 @@ export class AccountSettings implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.subscribe.unsubscribe();
+    }
+    
+    saveaccountsettingfa(event: Event) {
+        this.accountSettingFA.defaultBidPerClick = this.accountSettingFA.defaultBidPerClick/100;
+        let requestBody: string = JSON.stringify(this.accountSettingFA);
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.SAVE_ACCOUNT_SETTING_FA), requestBody).then(result => {
+            if(result.success)
+            {
+                this.accountSettingFA = result;
+                //converting pound into p
+                this.accountSettingFA.defaultBidPerClick = this.accountSettingFA.defaultBidPerClick * 100;
+            }
+            else
+            {
+                this.accountSettingFA.defaultBidPerClick = this.accountSettingFA.defaultBidPerClick * 100;
+            }
+        });
     }
     
     accountsettings(event: Event) {

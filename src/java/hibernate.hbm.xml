@@ -257,6 +257,15 @@ Contributor(s):
         <many-to-one class="com.auction.dto.CurrencyUnit" column="currency_unit_id"  fetch="select" name="currencyUnit" not-null="true"/>
     </class>
     
+    <class name="com.auction.dto.SavedProduct" table="saved_products" dynamic-update="true" dynamic-insert="true" select-before-update="true">
+        <id name="id" type="int">
+            <generator class="increment"/>
+        </id>
+        <many-to-one class="com.auction.dto.User" column="user_id"  fetch="select" name="user" not-null="true"/>
+        <many-to-one class="com.auction.dto.Product" column="product_id"  fetch="select" name="product" not-null="true"/>
+        <property name="createdOn" column="created_on" type="long"/>
+    </class>
+    
     <class name="com.auction.dto.Message" table="messages" dynamic-update="true" dynamic-insert="true" select-before-update="true">
         <id name="id" type="int">
             <generator class="increment"/>
@@ -278,6 +287,19 @@ Contributor(s):
         <many-to-one class="com.auction.dto.User" column="user_id"  fetch="select" name="user" not-null="true"/>
     </class>
     
+    <class name="com.auction.dto.AccountSettingFA" table="account_setting_fa" 
+           dynamic-update="true" dynamic-insert="true" select-before-update="true">
+        <id name="id" type="int">
+            <generator class="increment"/>
+        </id>
+        <many-to-one class="com.auction.dto.User" column="user_id" fetch="select" name="user" not-null="true"/>
+        <property name="defaultBidPerClick" column="default_bid_per_click" type="double"/>
+        <many-to-one class="com.auction.dto.Currency" column="default_bid_per_click_unit" name="defaultBidPerClickUnit"/>
+        <property name="dailyBudget" column="daily_budget" type="double"/>
+        <many-to-one class="com.auction.dto.Currency" column="daily_budget_unit" name="dailyBudgetUnit"/>
+        <property name="campainActive" column="campain_active" type="boolean"/>
+    </class>
+    
     
     
     
@@ -291,21 +313,7 @@ Contributor(s):
         </id>
         <property name="title" column="title" type="string"/>
     </class>  
-    <class name="com.auction.dto.AccountSettingFA" table="account_setting_fa" 
-           dynamic-update="true" dynamic-insert="true" select-before-update="true">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <many-to-one class="com.auction.dto.User" column="user_id" fetch="select" name="user" not-null="true"/>
-        <property name="defaultBidPerClick" column="default_bid_per_click" type="double"/>
-        <many-to-one class="com.auction.dto.Currency" column="default_bid_per_click_unit" name="defaultBidPerClickUnit"/>
-        <!--<property name="defaultBidPerClickUnit" column="default_bid_per_click_unit" type="class com.auction.dto.Currency"/>-->
-        <property name="dailyBudget" column="daily_budget" type="double"/>
-        <many-to-one class="com.auction.dto.Currency" column="daily_budget_unit" name="dailyBudgetUnit"/>
-        <!--<property name="dailyBudgetUnit" column="daily_budget_unit" type="class com.auction.dto.Currency"/>-->
-        <property name="campainActive" column="campain_active" type="boolean"/>
-
-    </class>
+    
     
     
     <sql-query name="getUserByCredential">

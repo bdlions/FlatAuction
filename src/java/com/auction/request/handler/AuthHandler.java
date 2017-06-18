@@ -12,6 +12,7 @@ import org.bdlions.session.ISessionManager;
 import com.auction.util.ACTION;
 import com.auction.commons.ClientMessages;
 import com.auction.commons.HibernateProxyTypeAdapter;
+import com.auction.dto.AccountSettingFA;
 import com.auction.dto.AccountStatus;
 import com.auction.dto.Currency;
 import com.auction.dto.CurrencyUnit;
@@ -19,11 +20,13 @@ import com.auction.dto.Image;
 import com.auction.dto.Message;
 import com.auction.dto.Product;
 import com.auction.dto.ProductBid;
+import com.auction.dto.SavedProduct;
 import com.auction.dto.User;
 import com.auction.dto.response.ClientResponse;
 import com.auction.dto.response.GeneralResponse;
 import com.auction.dto.response.SignInResponse;
 import com.auction.library.SendMail;
+import com.auction.manager.FeaturedAdManager;
 import com.auction.manager.MessageManager;
 import com.auction.manager.ProductManager;
 import com.auction.manager.UserManager;
@@ -148,6 +151,84 @@ public class AuthHandler {
             response.setSuccess(false);
         }        
         return response;
+    }
+    
+    @ClientRequest(action = ACTION.ADD_SAVED_PRODUCT)
+    public ClientResponse addSavedProduct(ISession session, IPacket packet) throws Exception 
+    {
+        GeneralResponse response = new GeneralResponse();
+        try
+        {
+            Gson gson = new Gson();
+            SavedProduct savedProduct = gson.fromJson(packet.getPacketBody(), SavedProduct.class);
+            int userId = (int)session.getUserId();
+            if(userId > 0)
+            {
+                ProductManager productManager = new ProductManager();
+                if(productManager.addSavedProduct(userId, savedProduct.getProduct().getId()))
+                {
+                    response.setMessage("Item is assigned in your saved list.");
+                }
+                else
+                {
+                    response.setMessage("Item is already in your saved list.");
+                }
+            }
+            response.setSuccess(true);
+            return response;
+        }
+        catch(Exception ex)
+        {
+        
+        }
+        response.setSuccess(false);
+        return response;
+    }
+    
+    @ClientRequest(action = ACTION.SAVE_ACCOUNT_SETTING_FA)
+    public ClientResponse saveAccountSettingFA(ISession session, IPacket packet) throws Exception 
+    {
+        GeneralResponse response = new GeneralResponse();
+        try
+        {
+            Gson gson = new Gson();
+            AccountSettingFA accountSettingFA = gson.fromJson(packet.getPacketBody(), AccountSettingFA.class);
+            FeaturedAdManager featuredAdManager = new FeaturedAdManager();
+            if(accountSettingFA.getId() > 0)
+            {
+                featuredAdManager.updateFeaturedAdAccountSetting(accountSettingFA);
+            }
+            else
+            {
+                int userId = (int)session.getUserId();
+                if(userId > 0)
+                {
+                    User user = new User();
+                    user.setId(userId);
+                    accountSettingFA.setUser(user);
+                    accountSettingFA = featuredAdManager.addFeaturedAdAccountSetting(accountSettingFA);
+                }
+                else
+                {
+                    response.setSuccess(false);
+                    return response;
+                }
+            }
+            GsonBuilder gsonBuilder = new GsonBuilder();
+            gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+            gson = gsonBuilder.create();
+            String accountSettingFAString = gson.toJson(accountSettingFA);
+            AccountSettingFA response1 = new Gson().fromJson(accountSettingFAString, AccountSettingFA.class );
+            response1.setSuccess(true);
+            return response1;
+            //response.setSuccess(true);
+            //return response;
+        }
+        catch(Exception ex)
+        {
+            response.setSuccess(false);
+            return response;
+        }
     }
     
     @ClientRequest(action = ACTION.ADD_PRODUCT)

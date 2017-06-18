@@ -11,6 +11,7 @@ import {AuthGuard} from '../common/auth.guard';
 //
 import {MemberApp} from '../MemberApp';
 //import {App} from './app';
+import {Search} from '../common/search';
 import {DashBoard} from "../member/dashboard";
 import {MyHome} from "../home/myhome";
 import {MyProduct} from "../manageproduct/myproduct";
@@ -42,6 +43,7 @@ import {Privacypolicy} from '../common/privacypolicy';
 import {Contactus} from '../common/contactus';
 import {Logout} from '../common/logout';
 import {FileUploadModule } from 'ng2-file-upload';
+import { AgmCoreModule } from 'angular2-google-maps/core';
 import {CarouselModule, TypeaheadModule, DatepickerModule} from "ngx-bootstrap"
 //import {Abroad} from './abroad';
 //import {Header} from './header';
@@ -52,11 +54,14 @@ import {CarouselModule, TypeaheadModule, DatepickerModule} from "ngx-bootstrap"
         CarouselModule.forRoot(), TypeaheadModule.forRoot(),
         DatepickerModule.forRoot(),
         FileUploadModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyBQwFpi-R6gtguRzwSPzy4D0kyULz4ICd4'
+        }),
         RouterModule.forRoot(routes, {
             useHash: false
         })
     ],
-    declarations: [MemberApp, DashBoard, MyHome, MyProduct, MyAds, SavedAds, Productinfo, Bids, AccountSettings, IndividualAdBids, Stats, Ranking, Faq, Inbox, Sent, Saved, Showmessage, Notifications, MyProfile, EditProfile, UploadImg, UploadDocument, BasicSearch, AdvancedSearch, AppHeader, AppFooter, Terms, Privacypolicy, Contactus, Logout],
+    declarations: [MemberApp, Search, DashBoard, MyHome, MyProduct, MyAds, SavedAds, Productinfo, Bids, AccountSettings, IndividualAdBids, Stats, Ranking, Faq, Inbox, Sent, Saved, Showmessage, Notifications, MyProfile, EditProfile, UploadImg, UploadDocument, BasicSearch, AdvancedSearch, AppHeader, AppFooter, Terms, Privacypolicy, Contactus, Logout],
     bootstrap: [MemberApp],
     providers: [AuthGuard, {provide: LocationStrategy, useClass: HashLocationStrategy}]
 })
