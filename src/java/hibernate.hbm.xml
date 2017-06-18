@@ -257,7 +257,26 @@ Contributor(s):
         <many-to-one class="com.auction.dto.CurrencyUnit" column="currency_unit_id"  fetch="select" name="currencyUnit" not-null="true"/>
     </class>
     
+    <class name="com.auction.dto.Message" table="messages" dynamic-update="true" dynamic-insert="true" select-before-update="true">
+        <id name="id" type="int">
+            <generator class="increment"/>
+        </id>
+        <many-to-one class="com.auction.dto.User" column="from_user_id"  fetch="select" name="from" not-null="true"/>
+        <many-to-one class="com.auction.dto.User" column="to_user_id"  fetch="select" name="to" not-null="true"/>
+        <many-to-one class="com.auction.dto.Product" column="product_id"  fetch="select" name="product"/>
+        <property name="subject" column="subject" type="string"/>        
+        <property name="createdOn" column="created_on" type="long"/>
+    </class>
     
+    <class name="com.auction.dto.MessageText" table="message_texts" dynamic-update="true" dynamic-insert="true" select-before-update="true">
+        <id name="id" type="int">
+            <generator class="increment"/>
+        </id>
+        <property name="messageId" column="message_id" type="int"/>
+        <property name="body" column="body" type="string"/>
+        <property name="createdOn" column="created_on" type="long"/>
+        <many-to-one class="com.auction.dto.User" column="user_id"  fetch="select" name="user" not-null="true"/>
+    </class>
     
     
     

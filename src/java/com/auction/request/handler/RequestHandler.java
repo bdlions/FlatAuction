@@ -12,6 +12,8 @@ import com.auction.dto.CurrencyList;
 import com.auction.dto.DurationList;
 import com.auction.dto.GenderList;
 import com.auction.dto.LocationList;
+import com.auction.dto.Message;
+import com.auction.dto.MessageList;
 import com.auction.dto.OccupationList;
 import com.auction.dto.PetList;
 import com.auction.dto.Product;
@@ -32,6 +34,7 @@ import com.auction.util.ACTION;
 import com.auction.dto.response.ClientResponse;
 import com.auction.dto.response.GeneralResponse;
 import com.auction.dto.response.SignInResponse;
+import com.auction.manager.MessageManager;
 import com.auction.manager.ProductManager;
 import com.auction.manager.UserManager;
 import com.auction.util.Constants;
@@ -316,6 +319,7 @@ public class RequestHandler {
         }
         else
         {
+            response = new Product();
             response.setSuccess(false);
         }
         return response;
@@ -342,6 +346,58 @@ public class RequestHandler {
     public ClientResponse getAccountSettingFAInfo(ISession session, IPacket packet){
         AccountSettingFA response = new Gson().fromJson("{\"id\":\"1\",\"user\":{\"id\":\"1\"},\"defaultBidPerClick\":\"4\", \"defaultBidPerClickUnit\":{\"id\":\"1\",\"title\":\"p\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}},\"dailyBudget\":\"6\", \"dailyBudgetUnit\":{\"id\":\"1\",\"title\":\"£\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, \"campainActive\":\"true\"}", AccountSettingFA.class );
         response.setSuccess(true);
+        return response;
+    }
+    
+    @ClientRequest(action = ACTION.FETCH_MESSAGE_INBOX_LIST)
+    public ClientResponse getMessageInbooxList(ISession session, IPacket packet){
+        int userId = (int)session.getUserId();
+        MessageManager messageManager = new MessageManager();
+        List<Message> messageList = messageManager.getInboxMessageList(userId);
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+        Gson gson = gsonBuilder.create();
+        String messageListString = gson.toJson(messageList);
+        MessageList response = gson.fromJson("{\"messageList\":" +messageListString +"}", MessageList.class);
+        response.setSuccess(true);
+        return response;
+    }
+    
+    @ClientRequest(action = ACTION.FETCH_MESSAGE_SENT_LIST)
+    public ClientResponse getMessageSentList(ISession session, IPacket packet){
+        int userId = (int)session.getUserId();
+        MessageManager messageManager = new MessageManager();
+        List<Message> messageList = messageManager.getSentMessageList(userId);
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+        Gson gson = gsonBuilder.create();
+        String messageListString = gson.toJson(messageList);
+        MessageList response = gson.fromJson("{\"messageList\":" +messageListString +"}", MessageList.class);
+        response.setSuccess(true);
+        return response;
+    }
+    
+    @ClientRequest(action = ACTION.FETCH_MESSAGE_INFO)
+    public ClientResponse getMessageInfo(ISession session, IPacket packet){
+        Gson gson1 = new Gson();
+        Message message = gson1.fromJson(packet.getPacketBody(), Message.class);
+        MessageManager messageManager = new MessageManager();
+        
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+        Gson gson = gsonBuilder.create();
+        String messageInfoString = gson.toJson(messageManager.getMessageInfo(message.getId()));
+        Message response = gson.fromJson(messageInfoString, Message.class);
+        
+        if(response != null)
+        {
+            response.setSuccess(true);
+        }
+        else
+        {
+            response = new Message();
+            response.setSuccess(false);
+        }
         return response;
     }
     

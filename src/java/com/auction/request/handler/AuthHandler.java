@@ -11,10 +11,12 @@ import org.bdlions.session.ISession;
 import org.bdlions.session.ISessionManager;
 import com.auction.util.ACTION;
 import com.auction.commons.ClientMessages;
+import com.auction.commons.HibernateProxyTypeAdapter;
 import com.auction.dto.AccountStatus;
 import com.auction.dto.Currency;
 import com.auction.dto.CurrencyUnit;
 import com.auction.dto.Image;
+import com.auction.dto.Message;
 import com.auction.dto.Product;
 import com.auction.dto.ProductBid;
 import com.auction.dto.User;
@@ -22,6 +24,7 @@ import com.auction.dto.response.ClientResponse;
 import com.auction.dto.response.GeneralResponse;
 import com.auction.dto.response.SignInResponse;
 import com.auction.library.SendMail;
+import com.auction.manager.MessageManager;
 import com.auction.manager.ProductManager;
 import com.auction.manager.UserManager;
 import com.auction.util.Constants;
@@ -29,6 +32,7 @@ import com.auction.util.FileUtils;
 import org.bdlions.util.StringUtils;
 import org.bdlions.util.annotation.ClientRequest;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -213,6 +217,95 @@ public class AuthHandler {
         response.setMessage("Bid is added successfully");
         response.setSuccess(true);
         return response;
+    }
+    
+    @ClientRequest(action = ACTION.ADD_MESSAGE_TEXT)
+    public ClientResponse addMessageText(ISession session, IPacket packet) throws Exception 
+    {
+        
+        Gson gson = new Gson();
+        Message message = gson.fromJson(packet.getPacketBody(), Message.class);        
+        int userId = (int)session.getUserId();
+        User user = new User();        
+        if(userId > 0 && message.getMessageTextList()!= null && !message.getMessageTextList().isEmpty())
+        {
+            user.setId(userId);
+            message.getMessageTextList().get(0).setUser(user);            
+            MessageManager messageManager = new MessageManager();
+            messageManager.addMessageText(message);
+            
+            
+            GsonBuilder gsonBuilder = new GsonBuilder();
+            gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+            gson = gsonBuilder.create();
+            String messageInfoString = gson.toJson(messageManager.getMessageInfo(message.getId()));
+            Message response1 = gson.fromJson(messageInfoString, Message.class);            
+            response1.setMessage("Message Text is added successfully");
+            response1.setSuccess(true);
+            return response1;
+        }
+        else
+        {  
+            GeneralResponse response2 = new GeneralResponse();
+            response2.setMessage("Error while adding message text.");
+            response2.setSuccess(false);
+            return response2;
+        }
+        
+    }
+    
+    @ClientRequest(action = ACTION.ADD_MESSAGE_INFO)
+    public ClientResponse addMessageInfo(ISession session, IPacket packet) throws Exception 
+    {
+        
+        Gson gson = new Gson();
+        Message message = gson.fromJson(packet.getPacketBody(), Message.class);        
+        int userId = (int)session.getUserId();
+        User user = new User();        
+        if(userId > 0 && message.getMessageTextList()!= null && !message.getMessageTextList().isEmpty())
+        {
+            try
+            {
+                User fromUser = new User();
+                fromUser.setId(userId);
+                message.setFrom(fromUser);
+
+                User toUser = new User();
+                toUser.setId(message.getProduct().getUser().getId());
+                message.setTo(toUser);
+
+                user.setId(userId);
+                message.getMessageTextList().get(0).setUser(user);            
+                MessageManager messageManager = new MessageManager();
+                messageManager.addMessageText(message);
+
+
+                GsonBuilder gsonBuilder = new GsonBuilder();
+                gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+                gson = gsonBuilder.create();
+                String messageInfoString = gson.toJson(messageManager.getMessageInfo(message.getId()));
+                Message response1 = gson.fromJson(messageInfoString, Message.class);            
+                response1.setMessage("Message Text is added successfully");
+                response1.setSuccess(true);
+                return response1;
+            }
+            catch(Exception ex)
+            {
+                GeneralResponse response3 = new GeneralResponse();
+                response3.setMessage("Error while adding message text.");
+                response3.setSuccess(false);
+                return response3;
+            }
+            
+        }
+        else
+        {  
+            GeneralResponse response2 = new GeneralResponse();
+            response2.setMessage("Error while adding message text.");
+            response2.setSuccess(false);
+            return response2;
+        }
+        
     }
 
     @ClientRequest(action = ACTION.SIGN_OUT)
