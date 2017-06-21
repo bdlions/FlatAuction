@@ -11,17 +11,23 @@ import org.bdlions.session.ISession;
 import org.bdlions.session.ISessionManager;
 import com.auction.util.ACTION;
 import com.auction.commons.ClientMessages;
+import com.auction.commons.HibernateProxyTypeAdapter;
+import com.auction.dto.AccountSettingFA;
 import com.auction.dto.AccountStatus;
 import com.auction.dto.Currency;
 import com.auction.dto.CurrencyUnit;
 import com.auction.dto.Image;
+import com.auction.dto.Message;
 import com.auction.dto.Product;
 import com.auction.dto.ProductBid;
+import com.auction.dto.SavedProduct;
 import com.auction.dto.User;
 import com.auction.dto.response.ClientResponse;
 import com.auction.dto.response.GeneralResponse;
 import com.auction.dto.response.SignInResponse;
 import com.auction.library.SendMail;
+import com.auction.manager.FeaturedAdManager;
+import com.auction.manager.MessageManager;
 import com.auction.manager.ProductManager;
 import com.auction.manager.UserManager;
 import com.auction.util.Constants;
@@ -29,6 +35,7 @@ import com.auction.util.FileUtils;
 import org.bdlions.util.StringUtils;
 import org.bdlions.util.annotation.ClientRequest;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -125,9 +132,11 @@ public class AuthHandler {
                 userManager.addUserProfile(user);
 
                 //Once sign up is complete send account activation email to the user
-                SendMail sendMail = new SendMail();
-                //sendMail.sendSignUpMail("");
-
+                if(StringUtils.isNullOrEmpty(user.getEmail()))
+                {
+                    SendMail sendMail = new SendMail();
+                    sendMail.sendSignUpMail(user.getEmail());
+                }
                 
                 response.setMessage("Sign up successful");
                 response.setSuccess(true);
@@ -144,6 +153,84 @@ public class AuthHandler {
             response.setSuccess(false);
         }        
         return response;
+    }
+    
+    @ClientRequest(action = ACTION.ADD_SAVED_PRODUCT)
+    public ClientResponse addSavedProduct(ISession session, IPacket packet) throws Exception 
+    {
+        GeneralResponse response = new GeneralResponse();
+        try
+        {
+            Gson gson = new Gson();
+            SavedProduct savedProduct = gson.fromJson(packet.getPacketBody(), SavedProduct.class);
+            int userId = (int)session.getUserId();
+            if(userId > 0)
+            {
+                ProductManager productManager = new ProductManager();
+                if(productManager.addSavedProduct(userId, savedProduct.getProduct().getId()))
+                {
+                    response.setMessage("Item is assigned in your saved list.");
+                }
+                else
+                {
+                    response.setMessage("Item is already in your saved list.");
+                }
+            }
+            response.setSuccess(true);
+            return response;
+        }
+        catch(Exception ex)
+        {
+        
+        }
+        response.setSuccess(false);
+        return response;
+    }
+    
+    @ClientRequest(action = ACTION.SAVE_ACCOUNT_SETTING_FA)
+    public ClientResponse saveAccountSettingFA(ISession session, IPacket packet) throws Exception 
+    {
+        GeneralResponse response = new GeneralResponse();
+        try
+        {
+            Gson gson = new Gson();
+            AccountSettingFA accountSettingFA = gson.fromJson(packet.getPacketBody(), AccountSettingFA.class);
+            FeaturedAdManager featuredAdManager = new FeaturedAdManager();
+            if(accountSettingFA.getId() > 0)
+            {
+                featuredAdManager.updateFeaturedAdAccountSetting(accountSettingFA);
+            }
+            else
+            {
+                int userId = (int)session.getUserId();
+                if(userId > 0)
+                {
+                    User user = new User();
+                    user.setId(userId);
+                    accountSettingFA.setUser(user);
+                    accountSettingFA = featuredAdManager.addFeaturedAdAccountSetting(accountSettingFA);
+                }
+                else
+                {
+                    response.setSuccess(false);
+                    return response;
+                }
+            }
+            GsonBuilder gsonBuilder = new GsonBuilder();
+            gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+            gson = gsonBuilder.create();
+            String accountSettingFAString = gson.toJson(accountSettingFA);
+            AccountSettingFA response1 = new Gson().fromJson(accountSettingFAString, AccountSettingFA.class );
+            response1.setSuccess(true);
+            return response1;
+            //response.setSuccess(true);
+            //return response;
+        }
+        catch(Exception ex)
+        {
+            response.setSuccess(false);
+            return response;
+        }
     }
     
     @ClientRequest(action = ACTION.ADD_PRODUCT)
@@ -213,6 +300,95 @@ public class AuthHandler {
         response.setMessage("Bid is added successfully");
         response.setSuccess(true);
         return response;
+    }
+    
+    @ClientRequest(action = ACTION.ADD_MESSAGE_TEXT)
+    public ClientResponse addMessageText(ISession session, IPacket packet) throws Exception 
+    {
+        
+        Gson gson = new Gson();
+        Message message = gson.fromJson(packet.getPacketBody(), Message.class);        
+        int userId = (int)session.getUserId();
+        User user = new User();        
+        if(userId > 0 && message.getMessageTextList()!= null && !message.getMessageTextList().isEmpty())
+        {
+            user.setId(userId);
+            message.getMessageTextList().get(0).setUser(user);            
+            MessageManager messageManager = new MessageManager();
+            messageManager.addMessageText(message);
+            
+            
+            GsonBuilder gsonBuilder = new GsonBuilder();
+            gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+            gson = gsonBuilder.create();
+            String messageInfoString = gson.toJson(messageManager.getMessageInfo(message.getId()));
+            Message response1 = gson.fromJson(messageInfoString, Message.class);            
+            response1.setMessage("Message Text is added successfully");
+            response1.setSuccess(true);
+            return response1;
+        }
+        else
+        {  
+            GeneralResponse response2 = new GeneralResponse();
+            response2.setMessage("Error while adding message text.");
+            response2.setSuccess(false);
+            return response2;
+        }
+        
+    }
+    
+    @ClientRequest(action = ACTION.ADD_MESSAGE_INFO)
+    public ClientResponse addMessageInfo(ISession session, IPacket packet) throws Exception 
+    {
+        
+        Gson gson = new Gson();
+        Message message = gson.fromJson(packet.getPacketBody(), Message.class);        
+        int userId = (int)session.getUserId();
+        User user = new User();        
+        if(userId > 0 && message.getMessageTextList()!= null && !message.getMessageTextList().isEmpty())
+        {
+            try
+            {
+                User fromUser = new User();
+                fromUser.setId(userId);
+                message.setFrom(fromUser);
+
+                User toUser = new User();
+                toUser.setId(message.getProduct().getUser().getId());
+                message.setTo(toUser);
+
+                user.setId(userId);
+                message.getMessageTextList().get(0).setUser(user);            
+                MessageManager messageManager = new MessageManager();
+                messageManager.addMessageText(message);
+
+
+                GsonBuilder gsonBuilder = new GsonBuilder();
+                gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+                gson = gsonBuilder.create();
+                String messageInfoString = gson.toJson(messageManager.getMessageInfo(message.getId()));
+                Message response1 = gson.fromJson(messageInfoString, Message.class);            
+                response1.setMessage("Message Text is added successfully");
+                response1.setSuccess(true);
+                return response1;
+            }
+            catch(Exception ex)
+            {
+                GeneralResponse response3 = new GeneralResponse();
+                response3.setMessage("Error while adding message text.");
+                response3.setSuccess(false);
+                return response3;
+            }
+            
+        }
+        else
+        {  
+            GeneralResponse response2 = new GeneralResponse();
+            response2.setMessage("Error while adding message text.");
+            response2.setSuccess(false);
+            return response2;
+        }
+        
     }
 
     @ClientRequest(action = ACTION.SIGN_OUT)

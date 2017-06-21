@@ -128,10 +128,10 @@
                                             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
                                                 <div class="row">
                                                     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                                                        <img class="img-responsive list-property-big-img" src="resources/images/{{product.img}}">
+                                                        <img class="img-responsive list-property-big-img" src="resources/images/product/{{product.img}}">
                                                     </div>
                                                     <div *ngFor="let image of product.images" class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                                                        <img class="img-responsive list-property-small-img" src="resources/images/{{image.url}}">
+                                                        <img class="img-responsive list-property-small-img" src="resources/images/product/{{image.title}}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -140,7 +140,7 @@
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                                             <div class="list-property-title">
-                                                                <h4><a [routerLink]="['/productInfo']" (click)="selectProduct($event, 1)">{{product.title}}</a></h4>
+                                                                <h4><a [routerLink]="['/productInfo']" (click)="selectProduct($event, product.id)">{{product.title}}</a></h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -170,10 +170,10 @@
 
                                                         </div>
                                                         <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                                                            <a [routerLink]="['/signup']" (click)="signup($event)" class="list-property-sign-up-anchor"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                                            <a (click)="saveProduct($event, product.id)" class="list-property-sign-up-anchor"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
                                                         </div>
                                                         <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                                                            <a href="" class="list-property-contact-anchor"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+                                                            <!--<a href="" class="list-property-contact-anchor"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>-->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -190,16 +190,16 @@
                                 <div *ngFor="let product of productList" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
                                     <div class="grid-property-section">
                                         <div class="grid-property-img">
-                                            <img class="img-responsive" src="resources/images/{{product.img}}">
+                                            <img class="img-responsive" src="resources/images/product/{{product.img}}">
                                         </div>
                                         <div class="grid-property-price">
-                                            <h3>{{product.price}}</h3>
+                                            <h3>{{product.basePrice}}  £</h3>
                                         </div>
                                         <div class="padding-5px">
                                             <div class="row">
                                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                                     <div class="grid-property-title">
-                                                        <h4><a [routerLink]="['/productInfo']" (click)="selectProduct($event, 1)">{{product.title}}</a></h4>
+                                                        <h4><a [routerLink]="['/productInfo']" (click)="selectProduct($event, product.id)">{{product.title}}</a></h4>
                                                     </div>
                                                 </div>
                                             </div>
@@ -215,10 +215,10 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                                    <a [routerLink]="['/signup']" (click)="signup($event)" class="grid-property-sign-up-anchor"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                                    <a (click)="saveProduct($event, product.id)" class="grid-property-sign-up-anchor"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
                                                 </div>
                                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                                    <a href="" class="grid-property-contact-anchor"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+                                                    <!--<a href="" class="grid-property-contact-anchor"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>-->
                                                 </div>
                                             </div>
                                         </div>

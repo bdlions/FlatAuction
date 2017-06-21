@@ -33,6 +33,9 @@ var PacketHeaderFactory = (function () {
             case ACTION_1.ACTION.FETCH_MY_PRODUCT_LIST:
                 packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
                 break;
+            case ACTION_1.ACTION.FETCH_SAVED_PRODUCT_LIST:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
+                break;
             case ACTION_1.ACTION.FETCH_LOCATION_LIST:
                 packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
                 break;
@@ -87,6 +90,15 @@ var PacketHeaderFactory = (function () {
             case ACTION_1.ACTION.FETCH_ACCOUNT_SETTING_FA:
                 packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
                 break;
+            case ACTION_1.ACTION.FETCH_MESSAGE_INBOX_LIST:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
+                break;
+            case ACTION_1.ACTION.FETCH_MESSAGE_INFO:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
+                break;
+            case ACTION_1.ACTION.FETCH_MESSAGE_SENT_LIST:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
+                break;
             case ACTION_1.ACTION.UPDATE_USER_INFO:
                 packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.UPDATE;
                 break;
@@ -96,10 +108,25 @@ var PacketHeaderFactory = (function () {
             case ACTION_1.ACTION.UPDATE_USER_DOCUMENT:
                 packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.UPDATE;
                 break;
+            case ACTION_1.ACTION.UPDATE_PRODUCT_INFO:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.UPDATE;
+                break;
             case ACTION_1.ACTION.ADD_PRODUCT:
                 packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.UPDATE;
                 break;
+            case ACTION_1.ACTION.ADD_SAVED_PRODUCT:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.UPDATE;
+                break;
             case ACTION_1.ACTION.ADD_PRODUCT_BID:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.UPDATE;
+                break;
+            case ACTION_1.ACTION.ADD_MESSAGE_TEXT:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.UPDATE;
+                break;
+            case ACTION_1.ACTION.ADD_MESSAGE_INFO:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.UPDATE;
+                break;
+            case ACTION_1.ACTION.SAVE_ACCOUNT_SETTING_FA:
                 packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.UPDATE;
                 break;
             default:

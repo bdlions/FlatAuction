@@ -55,6 +55,12 @@ export class UploadImg {
         this.router.navigate(['profile']);
     }
     
+    
+    myprofile(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['myprofile']);
+    }
+    
     editprofile(event: Event) {
         event.preventDefault();
         this.router.navigate(['editprofile']);

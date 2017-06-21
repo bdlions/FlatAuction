@@ -5,6 +5,9 @@
  */
 package com.auction.servlet;
 
+import com.auction.dto.AccountStatus;
+import com.auction.manager.UserManager;
+import com.auction.util.Constants;
 import com.auction.util.FacebookConfig;
 import com.auction.util.StringUtils;
 import com.auction.util.URIBuilder;
@@ -72,20 +75,66 @@ public class SocialAuthServlet extends HttpServlet {
                     String redirectURI = FacebookConfig.getInstance().get(FacebookConfig.CALLBACK_URL);
                     String clientSecret = FacebookConfig.getInstance().get(FacebookConfig.APP_SECRET);
 
-                    FacebookClient facebookClient = new DefaultFacebookClient(Version.VERSION_2_3);
+                    FacebookClient facebookClient = new DefaultFacebookClient(Version.VERSION_2_9);
                     accessToken = facebookClient.obtainUserAccessToken(clientId, clientSecret, redirectURI, code);
 
                     if (accessToken != null) {
                         if (StringUtils.isNullOrEmpty(accessToken.getAccessToken())) {
                             //unauthorized access
                         } else {
-                            facebookClient = new DefaultFacebookClient(accessToken.getAccessToken(), clientSecret, Version.VERSION_2_3);
+                            facebookClient = new DefaultFacebookClient(accessToken.getAccessToken(), clientSecret, Version.VERSION_2_9);
                             //accessToken = facebookClient.obtainExtendedAccessToken(clientId, clientSecret);
                             //facebookClient = new DefaultFacebookClient(accessToken.getAccessToken(), Version.VERSION_2_3);
-                            User user = facebookClient.fetchObject("me", User.class);
+                            User user = facebookClient.fetchObject("me", User.class, Parameter.with("fields", FacebookConfig.getInstance().get(FacebookConfig.SCOPE_REQUIRED)));
                             String userId = user.getId();
                             
-                            out.println("User Id: " + userId);
+                            UserManager userManager = new UserManager();
+                            com.auction.dto.User userDTO = userManager.getUserProfileByFbCode(userId);
+                            String password = "dummy";
+                            if(userDTO == null)
+                            {
+                                //fb code doesn't exist
+                                com.auction.dto.User newUser = new com.auction.dto.User();
+                                if(!StringUtils.isNullOrEmpty(user.getEmail()))
+                                {
+                                    com.auction.dto.User checkUser = userManager.getUserByIdentity(user.getEmail());
+                                    //register a new user via fb
+                                    if(checkUser == null)
+                                    {
+                                        newUser.setEmail(user.getEmail());
+                                        newUser.setPassword(password);
+                                        newUser.setFbCode(userId);
+                                        if(!StringUtils.isNullOrEmpty(user.getFirstName()))
+                                        {
+                                            newUser.setFirstName(user.getFirstName());
+                                        }
+                                        if(!StringUtils.isNullOrEmpty(user.getLastName()))
+                                        {
+                                            newUser.setLastName(user.getLastName());
+                                        }    
+                                        AccountStatus activeStatus = new AccountStatus();
+                                        activeStatus.setId(Constants.ACCOUNT_STATUS_ID_ACTIVE);
+                                        newUser.setAccountStatus(activeStatus);
+                                        userManager.addUserProfile(newUser);
+                                    }
+                                    else
+                                    {
+                                        password = checkUser.getPassword();
+                                        //email already exists into database, so fb code is updated
+                                        checkUser.setFbCode(userId);
+                                        userManager.updateUserProfile(checkUser);                                        
+                                    }                                    
+                                }
+                                //if user comes as registration via fb then show a page to assign password
+                            } 
+                            else
+                            {
+                                password = userDTO.getPassword();
+                            }
+                            request.setAttribute("fbEmail", user.getEmail());
+                            request.setAttribute("password", password);
+                            request.getRequestDispatcher("member.jsp").forward(request, response);
+                            /*out.println("User Id: " + userId);
                             out.println("</br>");
                             out.println("Name: " + user.getName());
                             out.println("</br>");
@@ -99,7 +148,7 @@ public class SocialAuthServlet extends HttpServlet {
                                     Parameter.with("type", "large"), // the image size
                                     Parameter.with("redirect", "false")); // don't redirect
                             out.println("profile picture: " + ((com.restfb.json.JsonObject) js.get("data")).get("url"));
-                            
+                            */
                             //if(userId exists in db){
                                 //user already exist
                                 //login and fetch all data

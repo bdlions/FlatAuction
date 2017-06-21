@@ -209,10 +209,22 @@ public class ProductManagerTest {
         productManager.addProductBid(productBid);
     }
     
-    @Test
+    //@Test
     public void getProductBidListTest(){
         ProductManager productManager = new ProductManager();
         List<ProductBid> productBids = productManager.getProductBidList(1);
         System.out.println(productBids.size());
+    }
+    
+    //@Test
+    public void addSavedProductTest(){
+        ProductManager productManager = new ProductManager();
+        System.out.println(productManager.addSavedProduct(1, 1));
+    }
+    
+    @Test
+    public void getSavedProductTest(){
+        ProductManager productManager = new ProductManager();
+        productManager.getSavedProducts(1, 0, 100);
     }
 }

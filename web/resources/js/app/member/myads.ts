@@ -29,6 +29,11 @@ export class MyAds implements OnInit, OnDestroy {
         console.log(this.productList);
     }
     
+    public myproduct(event: Event, id: number){
+        event.preventDefault();
+        this.router.navigate(['myproduct', {id: id }]);
+    }
+    
     
     public selectProduct(event: Event, id: number){
         event.preventDefault();
@@ -53,15 +58,15 @@ export class MyAds implements OnInit, OnDestroy {
         this.router.navigate(['dashboard']);
     }
     
-    myads(event: Event) {
-        event.preventDefault();
-        this.router.navigate(['myads']);
-    }
-    
-    savedads(event: Event) {
-        event.preventDefault();
-        this.router.navigate(['savedads']);
-    }
+//    myads(event: Event) {
+//        event.preventDefault();
+//        this.router.navigate(['myads']);
+//    }
+//    
+//    savedads(event: Event) {
+//        event.preventDefault();
+//        this.router.navigate(['savedads']);
+//    }
     
     messages(event: Event) {
         event.preventDefault();

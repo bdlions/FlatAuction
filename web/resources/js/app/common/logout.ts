@@ -22,9 +22,9 @@ export class Logout {
         localStorage.removeItem("username");
         localStorage.removeItem("password");
         localStorage.removeItem("sessionId");
-        //redirect to non-member.jsp
+        //redirect to index.jsp
         window.location.replace("/");
-        window.location.href = "non-member.jsp";
+        window.location.href = "index.jsp";
     }
     
 }

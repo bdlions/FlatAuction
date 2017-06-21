@@ -41,7 +41,7 @@ public class MailSender {
         // sets SMTP server properties
         Properties properties = new Properties();
         properties.put("mail.smtp.host", "mail.signtechbd.com");
-//        properties.put("mail.debug", "true");
+        //properties.put("mail.debug", "true");
         properties.put("mail.smtp.auth", "true");
 
         // creates a new session with an authenticator

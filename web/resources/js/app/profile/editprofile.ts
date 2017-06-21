@@ -36,7 +36,7 @@ export class EditProfile {
             let response  = result;
             if (response.success){
                 //show success message
-                this.router.navigate(['profile']);
+                this.router.navigate(['myprofile']);
             }
             else{
                 //show error message at this page
@@ -47,6 +47,12 @@ export class EditProfile {
     profile(event: Event) {
         event.preventDefault();
         this.router.navigate(['profile']);
+    }
+    
+    
+    myprofile(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['myprofile']);
     }
     
     editprofile(event: Event) {

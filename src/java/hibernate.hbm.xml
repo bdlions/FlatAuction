@@ -69,6 +69,7 @@ Contributor(s):
         <property column="last_access_time" name="lastAccessTime" type="long"/>
         <property column="created_on" name="createdOn" type="long" update="false"/>
         <property column="modified_on" name="modifiedOn" type="long"/>
+        <property column="fb_code" name="fbCode" type="string"/>
         <many-to-one class="com.auction.dto.AccountStatus" fetch="select" name="accountStatus">
             <column name="account_status_id" not-null="true"/>
         </many-to-one>
@@ -256,7 +257,48 @@ Contributor(s):
         <many-to-one class="com.auction.dto.CurrencyUnit" column="currency_unit_id"  fetch="select" name="currencyUnit" not-null="true"/>
     </class>
     
+    <class name="com.auction.dto.SavedProduct" table="saved_products" dynamic-update="true" dynamic-insert="true" select-before-update="true">
+        <id name="id" type="int">
+            <generator class="increment"/>
+        </id>
+        <many-to-one class="com.auction.dto.User" column="user_id"  fetch="select" name="user" not-null="true"/>
+        <many-to-one class="com.auction.dto.Product" column="product_id"  fetch="select" name="product" not-null="true"/>
+        <property name="createdOn" column="created_on" type="long"/>
+    </class>
     
+    <class name="com.auction.dto.Message" table="messages" dynamic-update="true" dynamic-insert="true" select-before-update="true">
+        <id name="id" type="int">
+            <generator class="increment"/>
+        </id>
+        <many-to-one class="com.auction.dto.User" column="from_user_id"  fetch="select" name="from" not-null="true"/>
+        <many-to-one class="com.auction.dto.User" column="to_user_id"  fetch="select" name="to" not-null="true"/>
+        <many-to-one class="com.auction.dto.Product" column="product_id"  fetch="select" name="product"/>
+        <property name="subject" column="subject" type="string"/>        
+        <property name="createdOn" column="created_on" type="long"/>
+    </class>
+    
+    <class name="com.auction.dto.MessageText" table="message_texts" dynamic-update="true" dynamic-insert="true" select-before-update="true">
+        <id name="id" type="int">
+            <generator class="increment"/>
+        </id>
+        <property name="messageId" column="message_id" type="int"/>
+        <property name="body" column="body" type="string"/>
+        <property name="createdOn" column="created_on" type="long"/>
+        <many-to-one class="com.auction.dto.User" column="user_id"  fetch="select" name="user" not-null="true"/>
+    </class>
+    
+    <class name="com.auction.dto.AccountSettingFA" table="account_setting_fa" 
+           dynamic-update="true" dynamic-insert="true" select-before-update="true">
+        <id name="id" type="int">
+            <generator class="increment"/>
+        </id>
+        <many-to-one class="com.auction.dto.User" column="user_id" fetch="select" name="user" not-null="true"/>
+        <property name="defaultBidPerClick" column="default_bid_per_click" type="double"/>
+        <many-to-one class="com.auction.dto.Currency" column="default_bid_per_click_unit" name="defaultBidPerClickUnit"/>
+        <property name="dailyBudget" column="daily_budget" type="double"/>
+        <many-to-one class="com.auction.dto.Currency" column="daily_budget_unit" name="dailyBudgetUnit"/>
+        <property name="campainActive" column="campain_active" type="boolean"/>
+    </class>
     
     
     
@@ -271,21 +313,7 @@ Contributor(s):
         </id>
         <property name="title" column="title" type="string"/>
     </class>  
-    <class name="com.auction.dto.AccountSettingFA" table="account_setting_fa" 
-           dynamic-update="true" dynamic-insert="true" select-before-update="true">
-        <id name="id" type="int">
-            <generator class="native"/>
-        </id>
-        <many-to-one class="com.auction.dto.User" column="user_id" fetch="select" name="user" not-null="true"/>
-        <property name="defaultBidPerClick" column="default_bid_per_click" type="double"/>
-        <many-to-one class="com.auction.dto.Currency" column="default_bid_per_click_unit" name="defaultBidPerClickUnit"/>
-        <!--<property name="defaultBidPerClickUnit" column="default_bid_per_click_unit" type="class com.auction.dto.Currency"/>-->
-        <property name="dailyBudget" column="daily_budget" type="double"/>
-        <many-to-one class="com.auction.dto.Currency" column="daily_budget_unit" name="dailyBudgetUnit"/>
-        <!--<property name="dailyBudgetUnit" column="daily_budget_unit" type="class com.auction.dto.Currency"/>-->
-        <property name="campainActive" column="campain_active" type="boolean"/>
-
-    </class>
+    
     
     
     <sql-query name="getUserByCredential">
@@ -304,6 +332,10 @@ Contributor(s):
         <return class="com.auction.dto.User"/>
         SELECT * FROM users WHERE id = :id
     </sql-query>
+    <sql-query name="getUserByFbCode">
+        <return class="com.auction.dto.User"/>
+        SELECT * FROM users WHERE fb_code = :fb_code
+    </sql-query>    
     <sql-query name="getProductTypes">
         <return class="com.auction.dto.ProductType"/>
         SELECT * FROM product_types

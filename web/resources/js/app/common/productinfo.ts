@@ -4,6 +4,10 @@ import {Http} from '@angular/http';
 import {Subscription} from 'rxjs';
 import {Product} from '../dto/Product';
 import {ProductBid} from '../dto/ProductBid';
+
+import {Message} from '../dto/Message';
+import {MessageText} from '../dto/MessageText';
+
 import {WebAPIService} from './../webservice/web-api-service';
 import {PacketHeaderFactory} from './../webservice/PacketHeaderFactory';
 import {ACTION} from './../webservice/ACTION';
@@ -22,8 +26,16 @@ export class Productinfo implements OnInit, OnDestroy {
     private subscribe:Subscription;
     private id:number;
     
+    private newMessage:Message;
+    private newMessageText:MessageText;
+    private newMessageBody:string;
+    
     constructor(public router:Router, public route: ActivatedRoute, webAPIService: WebAPIService) {
         this.webAPIService = webAPIService;
+        
+        this.newMessage = new Message();
+        this.newMessageText = new MessageText();
+        this.newMessageBody = "";
         
         this.product = new Product();
         this.productBid = new ProductBid();
@@ -47,21 +59,30 @@ export class Productinfo implements OnInit, OnDestroy {
     
     postBid(event: Event) 
     {
-        this.productBid.product = new Product();
-        this.productBid.product.id = this.product.id;
-        //ser user id from session at server
-        //set currency and currency unit at server.
-        let requestBody: string = JSON.stringify(this.productBid);
-        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.ADD_PRODUCT_BID), requestBody).then(result =>{
-            let response  = result;
-            if (response.success){
-                this.productBid = new ProductBid();
-                //set a message that product bid is placed successfully
-            }
-            else{
-                //show error message at this page
-            }
-        });
+        let username = localStorage.getItem("username");
+        if (username != null && username != "")
+        {
+            this.productBid.product = new Product();
+            this.productBid.product.id = this.product.id;
+            //ser user id from session at server
+            //set currency and currency unit at server.
+            let requestBody: string = JSON.stringify(this.productBid);
+            this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.ADD_PRODUCT_BID), requestBody).then(result =>{
+                let response  = result;
+                if (response.success){
+                    this.productBid = new ProductBid();
+                    //set a message that product bid is placed successfully
+                }
+                else{
+                    //show error message at this page
+                }
+            });
+        }
+        else
+        {
+            //may redirected to login/signup page or show error messaage
+        }
+        
     }
     
     public showBids(event: Event, id: number){
@@ -86,5 +107,23 @@ export class Productinfo implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.subscribe.unsubscribe();
+    }
+    
+    addmessage(event: Event) 
+    {
+        this.newMessageText = new MessageText();
+        this.newMessageText.body = this.newMessageBody;
+        
+        this.newMessage.subject = "Re : " + this.productInfo.title;
+        this.newMessage.product = this.productInfo;
+        
+        this.newMessage.messageTextList = new Array<MessageText>();
+        this.newMessage.messageTextList[0] = this.newMessageText;
+        let requestBody: string = JSON.stringify(this.newMessage);
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.ADD_MESSAGE_INFO), requestBody).then(result => {
+            this.newMessage = new Message();
+            this.newMessageText = new MessageText();
+            this.newMessageBody = "";
+        });
     }
 }

@@ -33,7 +33,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
                     <div class="row form-group">
                         <div class="col-xs-12 col-sm-12 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
-                            <form role="form" (submit)="addProduct($event)" method="post">
+                            <form role="form" (submit)="saveProduct($event)" method="post">
                                 <div class="tab-content">                                
                                     <div class="tab-pane active" id="step1">
                                         <div class="row form-group">
@@ -73,6 +73,14 @@
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="step2">
+                                        <div class="row form-group">
+                                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                                <h5 class="create-ad-label">Price (£)</h5>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                <input [(ngModel)]="product.basePrice" class="form-control input-custom-field" name="base_price" placeholder="Price" type="text" />
+                                            </div>
+                                        </div>
                                         <div class="row form-group">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                                                 <h5 class="create-ad-label">Area</h5>
@@ -344,7 +352,7 @@
                                                 <a href="#step6" role="tab" data-toggle="tab"><button type="button" id="step7-previous" name="step7-previous" class="form-control common-custom-button">Previous Step</button></a>
                                             </div>
                                             <div class="col-xs-6 col-sm-offset-4 col-sm-4 col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4">
-                                                <button type="submit" id="step7-next" name="step7-next" class="form-control common-custom-button">Place Your Advert</button>
+                                                <button type="submit" id="step7-next" name="step7-next" class="form-control common-custom-button">Save Advert</button>
                                             </div>
                                         </div>
                                     </div>                                
