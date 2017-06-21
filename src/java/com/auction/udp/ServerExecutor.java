@@ -5,6 +5,7 @@
  */
 package com.auction.udp;
 
+import com.auction.db.HibernateUtil;
 import com.auction.util.ClientRequestHandler;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -35,6 +36,7 @@ public class ServerExecutor implements ServletContextListener{
             channelProviderImpl.start();
             ServletContext ctx = servletContextEvent.getServletContext();
             ctx.setAttribute("channelProviderImpl", channelProviderImpl);
+            HibernateUtil.getSession();
         } catch (Exception ex) {
             logger.error(ex.getMessage());
         }

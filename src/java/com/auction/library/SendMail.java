@@ -19,11 +19,12 @@ public class SendMail {
         boolean status = false;
         // outgoing message information
         //mailTo = "nazhasan15@yopmail.com";
-        String subject = "Room Auction Sign UP";
+        String subject = "Room Auction Email Verification";
 
         //generate a random code and store that into the database, deactivate account
         Map<String, String> input = new HashMap<>();
-        input.put("v_link", "http://property-auction.com/verify?vCode=" + UUID.randomUUID().toString());
+        input.put("v_link", "http://roomauction.co.uk/Verifycode?vCode=" + UUID.randomUUID().toString());
+        input.put("c_link", "http://roomauction.co.uk/Verifycode?cCode=" + UUID.randomUUID().toString());
         input.put("email", mailTo);
 
         //HTML mail content

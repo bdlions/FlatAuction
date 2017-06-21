@@ -34,10 +34,12 @@ import com.auction.util.ACTION;
 import com.auction.dto.response.ClientResponse;
 import com.auction.dto.response.GeneralResponse;
 import com.auction.dto.response.SignInResponse;
+import com.auction.exceptions.InvalidRequestException;
 import com.auction.manager.FeaturedAdManager;
 import com.auction.manager.MessageManager;
 import com.auction.manager.ProductManager;
 import com.auction.manager.UserManager;
+import com.auction.util.ClientRequestHandler;
 import com.auction.util.Constants;
 import com.auction.util.FileUtils;
 import com.auction.util.ServerPropertyProvider;
@@ -46,13 +48,15 @@ import org.bdlions.util.annotation.ClientRequest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author alamgir
  */
 public class RequestHandler {
-
+    private final Logger logger = LoggerFactory.getLogger(RequestHandler.class);
     private final ISessionManager sessionManager;
     public RequestHandler(ISessionManager sessionManager) {
         this.sessionManager = sessionManager;
@@ -381,17 +385,27 @@ public class RequestHandler {
     }
     
     @ClientRequest(action = ACTION.FETCH_MESSAGE_INBOX_LIST)
-    public ClientResponse getMessageInbooxList(ISession session, IPacket packet){
+    public ClientResponse getMessageInbooxList(ISession session, IPacket packet) throws InvalidRequestException, Throwable{
+        logger.debug("processing request - fetch message inbox list");
         int userId = (int)session.getUserId();
-        MessageManager messageManager = new MessageManager();
-        List<Message> messageList = messageManager.getInboxMessageList(userId);
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
-        Gson gson = gsonBuilder.create();
-        String messageListString = gson.toJson(messageList);
-        MessageList response = gson.fromJson("{\"messageList\":" +messageListString +"}", MessageList.class);
-        response.setSuccess(true);
-        return response;
+        try
+        {
+            MessageManager messageManager = new MessageManager();
+            List<Message> messageList = messageManager.getInboxMessageList(userId);
+            GsonBuilder gsonBuilder = new GsonBuilder();
+            gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+            Gson gson = gsonBuilder.create();
+            String messageListString = gson.toJson(messageList);
+            MessageList response = gson.fromJson("{\"messageList\":" +messageListString +"}", MessageList.class);
+            response.setSuccess(true);
+            logger.debug("fetch message inbox list completed.");
+            return response;
+        }
+        catch(Exception ex)
+        {
+            logger.debug(ex.toString());
+            throw new InvalidRequestException();            
+        }
     }
     
     @ClientRequest(action = ACTION.FETCH_MESSAGE_SENT_LIST)

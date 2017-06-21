@@ -132,9 +132,11 @@ public class AuthHandler {
                 userManager.addUserProfile(user);
 
                 //Once sign up is complete send account activation email to the user
-                SendMail sendMail = new SendMail();
-                //sendMail.sendSignUpMail("");
-
+                if(StringUtils.isNullOrEmpty(user.getEmail()))
+                {
+                    SendMail sendMail = new SendMail();
+                    sendMail.sendSignUpMail(user.getEmail());
+                }
                 
                 response.setMessage("Sign up successful");
                 response.setSuccess(true);

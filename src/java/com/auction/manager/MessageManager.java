@@ -76,11 +76,11 @@ public class MessageManager {
             Message message = (Message)row[1];
             if(messageIdInfoMap.contains(message.getId()))
             {
-                messageIdInfoMap.get(message.getId()).getMessageTextList().add(messageText);
+                //messageIdInfoMap.get(message.getId()).getMessageTextList().add(messageText);
             }
             else
             {
-                message.getMessageTextList().add(messageText);
+                //message.getMessageTextList().add(messageText);
                 messageIdInfoMap.put(message.getId(), message);
             }
         }
@@ -110,11 +110,11 @@ public class MessageManager {
             Message message = (Message)row[1];
             if(messageIdInfoMap.contains(message.getId()))
             {
-                messageIdInfoMap.get(message.getId()).getMessageTextList().add(messageText);
+                //messageIdInfoMap.get(message.getId()).getMessageTextList().add(messageText);
             }
             else
             {
-                message.getMessageTextList().add(messageText);
+                //message.getMessageTextList().add(messageText);
                 messageIdInfoMap.put(message.getId(), message);
             }
         }

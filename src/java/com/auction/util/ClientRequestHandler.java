@@ -13,6 +13,8 @@ import org.bdlions.transport.packet.IPacketHeader;
 import com.auction.request.handler.AuthHandler;
 import com.auction.request.handler.RequestExecutorInfo;
 import com.auction.request.handler.RequestHandler;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.bdlions.session.ISession;
 import org.bdlions.session.ISessionManager;
 import org.bdlions.util.annotation.ClientRequest;
@@ -141,10 +143,13 @@ public class ClientRequestHandler implements IClientRequestHandler{
 
     @Override
     public Object executeRequest(IPacket packet) throws InvalidRequestException, Throwable {
-        logger.debug("Request is going to be processed.");
+        logger.debug("Request is going to be processed. starts..");
         if (packet != null) {
             IPacketHeader packetHeader = packet.getPacketHeader();
-            if (packetHeader.getAction() == null || packetHeader.getAction().getId() <= 0) {
+            Gson gson = new GsonBuilder().create();
+            logger.debug(gson.toJson(packetHeader));
+            if (packetHeader.getAction() == null || packetHeader.getAction().getId() <= 0) {                
+                logger.debug("invalid action found.");
                 throw new InvalidRequestException();
             }
 
@@ -152,6 +157,7 @@ public class ClientRequestHandler implements IClientRequestHandler{
 
             ISession session = null;
             String sessionId = packetHeader.getSessionId();
+            logger.debug("session id : " + sessionId);
             if(!StringUtils.isNullOrEmpty(sessionId)){
                 session = sessionManager.getSessionBySessionId(sessionId);
             }
@@ -163,7 +169,10 @@ public class ClientRequestHandler implements IClientRequestHandler{
                 logger.debug("No method is found for action : " + packetHeader.getAction() + " , socket : " + packetHeader.getRequestType());
                 throw new InvalidRequestException();
             }
-        } else {
+        } 
+        else 
+        {
+            logger.debug("packet is null.");
             throw new InvalidRequestException();
         }
     }
