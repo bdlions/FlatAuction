@@ -27,8 +27,8 @@ public class WorldPayConfig extends PropertyProvider{
     public static final String CAPTURE_DELAY            = "CAPTURE_DELAY";
     public static final String CART_PREFIX              = "CART_PREFIX";
     public static final String CURRENCY_CODE            = "CURRENCY_CODE";
-    public static final String MDF_ENCRYPTION           = "MDF_ENCRYPTION";
-    public static final String MDF_SECRET_KEY           = "MDF_SECRET_KEY";
+    public static final String MD5_ENCRYPTION           = "MD5_ENCRYPTION";
+    public static final String MD5_SECRET_KEY           = "MD5_SECRET_KEY";
     public static final String BUTTON_DISPLAY_TEXT      = "BUTTON_DISPLAY_TEXT";
     public static final String VISA_CARD_ENABLE         = "VISA_CARD_ENABLE";
     public static final String MASTER_CARD_ENABLE       = "MASTER_CARD_ENABLE";
@@ -51,9 +51,9 @@ public class WorldPayConfig extends PropertyProvider{
     public static final String JCB_CARD_URL             = "JCB_CARD_URL";
     public static final String AMEX_CARD_URL            = "AMEX_CARD_URL";
     public static final String ELV_CARD_URL             = "ELV_CARD_URL";
-    public static final String MARCHAT_CODE_1           = "MARCHAT_CODE_1";
-    public static final String MARCHAT_CODE_2           = "MARCHAT_CODE_2";
-    public static final String MARCHAT_CODE_3           = "MARCHAT_CODE_3";
+    public static final String MARCHANT_CODE_1          = "MARCHANT_CODE_1";
+    public static final String MARCHANT_CODE_2          = "MARCHANT_CODE_2";
+    public static final String MARCHANT_CODE_3          = "MARCHANT_CODE_3";
     
     private final Map<String, String> dynInfo = new HashMap<>();
     
@@ -119,6 +119,8 @@ public class WorldPayConfig extends PropertyProvider{
         if(dynInfo.containsKey(key)){
             return dynInfo.get(key);
         }
-        return super.get(key);
+        String val = super.get(key);
+        
+        return val == null ? "" : val;
     }
 }

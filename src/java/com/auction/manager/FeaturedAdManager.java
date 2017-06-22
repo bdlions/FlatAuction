@@ -3,8 +3,6 @@ package com.auction.manager;
 import com.auction.db.HibernateUtil;
 import com.auction.dto.AccountSettingFA;
 import com.auction.dto.Currency;
-import com.auction.dto.CurrencyUnit;
-import com.auction.dto.Message;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;

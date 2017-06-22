@@ -1,3 +1,4 @@
+<%@page import="java.security.MessageDigest"%>
 <%@page import="com.auction.util.WorldPayConfig"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -90,119 +91,119 @@
         String testMode = WorldPayConfig.getInstance().get(WorldPayConfig.TEST_MODE);
         String installationId = WorldPayConfig.getInstance().get(WorldPayConfig.INSTALLATION_ID);
         String url = "";
-        if(WorldPayConfig.getInstance().get(WorldPayConfig.ENVIRONMENT).equals("TEST")){
+        if (WorldPayConfig.getInstance().get(WorldPayConfig.ENVIRONMENT).equals("TEST")) {
             url = WorldPayConfig.getInstance().get(WorldPayConfig.WORLDPAY_SANDBOX_URL);
-        }
-        else{
+        } else {
             url = WorldPayConfig.getInstance().get(WorldPayConfig.WORLDPAY_URL);
         }
         String signatureFields = currencyCode + ":" + amount + ":" + testMode + ":" + installationId;
-        out.println(signatureFields);
+//        out.println(signatureFields);
+
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.update((WorldPayConfig.getInstance().get(WorldPayConfig.MD5_SECRET_KEY) + ":" + signatureFields).getBytes());
+
+        String md5EncryptedData = "";
+        if (WorldPayConfig.getInstance().get(WorldPayConfig.MD5_ENCRYPTION).equals("Y")) {
+            md5EncryptedData = new String(md.digest());
+        }
     %>
 
- 
+
     <body>
 
         <div class="mainBody">
+            <form name="paymentToken" method="post" action="<%= url%>">
 
-            <div class="divtable"
-
-                 <div class="row"><div class="cell">Submission URL: <%= url %></div></div>
+                <!-- Mandatory Parameters -->
+                <div class="row"><div class="cellLeft">Installation ID:</div><div class="cellRight"><input type="text" name="instId" value="<%= installationId%>"/></div></div>
+                <br />
+                <div class="row"><div class="cellLeft">Amount:</div><div class="cellRight"><input type="text" name="amount" value="<%= amount%>"/></div></div>
+                <br />	
+                <div class="row"><div class="cellLeft">CartID:</div><div class="cellRight"><input type="text" name="cartId" value="<%= WorldPayConfig.getInstance().get(WorldPayConfig.CART_PREFIX)%>cartId"/></div></div>
+                <br />
+                <div class="row"><div class="cellLeft">Currency:</div><div class="cellRight"><input type="text" name="currency" value="<%= currencyCode%>"/></div></div>
+                <br />
+                <div class="row"><div class="cellLeft">Test Mode:</div><div class="cellRight"><input type="text" name="testMode" value="<%= WorldPayConfig.getInstance().get(WorldPayConfig.TEST_MODE)%>"/></div></div>
+                <br />
+                <div class="row"><div class="cellLeft">Description:</div><div class="cellRight"><input type="text" name="desc" value="description of product"/></div></div>
+                <br />
+                <div class="row"><div class="cellLeft">Auth Mode:</div><div class="cellRight"><input type="text" name="authMode" value="<%= WorldPayConfig.getInstance().get(WorldPayConfig.AUTH_MODE)%>"/><%= WorldPayConfig.getInstance().get(WorldPayConfig.AUTH_MODE_ERROR)%></div></div>
                 <br />
 
-                <form name="paymentToken" method="post" action="<%= url %>">
+                <!-- Preferred Merchant Account -->
+                <div class="row"><div class="cellLeft">Account ID 1:</div><div class="cellRight"><input type="text" name="accId1" value="<%= WorldPayConfig.getInstance().get(WorldPayConfig.MARCHANT_CODE_1)%>"/></div></div>
+                <br />
+                <div class="row"><div class="cellLeft">Account ID 2:</div><div class="cellRight"><input type="text" name="accId1" value="<%= WorldPayConfig.getInstance().get(WorldPayConfig.MARCHANT_CODE_2)%>"/></div></div>
+                <br />
+                <div class="row"><div class="cellLeft">Account ID 3:</div><div class="cellRight"><input type="text" name="accId1" value="<%= WorldPayConfig.getInstance().get(WorldPayConfig.MARCHANT_CODE_3)%>"/></div></div>
+                <br />
 
-                    <!-- Mandatory Parameters -->
-                    <div class="row"><div class="cellLeft">Installation ID:</div><div class="cellRight"><input type="text" name="instId" value="<%= installationId %>"/></div></div>
-                    <br />
-                    <div class="row"><div class="cellLeft">Amount:</div><div class="cellRight"><input type="text" name="amount" value="<%= amount %>"/></div></div>
-                    <br />	
-                    <div class="row"><div class="cellLeft">CartID:</div><div class="cellRight"><input type="text" name="cartId" value="<%= WorldPayConfig.getInstance().get(WorldPayConfig.CART_PREFIX) %>cartId"/></div></div>
-                    <br />
-                    <div class="row"><div class="cellLeft">Currency:</div><div class="cellRight"><input type="text" name="currency" value="<%= currencyCode %>"/></div></div>
-                    <br />
-                    <div class="row"><div class="cellLeft">Test Mode:</div><div class="cellRight"><input type="text" name="testMode" value="<%= WorldPayConfig.getInstance().get(WorldPayConfig.TEST_MODE) %>"/></div></div>
-                    <br />
-                    <div class="row"><div class="cellLeft">Description:</div><div class="cellRight"><input type="text" name="desc" value="description of product"/></div></div>
-                    <br />
-                    <div class="row"><div class="cellLeft">Auth Mode:</div><div class="cellRight"><input type="text" name="authMode" value="<%= WorldPayConfig.getInstance().get(WorldPayConfig.AUTH_MODE) %>"/><%= WorldPayConfig.getInstance().get(WorldPayConfig.AUTH_MODE_ERROR) %></div></div>
-                    <br />
+                <div class="row"><div class="cellLeft">Name:</div><div class="cellRight"><input type="text" name="name" value="Alamgir Kabir"/></div></div>
+                <br />
+                <div class="row"><div class="cellLeft">Address 1:</div><div class="cellRight"><input type="text" name="address1" value="Address line 1"/></div></div>
+                <br />
+                <div class="row"><div class="cellLeft">Address 2:</div><div class="cellRight"><input type="text" name="address2" value="Address line 2"/></div></div>
+                <br />
+                <div class="row"><div class="cellLeft">Address 3:</div><div class="cellRight"><input type="text" name="address3" value="Address line 3"/></div></div>
+                <br />
+                <div class="row"><div class="cellLeft">Postcode:</div><div class="cellRight"><input type="text" name="postcode" value="Postcode"/></div></div>
+                <br />
+                <div class="row"><div class="cellLeft">Telephone:</div><div class="cellRight"><input type="text" name="tel" value="123456789"/></div></div>
+                <br />
+                <div class="row"><div class="cellLeft">Country:</div><div class="cellRight"><input type="text" name="country" value="GB"/></div></div>
+                <br />
+                <div class="row"><div class="cellLeft">Town:</div><div class="cellRight"><input type="text" name="town" value="Town"/></div></div>
+                <br />
+                <div class="row"><div class="cellLeft">Fax:</div><div class="cellRight"><input type="text" name="fax" value="123456789"/></div></div>
+                <br />
+                <div class="row"><div class="cellLeft">Email:</div><div class="cellRight"><input type="text" name="email" value="test@test.com"/></div></div>
 
-                    <!-- Preferred Merchant Account -->
-                    <div class="row"><div class="cellLeft">Account ID 1:</div><div class="cellRight"><input type="text" name="accId1" value="<%= WorldPayConfig.getInstance().get(WorldPayConfig.MARCHAT_CODE_1) %>"/></div></div>
-                    <br />
-                    <div class="row"><div class="cellLeft">Account ID 2:</div><div class="cellRight"><input type="text" name="accId1" value="<%= WorldPayConfig.getInstance().get(WorldPayConfig.MARCHAT_CODE_2) %>"/></div></div>
-                    <br />
-                    <div class="row"><div class="cellLeft">Account ID 3:</div><div class="cellRight"><input type="text" name="accId1" value="<%= WorldPayConfig.getInstance().get(WorldPayConfig.MARCHAT_CODE_3) %>"/></div></div>
-                    <br />
+                <!-- Delivery Address Details -->
+                <div class="row"><div class="cellLeft">With delivery</div><div class="cellRight"><input type="text" name="withDelivery" value="" /></div></div>
+                <br />
 
-                    <!-- Billing Address Details. By default it will be hidden -->
-                    <!--<?php echo $billingDetails; ?>-->
-                    <div class="row"><div class="cellLeft">Name:</div><div class="cellRight"><input type="text" name="name" value="Name"/></div></div>
-                    <br />
-                    <div class="row"><div class="cellLeft">Address 1:</div><div class="cellRight"><input type="text" name="address1" value="Address line 1"/></div></div>
-                    <br />
-                    <div class="row"><div class="cellLeft">Address 2:</div><div class="cellRight"><input type="text" name="address2" value="Address line 2"/></div></div>
-                    <br />
-                    <div class="row"><div class="cellLeft">Address 3:</div><div class="cellRight"><input type="text" name="address3" value="Address line 3"/></div></div>
-                    <br />
-                    <div class="row"><div class="cellLeft">Postcode:</div><div class="cellRight"><input type="text" name="postcode" value="Postcode"/></div></div>
-                    <br />
-                    <div class="row"><div class="cellLeft">Telephone:</div><div class="cellRight"><input type="text" name="tel" value="123456789"/></div></div>
-                    <br />
-                    <div class="row"><div class="cellLeft">Country:</div><div class="cellRight"><input type="text" name="country" value="GB"/></div></div>
-                    <br />
-                    <div class="row"><div class="cellLeft">Town:</div><div class="cellRight"><input type="text" name="town" value="Town"/></div></div>
-                    <br />
-                    <div class="row"><div class="cellLeft">Fax:</div><div class="cellRight"><input type="text" name="fax" value="123456789"/></div></div>
-                    <br />
-                    <div class="row"><div class="cellLeft">Email:</div><div class="cellRight"><input type="text" name="email" value="test@test.com"/></div></div>
-                    <!--<br /><?php echo $billingClose; ?>-->
-                    <!-- Delivery Address Details -->
-                    <div class="row"><div class="cellLeft">With delivery</div><div class="cellRight"><input type="text" name="withDelivery" value="" /></div></div>
-                    <br />
-                    <!--<?php echo $deliveryDetails; ?>-->
-                    <div class="row"><div class="cellLeft">Delivery Name:</div><div class="cellRight"><input type="text" name="delvName" value="Delivery Address line 1"/></div></div>
-                    <br />
-                    <div class="row"><div class="cellLeft">Delivery Address 1:</div><div class="cellRight"><input type="text" name="delvAddress1" value="Delivery Address line 1"/></div></div>
-                    <br />
-                    <div class="row"><div class="cellLeft">Delivery Address 2:</div><div class="cellRight"><input type="text" name="delvAddress2" value="Delivery Address line 2"/></div></div>
-                    <br />
-                    <div class="row"><div class="cellLeft">Delivery Address 3:</div><div class="cellRight"><input type="text" name="delvAddress3" value="Delivery Address line 3"/></div></div>
-                    <br />
-                    <div class="row"><div class="cellLeft">Delivery Postcode:</div><div class="cellRight"><input type="text" name="delvTown" value="Delivery Town"/></div></div>
-                    <br />
-                    <div class="row"><div class="cellLeft">Delivery Postcode:</div><div class="cellRight"><input type="text" name="delvPostcode" value="Delivery Postcode"/></div></div>
-                    <br />
-                    <div class="row"><div class="cellLeft">Delivery Country:</div><div class="cellRight"><input type="text" name="delvCountry" value="GB"/></div></div>
-                    <br />
-                    <!--<?php echo $deliveryClose; ?>-->
-                    <!-- Fix and Hide contact details -->
-                    <div class="row"><div class="cellLeft">Fix Contact:</div><div class="cellRight"><input type="text" name="fixContact" value=""/></div></div>
-                    <br />
-                    <div class="row"><div class="cellLeft">Hide Contact:</div><div class="cellRight"><input type="text" name="hideContact" value=""/></div></div>
-                    <br />
-                    <!-- Signature Parameter - DO NOT CHANGE -->
+                <div class="row"><div class="cellLeft">Delivery Name:</div><div class="cellRight"><input type="text" name="delvName" value="Delivery Address line 1"/></div></div>
+                <br />
+                <div class="row"><div class="cellLeft">Delivery Address 1:</div><div class="cellRight"><input type="text" name="delvAddress1" value="Delivery Address line 1"/></div></div>
+                <br />
+                <div class="row"><div class="cellLeft">Delivery Address 2:</div><div class="cellRight"><input type="text" name="delvAddress2" value="Delivery Address line 2"/></div></div>
+                <br />
+                <div class="row"><div class="cellLeft">Delivery Address 3:</div><div class="cellRight"><input type="text" name="delvAddress3" value="Delivery Address line 3"/></div></div>
+                <br />
+                <div class="row"><div class="cellLeft">Delivery Postcode:</div><div class="cellRight"><input type="text" name="delvTown" value="Delivery Town"/></div></div>
+                <br />
+                <div class="row"><div class="cellLeft">Delivery Postcode:</div><div class="cellRight"><input type="text" name="delvPostcode" value="Delivery Postcode"/></div></div>
+                <br />
+                <div class="row"><div class="cellLeft">Delivery Country:</div><div class="cellRight"><input type="text" name="delvCountry" value="GB"/></div></div>
+                <br />
 
-                    <!--<?php echo $MD5open; ?><div class="row"><div class="cellLeft">MD5 Signature:</div><div class="cellRight"><input type="text" name="signature" value="<?php echo md5($MD5secretKey.":".$SignatureFields); ?>"/></div></div><?php echo $MD5close; ?>-->
+                <!-- Fix and Hide contact details -->
+                <div class="row"><div class="cellLeft">Fix Contact:</div><div class="cellRight"><input type="text" name="fixContact" value="<%= WorldPayConfig.getInstance().get(WorldPayConfig.FIXED_CONTACT_DETAILS).equals("Y")%>"/></div></div>
+                <br />
+                <div class="row"><div class="cellLeft">Hide Contact:</div><div class="cellRight"><input type="text" name="hideContact" value="<%= WorldPayConfig.getInstance().get(WorldPayConfig.HIDE_CONTACT_DETAILS).equals("Y")%>"/></div></div>
+                <br />
 
-                    <br/><br/>	
+                <div class="row"><div class="cellLeft">MD5 Signature:</div><div class="cellRight"><input type="text" name="signature" value="<%= md5EncryptedData%>"/></div></div>
 
-                    <div id="payButton" ><input type="submit" value="<%= WorldPayConfig.getInstance().get(WorldPayConfig.BUTTON_DISPLAY_TEXT) %>"/></div>
-                </form>
+                <br/><br/>	
 
-            </div>
+                <div id="payButton" ><input type="submit" value="<%= WorldPayConfig.getInstance().get(WorldPayConfig.BUTTON_DISPLAY_TEXT)%>"/></div>
+            </form>
+
         </div>
-        <br/>
+
 
         <div id="logoDisplay">
             <!-- Payment Methods Displayed -->
-            <?php echo $displayVisa; ?>
-            <?php echo $displayMastercard; ?>
-            <?php echo $displayMaestro; ?>
-            <?php echo $displayJCB; ?>
-            <?php echo $displayAmex; ?>
-            <?php echo $displayELV; ?>
+            <%
+                out.println(WorldPayConfig.getInstance().get(WorldPayConfig.VISA_CARD_URL));
+                out.println(WorldPayConfig.getInstance().get(WorldPayConfig.MASTER_CARD_URL));
+                out.println(WorldPayConfig.getInstance().get(WorldPayConfig.MASTER_CARD_URL));
+                out.println(WorldPayConfig.getInstance().get(WorldPayConfig.JCB_CARD_URL));
+                out.println(WorldPayConfig.getInstance().get(WorldPayConfig.AMEX_CARD_URL));
+                out.println(WorldPayConfig.getInstance().get(WorldPayConfig.ELV_CARD_URL));
+            %>
+
         </div>
 
         <div id="wpLogo">

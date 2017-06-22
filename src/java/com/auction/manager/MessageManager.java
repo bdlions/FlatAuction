@@ -3,7 +3,6 @@ package com.auction.manager;
 import com.auction.db.HibernateUtil;
 import com.auction.dto.Message;
 import com.auction.dto.MessageText;
-import com.auction.dto.Product;
 import com.auction.dto.User;
 import java.util.ArrayList;
 import java.util.Hashtable;
