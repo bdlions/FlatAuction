@@ -41,7 +41,7 @@ export class Signup {
             if (response.success){
                 localStorage.setItem("msg", "Account created successfully. Please login.");
                 window.location.replace("/");
-                window.location.href = "index.jsp";
+                window.location.href = "landing.jsp";
             }
             else{
                 //show error message at this page

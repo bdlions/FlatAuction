@@ -2,19 +2,18 @@ import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {Http} from '@angular/http';
 import {WebAPIService} from './../webservice/web-api-service';
-import {PacketHeaderFactory} from './../webservice/PacketHeaderFactory';
-import {ACTION} from './../webservice/ACTION';
+
 
 @Component({
     selector: 'data-content',
-    templateUrl: window.SUB_DIRECTORY +"/html_components/public/terms.html",
+    templateUrl: window.SUB_DIRECTORY +"/html_components/public/aboutus.html",
     providers: [WebAPIService]
 })
-export class Terms {
+export class Aboutus {
     private webAPIService: WebAPIService;
     constructor(public router: Router, public http: Http, webAPIService: WebAPIService) {
         window.scrollTo(0, 0)
-        this.webAPIService = webAPIService;        
+        this.webAPIService = webAPIService;
     }
     
 }

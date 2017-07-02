@@ -13,7 +13,7 @@ import {ACTION} from './../webservice/ACTION';
     templateUrl: window.SUB_DIRECTORY +"/html_components/member/featuredad/faq.html",
     providers: [WebAPIService]
 })
-export class Faq implements OnInit, OnDestroy {
+export class Fafaq implements OnInit, OnDestroy {
     private webAPIService: WebAPIService;
     private accountSettingFA: AccountSettingFA;
     
@@ -70,9 +70,9 @@ export class Faq implements OnInit, OnDestroy {
         this.router.navigate(['ranking']);
     }
     
-    faq(event: Event) {
+    fafaq(event: Event) {
         event.preventDefault();
-        this.router.navigate(['faq']);
+        this.router.navigate(['fafaq']);
     }
     
     myads(event: Event) {

@@ -13,6 +13,7 @@ import {ACTION} from './../webservice/ACTION';
 export class Contactus {
     private webAPIService: WebAPIService;
     constructor(public router: Router, public http: Http, webAPIService: WebAPIService) {
+        window.scrollTo(0, 0)
         this.webAPIService = webAPIService;
     }
     

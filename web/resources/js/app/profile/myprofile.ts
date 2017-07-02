@@ -33,7 +33,7 @@ export class MyProfile {
     
     profile(event: Event) {
         event.preventDefault();
-        this.router.navigate(['profile']);
+        this.router.navigate(['myprofile']);
     }
     
     

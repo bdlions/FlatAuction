@@ -67,9 +67,9 @@ export class IndividualAdBids implements OnInit, OnDestroy {
         this.router.navigate(['ranking']);
     }
     
-    faq(event: Event) {
+    fafaq(event: Event) {
         event.preventDefault();
-        this.router.navigate(['faq']);
+        this.router.navigate(['fafaq']);
     }
     
     myads(event: Event) {

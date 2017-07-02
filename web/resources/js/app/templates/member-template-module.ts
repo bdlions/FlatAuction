@@ -23,7 +23,7 @@ import {AccountSettings} from "../featuredad/accountsettings";
 import {IndividualAdBids} from "../featuredad/individualadbids";
 import {Stats} from "../featuredad/stats";
 import {Ranking} from "../featuredad/ranking";
-import {Faq} from "../featuredad/faq";
+import {Fafaq} from "../featuredad/fafaq";
 //import {Messages} from "../member/messages";
 import {Inbox} from "../message/inbox";
 import {Sent} from "../message/sent";
@@ -41,6 +41,8 @@ import {AppFooter} from '../member/footer';
 import {Terms} from '../common/terms';
 import {Privacypolicy} from '../common/privacypolicy';
 import {Contactus} from '../common/contactus';
+import {Aboutus} from '../common/aboutus';
+import {Faq} from '../common/faq';
 import {Logout} from '../common/logout';
 import {FileUploadModule } from 'ng2-file-upload';
 import { AgmCoreModule } from 'angular2-google-maps/core';
@@ -61,7 +63,7 @@ import {CarouselModule, TypeaheadModule, DatepickerModule} from "ngx-bootstrap"
             useHash: false
         })
     ],
-    declarations: [MemberApp, Search, DashBoard, MyHome, MyProduct, MyAds, SavedAds, Productinfo, Bids, AccountSettings, IndividualAdBids, Stats, Ranking, Faq, Inbox, Sent, Saved, Showmessage, Notifications, MyProfile, EditProfile, UploadImg, UploadDocument, BasicSearch, AdvancedSearch, AppHeader, AppFooter, Terms, Privacypolicy, Contactus, Logout],
+    declarations: [MemberApp, Search, DashBoard, MyHome, MyProduct, MyAds, SavedAds, Productinfo, Bids, AccountSettings, IndividualAdBids, Stats, Ranking, Fafaq, Inbox, Sent, Saved, Showmessage, Notifications, MyProfile, EditProfile, UploadImg, UploadDocument, BasicSearch, AdvancedSearch, AppHeader, AppFooter, Terms, Privacypolicy, Contactus, Aboutus, Faq, Logout],
     bootstrap: [MemberApp],
     providers: [AuthGuard, {provide: LocationStrategy, useClass: HashLocationStrategy}]
 })

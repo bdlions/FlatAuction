@@ -14,8 +14,23 @@ export class AppHeader {
         this.webAPIService = webAPIService;
     }
     
+    goToLanding(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['landing']);
+    }
+    
+    goToSearch(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['search']);
+    }
+    
     goToContactus(event: Event) {
         event.preventDefault();
         this.router.navigate(['contactus']);
+    }
+    
+    goToAboutus(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['aboutus']);
     }
 }

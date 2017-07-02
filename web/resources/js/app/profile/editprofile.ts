@@ -46,7 +46,7 @@ export class EditProfile {
     
     profile(event: Event) {
         event.preventDefault();
-        this.router.navigate(['profile']);
+        this.router.navigate(['myprofile']);
     }
     
     

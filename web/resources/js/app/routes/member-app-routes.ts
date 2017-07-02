@@ -14,7 +14,7 @@ import {AccountSettings} from "../featuredad/accountsettings";
 import {IndividualAdBids} from "../featuredad/individualadbids";
 import {Stats} from "../featuredad/stats";
 import {Ranking} from "../featuredad/ranking";
-import {Faq} from "../featuredad/faq";
+import {Fafaq} from "../featuredad/fafaq";
 //import {Messages} from "../member/messages";
 import {Inbox} from "../message/inbox";
 import {Sent} from "../message/sent";
@@ -32,6 +32,8 @@ import {AppFooter} from '../member/footer';
 import {Terms} from '../common/terms';
 import {Privacypolicy} from '../common/privacypolicy';
 import {Contactus} from '../common/contactus';
+import {Aboutus} from '../common/aboutus';
+import {Faq} from '../common/faq';
 import {Logout} from '../common/logout';
 
 
@@ -52,7 +54,7 @@ export const routes: Routes = [
     { path: 'individualadbids', component: IndividualAdBids },
     { path: 'stats', component: Stats },
     { path: 'ranking', component: Ranking },
-    { path: 'faq', component: Faq },  
+    { path: 'fafaq', component: Fafaq },  
     //{path: 'messages', component: Messages},
     { path: 'inbox', component: Inbox },
     { path: 'sent', component: Sent },    
@@ -68,6 +70,8 @@ export const routes: Routes = [
     {path: 'terms', component: Terms},
     {path: 'privacypolicy', component: Privacypolicy},
     {path: 'contactus', component: Contactus},
+    {path: 'aboutus', component: Aboutus},
+    {path: 'faq', component: Faq},
     {path: 'logout', component: Logout},
     //{path: 'home', component: DashBoard, canActivate: [AuthGuard]},
     //  { path: 'abroad',   component: Abroad, canActivate: [AuthGuard] },

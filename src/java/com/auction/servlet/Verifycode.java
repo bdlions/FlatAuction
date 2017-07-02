@@ -33,7 +33,7 @@ public class Verifycode extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getRequestDispatcher("landing.jsp").forward(request, response);
         }
     }
 

@@ -29,4 +29,9 @@ export class AppFooter {
         event.preventDefault();
         this.router.navigate(['contactus']);
     }
+    
+    goToFaq(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['faq']);
+    }
 }

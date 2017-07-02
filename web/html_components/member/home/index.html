@@ -14,7 +14,7 @@
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 form-group">
-                                <button type="submit" class="form-control common-custom-button non-member-search-input">Rent</button>
+                                <button type="submit" class="form-control common-custom-button non-member-search-input">Search</button>
                             </div>
                         </div>
 <!--                        <div class="row form-group">
@@ -24,6 +24,30 @@
                             </div>
                         </div>-->
                     </form> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container margin-top-bottom-50px">
+    <div class="row form-group">
+        <div *ngFor="let product of featuredProductList" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group" >
+            <div class="product-auction-head">
+                <div class="product-auction-img">
+                    <a href=""><img class="img-responsive" src="resources/images/{{product.img}}"></a>
+                </div>
+                <div class="product-auction-title margin-bottom-5px">
+                    <h3>{{product.title}}</h3>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-offset-1 col-md-4 col-lg-offset-1 col-lg-4 margin-bottom-15px" >
+                        <button class="form-control product-details-bid-button">Bid</button>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-offset-1 col-md-4 col-lg-offset-1 col-lg-4" >
+                        <div class="form-control product-auction-price">
+                            <span>{{product.price}}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

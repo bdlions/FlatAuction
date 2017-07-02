@@ -33,7 +33,7 @@ export class DashBoard {
     
     profile(event: Event) {
         event.preventDefault();
-        this.router.navigate(['profile']);
+        this.router.navigate(['myprofile']);
     }
     
     editprofile(event: Event) {
