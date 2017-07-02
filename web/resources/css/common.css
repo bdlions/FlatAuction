@@ -27,6 +27,14 @@ h1,h2,h3,h4,h5,h6{
     margin-bottom: 5px!important;
     line-height: 150%;
 }
+p{
+    font-family: "tw-cen-mt"!important;
+    color: #484848;
+    font-size: 16px;
+    margin-top: 5px!important;
+    margin-bottom: 5px!important;
+    line-height: 150%;
+}
 a{
     cursor: pointer;
 }
@@ -35,6 +43,9 @@ a{
 }
 .margin-bottom-5px{
     margin-bottom: 5px;
+}
+.margin-bottom-10px{
+    margin-bottom: 10px;
 }
 
 .margin-top-50px{
@@ -56,7 +67,9 @@ a{
 /* ---------------------------- Header -------------------------------- */
 
 .margin-top-bottom-10px{
-    margin: 10px 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
 }
 .header-menu-layout{
     margin-bottom: 13px;
@@ -89,6 +102,20 @@ a{
     display: inline-block;
     float: right;
 }
+/* ---------------------------- FAQ -------------------------------- */
+.custom-panel-title{
+    font-weight: bold;
+    color:#0070C0;
+}
+.faq-custom-panel-default > .panel-heading{
+    background-image: none!important;
+}
+.faq-custom-panel {
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
+    border: none!important;
+}
+.panel-group .panel-heading + .panel-collapse > .list-group, .panel-group .panel-heading + .panel-collapse > .panel-body
 /* ---------------------------- Footer -------------------------------- */
 .footer-bg{
     font-family: "tw-cen-mt";
@@ -580,7 +607,7 @@ input[type=checkbox]:checked {
         display: none!important;
     }
     #logo{
-        margin-bottom: 15px;
+        margin-bottom: 20px;
     }
     .header-menu-layout ul li a{
         width: 100%;
