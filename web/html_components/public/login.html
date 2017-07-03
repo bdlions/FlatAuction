@@ -1,15 +1,16 @@
 <div class="container margin-top-bottom-50px">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
-            <form role="form" (submit)="login($event, username.value, password.value)" >
+            
                   <div class="login-pagelet">
                     <div class="login-block">
                         <h1>Login</h1>
                         <div class="row form-group margin-top-align">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <button class="form-control facebook-button"><i class="fa fa-facebook" aria-hidden="true"></i> Log in with Facebook</button>
+                                <a href="SocialAuthServlet?request=SIGN_IN"><button class="form-control facebook-button"><i class="fa fa-facebook" aria-hidden="true"></i> Log in with Facebook</button></a>
                             </div>
                         </div>
+                        <form role="form" (submit)="login($event, username.value, password.value)" >
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <input type="text" #username id="username" class="form-control input-custom-field" placeholder="Your Email"/>
@@ -25,7 +26,7 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 form-group">
                                 <div class="password-forgotten-anchor">
-                                    <a href="">Password forgotten</a>
+                                    <a href="#">Password forgotten</a>
                                 </div>
                                 <!--                                    <div class="sign-up-anchor">
                                                                         <a [routerLink]="['/signup']" (click)="signup($event)">Click here to Signup</a>
@@ -35,9 +36,10 @@
                                 <button type="submit" class="form-control common-custom-button">Login</button> 
                             </div>
                         </div>
+                        </form>
                     </div>
                 </div>
-            </form>
+            
         </div>
     </div>
 </div>

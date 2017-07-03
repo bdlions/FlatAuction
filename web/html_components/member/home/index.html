@@ -31,13 +31,13 @@
 </div>
 <div class="container margin-top-bottom-50px position-adjust">
     <div class="row form-group">
-        <div *ngFor="let product of featuredProductList" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group" >
+        <div *ngFor="let productInfo of featuredProductList" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group" >
             <div class="product-auction-head">
                 <div class="product-auction-img">
-                    <a href=""><img class="img-responsive" src="resources/images/{{product.img}}"></a>
+                    <img class="img-responsive" src="resources/images/product/{{productInfo.img}}">
                 </div>
                 <div class="product-auction-title margin-bottom-5px">
-                    <h3>{{product.title}}</h3>
+                    <a (click)="selectProduct($event, productInfo.id)"><h3>{{productInfo.title}}</h3></a>
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-offset-1 col-md-4 col-lg-offset-1 col-lg-4 margin-bottom-15px" >
@@ -45,7 +45,7 @@
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-offset-1 col-md-4 col-lg-offset-1 col-lg-4" >
                         <div class="form-control product-auction-price">
-                            <span>{{product.price}}</span>
+                            <span>{{productInfo?.basePrice}} £</span>
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Http} from '@angular/http';
 import {Subscription} from 'rxjs';
@@ -13,7 +13,7 @@ import {ACTION} from './../webservice/ACTION';
     templateUrl: window.SUB_DIRECTORY +"/html_components/member/myads.html",
     providers: [WebAPIService]
 })
-export class MyAds implements OnInit, OnDestroy {
+export class MyAds{
     private webAPIService: WebAPIService;
     private productList: Product[];
     private subscribe:Subscription;

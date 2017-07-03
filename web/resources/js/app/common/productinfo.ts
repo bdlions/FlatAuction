@@ -31,6 +31,7 @@ export class Productinfo implements OnInit, OnDestroy {
     private newMessageBody:string;
     
     constructor(public router:Router, public route: ActivatedRoute, webAPIService: WebAPIService) {
+        window.scrollTo(0, 0)
         this.webAPIService = webAPIService;
         
         this.newMessage = new Message();
