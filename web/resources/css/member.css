@@ -186,6 +186,10 @@ Version: 1.0
 
 /* --------------------- Tablet Device -------------------------------------  */
 @media (min-width : 768px) and (max-width : 991px) {
+    search-box-layout-bg {
+        left: -130px;
+        right: -130px;
+    }
     .header-search-box-search-result-layout{
         width: 93.3%;
     }
@@ -230,6 +234,10 @@ Version: 1.0
 }
 /* --------------------- Medium Device -------------------------------------  */
 @media (min-width : 992px) and (max-width : 1199px) {
+    search-box-layout-bg {
+        left: -130px;
+        right: -130px;
+    }
     .header-search-box-search-result-layout{
         width: 94.5%;
     }
@@ -277,6 +285,10 @@ Version: 1.0
 }
 /* --------------------- Large Device -------------------------------------  */
 @media (min-width : 1200px) {
+    search-box-layout-bg {
+        left: -130px;
+        right: -130px;
+    }
     .header-search-box-search-result-layout{
         width: 95.5%;
     }
@@ -792,6 +804,11 @@ Version: 1.0
 /* --------------------- Landing Page -------------------------------------  */
 .search-box-layout-bg{
     height: 606px;
+    position: absolute;
+    top: 0px;
+}
+.position-adjust{
+    margin-top: 656px;
 }
 .search-box-pagelet{
     margin-top: 150px;
