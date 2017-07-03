@@ -33,4 +33,9 @@ export class AppHeader {
         event.preventDefault();
         this.router.navigate(['aboutus']);
     }
+    
+    goToLogin(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['login']);
+    }
 }

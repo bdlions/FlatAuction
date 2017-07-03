@@ -2,6 +2,7 @@
 import {Routes} from '@angular/router';
 //import { Home } from './home';
 //import { Login } from './login';
+import {Login} from '../nonmember/login';
 import {Signup} from '../member/signup';
 import {Landing} from '../member/landing';
 //import { Home } from './home';
@@ -26,6 +27,7 @@ import {Faq} from '../common/faq';
 export const routes: Routes = [
     {path: '', component: Landing},
     {path: 'landing', component: Landing},
+    {path: 'login', component: Login},
     {path: 'signup', component: Signup},
     {path: 'basicsearch', component: BasicSearch},
     {path: 'advancedsearch', component: AdvancedSearch},

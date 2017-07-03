@@ -9,6 +9,7 @@ import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 import {AuthGuard} from '../common/auth.guard';
 import {NonMemberApp} from '../NonMemberApp';
+import {Login} from '../nonmember/login';
 import {Signup} from '../member/signup';
 import {Landing} from '../member/landing';
 import {BasicSearch} from '../common/basicsearch';
@@ -40,7 +41,7 @@ import {AppFooter} from '../common/footer';
         })
     ],
     declarations: [
-        Signup, NonMemberApp, Landing, BasicSearch, AdvancedSearch, Search, 
+        Login, Signup, NonMemberApp, Landing, BasicSearch, AdvancedSearch, Search, 
         Productinfo, Bids, Terms, Privacypolicy, Contactus, Aboutus, Faq, AppHeader, AppFooter],
     bootstrap: [NonMemberApp],
     providers: [AuthGuard, {provide: LocationStrategy, useClass: HashLocationStrategy}]

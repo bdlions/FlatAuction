@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {Http} from '@angular/http';
-import {User} from '../dto/User'
 import {WebAPIService} from './../webservice/web-api-service';
 import {PacketHeaderFactory} from './../webservice/PacketHeaderFactory';
 import {ACTION} from './../webservice/ACTION';
@@ -47,21 +46,6 @@ export class DashBoard {
         event.preventDefault();
         this.router.navigate(['dashboard']);
     }
-    
-//    myads(event: Event) {
-//        event.preventDefault();
-//        this.router.navigate(['myads']);
-//    }
-//    
-//    savedads(event: Event) {
-//        event.preventDefault();
-//        this.router.navigate(['savedads']);
-//    }
-    
-//    messages(event: Event) {
-//        event.preventDefault();
-//        this.router.navigate(['messages']);
-//    }
     
     myads(event: Event) {
         event.preventDefault();
