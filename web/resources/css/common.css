@@ -627,6 +627,9 @@ input[type=checkbox]:checked {
 
 /* --------------------- Tablet Device -------------------------------------  */
 @media (min-width : 768px) and (max-width : 991px) {
+    .header-menu-layout ul li span{
+        margin-left: 0!important;
+    }
     .search-box-pagelet{
         padding: 20px 30px 30px 30px;
     }
