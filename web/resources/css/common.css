@@ -27,6 +27,9 @@ h1,h2,h3,h4,h5,h6{
     margin-bottom: 5px!important;
     line-height: 150%;
 }
+li{
+    line-height: 150%;
+}
 p{
     font-family: "tw-cen-mt"!important;
     color: #484848;
@@ -115,7 +118,11 @@ a{
     box-shadow: none!important;
     border: none!important;
 }
-.panel-group .panel-heading + .panel-collapse > .list-group, .panel-group .panel-heading + .panel-collapse > .panel-body
+
+/* ---------------------------- Terms -------------------------------- */
+.font-size-16px{
+    font-size: 16px;
+}
 /* ---------------------------- Footer -------------------------------- */
 .footer-bg{
     font-family: "tw-cen-mt";
