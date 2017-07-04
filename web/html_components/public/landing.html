@@ -80,7 +80,7 @@
         <div *ngFor="let productInfo of featuredProductList" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group" >
             <div class="product-auction-head">
                 <div class="product-auction-img">
-                    <img class="img-responsive" src="resources/images/product/{{productInfo.img}}">
+                    <a (click)="selectProduct($event, productInfo.id)"><img class="img-responsive" src="resources/images/product/{{productInfo.img}}"></a>
                 </div>
                 <div class="product-auction-title margin-bottom-5px">
                     <a (click)="selectProduct($event, productInfo.id)"><h3>{{productInfo.title}}</h3></a>
@@ -92,7 +92,7 @@
                     <div class="col-xs-12 col-sm-6 col-md-offset-1 col-md-4 col-lg-offset-1 col-lg-4" >
                         <div class="form-control product-auction-price">
                             <!--<span>{{product.price}}</span>-->
-                            <span>{{productInfo?.basePrice}} £</span>
+                            <span>£{{productInfo?.basePrice}}</span>
                         </div>
                     </div>
                 </div>

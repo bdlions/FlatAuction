@@ -25,6 +25,11 @@ export class AppFooter {
         this.router.navigate(['privacypolicy']);
     }
     
+    goToAboutus(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['aboutus']);
+    }
+    
     goToContactus(event: Event) {
         event.preventDefault();
         this.router.navigate(['contactus']);
