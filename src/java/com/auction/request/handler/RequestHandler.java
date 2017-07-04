@@ -218,6 +218,19 @@ public class RequestHandler {
         return response;
     }
     
+    @ClientRequest(action = ACTION.FETCH_CLOSING_PRODUCT_LIST)
+    public ClientResponse getClosingProductList(ISession session, IPacket packet){
+        ProductManager productManager = new ProductManager();
+        List<Product> products = productManager.getClosingProducts(6);
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+        Gson gson = gsonBuilder.create();
+        String productString = gson.toJson(products);
+        ProductList response = gson.fromJson("{\"products\":" +productString +"}", ProductList.class);
+        response.setSuccess(true);
+        return response;
+    }
+    
     @ClientRequest(action = ACTION.FETCH_SAVED_PRODUCT_LIST)
     public ClientResponse getSavedProductList(ISession session, IPacket packet){
         int userId = (int)session.getUserId();

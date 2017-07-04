@@ -183,6 +183,34 @@ public class ProductManager {
     }
     
     /**
+     * This method will return closing product list
+     * @param counter, counter
+     * @return List product list
+     * @author nazmul hasan on 31st May 2017
+     */
+    public List<Product> getClosingProducts(int counter) {
+        Session session = HibernateUtil.getSession();
+        List<Product> products = new ArrayList<>();
+        List<Product> tempProducts = new ArrayList<>();
+        session.beginTransaction();
+        Query query = session.createSQLQuery("select {p.*} from products p ")
+                    .addEntity("p",Product.class);        
+        tempProducts = query.list();
+        int productCounter = 1;
+        for(Product product: tempProducts)
+        {
+            products.add(product);
+            productCounter++;
+            if(productCounter > counter)
+            {
+                break;
+            }
+        }
+        session.getTransaction().commit();
+        return products;
+    }
+    
+    /**
      * This method will store a product under saved product list
      * @param userId user id
      * @param productId product id
