@@ -3,7 +3,18 @@ Theme Name: Flat Auction
 Athour: A.LK.M. Nazmul Islam
 Version: 1.0
 */
-
+html, body {
+    height: 100%;
+    margin: 0;
+}
+.wrapper {
+    min-height: 100%;
+    margin-bottom: -320px;
+}
+.footer,
+.push {
+    height: 320px;
+}
 /* ---------------------------- Header -------------------------------- */
 .margin-bottom-100px{
     margin-bottom: 100px;
