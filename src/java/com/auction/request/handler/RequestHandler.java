@@ -27,6 +27,7 @@ import com.auction.dto.RoomSizeList;
 import com.auction.dto.SmokingList;
 import com.auction.dto.StayList;
 import com.auction.dto.User;
+import com.auction.dto.UserList;
 import org.bdlions.transport.packet.IPacket;
 import org.bdlions.session.ISession;
 import org.bdlions.session.ISessionManager;
@@ -60,6 +61,19 @@ public class RequestHandler {
     private final ISessionManager sessionManager;
     public RequestHandler(ISessionManager sessionManager) {
         this.sessionManager = sessionManager;
+    }
+    
+    @ClientRequest(action = ACTION.FETCH_USER_LIST)
+    public ClientResponse getUserList(ISession session, IPacket packet){
+        UserManager userManager = new UserManager();
+        List<User> users = userManager.getUsers(0, 10);
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+        Gson gson = gsonBuilder.create();
+        String userString = gson.toJson(users);
+        UserList response = gson.fromJson("{\"users\":" +userString +"}", UserList.class);
+        response.setSuccess(true);
+        return response;
     }
     
     @ClientRequest(action = ACTION.FETCH_PRODUCT_TYPE_LIST)
