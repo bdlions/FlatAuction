@@ -123,6 +123,35 @@ a{
 .font-size-16px{
     font-size: 16px;
 }
+/* ---------------------------- Modal -------------------------------- */
+.success-message-close{
+    color: green;
+    font-weight: bold;
+    opacity: 0.6;
+}
+.success-message-close:hover{
+    color: green;
+    font-weight: bold;
+    opacity: 1.0;
+}
+.success-message-content{
+    color: green;
+}
+.error-message-close{
+    color: red;
+    font-weight: bold;
+    opacity: 0.6;
+}
+.error-message-close:hover{
+    color: red;
+    font-weight: bold;
+    opacity: 1.0;
+}
+.error-message-content{
+    color: red;
+}
+
+
 /* ---------------------------- Footer -------------------------------- */
 .footer-bg{
     font-family: "tw-cen-mt";
