@@ -1,7 +1,53 @@
-User List
+<div class="row form-group">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h2 class="heading">User List</h2>
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12 form-group">
+        <table class="admin-common-table">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+<!--                    <th>Edit</th>
+                    <th>Delete</th>-->
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of userList">
+                    <td data-label="First Name">{{user.firstName}}</td>
+                    <td data-label="Last Name">{{user.lastName}}</td>
+                    <td data-label="Email">{{user.email}}</td>
+<!--                    <td data-label="Edit"><a href="">Edit</a></td>
+                    <td data-label="Delete"><a href="">Delete</a></td>-->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!--<div class="row form-group">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="text-center">
+            <ul class="pagination pagination-md">
+                <li class="first disabled"><span>« First</span></li>
+                <li class="prev disabled"><span>&lt;</span></li>
+                <li class="active"><a href="" rel="nofollow" data-page="0">1</a></li>
+                <li><a href="" rel="nofollow" data-page="1">2</a></li>
+                <li><a href="" rel="nofollow" data-page="2">3</a></li>
+                <li><a href="" rel="nofollow" data-page="3">4</a></li>
+                <li><a href="" rel="nofollow" data-page="4">5</a></li>
+                <li class="next"><a href="" rel="nofollow" data-page="1">&gt;</a></li>
+                <li class="last"><a href="" rel="nofollow" data-page="60">Last »</a></li>
+            </ul> 
+        </div>
+    </div>
+</div>-->
+<!--User List
 
 <ul>
     <li *ngFor="let user of userList">
         First Name {{user.firstName}}, Last Name : {{user.lastName}}, Email : {{user.email}}
 </li>
-</ul>
+</ul>-->

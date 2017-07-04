@@ -1,7 +1,55 @@
-Location List
+<div class="row form-group">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h2 class="heading">Location List</h2>
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12 form-group">
+        <table class="admin-common-table">
+            <thead>
+                <tr>
+                    <th>Location Id</th>
+                    <th>Location Type</th>
+                    <th>Location</th>
+                    <th>Post Code</th>
+<!--                    <th>Edit</th>
+                    <th>Delete</th>-->
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let location of locationList">
+                    <td data-label="Location Id">{{location.locationId}}</td>
+                    <td data-label="Location Type">{{location.locationType}}</td>
+                    <td data-label="Location">{{location.searchString}}</td>
+                    <td data-label="Post Code">{{location.postCode}}</td>
+<!--                    <td data-label="Edit"><a href="">Edit</a></td>
+                    <td data-label="Delete"><a href="">Delete</a></td>-->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!--<div class="row form-group">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="text-center">
+            <ul class="pagination pagination-md">
+                <li class="first disabled"><span>« First</span></li>
+                <li class="prev disabled"><span>&lt;</span></li>
+                <li class="active"><a href="" rel="nofollow" data-page="0">1</a></li>
+                <li><a href="" rel="nofollow" data-page="1">2</a></li>
+                <li><a href="" rel="nofollow" data-page="2">3</a></li>
+                <li><a href="" rel="nofollow" data-page="3">4</a></li>
+                <li><a href="" rel="nofollow" data-page="4">5</a></li>
+                <li class="next"><a href="" rel="nofollow" data-page="1">&gt;</a></li>
+                <li class="last"><a href="" rel="nofollow" data-page="60">Last »</a></li>
+            </ul> 
+        </div>
+    </div>
+</div>-->
+<!--Location List
 
 <ul>
     <li *ngFor="let location of locationList">
         id: {{location.locationId}} , locationType {{location.locationType}}, searchString : {{location.searchString}}, postCode : {{location.postCode}}
 </li>
-</ul>
+</ul>-->

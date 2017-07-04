@@ -40,11 +40,11 @@ html, body {
 }
 .wrapper {
     min-height: 100%;
-    margin-bottom: -320px;
+    margin-bottom: -10px;
 }
 .footer,
 .push {
-    height: 320px;
+    height: 10px;
 }
 /* --------------------- Login Box -------------------------------------  */
 
@@ -230,6 +230,9 @@ html, body {
 }
 .msg{
     color: green;
+}
+.landing-page-margin-adjust{
+    margin-bottom: 320px;
 }
 /* --------------------- Product Info -------------------------------------  */
 
