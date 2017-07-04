@@ -11,7 +11,11 @@ import {AuthGuard} from '../common/auth.guard';
 //
 import {AdminApp} from '../AdminApp';
 //import {App} from './app';
+import {Login} from '../admin/login';
 import {DashBoard} from "../admin/dashboard";
+import {Users} from "../admin/users";
+import {Products} from "../admin/products";
+import {Locations} from "../admin/locations";
 //import {Abroad} from './abroad';
 //import {Header} from './header';
 
@@ -22,7 +26,7 @@ import {DashBoard} from "../admin/dashboard";
             useHash: false
         })
     ],
-    declarations: [AdminApp, DashBoard],
+    declarations: [AdminApp, Login, Users, Products, Locations, DashBoard],
     bootstrap: [AdminApp],
     providers: [AuthGuard, {provide: LocationStrategy, useClass: HashLocationStrategy}]
 })

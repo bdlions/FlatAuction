@@ -1,0 +1,40 @@
+<div class="container margin-top-bottom-50px">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
+            
+                  <div class="login-pagelet">
+                    <div class="login-block">
+                        <h1>Login</h1>
+                        <form role="form" (submit)="login($event, username.value, password.value)" >
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <input type="text" #username id="username" class="form-control input-custom-field" placeholder="Your Email"/>
+                                <input type="password" #password id="password" class="form-control input-custom-field" placeholder="Your Password"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
+                                <div class="msg">{{msg}}</div>
+                                <div class="error-msg">{{errorMsg}}</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 form-group">
+                                <div class="password-forgotten-anchor">
+                                    <a href="#">Password forgotten</a>
+                                </div>
+                                <!--                                    <div class="sign-up-anchor">
+                                                                        <a [routerLink]="['/signup']" (click)="signup($event)">Click here to Signup</a>
+                                                                    </div>-->
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 form-group">
+                                <button type="submit" class="form-control common-custom-button">Login</button> 
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+</div>

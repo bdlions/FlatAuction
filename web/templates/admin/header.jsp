@@ -12,8 +12,10 @@
         <!-- Optional theme -->
         <link rel="stylesheet" href="resources/css/wave.css" >
         <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css" >
-        <link rel="stylesheet" href="resources/css/admin-style.css" >
-
+        <link rel="stylesheet" href="resources/css/admin.css" >
+        <link rel="stylesheet" href="resources/css/common.css" >
+        <link rel="stylesheet" href="resources/css/member.css" >
+            
 
         <!-- Latest compiled and minified JavaScript -->
         <script src="resources/js/jquery.min.js"></script>
@@ -53,9 +55,9 @@
         </header>
 
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                <jsp:include page="left-sidebar.jsp"></jsp:include>
-            </div>
+<!--            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                
+            </div>-->
             <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
                 <style type="text/css">
                     .vertical-center {

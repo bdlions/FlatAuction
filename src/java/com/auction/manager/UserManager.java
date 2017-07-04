@@ -1,6 +1,7 @@
 package com.auction.manager;
 
 import com.auction.db.HibernateUtil;
+import com.auction.dto.Product;
 import com.auction.dto.Role;
 import com.auction.dto.User;
 import java.util.ArrayList;
@@ -132,5 +133,18 @@ public class UserManager {
             logger.error(ex.toString());
         }        
         return user;
+    }
+    
+    public List<User> getUsers(int offset, int limit) {
+        Session session = HibernateUtil.getSession();
+        List<User> users = new ArrayList<>();
+        session.beginTransaction();
+        Query query = session.createSQLQuery("select {u.*} from users u limit :limit offset :offset ")
+                    .addEntity("u",User.class)
+                    .setInteger("limit", limit)
+                    .setInteger("offset", offset);        
+        users = query.list();        
+        session.getTransaction().commit();
+        return users;
     }
 }
