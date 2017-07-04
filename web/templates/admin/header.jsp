@@ -86,7 +86,7 @@
                                                 </div>
                                                 <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
                                                     <ul class="left-menu-unorder-list">
-                                                        <a ><li>Registered Users</li></a>
+                                                        <a href="#/users"><li>Registered Users</li></a>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -98,8 +98,8 @@
                                                 </div>
                                                 <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
                                                     <ul class="left-menu-unorder-list">
-                                                        <a ><li>Create Search Location</li></a>
-                                                        <a ><li>Show Search Locations</li></a>
+                                                        <!--<a ><li>Create Search Location</li></a>-->
+                                                        <a href="#/locations"><li>Show Searrch Locations</li></a>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -111,11 +111,11 @@
                                                 </div>
                                                 <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
                                                     <ul class="left-menu-unorder-list">
-                                                        <a ><li>Display Properties</li></a>
+                                                        <a href="#/products"><li>Display Properties</li></a>
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <div class="panel panel-default admin-custom-panel" >
+<!--                                            <div class="panel panel-default admin-custom-panel" >
                                                 <a class="left-menu-anchor"  role="button">
                                                     <div class="panel-heading admin-custom-panel-heading" role="tab" id="heading5">
                                                         <h4 class="panel-title">
@@ -123,8 +123,8 @@
                                                         </h4>
                                                     </div>
                                                 </a>
-                                            </div>
-                                            <div class="panel panel-default admin-custom-panel" >
+                                            </div>-->
+<!--                                            <div class="panel panel-default admin-custom-panel" >
                                                 <a class="left-menu-anchor"  role="button">
                                                     <div class="panel-heading admin-custom-panel-heading" role="tab" id="heading6">
                                                         <h4 class="panel-title">
@@ -132,8 +132,8 @@
                                                         </h4>
                                                     </div>
                                                 </a>
-                                            </div>
-                                            <div class="panel panel-default admin-custom-panel" >
+                                            </div>-->
+<!--                                            <div class="panel panel-default admin-custom-panel" >
                                                 <a class="left-menu-anchor"  role="button">
                                                     <div class="panel-heading admin-custom-panel-heading" role="tab" id="heading7">
                                                         <h4 class="panel-title">
@@ -141,9 +141,9 @@
                                                         </h4>
                                                     </div>
                                                 </a>
-                                            </div>
+                                            </div>-->
                                             <div class="panel panel-default admin-custom-panel">
-                                                <a class="left-menu-anchor" href="" role="button">
+                                                <a href="#/logout" class="left-menu-anchor" href="" role="button">
                                                     <div class="panel-heading admin-custom-panel-heading" role="tab" id="headingTwelve">
                                                         <h4 class="panel-title">
                                                             <img src="resources/images/logout.png"> 

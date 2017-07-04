@@ -3,22 +3,15 @@ import {BrowserModule} from '@angular/platform-browser';
 import {RouterModule} from '@angular/router';
 import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
-import {routes} from '../routes/admin-app-routes';
+import {routes} from '../routes/admin-login-app-routes';
 import {APP_BASE_HREF} from '@angular/common';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 import {AuthGuard} from '../common/auth.guard';
 //
-import {AdminApp} from '../AdminApp';
-//import {App} from './app';
+import {AdminLoginApp} from '../AdminLoginApp';
 import {Login} from '../admin/login';
-import {DashBoard} from "../admin/dashboard";
-import {Users} from "../admin/users";
-import {Products} from "../admin/products";
-import {Locations} from "../admin/locations";
-import {Logout} from '../admin/logout';
-//import {Abroad} from './abroad';
-//import {Header} from './header';
+
 
 
 @NgModule({
@@ -27,8 +20,8 @@ import {Logout} from '../admin/logout';
             useHash: false
         })
     ],
-    declarations: [AdminApp, Users, Products, Locations, DashBoard, Logout],
-    bootstrap: [AdminApp],
+    declarations: [AdminLoginApp, Login],
+    bootstrap: [AdminLoginApp],
     providers: [AuthGuard, {provide: LocationStrategy, useClass: HashLocationStrategy}]
 })
-export class AdminAppModule {}
+export class AdminLoginAppModule {}

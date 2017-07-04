@@ -8,6 +8,7 @@ import {ServerResponse} from './../common/ServerResponse';
 import {SignInResponse} from './../common/SignInResponse';
 
 @Component({
+    selector: 'data-content1ddd',
     templateUrl: window.SUB_DIRECTORY + "/html_components/admin/login.html",
     providers: [WebAPIService]
 })
@@ -53,8 +54,9 @@ export class Login {
                     localStorage.setItem("username", username);
                     localStorage.setItem("password", password);
                     localStorage.setItem("sessionId", signInResponse.sessionId);
-                    //load admin dashboard
-                    this.router.navigate(['home']);
+                    
+                    window.location.replace("/");
+                    window.location.href = "admin.jsp";
                 }
                 else{
                     localStorage.removeItem("sessionId");
