@@ -145,6 +145,10 @@ Version: 1.0
 
 /* --------------------- Mobile Device -------------------------------------  */
 @media (max-width : 767px) {
+    .search-box-layout-bg{
+        width: 100%;
+        left: 0px;
+    }
     .header-search-box-search-result-layout{
         width: 93.3%;
     }
@@ -186,7 +190,7 @@ Version: 1.0
 
 /* --------------------- Tablet Device -------------------------------------  */
 @media (min-width : 768px) and (max-width : 991px) {
-    search-box-layout-bg {
+    .search-box-layout-bg {
         left: -130px;
         right: -130px;
     }
@@ -234,7 +238,7 @@ Version: 1.0
 }
 /* --------------------- Medium Device -------------------------------------  */
 @media (min-width : 992px) and (max-width : 1199px) {
-    search-box-layout-bg {
+    .search-box-layout-bg {
         left: -130px;
         right: -130px;
     }
@@ -285,7 +289,7 @@ Version: 1.0
 }
 /* --------------------- Large Device -------------------------------------  */
 @media (min-width : 1200px) {
-    search-box-layout-bg {
+    .search-box-layout-bg {
         left: -130px;
         right: -130px;
     }
