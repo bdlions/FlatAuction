@@ -87,7 +87,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-offset-1 col-md-4 col-lg-offset-1 col-lg-4 margin-bottom-15px" >
-                        <button class="form-control product-details-bid-button">Bid</button>
+                        <button (click)="selectProduct($event, productInfo.id)" class="form-control product-details-bid-button">Bid</button>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-offset-1 col-md-4 col-lg-offset-1 col-lg-4" >
                         <div class="form-control product-auction-price">
