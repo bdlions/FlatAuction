@@ -28,16 +28,16 @@ export class EditProfile {
         this.user.img = "user.jpg";
         this.user.document = "document.jpg";
         this.user.isVerified = true;*/
-        
+        this.roles = JSON.parse("[{\"id\":\"1\",\"name\":\"Landlord\",\"description\":\"Landlord\"}, {\"id\":\"2\",\"name\":\"Tenant\",\"description\":\"Tenant\"}]");
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_USER_INFO)).then(result => {
             this.user = <User>result;
         });
-        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_MEMBER_ROLES)).then(result => {
+        /*this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_MEMBER_ROLES)).then(result => {
             if(result.roles != null)
             {
                 this.roles = result.roles;
             }
-        });
+        });*/
     }
     updateUserprofile(event: Event) {
         let requestBody: string = JSON.stringify(this.user);
