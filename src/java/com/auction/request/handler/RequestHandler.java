@@ -7,6 +7,7 @@ package com.auction.request.handler;
 
 import com.auction.commons.HibernateProxyTypeAdapter;
 import com.auction.dto.AccountSettingFA;
+import com.auction.dto.AmenityList;
 import com.auction.dto.ProductBidList;
 import com.auction.dto.CurrencyList;
 import com.auction.dto.DurationList;
@@ -23,6 +24,8 @@ import com.auction.dto.ProductList;
 import com.auction.dto.ProductSizeList;
 import com.auction.dto.ProductTypeList;
 import com.auction.dto.RadiusList;
+import com.auction.dto.Role;
+import com.auction.dto.RoleList;
 import com.auction.dto.RoomSizeList;
 import com.auction.dto.SmokingList;
 import com.auction.dto.StayList;
@@ -61,6 +64,19 @@ public class RequestHandler {
     private final ISessionManager sessionManager;
     public RequestHandler(ISessionManager sessionManager) {
         this.sessionManager = sessionManager;
+    }
+    
+    @ClientRequest(action = ACTION.FETCH_MEMBER_ROLES)
+    public ClientResponse getMemberRoleList(ISession session, IPacket packet){
+        UserManager userManager = new UserManager();
+        List<Role> roles = userManager.getMemberRoles();
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+        Gson gson = gsonBuilder.create();
+        String rolesString = gson.toJson(roles);
+        RoleList response = gson.fromJson("{\"roles\":" +rolesString +"}", RoleList.class);
+        response.setSuccess(true);
+        return response;
     }
     
     @ClientRequest(action = ACTION.FETCH_USER_LIST)
@@ -140,6 +156,18 @@ public class RequestHandler {
         LocationList response = gson.fromJson("{\"locations\":" +productString +"}", LocationList.class);
         
         
+        response.setSuccess(true);
+        return response;
+    }
+    
+    @ClientRequest(action = ACTION.FETCH_PRODUCT_AMENITY_LIST)
+    public ClientResponse getAmenityList(ISession session, IPacket packet){
+        ProductManager productManager = new ProductManager();        
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+        Gson gson = gsonBuilder.create();
+        String amenityListString = gson.toJson(productManager.getAmenities());
+        AmenityList response = gson.fromJson("{\"amenities\":" +amenityListString +"}", AmenityList.class);        
         response.setSuccess(true);
         return response;
     }

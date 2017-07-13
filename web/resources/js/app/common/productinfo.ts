@@ -4,7 +4,7 @@ import {Http} from '@angular/http';
 import {Subscription} from 'rxjs';
 import {Product} from '../dto/Product';
 import {ProductBid} from '../dto/ProductBid';
-
+import {Amenity} from '../dto/Amenity'
 import {Message} from '../dto/Message';
 import {MessageText} from '../dto/MessageText';
 
@@ -21,6 +21,7 @@ export class Productinfo implements OnInit, OnDestroy {
     private webAPIService: WebAPIService;
     private requetProduct: Product;
     private productInfo: Product;
+    private amenityList: Amenity[];
     private product: Product;
     private productBid:ProductBid;
     private subscribe:Subscription;
@@ -33,6 +34,8 @@ export class Productinfo implements OnInit, OnDestroy {
     constructor(public router:Router, public route: ActivatedRoute, webAPIService: WebAPIService) {
         window.scrollTo(0, 0)
         this.webAPIService = webAPIService;
+        
+        this.amenityList = new Array<Amenity>();
         
         this.newMessage = new Message();
         this.newMessageText = new MessageText();
@@ -100,8 +103,29 @@ export class Productinfo implements OnInit, OnDestroy {
             let requestBody: string = JSON.stringify(this.requetProduct);
             this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_INFO), requestBody).then(result => {
                 this.productInfo = result;
-                console.log(result);
-                console.log(this.product);
+                this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_AMENITY_LIST)).then(result => {
+                    if(result.amenities != null)
+                    {
+                        this.amenityList = result.amenities;
+                        if (this.amenityList.length > 0)
+                        {
+                            for (let counter = 0; counter < this.amenityList.length; counter++)
+                            {
+                                this.amenityList[counter].status = "No";
+                                if (this.productInfo.amenities.length > 0)
+                                {
+                                    for (let counter2 = 0; counter2 < this.productInfo.amenities.length; counter2++)
+                                    {
+                                        if (this.amenityList[counter].id == this.productInfo.amenities[counter2].id)
+                                        {
+                                            this.amenityList[counter].status = "Yes";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
             });
         });
     }

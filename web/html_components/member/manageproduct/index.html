@@ -100,7 +100,7 @@
                                                      <p><input type="checkbox"
                                                           name="productAmenities"
                                                           value="{{amenity.title}}"
-                                                          [checked]="setCurrentAmenities(amenity.id)"
+                                                          [checked]="setCurrentAmenities(amenity?.id)"
                                                           (change)="updateCheckedAmenities(amenity, $event)"
                                                           /> {{amenity.title}}</p>
                                                 </div>

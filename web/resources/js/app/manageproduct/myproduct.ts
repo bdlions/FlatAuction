@@ -9,6 +9,7 @@ import {General} from '../dto/General'
 import {ProductType} from '../dto/ProductType'
 import {ProductSize} from '../dto/ProductSize'
 import {ProductCategory} from '../dto/ProductCategory'
+import {Amenity} from '../dto/Amenity'
 import {Location} from '../dto/Location'
 import {Stay} from '../dto/Stay'
 import {Smoking} from '../dto/Smoking'
@@ -38,6 +39,8 @@ export class MyProduct {
     private productTypeList: ProductType[];
     private productSizeList: ProductSize[];    
     private productCategoryList: ProductCategory[];
+    private amenities: Amenity[];
+    private tempAmenities: Amenity[];
     //private selectedProductType: ProductType;
     //private selectedProductSize: ProductSize;
     //private selectedProductCategory: ProductCategory; 
@@ -62,6 +65,7 @@ export class MyProduct {
         this.product.productSize = new ProductSize();
         this.productCategoryList = new Array<ProductCategory>();
         this.product.productCategory = new ProductCategory();
+        this.amenities = new Array<Amenity>();
         //this.selectedProductType = new ProductType();
         //this.selectedProductSize = new ProductSize();
         //this.selectedProductCategory = new ProductCategory();
@@ -72,7 +76,7 @@ export class MyProduct {
         //this.productTypeList = JSON.parse("[{\"id\":\"1\",\"title\":\"Flat/Apartment\"}, {\"id\":\"2\",\"title\":\"House\"}, {\"id\":\"3\",\"title\":\"Property\"}]");
         this.durationList = JSON.parse("[{\"id\":\"1\",\"title\":\"Daily\"}, {\"id\":\"2\",\"title\":\"Weekly\"}, {\"id\":\"3\",\"title\":\"Monthly\"}]");
         //this.areaList = JSON.parse("[{\"id\":\"1\", \"locationType\":\"area\",\"searchString\":\"London\"}, {\"id\":\"2\", \"locationType\":\"area\",\"searchString\":\"London 123\"}, {\"id\":\"3\", \"locationType\":\"area\",\"searchString\":\"London 456\"}]");
-        this.amenityList = JSON.parse("[{\"id\":\"1\",\"title\":\"Parking\"}, {\"id\":\"2\",\"title\":\"Balcony/patio\"}, {\"id\":\"3\",\"title\":\"Garden/roof terrace\"}, {\"id\":\"4\",\"title\":\"Disabled access\"}, {\"id\":\"5\",\"title\":\"Garage\"}]");
+        //this.amenityList = JSON.parse("[{\"id\":\"1\",\"title\":\"Parking\"}, {\"id\":\"2\",\"title\":\"Balcony/patio\"}, {\"id\":\"3\",\"title\":\"Garden/roof terrace\"}, {\"id\":\"4\",\"title\":\"Disabled access\"}, {\"id\":\"5\",\"title\":\"Garage\"}]");
         //this.occupationList = JSON.parse("[{\"id\":\"1\",\"title\":\"No Preference\"}, {\"id\":\"2\",\"title\":\"Student\"}, {\"id\":\"3\",\"title\":\"Professional\"}]");
         //this.smokingList = JSON.parse("[{\"id\":\"1\",\"title\":\"No Preference\"}, {\"id\":\"2\",\"title\":\"No\"}]");
         //this.petList = JSON.parse("[{\"id\":\"1\",\"title\":\"No Preference\"}, {\"id\":\"2\",\"title\":\"No\"}]");
@@ -112,6 +116,7 @@ export class MyProduct {
                 let requestBody: string = JSON.stringify(this.requestProduct);
                 this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_INFO), requestBody).then(result => {
                     this.product = result;
+                    this.amenities = this.product.amenities;
                     //set or update product fields into interface
                     this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_TYPE_LIST)).then(result => {
                         if(result.productTypes != null)
@@ -120,7 +125,13 @@ export class MyProduct {
                             //set product type matching id
                             if (this.productTypeList.length > 0)
                             {
-                                this.product.productType = this.productTypeList[0];
+                                for (let counter = 0; counter < this.productTypeList.length; counter++)
+                                {
+                                    if (this.productTypeList[counter].id == this.product.productType.id)
+                                    {
+                                        this.product.productType = this.productTypeList[counter];
+                                    }
+                                }
                             }
                         }            
                     });
@@ -130,7 +141,14 @@ export class MyProduct {
                             this.productSizeList = result.productSizes;
                             if (this.productSizeList.length > 0)
                             {
-                                this.product.productSize = this.productSizeList[0];
+                                for (let counter = 0; counter < this.productSizeList.length; counter++)
+                                {
+                                    if (this.productSizeList[counter].id == this.product.productSize.id)
+                                    {
+                                        this.product.productSize = this.productSizeList[counter];
+                                    }
+                                }
+                                //this.product.productSize = this.productSizeList[0];
                             }
                         }            
                     });
@@ -140,7 +158,14 @@ export class MyProduct {
                             this.productCategoryList = result.productCategories;
                             if (this.productCategoryList.length > 0)
                             {
-                                this.product.productCategory = this.productCategoryList[0];
+                                for (let counter = 0; counter < this.productCategoryList.length; counter++)
+                                {
+                                    if (this.productCategoryList[counter].id == this.product.productCategory.id)
+                                    {
+                                        this.product.productCategory = this.productCategoryList[counter];
+                                    }
+                                }
+                                //this.product.productCategory = this.productCategoryList[0];
                             }
                         }
                     });
@@ -156,19 +181,38 @@ export class MyProduct {
                         //this.locationList = result.locations;
                         //this.product.location = this.locationList[0];
                     });
-
+                    this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_AMENITY_LIST)).then(result => {
+                        if(result.amenities != null)
+                        {
+                            this.amenityList = result.amenities;
+                        }
+                    });
                     this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_STAY_LIST)).then(result => {
                         if(result.stays != null)
                         {
                             this.minStayList = result.stays;
                             if (this.minStayList.length > 0)
                             {
-                                this.product.minStay = this.minStayList[0];
+                                for (let counter = 0; counter < this.minStayList.length; counter++)
+                                {
+                                    if (this.minStayList[counter].id == this.product.minStay.id)
+                                    {
+                                        this.product.minStay = this.minStayList[counter];
+                                    }
+                                }
+                                //this.product.minStay = this.minStayList[0];
                             }
                             this.maxStayList = result.stays;
                             if (this.maxStayList.length > 0)
                             {
-                                this.product.maxStay = this.maxStayList[0];
+                                for (let counter = 0; counter < this.maxStayList.length; counter++)
+                                {
+                                    if (this.maxStayList[counter].id == this.product.maxStay.id)
+                                    {
+                                        this.product.maxStay = this.maxStayList[counter];
+                                    }
+                                }
+                                //this.product.maxStay = this.maxStayList[0];
                             }
                         }
                         //this.minStayList = result.stays;
@@ -183,7 +227,14 @@ export class MyProduct {
                             this.smokingList = result.smokings;
                             if (this.smokingList.length > 0)
                             {
-                                this.product.smoking = this.smokingList[0];
+                                for (let counter = 0; counter < this.smokingList.length; counter++)
+                                {
+                                    if (this.smokingList[counter].id == this.product.smoking.id)
+                                    {
+                                        this.product.smoking = this.smokingList[counter];
+                                    }
+                                }
+                                //this.product.smoking = this.smokingList[0];
                             }
                         }
                         //this.smokingList = result.smokings;
@@ -196,7 +247,14 @@ export class MyProduct {
                             this.occupationList = result.occupations;
                             if (this.occupationList.length > 0)
                             {
-                                this.product.occupation = this.occupationList[0];
+                                for (let counter = 0; counter < this.occupationList.length; counter++)
+                                {
+                                    if (this.occupationList[counter].id == this.product.occupation.id)
+                                    {
+                                        this.product.occupation = this.occupationList[counter];
+                                    }
+                                }
+                                //this.product.occupation = this.occupationList[0];
                             }
                         }
                         //this.occupationList = result.occupations;
@@ -209,7 +267,14 @@ export class MyProduct {
                             this.petList = result.pets;
                             if (this.petList.length > 0)
                             {
-                                this.product.pet = this.petList[0];
+                                for (let counter = 0; counter < this.petList.length; counter++)
+                                {
+                                    if (this.petList[counter].id == this.product.pet.id)
+                                    {
+                                        this.product.pet = this.petList[counter];
+                                    }
+                                }
+                                //this.product.pet = this.petList[0];
                             }
                         }
                         //this.petList = result.pets;
@@ -260,6 +325,13 @@ export class MyProduct {
                     }
                     //this.locationList = result.locations;
                     //this.product.location = this.locationList[0];
+                });
+                
+                this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_AMENITY_LIST)).then(result => {
+                    if(result.amenities != null)
+                    {
+                        this.amenityList = result.amenities;
+                    }
                 });
 
                 this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_STAY_LIST)).then(result => {
@@ -348,6 +420,7 @@ export class MyProduct {
     
     saveProduct(event: Event) 
     {
+        this.product.amenities = this.amenities;
         let requestBody: string = JSON.stringify(this.product);
         if(this.id == 0)
         {
@@ -381,11 +454,42 @@ export class MyProduct {
     
     setCurrentAmenities(id: number)
     {
-        if(id < 3)
+        if (this.amenities.length > 0)
         {
-            return true;
+            for (let counter = 0; counter < this.amenities.length; counter++)
+            {
+                if (this.amenities[counter].id == id)
+                {
+                    return true;
+                }
+            }
         }
         return false;
+    }
+    
+    updateCheckedAmenities(amenity: Amenity, event: Event)
+    {
+        this.tempAmenities = new Array<Amenity>();
+        let exist: Boolean = false;
+        if (this.amenities.length > 0)
+        {
+            for (let counter = 0; counter < this.amenities.length; counter++)
+            {
+                if (this.amenities[counter].id == amenity.id)
+                {
+                    exist = true;
+                }
+                else
+                {
+                    this.tempAmenities[this.tempAmenities.length] = this.amenities[counter];
+                }
+            }
+        }
+        if (!exist)
+        {
+            this.tempAmenities[this.tempAmenities.length] = amenity;
+        }
+        this.amenities = this.tempAmenities;
     }
     
 }

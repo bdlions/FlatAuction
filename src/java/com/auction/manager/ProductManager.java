@@ -6,15 +6,15 @@
 package com.auction.manager;
 
 import com.auction.db.HibernateUtil;
+import com.auction.dto.Amenity;
 import com.auction.dto.Currency;
 import com.auction.dto.CurrencyUnit;
 import com.auction.dto.Image;
 import com.auction.dto.Location;
-import com.auction.dto.Message;
-import com.auction.dto.MessageText;
 import com.auction.dto.Occupation;
 import com.auction.dto.Pet;
 import com.auction.dto.Product;
+import com.auction.dto.ProductAmenities;
 import com.auction.dto.ProductBid;
 import com.auction.dto.ProductCategory;
 import com.auction.dto.ProductSize;
@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.transform.Transformers;
+import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,11 +47,14 @@ public class ProductManager {
      */
     public List<ProductType> getProductTypes() {
         Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         List<ProductType> productTypes = new ArrayList<>();
-        Query query = session.getNamedQuery("getProductTypes");
+        Query query = session.createSQLQuery("select {pt.*} from product_types pt")
+                .addEntity("pt",ProductType.class);
         productTypes = query.list();
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
         return productTypes;
     }
     
@@ -62,11 +65,14 @@ public class ProductManager {
      */
     public List<ProductSize> getProductSizes() {
         Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         List<ProductSize> productSizes = new ArrayList<>();
-        Query query = session.getNamedQuery("getProductSizes");
+        Query query = session.createSQLQuery("select {ps.*} from product_sizes ps")
+                .addEntity("ps",ProductSize.class);
         productSizes = query.list();
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
         return productSizes;
     }
     
@@ -77,11 +83,14 @@ public class ProductManager {
      */
     public List<ProductCategory> getProductCategories() {
         Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         List<ProductCategory> productCategories = new ArrayList<>();
-        Query query = session.getNamedQuery("getProductCategories");
+        Query query = session.createSQLQuery("select {pc.*} from product_categories pc")
+                .addEntity("pc",ProductCategory.class);
         productCategories = query.list();
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
         return productCategories;
     }
     
@@ -92,12 +101,34 @@ public class ProductManager {
      */
     public List<Location> getLocations() {
         Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         List<Location> locations = new ArrayList<>();
-        Query query = session.getNamedQuery("getLocations");
+        Query query = session.createSQLQuery("select {l.*} from locations l")
+                .addEntity("l",Location.class);
+        //Query query = session.getNamedQuery("getLocations");
         locations = query.list();
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
         return locations;
+    }
+    
+    /**
+     * This method will return all amenities
+     * @return List amenity list
+     * @author nazmul hasan on 11th July 2017
+     */
+    public List<Amenity> getAmenities() {
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        List<Amenity> amenities = new ArrayList<>();
+        Query query = session.createSQLQuery("select {a.*} from amenities a")
+                .addEntity("a",Amenity.class);
+        amenities = query.list();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
+        return amenities;
     }
     
     /**
@@ -107,11 +138,14 @@ public class ProductManager {
      */
     public List<Stay> getStays() {
         Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         List<Stay> stays = new ArrayList<>();
-        Query query = session.getNamedQuery("getStays");
+        Query query = session.createSQLQuery("select {s.*} from stays s")
+                .addEntity("s",Stay.class);
         stays = query.list();
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
         return stays;
     }
     
@@ -122,11 +156,14 @@ public class ProductManager {
      */
     public List<Smoking> getSmokings() {
         Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         List<Smoking> smokings = new ArrayList<>();
-        Query query = session.getNamedQuery("getSmokings");
+        Query query = session.createSQLQuery("select {s.*} from smokings s")
+                .addEntity("s",Smoking.class);
         smokings = query.list();
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
         return smokings;
     }
     
@@ -137,11 +174,14 @@ public class ProductManager {
      */
     public List<Occupation> getOccupations() {
         Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         List<Occupation> occupations = new ArrayList<>();
-        Query query = session.getNamedQuery("getOccupations");
+        Query query = session.createSQLQuery("select {o.*} from occupations o")
+                .addEntity("o",Occupation.class);
         occupations = query.list();
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
         return occupations;
     }
     
@@ -152,11 +192,14 @@ public class ProductManager {
      */
     public List<Pet> getPets() {
         Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         List<Pet> pets = new ArrayList<>();
-        Query query = session.getNamedQuery("getPets");
+        Query query = session.createSQLQuery("select {p.*} from pets p")
+                .addEntity("p",Pet.class);
         pets = query.list();
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
         return pets;
     }
     
@@ -171,14 +214,16 @@ public class ProductManager {
     public List<Product> getMyProducts(int userId, int offset , int limit) {
         Session session = HibernateUtil.getSession();
         List<Product> products = new ArrayList<>();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         Query query = session.createSQLQuery("select {p.*} from products p where p.user_id = :user_id limit :limit offset :offset ")
                     .addEntity("p",Product.class)
                     .setInteger("user_id", userId)
                     .setInteger("limit", limit)
                     .setInteger("offset", offset);        
         products = query.list();
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
         return products;
     }
     
@@ -192,7 +237,7 @@ public class ProductManager {
         Session session = HibernateUtil.getSession();
         List<Product> products = new ArrayList<>();
         List<Product> tempProducts = new ArrayList<>();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         Query query = session.createSQLQuery("select {p.*} from products p ")
                     .addEntity("p",Product.class);        
         tempProducts = query.list();
@@ -206,7 +251,10 @@ public class ProductManager {
                 break;
             }
         }
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
+        //session.getTransaction().commit();
         return products;
     }
     
@@ -255,7 +303,7 @@ public class ProductManager {
     public List<Product> getSavedProducts(int userId, int offset , int limit) {
         Session session = HibernateUtil.getSession();
         List<Product> products = new ArrayList<>();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         Query query = session.createSQLQuery("select {sp.*}, {p.*} from saved_products sp join products p on sp.product_id = p.id  where sp.user_id = :user_id limit :limit offset :offset ")
                     .addEntity("sp",SavedProduct.class)
                     .addEntity("p",Product.class)
@@ -268,7 +316,9 @@ public class ProductManager {
             Product product = (Product)row[1];
             products.add(product);
         }
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
         return products;
     }
     
@@ -276,7 +326,7 @@ public class ProductManager {
         Session session = HibernateUtil.getSession();
         List<Product> productList = new ArrayList<>();
         List<Product> products = new ArrayList<>();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         Query query = session.createSQLQuery("select {p.*} from products p limit :limit offset :offset ")
                     .addEntity("p",Product.class)
                     .setInteger("limit", limit)
@@ -303,7 +353,9 @@ public class ProductManager {
             product.setImages(images);
             productList.add(product);
         }
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
         return productList;
     }
     
@@ -323,6 +375,15 @@ public class ProductManager {
             for (Image image : images) {
                 image.setProductId(product.getId());
                 session.save(image);
+            }
+        }
+        List<Amenity> amenities = product.getAmenities();
+        if (amenities != null) {
+            for (Amenity amenity : amenities) {
+                ProductAmenities productAmenities = new ProductAmenities();
+                productAmenities.setAmenity(amenity);
+                productAmenities.setProduct(product);
+                session.save(productAmenities);
             }
         }
         session.getTransaction().commit();
@@ -350,6 +411,27 @@ public class ProductManager {
         session.clear();
         session.beginTransaction();
         session.update(product);
+        try
+        {
+            //delete current amenities
+            Query query1 = session.createSQLQuery(" delete from products_amenities where product_id = :product_id")
+                .setInteger("product_id", product.getId());
+                query1.executeUpdate();
+            //add amenities
+            List<Amenity> amenities = product.getAmenities();
+            if (amenities != null) {
+                for (Amenity amenity : amenities) {
+                    ProductAmenities productAmenities = new ProductAmenities();
+                    productAmenities.setAmenity(amenity);
+                    productAmenities.setProduct(product);
+                    session.save(productAmenities);
+                }
+            }
+        }
+        catch(Exception ex)
+        {
+            logger.debug(ex.toString());
+        }        
         session.getTransaction().commit();
     }
     
@@ -375,18 +457,39 @@ public class ProductManager {
     }
     
     public Product getProductInfo(int productId) {
+        Product product = null;
         Session session = HibernateUtil.getSession();
-        session.beginTransaction();
-        Query query = session.createSQLQuery("select {p.*} from products p where id = :id ")
+        session.beginTransaction();        
+        Query query = session.createSQLQuery("select {p.*}, {pt.*} from products p join product_types pt on p.product_type_id = pt.id where p.id = :id ")
                     .addEntity("p",Product.class)
+                    .addJoin("pt","p.productType")
                     .setInteger("id", productId);
-        List<Product> products =  query.list();
-        if(products != null && products.size() == 1)
+        
+        List<Object[]> rows = query.list();
+        for (Object[] row : rows) 
         {
-            return products.get(0);
+            product = (Product)row[0];
+            break;
+        }
+        product.setAmenities(new ArrayList<>());
+        try
+        {
+            Query query2 = session.createSQLQuery("select {a.*} from amenities a join products_amenities pa on a.id = pa.amenity_id where pa.product_id = :product_id ")
+                    .addEntity("a",Amenity.class)
+                    .setInteger("product_id", productId);
+        
+            List<Object[]> rows2 = query2.list();
+            for (Object row : rows2) 
+            {
+                product.getAmenities().add((Amenity)row);
+            }
+        }
+        catch(Exception ex)
+        {
+            logger.error(ex.toString());
         }
         session.getTransaction().commit();
-        return null;
+        return product;
     }
     
 

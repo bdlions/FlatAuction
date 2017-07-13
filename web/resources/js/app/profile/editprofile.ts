@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {Http} from '@angular/http';
 import {User} from '../dto/User'
+import {Role} from '../dto/Role'
 import {WebAPIService} from './../webservice/web-api-service';
 import {PacketHeaderFactory} from './../webservice/PacketHeaderFactory';
 import {ACTION} from './../webservice/ACTION';
@@ -14,9 +15,11 @@ import {ACTION} from './../webservice/ACTION';
 export class EditProfile {
     private webAPIService: WebAPIService;
     private user: User;
+    private roles: Role[];
     constructor(public router: Router, public http: Http, webAPIService: WebAPIService) {
         this.webAPIService = webAPIService;
         this.user = new User();
+        this.roles = new Array<Role>();
         /*this.user.userId = "u1"; 
         this.user.firstName = "Nazmul";
         this.user.lastName = "Hasan";
@@ -28,6 +31,12 @@ export class EditProfile {
         
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_USER_INFO)).then(result => {
             this.user = <User>result;
+        });
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_MEMBER_ROLES)).then(result => {
+            if(result.roles != null)
+            {
+                this.roles = result.roles;
+            }
         });
     }
     updateUserprofile(event: Event) {

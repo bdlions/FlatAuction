@@ -1,4 +1,5 @@
 export class Amenity {
-    id:string;
+    id:number;
     title:string;
+    status:string;
 }

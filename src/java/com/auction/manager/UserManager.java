@@ -1,11 +1,10 @@
 package com.auction.manager;
 
 import com.auction.db.HibernateUtil;
-import com.auction.dto.Product;
 import com.auction.dto.Role;
 import com.auction.dto.User;
+import com.auction.util.Constants;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import org.hibernate.Query;
@@ -20,6 +19,31 @@ import org.slf4j.LoggerFactory;
 public class UserManager {
 
     private final Logger logger = LoggerFactory.getLogger(UserManager.class);
+    
+    /**
+     * This method will return member roles excluding admin
+     * @return List, role list
+     * @author nazmul hasan on 13th july 2017
+    */
+    public List<Role> getMemberRoles() {
+        List<Role> roles = new ArrayList<>();
+        Session session = HibernateUtil.getSession();
+        session.beginTransaction();
+        Query query = session.createSQLQuery("select {r.*} from roles r")
+                .addEntity("r",Role.class);
+        List<Object> rows = query.list();
+        for(Object row:rows)
+        {
+            Role role = (Role)row;
+            if(role.getId() != Constants.ROLE_ID_ADMIN)
+            {
+                roles.add(role);
+            }            
+        }        
+        session.getTransaction().commit();
+        return roles;
+    }
+    
     //Session session = HibernateUtil.getSession();
     public User getUserByCredential(String identity, String password) {
         Session session = HibernateUtil.getSession();

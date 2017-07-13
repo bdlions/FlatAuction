@@ -36,6 +36,12 @@
                 <div class="product-auction-img">
                     <a (click)="selectProduct($event, productInfo.id)"><img class="img-responsive" src="resources/images/product/{{productInfo.img}}"></a>
                 </div>
+                <div *ngIf="productInfo.id == 1" class="auction-time text-center">1 hours 56 mins 46 secs</div>
+                <div *ngIf="productInfo.id == 2" class="auction-time text-center">3 hours 42 mins 46 secs</div>
+                <div *ngIf="productInfo.id == 3" class="auction-time text-center">6 hours 15 mins 46 secs</div>
+                <div *ngIf="productInfo.id == 4" class="auction-time text-center">9 hours 38 mins 46 secs</div>
+                <div *ngIf="productInfo.id == 5" class="auction-time text-center">15 hours 22 mins 46 secs</div>
+                <div *ngIf="productInfo.id == 6" class="auction-time text-center">22 hours 08 mins 46 secs</div>
                 <div class="product-auction-title margin-bottom-5px">
                     <a (click)="selectProduct($event, productInfo.id)"><h3>{{productInfo.title}}</h3></a>
                 </div>
