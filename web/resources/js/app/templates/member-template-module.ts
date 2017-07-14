@@ -46,7 +46,7 @@ import {Faq} from '../common/faq';
 import {Logout} from '../common/logout';
 import {FileUploadModule } from 'ng2-file-upload';
 import { AgmCoreModule } from 'angular2-google-maps/core';
-import {CarouselModule, TypeaheadModule, DatepickerModule} from "ngx-bootstrap"
+import {CarouselModule, TypeaheadModule, DatepickerModule, ModalModule} from "ngx-bootstrap"
 //import {Abroad} from './abroad';
 //import {Header} from './header';
 
@@ -54,7 +54,7 @@ import {CarouselModule, TypeaheadModule, DatepickerModule} from "ngx-bootstrap"
 @NgModule({
     imports: [HttpModule, BrowserModule, FormsModule,
         CarouselModule.forRoot(), TypeaheadModule.forRoot(),
-        DatepickerModule.forRoot(),
+            DatepickerModule.forRoot(), ModalModule.forRoot(),
         FileUploadModule,
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyBQwFpi-R6gtguRzwSPzy4D0kyULz4ICd4'

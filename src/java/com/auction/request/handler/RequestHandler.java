@@ -28,6 +28,9 @@ import com.auction.dto.Role;
 import com.auction.dto.RoleList;
 import com.auction.dto.RoomSizeList;
 import com.auction.dto.SmokingList;
+import com.auction.dto.Stat;
+import com.auction.dto.StatList;
+import com.auction.dto.StatParams;
 import com.auction.dto.StayList;
 import com.auction.dto.User;
 import com.auction.dto.UserList;
@@ -39,6 +42,7 @@ import com.auction.dto.response.ClientResponse;
 import com.auction.dto.response.GeneralResponse;
 import com.auction.dto.response.SignInResponse;
 import com.auction.exceptions.InvalidRequestException;
+import com.auction.library.ProductLibrary;
 import com.auction.manager.FeaturedAdManager;
 import com.auction.manager.MessageManager;
 import com.auction.manager.ProductManager;
@@ -573,6 +577,22 @@ public class RequestHandler {
         
         GeneralResponse response = new GeneralResponse();
         response.setMessage("Product is updated successfully.");
+        response.setSuccess(true);
+        return response;
+    }
+    
+    @ClientRequest(action = ACTION.FETCH_STAT_LIST)
+    public ClientResponse getStatList(ISession session, IPacket packet){
+        Gson gson1 = new Gson();
+        StatParams statParams = gson1.fromJson(packet.getPacketBody(), StatParams.class);
+        ProductLibrary productLibrary = new ProductLibrary();
+        List<Stat> statList = productLibrary.getStatList(statParams.getStartDate(), statParams.getEndDate(), statParams.getProductId());
+        
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+        Gson gson = gsonBuilder.create();
+        String statListString = gson.toJson(statList);
+        StatList response = gson.fromJson("{\"stats\":" +statListString +"}", StatList.class);
         response.setSuccess(true);
         return response;
     }

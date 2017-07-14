@@ -20,7 +20,7 @@ export class Login {
     private webAPIService: WebAPIService;
     private errorMsg:string;
     private msg:string;
-    @ViewChild('childModal') public childModal:ModalDirective;
+    //@ViewChild('childModal') public childModal:ModalDirective;
     
     constructor(public router: Router, public http: Http, webAPIService: WebAPIService) {
         this.webAPIService = webAPIService;
@@ -31,16 +31,16 @@ export class Login {
         if (username != null && username != "" && password != null && password != ""){
             this.loginUser(username,password);
         }
-        setInterval(() => { this.childModal.hide(); }, 1000 * 3);
+        //setInterval(() => { this.childModal.hide(); }, 1000 * 3);
     }
-    public showChildModal(): void {
-        this.childModal.show();
-    }
-
-    public hideChildModal(): void {
-        this.childModal.hide();
-    }
-  
+//    public showChildModal(): void {
+//        this.childModal.show();
+//    }
+//
+//    public hideChildModal(): void {
+//        this.childModal.hide();
+//    }
+//  
     login(event: Event, username: string, password: string) {
         if (username == null || username == "")
         {

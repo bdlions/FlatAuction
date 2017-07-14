@@ -18,8 +18,10 @@ import com.auction.dto.ProductList;
 import com.auction.dto.ProductSize;
 import com.auction.dto.ProductType;
 import com.auction.dto.Smoking;
+import com.auction.dto.Stat;
 import com.auction.dto.Stay;
 import com.auction.dto.User;
+import com.auction.library.ProductLibrary;
 import com.auction.manager.ProductManager;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -183,7 +185,7 @@ public class ProductManagerTest {
         productManager.addProduct(product);        
     }
     
-    @Test
+    //@Test
     public void getProductInfoTest(){
         ProductManager manager = new ProductManager();
         Product prod = manager.getProductInfo(3);
@@ -226,5 +228,12 @@ public class ProductManagerTest {
     public void getSavedProductTest(){
         ProductManager productManager = new ProductManager();
         productManager.getSavedProducts(1, 0, 100);
+    }
+    
+    @Test
+    public void getStatListTest(){
+        ProductLibrary productLibrary = new ProductLibrary();
+        List<Stat> statList = productLibrary.getStatList("2017-07-14", "2017-07-14", 1);
+        System.out.println(statList.size());
     }
 }

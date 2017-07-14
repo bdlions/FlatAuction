@@ -110,6 +110,9 @@ export class PacketHeaderFactory {
             case ACTION.FETCH_MESSAGE_SENT_LIST:
                 packetHeader.requestType = REQUEST_TYPE.REQUEST
                 break;
+            case ACTION.FETCH_STAT_LIST:
+                packetHeader.requestType = REQUEST_TYPE.REQUEST
+                break;
             case ACTION.UPDATE_USER_INFO:
                 packetHeader.requestType = REQUEST_TYPE.UPDATE
                 break;

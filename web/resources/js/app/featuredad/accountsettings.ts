@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Http} from '@angular/http';
 import {Subscription} from 'rxjs';
@@ -6,7 +6,7 @@ import {AccountSettingFA} from '../dto/AccountSettingFA';
 import {WebAPIService} from './../webservice/web-api-service';
 import {PacketHeaderFactory} from './../webservice/PacketHeaderFactory';
 import {ACTION} from './../webservice/ACTION';
-
+import { ModalDirective } from 'ngx-bootstrap';
 
 @Component({
     selector: 'data-content',
@@ -19,6 +19,7 @@ export class AccountSettings implements OnInit, OnDestroy {
     
     private subscribe:Subscription;
     private id:number;
+    @ViewChild('accountSettingsSuccessModal') public accountSettingsSuccessModal:ModalDirective;
     
     constructor(public router:Router, public route: ActivatedRoute, webAPIService: WebAPIService) {
         this.webAPIService = webAPIService;
@@ -35,6 +36,12 @@ export class AccountSettings implements OnInit, OnDestroy {
                 this.accountSettingFA.defaultBidPerClick = this.accountSettingFA.defaultBidPerClick * 100;
             }
         });    
+        
+        setInterval(() => { this.accountSettingsSuccessModal.hide(); }, 1000 * 3);
+    }
+    
+    public hideChildModal(): void {
+        this.accountSettingsSuccessModal.hide();
     }
     
     
@@ -64,6 +71,7 @@ export class AccountSettings implements OnInit, OnDestroy {
                 this.accountSettingFA = result;
                 //converting pound into p
                 this.accountSettingFA.defaultBidPerClick = this.accountSettingFA.defaultBidPerClick * 100;
+                this.accountSettingsSuccessModal.show();
             }
             else
             {
