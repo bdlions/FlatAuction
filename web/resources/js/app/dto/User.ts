@@ -1,3 +1,4 @@
+import {Role} from "./Role";
 export class User {
     id:number;
     userName:string;
@@ -9,6 +10,7 @@ export class User {
     document:string;
     cellNo:string;
     isVerified:boolean;
+    roleList: Array<Role>;
     //the following fields are different from server user dto
     confirmPassword:string;
 }

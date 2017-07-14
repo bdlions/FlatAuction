@@ -183,10 +183,10 @@ public class ProductManagerTest {
         productManager.addProduct(product);        
     }
     
-    //@Test
+    @Test
     public void getProductInfoTest(){
         ProductManager manager = new ProductManager();
-        Product prod = manager.getProductInfo(1);
+        Product prod = manager.getProductInfo(3);
         System.out.println(prod.getTitle());
     }
     
@@ -222,7 +222,7 @@ public class ProductManagerTest {
         System.out.println(productManager.addSavedProduct(1, 1));
     }
     
-    @Test
+    //@Test
     public void getSavedProductTest(){
         ProductManager productManager = new ProductManager();
         productManager.getSavedProducts(1, 0, 100);

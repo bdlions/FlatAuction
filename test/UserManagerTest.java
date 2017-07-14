@@ -134,27 +134,9 @@ public class UserManagerTest {
         }
     }
 
-    //@Test
-    public void getUserRoles() {
-        UserManager user = new UserManager();
-        Set<Role> roles = user.getUserRolesByUserId(1);
-        System.out.println("roles are : ");
-        if(roles != null){
-//            for(int i = 0; i < roles.size() ; i ++){
-//                Role role = roles.get(i);
-////                System.out.println("Role id: " + role.getId() + ", Role Name: " + role.getName());
-//                System.out.println("sdfffffffffffffffffffffffffffffffffffffff");
-//            }
-            Iterator<Role> it = roles.iterator();
-            while(it.hasNext()){
-                Role role = it.next();
-                System.out.println("Role id: " + role.getId() + ", Role Name: " + role.getName());
-            }
-        }
-        
-    }  
     
-    @Test
+    
+    //@Test
     public void defaultData(){
         
         try
@@ -468,14 +450,6 @@ public class UserManagerTest {
     }
 
     //@Test
-    public void getUserByIdTest() 
-    {
-        UserManager userManager = new UserManager();
-        User user = userManager.getUserProfileById(1);
-        System.out.println(user.getUserName());
-    }
-    
-    //@Test
     public void updateUserProfilePictureTest() 
     {
         UserManager userManager = new UserManager();
@@ -518,4 +492,40 @@ public class UserManagerTest {
             System.out.println(user.getEmail());
         }
     }
+    
+    //@Test
+    public void getMemberRoles() {
+        UserManager user = new UserManager();
+        for (Role role : user.getMemberRoles()) {
+            System.out.println(role.getId() + " " + role.getName() + " " + role.getDescription());
+        }
+    }
+    
+    @Test
+    public void getUserByIdTest() 
+    {
+        UserManager userManager = new UserManager();
+        User user = userManager.getUserProfileById(1);
+        System.out.println(user.getUserName());
+    }
+    
+    //@Test
+    public void getUserRoles() {
+        UserManager user = new UserManager();
+        Set<Role> roles = user.getUserRolesByUserId(1);
+        System.out.println("roles are : ");
+        if(roles != null){
+//            for(int i = 0; i < roles.size() ; i ++){
+//                Role role = roles.get(i);
+////                System.out.println("Role id: " + role.getId() + ", Role Name: " + role.getName());
+//                System.out.println("sdfffffffffffffffffffffffffffffffffffffff");
+//            }
+            Iterator<Role> it = roles.iterator();
+            while(it.hasNext()){
+                Role role = it.next();
+                System.out.println("Role id: " + role.getId() + ", Role Name: " + role.getName());
+            }
+        }
+        
+    }  
 }

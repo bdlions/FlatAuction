@@ -1,8 +1,12 @@
 package com.auction.manager;
 
 import com.auction.db.HibernateUtil;
+import com.auction.dto.Amenity;
+import com.auction.dto.Product;
+import com.auction.dto.ProductAmenities;
 import com.auction.dto.Role;
 import com.auction.dto.User;
+import com.auction.dto.UserRoles;
 import com.auction.util.Constants;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +48,91 @@ public class UserManager {
         return roles;
     }
     
+    /**
+     * This method will update user profile
+     * @param userId, user id
+     * @return User
+     * @author nazmul hasan on 29th May 2017
+    */
+    public User getUserProfileById(int userId) 
+    {
+        Session session = HibernateUtil.getSession();
+        User user = null;
+        try
+        {
+            session.beginTransaction();
+            //Query query = session.getNamedQuery("getUserById")
+            //        .setInteger("id", userId);
+            
+            Query query = session.createSQLQuery("select {u.*} from users u where u.id = :user_id ")
+                    .addEntity("u",User.class)
+                    .setInteger("user_id", userId);
+            List<Object[]> rows = query.list();
+            for (Object row : rows) 
+            {
+                user = (User)row;
+                break;
+            }
+            if(user != null)
+            {
+                user.setRoleList(new ArrayList<>());
+                try
+                {
+                    Query query2 = session.createSQLQuery("select {r.*} from roles r join users_roles ur on r.id = ur.role_id where ur.user_id = :user_id ")
+                            .addEntity("r",Role.class)
+                            .setInteger("user_id", userId);
+
+                    List<Object[]> rows2 = query2.list();
+                    for (Object row : rows2) 
+                    {
+                        user.getRoleList().add((Role)row);
+                    }
+                }
+                catch(Exception ex)
+                {
+                    logger.error(ex.toString());
+                }
+            }
+            //user = (User)query.uniqueResult();
+            session.getTransaction().commit();
+        }
+        catch(Exception ex)
+        {
+            logger.error(ex.toString());
+        }
+        
+        return user;
+    }
+    
+    public void updateUserProfile(User user) {
+        Session session = HibernateUtil.getSession();
+        session.clear();
+        session.beginTransaction();
+        session.update(user);
+        try
+        {
+            //delete current roles
+            Query query1 = session.createSQLQuery(" delete from users_roles where user_id = :user_id")
+                .setInteger("user_id", user.getId());
+                query1.executeUpdate();
+            //add roles
+            List<Role> roleList = user.getRoleList();
+            if (roleList != null) {
+                for (Role role : roleList) {
+                    UserRoles userRoles = new UserRoles();
+                    userRoles.setRole(role);
+                    userRoles.setUser(user);
+                    session.save(userRoles);
+                }
+            }
+        }
+        catch(Exception ex)
+        {
+            logger.debug(ex.toString());
+        }
+        session.getTransaction().commit();
+    }
+    
     //Session session = HibernateUtil.getSession();
     public User getUserByCredential(String identity, String password) {
         Session session = HibernateUtil.getSession();
@@ -75,13 +164,7 @@ public class UserManager {
         session.getTransaction().commit();
     }
 
-    public void updateUserProfile(User user) {
-        Session session = HibernateUtil.getSession();
-        session.clear();
-        session.beginTransaction();
-        session.update(user);
-        session.getTransaction().commit();
-    }
+    
 
     public List<Role> getRoles() {
         Session session = HibernateUtil.getSession();
@@ -96,7 +179,7 @@ public class UserManager {
         Session session = HibernateUtil.getSession();
         session.beginTransaction();
         Query query = session.getNamedQuery("getUserById")
-                .setInteger("userId", userId);
+                .setInteger("id", userId);
 
         User user = (User)query.uniqueResult();
         
@@ -112,32 +195,6 @@ public class UserManager {
 
     public void getActionsRoles() {
 
-    }
-    
-    /**
-     * This method will update user profile
-     * @param userId, user id
-     * @return User
-     * @author nazmul hasan on 29th May 2017
-    */
-    public User getUserProfileById(int userId) 
-    {
-        Session session = HibernateUtil.getSession();
-        User user = null;
-        try
-        {
-            session.beginTransaction();
-            Query query = session.getNamedQuery("getUserById")
-                    .setInteger("id", userId);
-            user = (User)query.uniqueResult();
-            session.getTransaction().commit();
-        }
-        catch(Exception ex)
-        {
-            logger.error(ex.toString());
-        }
-        
-        return user;
     }
     
     public User getUserProfileByFbCode(String fbCode) 
