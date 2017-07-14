@@ -1,4 +1,6 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import { NgModule, Component, Input, Output, EventEmitter, AfterViewInit , OnInit, OnDestroy} from '@angular/core';
+import { DatePipe } from '@angular/common';
+
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 
@@ -43,6 +45,7 @@ export class Stats implements OnInit, OnDestroy {
     
     public fromDate: Date = new Date();
     public minDate: Date = void 0;
+    private showDatepicker: boolean = false;
   
     constructor(public router:Router, public route: ActivatedRoute, webAPIService: WebAPIService) {
         this.webAPIService = webAPIService;
@@ -102,7 +105,7 @@ export class Stats implements OnInit, OnDestroy {
         event.preventDefault();
         this.router.navigate(['accountsettings']);
     }
-    
+
     individualadbids(event: Event) {
         event.preventDefault();
         this.router.navigate(['individualadbids']);

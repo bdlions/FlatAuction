@@ -38,14 +38,17 @@
                             </select> 
                         </div>
                     </div>
-<!--                    <div class="row form-group">
+                    <div class="row form-group">
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                             <h5 class="featured-ad-label">From</h5>
                         </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <input class="form-control input-custom-field" type="text" [ngModel]="fromDate" (focus)="showDatePicker = true" (focusout)="showDatePicker = false" >
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" >
+                            <input class="form-control input-custom-field" type="text" 
+                                   [ngModel]="fromDate | date:'dd-MM-yyyy'" (ngModelChange)="fromDate = $event;"
+                                   (focus)="showDatePicker = true" >
+
                                    <div class="start-date" *ngIf="showDatePicker" >
-                                <datepicker [(ngModel)]="fromDate" [minDate]="minDate" [showWeeks]="false"></datepicker>
+                                <datepicker [(ngModel)]="fromDate" [minDate]="minDate" [showWeeks]="false" (selectionDone) ="showDatePicker = false"  ></datepicker>
                             </div>
                         </div>
                     </div>
@@ -56,7 +59,7 @@
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                             <input class="form-control input-custom-field" type="text" id="datepicker">
                         </div>
-                    </div>-->
+                    </div>
                     <div class="row form-group">
                         <div class="col-xs-12 col-sm-6 col-md-offset-6 col-md-6 col-lg-6">
                             <button id="view-stats-button" class="form-control common-custom-button">View Stats</button>
@@ -76,13 +79,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-<!--                                    <tr *ngFor="let stat of statList">
-                                        <td data-label="Date">{{stat.date}}</td>
-                                        <td data-label="Clicks">{{stat.clicks}}</td>
-                                        <td data-label="Impressions">{{stat.impressions}}</td>
-                                        <td data-label="CTR">{{stat.ctr}}</td>
-                                        <td data-label="Cost">{{stat.cost.amount}}{{stat.cost.currencyUnit.title}}</td>
-                                    </tr>-->
+                                    <!--                                    <tr *ngFor="let stat of statList">
+                                                                            <td data-label="Date">{{stat.date}}</td>
+                                                                            <td data-label="Clicks">{{stat.clicks}}</td>
+                                                                            <td data-label="Impressions">{{stat.impressions}}</td>
+                                                                            <td data-label="CTR">{{stat.ctr}}</td>
+                                                                            <td data-label="Cost">{{stat.cost.amount}}{{stat.cost.currencyUnit.title}}</td>
+                                                                        </tr>-->
                                 </tbody>
                             </table>
                         </div>
