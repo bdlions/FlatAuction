@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {Http} from '@angular/http';
 import {User} from '../dto/User'
@@ -9,6 +9,7 @@ import {PacketHeaderFactory} from './../webservice/PacketHeaderFactory';
 import {ACTION} from './../webservice/ACTION';
 import {ServerResponse} from './../common/ServerResponse';
 import {SignInResponse} from './../common/SignInResponse';
+import { ModalDirective } from 'ngx-bootstrap';
 
 @Component({
     templateUrl: window.SUB_DIRECTORY + "/html_components/public/login.html",
@@ -19,6 +20,7 @@ export class Login {
     private webAPIService: WebAPIService;
     private errorMsg:string;
     private msg:string;
+    @ViewChild('childModal') public childModal:ModalDirective;
     
     constructor(public router: Router, public http: Http, webAPIService: WebAPIService) {
         this.webAPIService = webAPIService;
@@ -30,7 +32,14 @@ export class Login {
             this.loginUser(username,password);
         }
     }
-    
+    public showChildModal(): void {
+        this.childModal.show();
+    }
+
+    public hideChildModal(): void {
+        this.childModal.hide();
+    }
+  
     login(event: Event, username: string, password: string) {
         if (username == null || username == "")
         {
