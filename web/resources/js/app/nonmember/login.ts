@@ -31,6 +31,7 @@ export class Login {
         if (username != null && username != "" && password != null && password != ""){
             this.loginUser(username,password);
         }
+        setInterval(() => { this.childModal.hide(); }, 1000 * 3);
     }
     public showChildModal(): void {
         this.childModal.show();

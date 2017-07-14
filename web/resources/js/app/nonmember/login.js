@@ -17,6 +17,7 @@ var ACTION_1 = require("./../webservice/ACTION");
 var ngx_bootstrap_1 = require("ngx-bootstrap");
 var Login = (function () {
     function Login(router, http, webAPIService) {
+        var _this = this;
         this.router = router;
         this.http = http;
         this.webAPIService = webAPIService;
@@ -25,6 +26,7 @@ var Login = (function () {
         if (username != null && username != "" && password != null && password != "") {
             this.loginUser(username, password);
         }
+        setInterval(function () { _this.childModal.hide(); }, 1000 * 3);
     }
     Login.prototype.showChildModal = function () {
         this.childModal.show();
