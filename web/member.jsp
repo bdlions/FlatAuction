@@ -20,25 +20,27 @@
         <link rel="stylesheet" href="resources/css/common.css" >
         <link rel="stylesheet" href="resources/css/member.css" >
 
-        <!-- Latest compiled and minified JavaScript -->
+        <script src="resources/js/node_modules/core-js/client/shim.min.js"></script>
+        <script src="resources/js/node_modules/zone.js/dist/zone.js"></script>
+        <script src="resources/js/global.js"></script>
+        <script src="resources/js/member_bundle.js"></script>
+        
+<!--         Latest compiled and minified JavaScript 
         <script src="resources/js/jquery.min.js"></script>
         <script src="resources/js/bootstrap.min.js"></script>
 
-        <!-- Polyfills -->
-        <script src="resources/js/node_modules/core-js/client/shim.min.js"></script>
-        <script src="resources/js/node_modules/zone.js/dist/zone.js"></script>
         <script src="resources/js/node_modules/systemjs/dist/system.src.js"></script>
         <script src="resources/js/non-member-template.config.js"></script>
-        <script src="resources/js/global.js"></script>
-        <%
-            String fbEmail = (String)request.getAttribute("fbEmail");
-            String password = (String)request.getAttribute("password");
-        %>
+
         <script>
             System.import('resources/js/member-template.js').catch(function (err) {
                 console.error(err);
             });            
-        </script>
+        </script>-->
+        <%
+            String fbEmail = (String) request.getAttribute("fbEmail");
+            String password = (String) request.getAttribute("password");
+        %>
     </head>
     <body>
         <!--<div class="container">-->
