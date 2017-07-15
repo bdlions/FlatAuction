@@ -30,3 +30,4 @@
 /web/resources/js/app/message/*.map
 /web/resources/js/app/account/*.js
 /web/resources/js/app/account/*.map
+/web/resources/js/node_modules/
