@@ -44,6 +44,7 @@ import {Contactus} from '../common/contactus';
 import {Aboutus} from '../common/aboutus';
 import {Faq} from '../common/faq';
 import {Logout} from '../common/logout';
+import {MemberHeaderMenuManager} from '../services/MemberHeaderMenuManager';
 import {FileUploadModule } from 'ng2-file-upload';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import {CarouselModule, TypeaheadModule, DatepickerModule, ModalModule} from "ngx-bootstrap"
@@ -65,6 +66,6 @@ import {CarouselModule, TypeaheadModule, DatepickerModule, ModalModule} from "ng
     ],
     declarations: [MemberApp, Search, DashBoard, MyHome, MyProduct, MyAds, SavedAds, Productinfo, Bids, AccountSettings, IndividualAdBids, Stats, Ranking, Fafaq, Inbox, Sent, Saved, Showmessage, Notifications, MyProfile, EditProfile, UploadImg, UploadDocument, BasicSearch, AdvancedSearch, AppHeader, AppFooter, Terms, Privacypolicy, Contactus, Aboutus, Faq, Logout],
     bootstrap: [MemberApp],
-    providers: [AuthGuard, {provide: LocationStrategy, useClass: HashLocationStrategy}]
+    providers: [AuthGuard, MemberHeaderMenuManager, {provide: LocationStrategy, useClass: HashLocationStrategy}]
 })
 export class MemberAppModule {}

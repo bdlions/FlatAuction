@@ -185,10 +185,10 @@ public class ProductManagerTest {
         productManager.addProduct(product);        
     }
     
-    //@Test
+    @Test
     public void getProductInfoTest(){
         ProductManager manager = new ProductManager();
-        Product prod = manager.getProductInfo(3);
+        Product prod = manager.getProductInfo(1);
         System.out.println(prod.getTitle());
     }
     
@@ -230,7 +230,7 @@ public class ProductManagerTest {
         productManager.getSavedProducts(1, 0, 100);
     }
     
-    @Test
+    //@Test
     public void getStatListTest(){
         ProductLibrary productLibrary = new ProductLibrary();
         List<Stat> statList = productLibrary.getStatList("2017-07-14", "2017-07-14", 1);

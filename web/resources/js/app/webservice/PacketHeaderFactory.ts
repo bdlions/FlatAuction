@@ -62,6 +62,9 @@ export class PacketHeaderFactory {
             case ACTION.FETCH_PRODUCT_AMENITY_LIST:
                 packetHeader.requestType = REQUEST_TYPE.REQUEST
                 break;
+            case ACTION.FETCH_AVAILABILITY_LIST:
+                packetHeader.requestType = REQUEST_TYPE.REQUEST
+                break;
             case ACTION.FETCH_STAY_LIST:
                 packetHeader.requestType = REQUEST_TYPE.REQUEST
                 break;

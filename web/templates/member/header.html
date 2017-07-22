@@ -69,7 +69,26 @@
 
                             <div class="collapse navbar-collapse" id="member-header">
                                 <ul class="nav navbar-nav header-custom-nav">                                    
-                                    <li class="active" *ngIf="dashboardSelected == true" >
+                                    <li [ngClass]="{'active': activeMenu == 'dashboard' }">
+                                        <a (click)="dashboard($event)">Dashboard</a>
+                                    </li>
+                                    <li [ngClass]="{'active': activeMenu == 'manageadvert' }">
+                                        <a (click)="myads($event)">Manage Adverts</a>
+                                    </li>
+                                    <li [ngClass]="{'active': activeMenu == 'messages' }">
+                                        <a (click)="inbox($event)">Messages</a>
+                                    </li>
+                                    <li [ngClass]="{'active': activeMenu == 'account' }">
+                                        <a (click)="notifications($event)">Account</a>
+                                    </li>
+                                    <li [ngClass]="{'active': activeMenu == 'profile' }">
+                                        <a (click)="myprofile($event)">Profile</a>
+                                    </li>
+                                    <li [ngClass]="{'active': activeMenu == 'search' }">
+                                        <a (click)="basicsearch($event)">Search</a>
+                                    </li>
+                                    
+<!--                                    <li class="active" *ngIf="dashboardSelected == true" >
                                         <a (click)="dashboard($event)">Dashboard</a>
                                     </li>
                                     <li *ngIf="dashboardSelected == false" >
@@ -109,7 +128,7 @@
                                     </li>
                                     <li *ngIf="basicSearchSelected == false">
                                         <a (click)="basicsearch($event)">Search</a>
-                                    </li>
+                                    </li>-->
                                 </ul>
                             </div>
                         </div>

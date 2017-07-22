@@ -25,6 +25,7 @@ import com.auction.dto.User;
 import com.auction.dto.response.ClientResponse;
 import com.auction.dto.response.GeneralResponse;
 import com.auction.dto.response.SignInResponse;
+import com.auction.library.ImageLibrary;
 import com.auction.library.SendMail;
 import com.auction.manager.FeaturedAdManager;
 import com.auction.manager.MessageManager;
@@ -254,8 +255,17 @@ public class AuthHandler {
                     if(!com.auction.util.StringUtils.isNullOrEmpty(imageFileName))
                     {
                         String uploadPath = RequestHandler.class.getClassLoader().getResource(Constants.SERVER_ROOT_DIR + Constants.IMAGE_UPLOAD_PATH).getFile();
-                        String profilePicPath = RequestHandler.class.getClassLoader().getResource(Constants.SERVER_ROOT_DIR + Constants.PRODUCT_IMAGE_PATH).getFile();
-                        FileUtils.copyFile(uploadPath + imageFileName, profilePicPath + imageFileName);
+                        String productPicPath = RequestHandler.class.getClassLoader().getResource(Constants.SERVER_ROOT_DIR + Constants.PRODUCT_IMAGE_PATH).getFile();
+                        FileUtils.copyFile(uploadPath + imageFileName, productPicPath + imageFileName);
+                        
+                        //resize image to 328px to 212px
+                        String imgProductPath328_212 = RequestHandler.class.getClassLoader().getResource(Constants.SERVER_ROOT_DIR + Constants.IMG_PRODUCT_PATH_328_212).getFile();
+                        ImageLibrary imageLibrary = new ImageLibrary();
+                        imageLibrary.resizeImage(uploadPath + imageFileName, imgProductPath328_212 + imageFileName, Constants.IMG_PRODUCT_LIST_WIDTH, Constants.IMG_PRODUCT_LIST_HEIGHT);
+                        
+                        //resize image to 656px to 424px
+                        String imgProductPath658_424 = RequestHandler.class.getClassLoader().getResource(Constants.SERVER_ROOT_DIR + Constants.IMG_PRODUCT_PATH_656_424).getFile();
+                        imageLibrary.resizeImage(uploadPath + imageFileName, imgProductPath658_424 + imageFileName, Constants.IMG_PRODUCT_INFO_WIDTH, Constants.IMG_PRODUCT_INFO_HEIGHT);
                     }
                 }
             }

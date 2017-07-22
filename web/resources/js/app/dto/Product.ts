@@ -5,6 +5,7 @@ import {ProductType} from "./ProductType";
 import {ProductSize} from "./ProductSize";
 import {ProductCategory} from "./ProductCategory";
 import {Amenity} from "./Amenity";
+import {Availability} from "./Availability";
 import {Smoking} from "./Smoking";
 import {Gender} from "./Gender";
 import {Occupation} from "./Occupation";
@@ -29,11 +30,13 @@ export class Product {
     phone:string;
     img:string;
     images: Array<Image> = new Array<Image>();
+    availableFrom : string;
     location: Location;
     productType: ProductType = new ProductType();
     productSize: ProductSize = new ProductSize;
     productCategory: ProductCategory = new ProductCategory();
     amenities: Array<Amenity>;
+    availabilities: Array<Availability>;
     smoking: Smoking;
     gender: Gender;
     occupation: Occupation;
@@ -51,11 +54,12 @@ export class Product {
     isDefaultBid:boolean;
     adBid: Currency;
     adBidUnit: Currency;
+    totalBids:number;
     
     //remove these fields after testing.
     area: Location;
     street:string;    
-    availableFrom:string;
+    //availableFrom:string;
     dailyEmailAlert:boolean;
     instantEmailAlert:boolean;
     price:number;

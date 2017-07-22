@@ -23,9 +23,11 @@
         <script src="resources/js/node_modules/core-js/client/shim.min.js"></script>
         <script src="resources/js/node_modules/zone.js/dist/zone.js"></script>
         <script src="resources/js/global.js"></script>
-        <script src="resources/js/member_bundle.js"></script>
+        <!--<script src="resources/js/member_bundle.js"></script>-->
         
-<!--         Latest compiled and minified JavaScript 
+        <script src="resources/js/jquery.min.js"></script>
+        <script src="resources/js/bootstrap.min.js"></script>
+        
         <script src="resources/js/jquery.min.js"></script>
         <script src="resources/js/bootstrap.min.js"></script>
 
@@ -36,7 +38,7 @@
             System.import('resources/js/member-template.js').catch(function (err) {
                 console.error(err);
             });            
-        </script>-->
+        </script>
         <%
             String fbEmail = (String) request.getAttribute("fbEmail");
             String password = (String) request.getAttribute("password");

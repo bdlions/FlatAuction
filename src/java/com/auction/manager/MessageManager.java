@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,7 +32,7 @@ public class MessageManager {
         {
             Message messageInfo = new Message();
             Session session = HibernateUtil.getSession();
-            session.beginTransaction();
+            Transaction transaction = session.beginTransaction();
             Query query = session.createSQLQuery("select {m.*} from messages m where product_id = :product_id ")
                         .addEntity("m",Message.class)
                         .setInteger("product_id", message.getProduct().getId());
@@ -45,15 +46,19 @@ public class MessageManager {
             {
                 messageInfo = messages.get(0);
             }
-            session.getTransaction().commit();
-            session.beginTransaction();
+            if (!transaction.wasCommitted()){
+                transaction.commit();
+            }
+            transaction = session.beginTransaction();
             if(message.getMessageTextList() != null && message.getMessageTextList().size() > 0)
             {
                 MessageText messageText = message.getMessageTextList().get(0);
                 messageText.setMessageId(messageInfo.getId());
                 session.save(messageText);
             }
-            session.getTransaction().commit();
+            if (!transaction.wasCommitted()){
+                transaction.commit();
+            }
         }        
     }
     
@@ -62,7 +67,7 @@ public class MessageManager {
         List<Message> messageList = new ArrayList<>();
         Hashtable<Integer, Message> messageIdInfoMap = new Hashtable<>();
         Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         Query query = session.createSQLQuery("select {mt.*}, {m.*} from message_texts mt join messages m on mt.message_id = m.id where m.from_user_id = :from_user_id or m.to_user_id = :to_user_id ")
                     .addEntity("mt",MessageText.class)
                     .addEntity("m",Message.class)
@@ -88,7 +93,9 @@ public class MessageManager {
             Message tempMessage = messageInfo.getValue();
             messageList.add(tempMessage);
         }
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
         return messageList;
     }
     
@@ -97,7 +104,7 @@ public class MessageManager {
         List<Message> messageList = new ArrayList<>();
         Hashtable<Integer, Message> messageIdInfoMap = new Hashtable<>();
         Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         Query query = session.createSQLQuery("select {mt.*}, {m.*} from message_texts mt join messages m on mt.message_id = m.id where m.from_user_id = :from_user_id")
                     .addEntity("mt",MessageText.class)
                     .addEntity("m",Message.class)
@@ -122,7 +129,9 @@ public class MessageManager {
             Message tempMessage = messageInfo.getValue();
             messageList.add(tempMessage);
         }
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
         return messageList;
     }
     
@@ -130,7 +139,7 @@ public class MessageManager {
     {
         Message message = null;
         Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         Query query = session.createSQLQuery("select {mt.*},{u.*}, {m.*} from message_texts mt join users u on mt.user_id = u.id join messages m on mt.message_id = m.id where mt.message_id = :message_id")
                     .addEntity("mt",MessageText.class)
                     .addEntity("u",User.class)
@@ -149,7 +158,9 @@ public class MessageManager {
             messageText.setUser(user);
             message.getMessageTextList().add(messageText);
         }
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
         return message;
     }
 }

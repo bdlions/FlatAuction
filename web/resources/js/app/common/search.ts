@@ -1,9 +1,12 @@
 import {Component, OnInit, OnDestroy, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Http} from '@angular/http';
+//import {Http} from '@angular/http';
 import {Subscription} from 'rxjs';
 import {Product} from '../dto/Product';
 import {Location} from '../dto/Location';
+import {ProductSize} from '../dto/ProductSize';
+import {Pet} from '../dto/Pet';
+import {Availability} from '../dto/Availability';
 import {Currency} from '../dto/Currency';
 import {General} from '../dto/General';
 import {SavedProduct} from '../dto/SavedProduct';
@@ -25,14 +28,20 @@ import {ACTION} from './../webservice/ACTION';
 export class Search implements OnInit, OnDestroy {
     private webAPIService: WebAPIService;
     private locationList: Location[];
-    private radiusList: General[];
+    private productSizeList: ProductSize[];
+    private availabilityList: Availability[];
+    
+    
+    //private radiusList: General[];
     private minPriceList: Currency[];
     private maxPriceList: Currency[];
     private productTypeList: General[];
     private occupationList: General[];
-    private genderList: General[];
-    private roomSizeList: General[];
-    private durationList: General[];
+    private petList: Pet[];
+    
+    //private genderList: General[];
+    //private roomSizeList: General[];
+    //private durationList: General[];
     
     private savedProduct: SavedProduct;
 
@@ -71,41 +80,55 @@ export class Search implements OnInit, OnDestroy {
             this.locationList = result.locations;
         });
         
-        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_RADIUS_LIST)).then(result => {
-            this.radiusList = result.radiuses;
-        });
+        //this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_RADIUS_LIST)).then(result => {
+        //    this.radiusList = result.radiuses;
+        //});
         
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_MIN_PRICE_LIST)).then(result => {
-            this.minPriceList = result.currencies;
+            this.minPriceList = result.prices;
         });
         
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_MAX_PRICE_LIST)).then(result => {
-            this.maxPriceList = result.currencies;
+            this.maxPriceList = result.prices;
         });
         
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_TYPE_LIST)).then(result => {
             this.productTypeList = result.productTypes;
         });
         
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_SIZE_LIST)).then(result => {
+            this.productSizeList = result.productSizes;
+        });
+        
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_OCCUPATION_LIST)).then(result => {
             this.occupationList = result.occupations;
         });
         
-        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_GENDER_LIST)).then(result => {
-            this.genderList = result.genders;
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PET_LIST)).then(result => {
+            this.petList = result.pets;
         });
         
-        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_ROOM_SIZE_LIST)).then(result => {
-            this.roomSizeList = result.roomSizes;
+//        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_GENDER_LIST)).then(result => {
+//            this.genderList = result.genders;
+//        });
+        
+        
+        
+//        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_ROOM_SIZE_LIST)).then(result => {
+//            this.roomSizeList = result.roomSizes;
+//        });
+        
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_AVAILABILITY_LIST)).then(result => {
+            this.availabilityList = result.availabilities;
         });
         
-        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_DURATION_LIST)).then(result => {
-            this.durationList = result.durations;
-        });
+//        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_DURATION_LIST)).then(result => {
+//            this.durationList = result.durations;
+//        });
         
-        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_LIST)).then(result => {
-            //this.productList = result.products;
-        });
+//        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_LIST)).then(result => {
+//            //this.productList = result.products;
+//        });
         
         //console.log(this.productList);
 

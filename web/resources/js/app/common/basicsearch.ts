@@ -1,11 +1,12 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Http} from '@angular/http';
-import {Subscription} from 'rxjs';
-import {Product} from '../dto/Product';
+//import {Http} from '@angular/http';
+//import {Subscription} from 'rxjs';
+//import {Product} from '../dto/Product';
 import {Location} from '../dto/Location';
-import {Price} from '../dto/Price';
-import {General} from '../dto/General';
+import {ProductType} from '../dto/ProductType'
+//import {Price} from '../dto/Price';
+//import {General} from '../dto/General';
 import {WebAPIService} from './../webservice/web-api-service';
 import {PacketHeaderFactory} from './../webservice/PacketHeaderFactory';
 import {ACTION} from './../webservice/ACTION';
@@ -15,21 +16,21 @@ import {ACTION} from './../webservice/ACTION';
     templateUrl: window.SUB_DIRECTORY +"/html_components/public/basicsearch.html",
     providers: [WebAPIService]
 })
-export class BasicSearch implements OnInit, OnDestroy {
+export class BasicSearch{
     private webAPIService: WebAPIService;
     private locationList: Location[];
-    private radiusList: General[];
-    private minPriceList: Price[];
-    private maxPriceList: Price[];  
-    private productTypeList: General[];  
-    private occupationList: General[];
-    private genderList: General[];
-    private roomSizeList: General[];
-    private durationList: General[];
+    //private radiusList: General[];
+    //private minPriceList: Price[];
+    //private maxPriceList: Price[];  
+    private productTypeList: ProductType[];  
+    //private occupationList: General[];
+    //private genderList: General[];
+    //private roomSizeList: General[];
+    //private durationList: General[];
     
-    private productList: Product[];
-    private subscribe:Subscription;
-    private id:number;
+    //private productList: Product[];
+    //private subscribe:Subscription;
+    //private id:number;
     
     constructor(public router:Router, public route: ActivatedRoute, webAPIService: WebAPIService) {
         this.webAPIService = webAPIService;
@@ -50,9 +51,9 @@ export class BasicSearch implements OnInit, OnDestroy {
             this.locationList = result.locations;
         });
         
-        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_RADIUS_LIST)).then(result => {
-            this.radiusList = result.radiuses;
-        });
+        //this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_RADIUS_LIST)).then(result => {
+        //    this.radiusList = result.radiuses;
+        //});
         
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_TYPE_LIST)).then(result => {
             this.productTypeList = result.productTypes;
@@ -64,18 +65,18 @@ export class BasicSearch implements OnInit, OnDestroy {
 //        this.router.navigate(['productinfo', {id: this.id }]);
 //    }
     
-    ngOnInit() {
-        this.subscribe = this.route.params.subscribe(params => {
-            this.id = params['id']; 
-            console.log(this.id);
-            
-            
-        }); 
-    }
-
-    ngOnDestroy() {
-        this.subscribe.unsubscribe();
-    }
+//    ngOnInit() {
+//        this.subscribe = this.route.params.subscribe(params => {
+//            this.id = params['id']; 
+//            console.log(this.id);
+//            
+//            
+//        }); 
+//    }
+//
+//    ngOnDestroy() {
+//        this.subscribe.unsubscribe();
+//    }
     
 //    sent(event: Event) {
 //        event.preventDefault();
@@ -84,6 +85,7 @@ export class BasicSearch implements OnInit, OnDestroy {
     
     search(event: Event) {
         event.preventDefault();
+        //forward search params into search page....
         let id:number;
         id = 1;
         this.router.navigate(['search', {id: id}]);

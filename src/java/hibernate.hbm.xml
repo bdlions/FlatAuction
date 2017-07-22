@@ -118,6 +118,12 @@ Contributor(s):
         </id>
         <property column="title" name="title" type="string"/>
     </class>   
+    <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.Availability" select-before-update="true" table="availabilities">
+        <id name="id" type="int">
+            <generator class="increment"/>
+        </id>
+        <property column="title" name="title" type="string"/>
+    </class>
     <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.Stay" select-before-update="true" table="stays">
         <id name="id" type="int">
             <generator class="increment"/>
@@ -186,6 +192,7 @@ Contributor(s):
         <property column="company_name" name="companyName" type="string"/>
         <property column="phone" name="phone" type="string"/>
         <property column="img" name="img" type="string"/>
+        <property column="available_from" name="availableFrom" type="string"/>
         <many-to-one class="com.auction.dto.ProductType" column="product_type_id" name="productType"/>
         <many-to-one class="com.auction.dto.ProductSize" column="product_size_id" name="productSize"/>
         <many-to-one class="com.auction.dto.ProductCategory" column="product_category_id" name="productCategory"/>
@@ -224,7 +231,7 @@ Contributor(s):
         <property column="ad_bid" name="adBid" type="double"/>
         <many-to-one class="com.auction.dto.Currency" column="ad_bid_unit" name="adBidUnit"/>
     </class>
-    <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.Image" select-before-update="true" table="image">
+    <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.Image" select-before-update="true" table="product_images">
         <id name="id" type="int">
             <generator class="increment"/>
         </id>
@@ -242,6 +249,17 @@ Contributor(s):
             <column name="product_id" not-null="true"/>
         </many-to-one>
         <property column="status" name="status" type="boolean"/>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" name="com.auction.dto.ProductAvailabilities" select-before-update="true" table="products_availabilities">
+        <id name="id" type="int">
+            <generator class="increment"/>
+        </id>
+        <many-to-one class="com.auction.dto.Availability" fetch="select" name="availability">
+            <column name="availability_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.auction.dto.Product" fetch="select" name="product">
+            <column name="product_id" not-null="true"/>
+        </many-to-one>
     </class>
     
     <class name="com.auction.dto.ProductBid" table="product_bids" dynamic-update="true" dynamic-insert="true" select-before-update="true">

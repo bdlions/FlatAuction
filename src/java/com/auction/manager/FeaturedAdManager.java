@@ -6,6 +6,7 @@ import com.auction.dto.Currency;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -16,7 +17,7 @@ public class FeaturedAdManager {
     {
         AccountSettingFA accountSettingFA = new AccountSettingFA();
         Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         Query query = session.createSQLQuery("select {asfa.*} from account_setting_fa asfa where user_id = :user_id ")
                         .addEntity("asfa",AccountSettingFA.class)
                         .setInteger("user_id", userId);
@@ -31,7 +32,9 @@ public class FeaturedAdManager {
             dailyBudgetUnit.setId(1);
             accountSettingFA.setDailyBudgetUnit(dailyBudgetUnit);
         }
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
         return accountSettingFA;
     }
     
@@ -44,9 +47,11 @@ public class FeaturedAdManager {
         dailyBudgetUnit.setId(1);
         accountSettingFA.setDailyBudgetUnit(dailyBudgetUnit);
         Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         session.save(accountSettingFA);
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
         return accountSettingFA;
     }
     
@@ -54,8 +59,11 @@ public class FeaturedAdManager {
     {
         Session session = HibernateUtil.getSession();
         session.clear();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         session.update(accountSettingFA);
-        session.getTransaction().commit();
+        //session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
     }
 }

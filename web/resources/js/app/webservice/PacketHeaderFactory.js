@@ -27,7 +27,16 @@ var PacketHeaderFactory = (function () {
             case ACTION_1.ACTION.SIGN_OUT:
                 packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.AUTH;
                 break;
+            case ACTION_1.ACTION.FETCH_MEMBER_ROLES:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
+                break;
+            case ACTION_1.ACTION.FETCH_USER_LIST:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
+                break;
             case ACTION_1.ACTION.FETCH_PRODUCT_LIST:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
+                break;
+            case ACTION_1.ACTION.FETCH_CLOSING_PRODUCT_LIST:
                 packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
                 break;
             case ACTION_1.ACTION.FETCH_MY_PRODUCT_LIST:
@@ -49,6 +58,12 @@ var PacketHeaderFactory = (function () {
                 packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
                 break;
             case ACTION_1.ACTION.FETCH_PRODUCT_CATEGORY_LIST:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
+                break;
+            case ACTION_1.ACTION.FETCH_PRODUCT_AMENITY_LIST:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
+                break;
+            case ACTION_1.ACTION.FETCH_AVAILABILITY_LIST:
                 packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
                 break;
             case ACTION_1.ACTION.FETCH_STAY_LIST:
@@ -97,6 +112,9 @@ var PacketHeaderFactory = (function () {
                 packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
                 break;
             case ACTION_1.ACTION.FETCH_MESSAGE_SENT_LIST:
+                packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
+                break;
+            case ACTION_1.ACTION.FETCH_STAT_LIST:
                 packetHeader.requestType = REQUEST_TYPE_1.REQUEST_TYPE.REQUEST;
                 break;
             case ACTION_1.ACTION.UPDATE_USER_INFO:

@@ -8,6 +8,7 @@ package com.auction.request.handler;
 import com.auction.commons.HibernateProxyTypeAdapter;
 import com.auction.dto.AccountSettingFA;
 import com.auction.dto.AmenityList;
+import com.auction.dto.AvailabilityList;
 import com.auction.dto.ProductBidList;
 import com.auction.dto.CurrencyList;
 import com.auction.dto.DurationList;
@@ -17,6 +18,7 @@ import com.auction.dto.Message;
 import com.auction.dto.MessageList;
 import com.auction.dto.OccupationList;
 import com.auction.dto.PetList;
+import com.auction.dto.PriceList;
 import com.auction.dto.Product;
 import com.auction.dto.ProductBid;
 import com.auction.dto.ProductCategoryList;
@@ -42,6 +44,7 @@ import com.auction.dto.response.ClientResponse;
 import com.auction.dto.response.GeneralResponse;
 import com.auction.dto.response.SignInResponse;
 import com.auction.exceptions.InvalidRequestException;
+import com.auction.library.ImageLibrary;
 import com.auction.library.ProductLibrary;
 import com.auction.manager.FeaturedAdManager;
 import com.auction.manager.MessageManager;
@@ -172,6 +175,18 @@ public class RequestHandler {
         Gson gson = gsonBuilder.create();
         String amenityListString = gson.toJson(productManager.getAmenities());
         AmenityList response = gson.fromJson("{\"amenities\":" +amenityListString +"}", AmenityList.class);        
+        response.setSuccess(true);
+        return response;
+    }
+    
+    @ClientRequest(action = ACTION.FETCH_AVAILABILITY_LIST)
+    public ClientResponse getAvailabilityList(ISession session, IPacket packet){
+        ProductManager productManager = new ProductManager();
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+        Gson gson = gsonBuilder.create();
+        String availabilitiesString = gson.toJson(productManager.getAvailabilities());
+        AvailabilityList response = gson.fromJson("{\"availabilities\":" +availabilitiesString +"}", AvailabilityList.class);
         response.setSuccess(true);
         return response;
     }
@@ -308,12 +323,12 @@ public class RequestHandler {
     
     
     
-    @ClientRequest(action = ACTION.FETCH_RADIUS_LIST)
-    public ClientResponse getRadiusList(ISession session, IPacket packet){
-        RadiusList response = new Gson().fromJson("{\"radiuses\":[{\"id\":\"1\",\"title\":\"+0 miles\"}, {\"id\":\"2\",\"title\":\"+1/4 miles\"}, {\"id\":\"3\",\"title\":\"+1/2 miles\"}]}", RadiusList.class );
-        response.setSuccess(true);
-        return response;
-    }
+//    @ClientRequest(action = ACTION.FETCH_RADIUS_LIST)
+//    public ClientResponse getRadiusList(ISession session, IPacket packet){
+//        RadiusList response = new Gson().fromJson("{\"radiuses\":[{\"id\":\"1\",\"title\":\"+0 miles\"}, {\"id\":\"2\",\"title\":\"+1/4 miles\"}, {\"id\":\"3\",\"title\":\"+1/2 miles\"}]}", RadiusList.class );
+//        response.setSuccess(true);
+//        return response;
+//    }
     
     
     
@@ -324,37 +339,37 @@ public class RequestHandler {
 //        return response;
 //    }
     
-    @ClientRequest(action = ACTION.FETCH_GENDER_LIST)
-    public ClientResponse getGenderList(ISession session, IPacket packet){
-        GenderList response = new Gson().fromJson("{\"genders\":[{\"id\":\"1\",\"title\":\"Any Gender\"}, {\"id\":\"2\",\"title\":\"Males\"}, {\"id\":\"3\",\"title\":\"Females\"}]}", GenderList.class );
-        response.setSuccess(true);
-        return response;
-    }
+//    @ClientRequest(action = ACTION.FETCH_GENDER_LIST)
+//    public ClientResponse getGenderList(ISession session, IPacket packet){
+//        GenderList response = new Gson().fromJson("{\"genders\":[{\"id\":\"1\",\"title\":\"Any Gender\"}, {\"id\":\"2\",\"title\":\"Males\"}, {\"id\":\"3\",\"title\":\"Females\"}]}", GenderList.class );
+//        response.setSuccess(true);
+//        return response;
+//    }
     
-    @ClientRequest(action = ACTION.FETCH_ROOM_SIZE_LIST)
-    public ClientResponse getRoomSizeList(ISession session, IPacket packet){
-        RoomSizeList response = new Gson().fromJson("{\"roomSizes\":[{\"id\":\"1\",\"title\":\"Any room size\"}, {\"id\":\"2\",\"title\":\"Double room\"}, {\"id\":\"3\",\"title\":\"Single room\"}]}", RoomSizeList.class );
-        response.setSuccess(true);
-        return response;
-    }
+//    @ClientRequest(action = ACTION.FETCH_ROOM_SIZE_LIST)
+//    public ClientResponse getRoomSizeList(ISession session, IPacket packet){
+//        RoomSizeList response = new Gson().fromJson("{\"roomSizes\":[{\"id\":\"1\",\"title\":\"Any room size\"}, {\"id\":\"2\",\"title\":\"Double room\"}, {\"id\":\"3\",\"title\":\"Single room\"}]}", RoomSizeList.class );
+//        response.setSuccess(true);
+//        return response;
+//    }
     
-    @ClientRequest(action = ACTION.FETCH_DURATION_LIST)
-    public ClientResponse getDurationList(ISession session, IPacket packet){
-        DurationList response = new Gson().fromJson("{\"durations\":[{\"id\":\"1\",\"title\":\"Daily\"}, {\"id\":\"2\",\"title\":\"Weekly\"}, {\"id\":\"3\",\"title\":\"Monthly\"}]}", DurationList.class );
-        response.setSuccess(true);
-        return response;
-    }
+//    @ClientRequest(action = ACTION.FETCH_DURATION_LIST)
+//    public ClientResponse getDurationList(ISession session, IPacket packet){
+//        DurationList response = new Gson().fromJson("{\"durations\":[{\"id\":\"1\",\"title\":\"Daily\"}, {\"id\":\"2\",\"title\":\"Weekly\"}, {\"id\":\"3\",\"title\":\"Monthly\"}]}", DurationList.class );
+//        response.setSuccess(true);
+//        return response;
+//    }
     
     @ClientRequest(action = ACTION.FETCH_MIN_PRICE_LIST)
     public ClientResponse getMinPriceList(ISession session, IPacket packet){
-        CurrencyList response = new Gson().fromJson("{\"currencies\":[{\"id\":\"1\",\"title\":\"£\",\"amount\":\"100\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, {\"id\":\"1\",\"title\":\"£\",\"amount\":\"200\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, {\"id\":\"1\",\"title\":\"£\",\"amount\":\"300\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}]}", CurrencyList.class );
+        PriceList response = new Gson().fromJson("{\"prices\":[{\"id\":\"1\",\"amount\":\"100\"}, {\"id\":\"2\",\"amount\":\"200\"}, {\"id\":\"3\",\"amount\":\"300\"}]}", PriceList.class );
         response.setSuccess(true);
         return response;
     }
     
     @ClientRequest(action = ACTION.FETCH_MAX_PRICE_LIST)
     public ClientResponse getMaxPriceList(ISession session, IPacket packet){
-        CurrencyList response = new Gson().fromJson("{\"currencies\":[{\"id\":\"1\",\"title\":\"£\",\"amount\":\"100\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, {\"id\":\"1\",\"title\":\"£\",\"amount\":\"200\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}, {\"id\":\"1\",\"title\":\"£\",\"amount\":\"300\",\"currencyUnit\":{\"id\":\"1\",\"title\":\"£\"}}]}", CurrencyList.class );
+        PriceList response = new Gson().fromJson("{\"prices\":[{\"id\":\"1\",\"amount\":\"100\"}, {\"id\":\"2\",\"amount\":\"200\"}, {\"id\":\"3\",\"amount\":\"300\"}]}", PriceList.class );
         response.setSuccess(true);
         return response;
     }
@@ -532,7 +547,13 @@ public class RequestHandler {
             String profilePicPath = RequestHandler.class.getClassLoader().getResource(Constants.SERVER_ROOT_DIR + Constants.PROFILE_PIC_PATH).getFile();
             //System.out.println(root);
             
+            //copy actual image
             FileUtils.copyFile(uploadPath + imageFileName, profilePicPath + imageFileName);
+            
+            //resize image to 150px to 150px
+            String profilePicPath150_150 = RequestHandler.class.getClassLoader().getResource(Constants.SERVER_ROOT_DIR + Constants.IMG_PROFILE_PIC_PATH_150_150).getFile();
+            ImageLibrary imageLibrary = new ImageLibrary();
+            imageLibrary.resizeImage(uploadPath + imageFileName, profilePicPath150_150 + imageFileName, Constants.IMG_PROFILE_PIC_WIDTH, Constants.IMG_PROFILE_PIC_HEIGHT);
         }
         UserManager userManager = new UserManager();
         userManager.updateUserProfile(user);

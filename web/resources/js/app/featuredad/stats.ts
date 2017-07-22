@@ -48,8 +48,8 @@ export class Stats implements OnInit, OnDestroy {
     public fromDate: Date = new Date();
     public toDate: Date = new Date();
     public minDate: Date = void 0;
-    private showDatepicker: boolean = false;
-    private showToDatepicker: boolean = false;
+    private showDatePicker: boolean = false;
+    private showToDatePicker: boolean = false;
     private statParams: StatParams;
   
     constructor(public router: Router, public route: ActivatedRoute, webAPIService: WebAPIService, public datepipe: DatePipe) {

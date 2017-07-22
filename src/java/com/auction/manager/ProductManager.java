@@ -7,6 +7,7 @@ package com.auction.manager;
 
 import com.auction.db.HibernateUtil;
 import com.auction.dto.Amenity;
+import com.auction.dto.Availability;
 import com.auction.dto.Currency;
 import com.auction.dto.CurrencyUnit;
 import com.auction.dto.Image;
@@ -15,6 +16,7 @@ import com.auction.dto.Occupation;
 import com.auction.dto.Pet;
 import com.auction.dto.Product;
 import com.auction.dto.ProductAmenities;
+import com.auction.dto.ProductAvailabilities;
 import com.auction.dto.ProductBid;
 import com.auction.dto.ProductCategory;
 import com.auction.dto.ProductSize;
@@ -46,9 +48,9 @@ public class ProductManager {
      * @author nazmul hasan on 31st May 2017
      */
     public List<ProductType> getProductTypes() {
-        Session session = HibernateUtil.getSession();
-        Transaction transaction = session.beginTransaction();
         List<ProductType> productTypes = new ArrayList<>();
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = session.beginTransaction();        
         Query query = session.createSQLQuery("select {pt.*} from product_types pt")
                 .addEntity("pt",ProductType.class);
         productTypes = query.list();
@@ -129,6 +131,24 @@ public class ProductManager {
             transaction.commit();
         }
         return amenities;
+    }
+    
+    /**
+     * This method will return availability list
+     * @return List stay list
+     * @author nazmul hasan on 31st May 2017
+     */
+    public List<Availability> getAvailabilities() {
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        List<Availability> availabilities = new ArrayList<>();
+        Query query = session.createSQLQuery("select {a.*} from availabilities a")
+                .addEntity("a",Availability.class);
+        availabilities = query.list();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
+        return availabilities;
     }
     
     /**
@@ -268,7 +288,7 @@ public class ProductManager {
     public boolean addSavedProduct(int userId, int productId)
     {
         Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         Query query = session.createSQLQuery("select {sp.*} from saved_products sp where user_id = :user_id and product_id = :product_id ")
                     .addEntity("sp",SavedProduct.class)
                     .setInteger("user_id", userId)
@@ -278,8 +298,10 @@ public class ProductManager {
         {
             return false;
         }
-        session.getTransaction().commit();
-        session.beginTransaction();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
+        transaction = session.beginTransaction();
         User user = new User();
         user.setId(userId);
         Product product = new Product();
@@ -288,7 +310,9 @@ public class ProductManager {
         savedProduct.setUser(user);
         savedProduct.setProduct(product);
         session.save(savedProduct);
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
         return true;
     }
     
@@ -369,7 +393,7 @@ public class ProductManager {
         //setting a reference id
         Image[] images = product.getImages();
         product.setReferenceId(StringUtils.getProductReferenceId());
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         session.save(product);
         if (images != null) {
             for (Image image : images) {
@@ -386,7 +410,18 @@ public class ProductManager {
                 session.save(productAmenities);
             }
         }
-        session.getTransaction().commit();
+        List<Availability> availabilities = product.getAvailabilities();
+        if (availabilities != null) {
+            for (Availability availability : availabilities) {
+                ProductAvailabilities productAvailabilities = new ProductAvailabilities();
+                productAvailabilities.setAvailability(availability);
+                productAvailabilities.setProduct(product);
+                session.save(productAvailabilities);
+            }
+        }
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
     }
     
     /**
@@ -396,9 +431,11 @@ public class ProductManager {
      */
     public void addProductBid(ProductBid productBid) {
         Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         session.save(productBid);
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
     }
     
     /**
@@ -409,14 +446,14 @@ public class ProductManager {
     public void updateProduct(Product product) {
         Session session = HibernateUtil.getSession();
         session.clear();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         session.update(product);
         try
         {
             //delete current amenities
             Query query1 = session.createSQLQuery(" delete from products_amenities where product_id = :product_id")
                 .setInteger("product_id", product.getId());
-                query1.executeUpdate();
+            query1.executeUpdate();
             //add amenities
             List<Amenity> amenities = product.getAmenities();
             if (amenities != null) {
@@ -427,19 +464,36 @@ public class ProductManager {
                     session.save(productAmenities);
                 }
             }
+            
+            //delete current availabilities
+            Query query2 = session.createSQLQuery(" delete from products_availabilities where product_id = :product_id")
+                .setInteger("product_id", product.getId());
+            query2.executeUpdate();
+            //add availabilities
+            List<Availability> availabilities = product.getAvailabilities();
+            if (availabilities != null) {
+                for (Availability availability : availabilities) {
+                    ProductAvailabilities productAvailabilities = new ProductAvailabilities();
+                    productAvailabilities.setAvailability(availability);
+                    productAvailabilities.setProduct(product);
+                    session.save(productAvailabilities);
+                }
+            }
         }
         catch(Exception ex)
         {
             logger.debug(ex.toString());
         }        
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
     }
     
     public List<ProductBid> getProductBidList(int productId)
     {
     List<ProductBid> productBidList = new ArrayList<>();
         Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         Query query = session.createSQLQuery("select {pb.*}, {p.*}, {u.*}, {c.*}, {cu.*} from product_bids pb join products p on pb.product_id = p.id join users u on pb.user_id = u.id join currencies c on pb. currency_id = c.id join currency_units cu on pb.currency_unit_id = cu.id where pb.product_id = :product_id ")
                     .addEntity("pb", ProductBid.class)
                     .addEntity("p", Product.class)
@@ -452,14 +506,16 @@ public class ProductManager {
         {
             productBidList.add((ProductBid)row[0]);
         }
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
         return productBidList;
     }
     
     public Product getProductInfo(int productId) {
         Product product = null;
         Session session = HibernateUtil.getSession();
-        session.beginTransaction();        
+        Transaction transaction = session.beginTransaction();        
         Query query = session.createSQLQuery("select {p.*}, {pt.*} from products p join product_types pt on p.product_type_id = pt.id where p.id = :id ")
                     .addEntity("p",Product.class)
                     .addJoin("pt","p.productType")
@@ -472,6 +528,8 @@ public class ProductManager {
             break;
         }
         product.setAmenities(new ArrayList<>());
+        product.setAvailabilities(new ArrayList<>());
+        product.setImages(new Image[0]);
         try
         {
             Query query2 = session.createSQLQuery("select {a.*} from amenities a join products_amenities pa on a.id = pa.amenity_id where pa.product_id = :product_id ")
@@ -483,19 +541,57 @@ public class ProductManager {
             {
                 product.getAmenities().add((Amenity)row);
             }
+            
+            Query query3 = session.createSQLQuery("select {a.*} from availabilities a join products_availabilities pa on a.id = pa.availability_id where pa.product_id = :product_id ")
+                    .addEntity("a",Availability.class)
+                    .setInteger("product_id", productId);
+        
+            List<Object[]> rows3 = query3.list();
+            for (Object row : rows3) 
+            {
+                product.getAvailabilities().add((Availability)row);
+            }
+            
+            Query imageQuery = session.createSQLQuery("select {pi.*} from product_images pi join products p on pi.product_id = p.id where pi.product_id = :product_id ")
+                    .addEntity("pi",Image.class)
+                    .setInteger("product_id", productId);
+        
+            List<Object[]> imageRows = imageQuery.list();            
+            if(imageRows != null && imageRows.size() > 0)
+            {
+                Image[] productImages = new Image[imageRows.size()];
+                int imageCounter = 0;
+                for (Object imageRow : imageRows) 
+                {
+                    productImages[imageCounter++] = (Image)imageRow;
+                }
+                product.setImages(productImages);
+            } 
+            
+            Query productBidQuery = session.createSQLQuery("select {pb.*} from product_bids pb join products p on pb.product_id = p.id where pb.product_id = :product_id ")
+                    .addEntity("pb",ProductBid.class)
+                    .setInteger("product_id", productId);
+        
+            List<Object[]> productBidRows = productBidQuery.list();            
+            if(productBidRows != null)
+            {
+                product.setTotalBids(productBidRows.size());
+            }  
         }
         catch(Exception ex)
         {
             logger.error(ex.toString());
         }
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
         return product;
     }
     
 
     public void addProductImages(int productId, Image[] images) {
         Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         if (images != null) {
             for (Image image : images) {
                 image.setProductId(productId);
@@ -503,16 +599,20 @@ public class ProductManager {
             }
         }
 
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
     }
 
     public Product getProduct(int productId) {
         Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         Query query = session.getNamedQuery("getProductDetail")
                         .setInteger("productId", productId);
         Product product = (Product)query.uniqueResult();
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
         return product;
     }
 }

@@ -6,6 +6,7 @@ import {PacketHeaderFactory} from './../webservice/PacketHeaderFactory';
 import {ACTION} from './../webservice/ACTION';
 import {ServerResponse} from './../common/ServerResponse';
 import {SignInResponse} from './../common/SignInResponse';
+import {MemberHeaderMenuManager} from "../services/MemberHeaderMenuManager";
 
 @Component({
     selector: 'data-content1ddd',
@@ -15,7 +16,7 @@ import {SignInResponse} from './../common/SignInResponse';
 export class DashBoard {
     private webAPIService: WebAPIService;
     
-    constructor(public router: Router, public http: Http, webAPIService: WebAPIService) {
+    constructor(public router: Router, public http: Http, webAPIService: WebAPIService, private memberHeaderMenuManager: MemberHeaderMenuManager) {
         this.webAPIService = webAPIService;
         let fbEmail = localStorage.getItem("fbEmail");
         let password = localStorage.getItem("password");
@@ -44,31 +45,43 @@ export class DashBoard {
     
     dashboard(event: Event) {
         event.preventDefault();
+        //this.memberHeaderMenuManager.showNavBar(true);
+        this.memberHeaderMenuManager.setActiveMenu("dashboard");
         this.router.navigate(['dashboard']);
     }
     
     myads(event: Event) {
         event.preventDefault();
+        //this.memberHeaderMenuManager.showNavBar(true);
+        this.memberHeaderMenuManager.setActiveMenu("manageadvert");
         this.router.navigate(['myads']);
     }
     
     inbox(event: Event) {
         event.preventDefault();
+        //this.memberHeaderMenuManager.showNavBar(true);
+        this.memberHeaderMenuManager.setActiveMenu("messages");
         this.router.navigate(['inbox']);
     }
     
     notifications(event: Event) {
         event.preventDefault();
+        //this.memberHeaderMenuManager.showNavBar(true);
+        this.memberHeaderMenuManager.setActiveMenu("account");
         this.router.navigate(['notifications']);
     }
     
     myprofile(event: Event) {
         event.preventDefault();
+        //this.memberHeaderMenuManager.showNavBar(true);
+        this.memberHeaderMenuManager.setActiveMenu("profile");
         this.router.navigate(['myprofile']);
     }
     
     basicsearch(event: Event) {
         event.preventDefault();
+        //this.memberHeaderMenuManager.showNavBar(true);
+        this.memberHeaderMenuManager.setActiveMenu("search");
         this.router.navigate(['basicsearch']);
     }
 }

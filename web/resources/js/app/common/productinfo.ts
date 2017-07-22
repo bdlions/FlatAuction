@@ -30,6 +30,7 @@ export class Productinfo implements OnInit, OnDestroy {
     private newMessage:Message;
     private newMessageText:MessageText;
     private newMessageBody:string;
+    private availabilityString:string;
     
     constructor(public router:Router, public route: ActivatedRoute, webAPIService: WebAPIService) {
         window.scrollTo(0, 0)
@@ -51,7 +52,7 @@ export class Productinfo implements OnInit, OnDestroy {
         this.product.img = "a.jpg";
         this.product.type = 1;
         this.product.location_type = "location1";
-        this.product.images = JSON.parse("[{\"id\":\"1\", \"url\":\"a.jpg\"}, {\"id\":\"2\", \"url\":\"b.jpg\"}]");
+        this.product.images = JSON.parse("[{\"id\":\"1\", \"title\":\"a.jpg\"}, {\"id\":\"2\", \"title\":\"b.jpg\"}]");
         this.product.totalBidders = 10;
         this.product.totalBids = 36;
         this.product.timeLeft = "1 day 13 hours 30 mins";
@@ -103,6 +104,22 @@ export class Productinfo implements OnInit, OnDestroy {
             let requestBody: string = JSON.stringify(this.requetProduct);
             this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_INFO), requestBody).then(result => {
                 this.productInfo = result;
+                this.availabilityString = "";
+                if (this.productInfo.availabilities.length > 0)
+                {
+                    for (let counter = 0; counter < this.productInfo.availabilities.length; counter++)
+                    {
+                        if (counter == 0)
+                        {
+                            this.availabilityString = this.productInfo.availabilities[counter].title;
+
+                        }
+                        else
+                        {
+                            this.availabilityString = this.availabilityString + ", " + this.productInfo.availabilities[counter].title;
+                        }
+                    }
+                }
                 this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_AMENITY_LIST)).then(result => {
                     if(result.amenities != null)
                     {

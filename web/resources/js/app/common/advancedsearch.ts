@@ -1,11 +1,16 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Http} from '@angular/http';
-import {Subscription} from 'rxjs';
-import {Product} from '../dto/Product';
+//import {Http} from '@angular/http';
+//import {Subscription} from 'rxjs';
+//import {Product} from '../dto/Product';
+import {ProductType} from '../dto/ProductType';
+import {ProductSize} from '../dto/ProductSize';
+import {Occupation} from '../dto/Occupation';
+import {Pet} from '../dto/Pet';
 import {Location} from '../dto/Location';
 import {Price} from '../dto/Price';
-import {General} from '../dto/General';
+import {Availability} from '../dto/Availability';
+//import {General} from '../dto/General';
 import {WebAPIService} from './../webservice/web-api-service';
 import {PacketHeaderFactory} from './../webservice/PacketHeaderFactory';
 import {ACTION} from './../webservice/ACTION';
@@ -15,21 +20,28 @@ import {ACTION} from './../webservice/ACTION';
     templateUrl: window.SUB_DIRECTORY +"/html_components/public/advancedsearch.html",
     providers: [WebAPIService]
 })
-export class AdvancedSearch implements OnInit, OnDestroy {
+export class AdvancedSearch{
     private webAPIService: WebAPIService;
     private locationList: Location[];
-    private radiusList: General[];
+    private productSizeList: ProductSize[];
+    private productTypeList: ProductType[]; 
+    
+    private occupationList: Occupation[]; 
+    private petList: Pet[];
+    
+    
+    //private radiusList: General[];
     private minPriceList: Price[];
     private maxPriceList: Price[];  
-    private productTypeList: General[];  
-    private occupationList: General[];
-    private genderList: General[];
-    private roomSizeList: General[];
-    private durationList: General[];
     
-    private productList: Product[];
-    private subscribe:Subscription;
-    private id:number;
+    private availabilityList: Availability[];
+    
+    //private genderList: General[];
+    
+    //private durationList: General[];    
+    //private productList: Product[];
+    //private subscribe:Subscription;
+    //private id:number;
     
     constructor(public router:Router, public route: ActivatedRoute, webAPIService: WebAPIService) {
         this.webAPIService = webAPIService;
@@ -51,37 +63,44 @@ export class AdvancedSearch implements OnInit, OnDestroy {
             this.locationList = result.locations;
         });
         
-        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_RADIUS_LIST)).then(result => {
-            this.radiusList = result.radiuses;
-        });
-        
-        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_MIN_PRICE_LIST)).then(result => {
-            this.minPriceList = result.currencies;
-        });
-        
-        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_MAX_PRICE_LIST)).then(result => {
-            this.maxPriceList = result.currencies;
-        });
-        
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_TYPE_LIST)).then(result => {
             this.productTypeList = result.productTypes;
+        });
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_SIZE_LIST)).then(result => {
+            this.productSizeList = result.productSizes;
         });
         
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_OCCUPATION_LIST)).then(result => {
             this.occupationList = result.occupations;
         });
-        
-        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_GENDER_LIST)).then(result => {
-            this.genderList = result.genders;
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PET_LIST)).then(result => {
+            this.petList = result.pets;
         });
         
-        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_ROOM_SIZE_LIST)).then(result => {
-            this.roomSizeList = result.roomSizes;
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_MIN_PRICE_LIST)).then(result => {
+            this.minPriceList = result.prices;
         });
         
-        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_DURATION_LIST)).then(result => {
-            this.durationList = result.durations;
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_MAX_PRICE_LIST)).then(result => {
+            this.maxPriceList = result.prices;
         });
+        
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_AVAILABILITY_LIST)).then(result => {
+            this.availabilityList = result.availabilities;
+        });
+        
+        
+        //this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_RADIUS_LIST)).then(result => {
+        //    this.radiusList = result.radiuses;
+        //});
+        //
+        //this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_GENDER_LIST)).then(result => {
+        //    this.genderList = result.genders;
+        //});
+        
+        
+        
+        
     }
     
     
@@ -89,18 +108,17 @@ export class AdvancedSearch implements OnInit, OnDestroy {
 //        this.router.navigate(['productinfo', {id: this.id }]);
 //    }
     
-    ngOnInit() {
-        this.subscribe = this.route.params.subscribe(params => {
-            this.id = params['id']; 
-            console.log(this.id);
-            
-            
-        }); 
-    }
-
-    ngOnDestroy() {
-        this.subscribe.unsubscribe();
-    }
+//    ngOnInit() {
+//        this.subscribe = this.route.params.subscribe(params => {
+//            this.id = params['id']; 
+//            console.log(this.id);           
+//            
+//        }); 
+//    }
+//
+//    ngOnDestroy() {
+//        this.subscribe.unsubscribe();
+//    }
     
 //    sent(event: Event) {
 //        event.preventDefault();
@@ -109,6 +127,7 @@ export class AdvancedSearch implements OnInit, OnDestroy {
     
     search(event: Event) {
         event.preventDefault();
+        //forward search params into search page....
         let id:number;
         id = 1;
         this.router.navigate(['search', {id: id}]);

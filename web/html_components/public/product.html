@@ -64,7 +64,7 @@
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-8 col-lg-8">
                         <div class="product-info-details-left-panel-previous-bids">
-                            <a [routerLink]="['/bids']" (click)="showBids($event, product.id)">{{product.totalBids}}</a>
+                            <a [routerLink]="['/bids']" (click)="showBids($event, productInfo.id)">{{productInfo.totalBids}}</a>
                         </div>
                     </div>
                 </div>
@@ -111,8 +111,8 @@
 
 
                         <carousel>
-                            <slide *ngFor="let image of product.images">
-                                <img class="product-info-details-img" src="resources/images/{{image.url}}" alt="{{image.url}}">
+                            <slide *ngFor="let image of productInfo.images">
+                                <img class="product-info-details-img" src="resources/images/product/656_424/{{image.title}}" alt="{{image.title}}">
                             </slide>
                         </carousel>
                     </div>
@@ -139,14 +139,26 @@
                                     </div>
                                     <div class="row form-group">
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-<!--                                            <div class="row">
+                                            <div class="row">
                                                 <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
-                                                    <h3 class="product-info-details-right-panel-product-availability-content">Available</h3>
+                                                    <h3 class="product-info-details-right-panel-product-availability-content">Available From</h3>
                                                 </div>
                                                 <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
-                                                    <h3 class="product-info-details-right-panel-product-availability-content">Now</h3>
+                                                    <h3 class="product-info-details-right-panel-product-availability-content">{{productInfo?.availableFrom}}</h3>
                                                 </div>
-                                            </div>-->
+                                            </div>
+                                            <div class="row" *ngIf="productInfo?.availabilities?.length > 0">
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-availability-content">Availablility</h3>
+                                                </div>
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-availability-content">
+                                                        <p *ngFor="let availability of productInfo.availabilities">
+                                                            {{availability.title}}&nbsp;
+                                                        </p>
+                                                    </h3>
+                                                </div>
+                                            </div>
                                             <div class="row">
                                                 <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
                                                     <h3 class="product-info-details-right-panel-product-availability-content">Minimum term</h3>

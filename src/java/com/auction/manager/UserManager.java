@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Set;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,7 +33,7 @@ public class UserManager {
     public List<Role> getMemberRoles() {
         List<Role> roles = new ArrayList<>();
         Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         Query query = session.createSQLQuery("select {r.*} from roles r")
                 .addEntity("r",Role.class);
         List<Object> rows = query.list();
@@ -44,7 +45,9 @@ public class UserManager {
                 roles.add(role);
             }            
         }        
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
         return roles;
     }
     
@@ -60,7 +63,7 @@ public class UserManager {
         User user = null;
         try
         {
-            session.beginTransaction();
+            Transaction transaction = session.beginTransaction();
             //Query query = session.getNamedQuery("getUserById")
             //        .setInteger("id", userId);
             
@@ -94,7 +97,9 @@ public class UserManager {
                 }
             }
             //user = (User)query.uniqueResult();
-            session.getTransaction().commit();
+            if (!transaction.wasCommitted()){
+                transaction.commit();
+            }
         }
         catch(Exception ex)
         {
@@ -107,7 +112,7 @@ public class UserManager {
     public void updateUserProfile(User user) {
         Session session = HibernateUtil.getSession();
         session.clear();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         session.update(user);
         try
         {
@@ -130,54 +135,64 @@ public class UserManager {
         {
             logger.debug(ex.toString());
         }
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
     }
     
     //Session session = HibernateUtil.getSession();
     public User getUserByCredential(String identity, String password) {
         Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         Query query = session.getNamedQuery("getUserByCredential")
                 .setString("email", identity)
                 .setString("password", password);
 
         User user = (User)query.uniqueResult();
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
         return user;
     }
     
     public User getUserByIdentity(String identity) {
         Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         Query query = session.getNamedQuery("getUserByIdentity")
                 .setString("email", identity);
 
         User user = (User)query.uniqueResult();
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
         return user;
     }
 
     public void addUserProfile(User user) {
         Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         session.save(user);
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
     }
 
     
 
     public List<Role> getRoles() {
         Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         Query query = session.getNamedQuery("getRoles");
         List<Role> roles = query.list();
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
         return roles;
     }
 
     public Set<Role> getUserRolesByUserId(int userId) {
         Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         Query query = session.getNamedQuery("getUserById")
                 .setInteger("id", userId);
 
@@ -188,7 +203,9 @@ public class UserManager {
         if(user != null){
             roles = user.getRoles();
         }
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
         return roles;
     }
 
@@ -203,11 +220,13 @@ public class UserManager {
         User user = null;
         try
         {
-            session.beginTransaction();
+            Transaction transaction = session.beginTransaction();
             Query query = session.getNamedQuery("getUserByFbCode")
                     .setString("fb_code", fbCode);
             user = (User)query.uniqueResult();
-            session.getTransaction().commit();
+            if (!transaction.wasCommitted()){
+                transaction.commit();
+            }
         }
         catch(Exception ex)
         {
@@ -219,13 +238,15 @@ public class UserManager {
     public List<User> getUsers(int offset, int limit) {
         Session session = HibernateUtil.getSession();
         List<User> users = new ArrayList<>();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         Query query = session.createSQLQuery("select {u.*} from users u limit :limit offset :offset ")
                     .addEntity("u",User.class)
                     .setInteger("limit", limit)
                     .setInteger("offset", offset);        
         users = query.list();        
-        session.getTransaction().commit();
+        if (!transaction.wasCommitted()){
+            transaction.commit();
+        }
         return users;
     }
 }

@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import { DatePipe } from '@angular/common';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Http} from '@angular/http';
 import {Subscription} from 'rxjs';
@@ -11,6 +12,7 @@ import {ProductSize} from '../dto/ProductSize'
 import {ProductCategory} from '../dto/ProductCategory'
 import {Amenity} from '../dto/Amenity'
 import {Location} from '../dto/Location'
+import {Availability} from '../dto/Availability'
 import {Stay} from '../dto/Stay'
 import {Smoking} from '../dto/Smoking'
 import {Occupation} from '../dto/Occupation'
@@ -25,9 +27,10 @@ const URL = window.SUB_DIRECTORY + '/FileUploadServlet';
 @Component({
     selector: 'data-content1ddd',
     templateUrl: window.SUB_DIRECTORY +"/html_components/member/manageproduct/index.html",
-    providers: [WebAPIService]
+    providers: [WebAPIService, DatePipe]
 })
 export class MyProduct {
+    private datePipe: DatePipe;
     private subscribe:Subscription;
     private id:number;
     private requestProduct: Product;
@@ -39,12 +42,16 @@ export class MyProduct {
     private productTypeList: ProductType[];
     private productSizeList: ProductSize[];    
     private productCategoryList: ProductCategory[];
+    private amenityList: Amenity[];
     private amenities: Amenity[];
     private tempAmenities: Amenity[];
     //private selectedProductType: ProductType;
     //private selectedProductSize: ProductSize;
     //private selectedProductCategory: ProductCategory; 
-    private locationList: Location[];   
+    private locationList: Location[]; 
+    private availabilityList: Availability[];  
+    private availabilities:Availability[];  
+    private tempAvailabilities:Availability[];  
     private minStayList: Stay[];
     private maxStayList: Stay[];
     private smokingList: Smoking[];
@@ -52,12 +59,16 @@ export class MyProduct {
     private petList: Pet[];
     //private roomList: General[];
     
-    private durationList: General[];    
-    private amenityList: General[];
+    //private durationList: General[];    
+    private showDatePicker: boolean = false;
+    public availableFrom: Date = new Date();
+    public minDate: Date = void 0;
    
     
-    constructor(public router:Router, public route: ActivatedRoute, webAPIService: WebAPIService) {
+    constructor(public router:Router, public route: ActivatedRoute, webAPIService: WebAPIService, public datepipe: DatePipe) {
         this.webAPIService = webAPIService;
+        this.datePipe = datepipe;
+        
         this.product = new Product();
         this.productTypeList = new Array<ProductType>();
         this.product.productType = new ProductType();
@@ -66,6 +77,8 @@ export class MyProduct {
         this.productCategoryList = new Array<ProductCategory>();
         this.product.productCategory = new ProductCategory();
         this.amenities = new Array<Amenity>();
+        this.availabilityList = new Array<Availability>();
+        this.availabilities = new Array<Availability>();
         //this.selectedProductType = new ProductType();
         //this.selectedProductSize = new ProductSize();
         //this.selectedProductCategory = new ProductCategory();
@@ -74,7 +87,7 @@ export class MyProduct {
         //this.productSizeList = JSON.parse("[{\"id\":\"1\",\"title\":\"1 Bed\"}, {\"id\":\"2\",\"title\":\"2 Bed\"}, {\"id\":\"3\",\"title\":\"3 Bed\"}, {\"id\":\"4\",\"title\":\"4 Bed\"}, {\"id\":\"5\",\"title\":\"5 Bed\"}]");
         //this.selectedProductSize = this.productSizeList[2];
         //this.productTypeList = JSON.parse("[{\"id\":\"1\",\"title\":\"Flat/Apartment\"}, {\"id\":\"2\",\"title\":\"House\"}, {\"id\":\"3\",\"title\":\"Property\"}]");
-        this.durationList = JSON.parse("[{\"id\":\"1\",\"title\":\"Daily\"}, {\"id\":\"2\",\"title\":\"Weekly\"}, {\"id\":\"3\",\"title\":\"Monthly\"}]");
+        //this.durationList = JSON.parse("[{\"id\":\"1\",\"title\":\"Daily\"}, {\"id\":\"2\",\"title\":\"Weekly\"}, {\"id\":\"3\",\"title\":\"Monthly\"}]");
         //this.areaList = JSON.parse("[{\"id\":\"1\", \"locationType\":\"area\",\"searchString\":\"London\"}, {\"id\":\"2\", \"locationType\":\"area\",\"searchString\":\"London 123\"}, {\"id\":\"3\", \"locationType\":\"area\",\"searchString\":\"London 456\"}]");
         //this.amenityList = JSON.parse("[{\"id\":\"1\",\"title\":\"Parking\"}, {\"id\":\"2\",\"title\":\"Balcony/patio\"}, {\"id\":\"3\",\"title\":\"Garden/roof terrace\"}, {\"id\":\"4\",\"title\":\"Disabled access\"}, {\"id\":\"5\",\"title\":\"Garage\"}]");
         //this.occupationList = JSON.parse("[{\"id\":\"1\",\"title\":\"No Preference\"}, {\"id\":\"2\",\"title\":\"Student\"}, {\"id\":\"3\",\"title\":\"Professional\"}]");
@@ -117,6 +130,8 @@ export class MyProduct {
                 this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_INFO), requestBody).then(result => {
                     this.product = result;
                     this.amenities = this.product.amenities;
+                    this.availableFrom = new Date(this.product.availableFrom);
+                    this.availabilities = this.product.availabilities;
                     //set or update product fields into interface
                     this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_TYPE_LIST)).then(result => {
                         if(result.productTypes != null)
@@ -185,6 +200,12 @@ export class MyProduct {
                         if(result.amenities != null)
                         {
                             this.amenityList = result.amenities;
+                        }
+                    });
+                    this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_AVAILABILITY_LIST)).then(result => {
+                        if(result.availabilities != null)
+                        {
+                            this.availabilityList = result.availabilities;
                         }
                     });
                     this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_STAY_LIST)).then(result => {
@@ -333,7 +354,12 @@ export class MyProduct {
                         this.amenityList = result.amenities;
                     }
                 });
-
+                this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_AVAILABILITY_LIST)).then(result => {
+                    if(result.availabilities != null)
+                    {
+                        this.availabilityList = result.availabilities;
+                    }
+                });
                 this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_STAY_LIST)).then(result => {
                     if(result.stays != null)
                     {
@@ -420,7 +446,9 @@ export class MyProduct {
     
     saveProduct(event: Event) 
     {
+        this.product.availableFrom = this.datepipe.transform(this.availableFrom, 'yyyy-MM-dd');
         this.product.amenities = this.amenities;
+        this.product.availabilities = this.availabilities;
         let requestBody: string = JSON.stringify(this.product);
         if(this.id == 0)
         {
@@ -492,4 +520,43 @@ export class MyProduct {
         this.amenities = this.tempAmenities;
     }
     
+    setCurrentAvailabilities(id: number)
+    {
+        if (this.availabilities.length > 0)
+        {
+            for (let counter = 0; counter < this.availabilities.length; counter++)
+            {
+                if (this.availabilities[counter].id == id)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    updateCheckedAvailabilities(availability: Availability, event: Event)
+    {
+        this.tempAvailabilities = new Array<Availability>();
+        let exist: Boolean = false;
+        if (this.availabilities.length > 0)
+        {
+            for (let counter = 0; counter < this.availabilities.length; counter++)
+            {
+                if (this.availabilities[counter].id == availability.id)
+                {
+                    exist = true;
+                }
+                else
+                {
+                    this.tempAvailabilities[this.tempAvailabilities.length] = this.availabilities[counter];
+                }
+            }
+        }
+        if (!exist)
+        {
+            this.tempAvailabilities[this.tempAvailabilities.length] = availability;
+        }
+        this.availabilities = this.tempAvailabilities;
+    }
 }
