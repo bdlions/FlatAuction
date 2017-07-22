@@ -545,7 +545,7 @@ html, body {
     color: #000;
 
 }
-#stacked-menu > li > a:hover, #p1 > li > a:hover{
+#stacked-menu > li > a:hover, #p1 > li > a:hover, #p1 > li > .active{
     color: #f68521;
 }
 #stacked-menu > li > a{
