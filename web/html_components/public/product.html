@@ -13,13 +13,14 @@
                     </div>
                 </div>
                 <div class="row form-group">
-                    <div class="col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
+                    <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
                         <div class="product-info-details-left-panel-auction-timeblock">
                             <h5 class="product-info-details-left-panel-timeheader">
                                 Ends within:
                             </h5>
                             <h5 class="product-info-details-left-panel-auction-time">
-                                3 hours 25 mins 20 secs
+                                <!--3 hours 25 mins 20 secs-->
+                                {{productInfo.timeLeft}}
                             </h5>
 <!--                            <h5 class="product-info-details-left-panel-current-price-header">
                                 Current Bid:
@@ -112,7 +113,7 @@
 
                         <carousel>
                             <slide *ngFor="let image of productInfo.images">
-                                <img class="product-info-details-img" src="resources/images/product/656_424/{{image.title}}" alt="{{image.title}}">
+                                <img class="product-info-details-img" src="resources/images/product/328_212/{{image.title}}" alt="{{image.title}}">
                             </slide>
                         </carousel>
                     </div>

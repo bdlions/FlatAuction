@@ -26,6 +26,7 @@ import com.auction.dto.Smoking;
 import com.auction.dto.Stay;
 import com.auction.dto.User;
 import com.auction.util.StringUtils;
+import com.auction.util.TimeUtils;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
@@ -262,8 +263,10 @@ public class ProductManager {
                     .addEntity("p",Product.class);        
         tempProducts = query.list();
         int productCounter = 1;
+        TimeUtils timeUtils = new TimeUtils();
         for(Product product: tempProducts)
         {
+            product.setTime(timeUtils.getEndingProductHumanToUnix(product.getAvailableFrom()));
             products.add(product);
             productCounter++;
             if(productCounter > counter)
@@ -527,6 +530,8 @@ public class ProductManager {
             product = (Product)row[0];
             break;
         }
+        TimeUtils timeUtils = new TimeUtils();
+        product.setTime(timeUtils.getEndingProductHumanToUnix(product.getAvailableFrom()));
         product.setAmenities(new ArrayList<>());
         product.setAvailabilities(new ArrayList<>());
         product.setImages(new Image[0]);

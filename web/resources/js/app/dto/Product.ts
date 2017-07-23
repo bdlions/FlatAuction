@@ -68,7 +68,6 @@ export class Product {
     location_type: string;
     search_string: string;    
     totalBidders:number;
-    totalBids:number;
     timeLeft:string;
 }
 

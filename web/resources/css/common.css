@@ -1241,7 +1241,7 @@ input[type=checkbox]:checked {
     text-align: center;
     border-radius: 50%;
     border: 2px solid #4568b2!important;
-    padding: 20px 5px 5px 5px;
+    padding: 5px 5px 15px 5px;
 }
 .product-info-details-left-panel-timeheader{
     font-family: "tw-cen-mt";
