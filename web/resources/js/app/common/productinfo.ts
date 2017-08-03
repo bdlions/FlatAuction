@@ -104,6 +104,34 @@ export class Productinfo implements OnInit, OnDestroy {
             let requestBody: string = JSON.stringify(this.requetProduct);
             this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_INFO), requestBody).then(result => {
                 this.productInfo = result;
+                this.productInfo.timeLeft = "";
+                //this.productInfo.time = 95500;
+                setInterval(() => 
+                    {
+                        this.productInfo.timeLeft = "";
+                        let tempTime: number = this.productInfo.time;
+                        if (tempTime >= 86400)
+                        {
+                            this.productInfo.timeLeft = this.productInfo.timeLeft + Math.floor(tempTime/86400) + " days ";
+                            tempTime = tempTime % 86400;
+                        }
+                        if (tempTime >= 3600)
+                        {
+                            this.productInfo.timeLeft = this.productInfo.timeLeft + Math.floor(tempTime/3600) + " hours ";
+                            tempTime = tempTime % 3600;
+                        } 
+                        if (tempTime >= 60)
+                        {
+                            this.productInfo.timeLeft = this.productInfo.timeLeft + Math.floor(tempTime/60) + " mins ";
+                            tempTime = tempTime % 60;
+                        }
+                        if (tempTime < 60)
+                        {
+                            this.productInfo.timeLeft = this.productInfo.timeLeft + tempTime + " secs ";
+                        }                        
+                        this.productInfo.time = (this.productInfo.time - 1); 
+                    }
+                , 1000);
                 this.availabilityString = "";
                 if (this.productInfo.availabilities.length > 0)
                 {

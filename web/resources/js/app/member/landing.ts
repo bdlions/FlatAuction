@@ -42,6 +42,41 @@ export class Landing {
         });
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_CLOSING_PRODUCT_LIST)).then(result => {
             this.featuredProductList = result.products;
+            /*let sampleTime:number = 150000;
+            for (let counter = 0; counter < this.featuredProductList.length; counter++)
+            {
+                this.featuredProductList[counter].time = sampleTime;
+                sampleTime = sampleTime + sampleTime;
+            }*/
+            setInterval(() => 
+                {
+                    for (let counter = 0; counter < this.featuredProductList.length; counter++)
+                    {
+                        this.featuredProductList[counter].timeLeft = "";
+                        let tempTime: number = this.featuredProductList[counter].time;
+                        if (tempTime >= 86400)
+                        {
+                            this.featuredProductList[counter].timeLeft = this.featuredProductList[counter].timeLeft + Math.floor(tempTime/86400) + " days ";
+                            tempTime = tempTime % 86400;
+                        }
+                        if (tempTime >= 3600)
+                        {
+                            this.featuredProductList[counter].timeLeft = this.featuredProductList[counter].timeLeft + Math.floor(tempTime/3600) + " hours ";
+                            tempTime = tempTime % 3600;
+                        } 
+                        if (tempTime >= 60)
+                        {
+                            this.featuredProductList[counter].timeLeft = this.featuredProductList[counter].timeLeft + Math.floor(tempTime/60) + " mins ";
+                            tempTime = tempTime % 60;
+                        }
+                        if (tempTime < 60)
+                        {
+                            this.featuredProductList[counter].timeLeft = this.featuredProductList[counter].timeLeft + tempTime + " secs ";
+                        }                        
+                        this.featuredProductList[counter].time = (this.featuredProductList[counter].time - 1);
+                    }                    
+                }
+            , 1000);
         });
         
         let username = localStorage.getItem("username");
