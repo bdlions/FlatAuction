@@ -1331,7 +1331,6 @@ input[type=checkbox]:checked {
     color: #484848;
     font-size: 16px;
     font-weight: normal;
-    padding: 10px; 
 }
 .save-property-heart-icon{
     color: #db3054;
@@ -1341,7 +1340,6 @@ input[type=checkbox]:checked {
     color: #F06226;
     font-size: 24px;
     font-weight: bold;
-    padding: 10px;
 }
 .product-info-details-request-button {
     background-color: #4568b2!important;
