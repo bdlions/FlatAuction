@@ -123,6 +123,10 @@ a{
 .font-size-16px{
     font-size: 16px;
 }
+.terms p, .terms li{
+    margin-top: 10px!important;
+    margin-bottom: 10px!important;
+}
 /* ---------------------------- Modal -------------------------------- */
 .success-message-close{
     color: green;
