@@ -57,11 +57,18 @@ export class MyProduct {
     private smokingList: Smoking[];
     private occupationList: Occupation[];    
     private petList: Pet[];
-    //private roomList: General[];
+    
+    private availableTimeList: General[];
     
     //private durationList: General[];    
-    private showDatePicker: boolean = false;
+    private showAvailableFromDatePicker: boolean = false;
+    private showAvailableToDatePicker: boolean = false;
+    private showBidStartDateDatePicker: boolean = false;
+    private showBidEndDateDatePicker: boolean = false;
     public availableFrom: Date = new Date();
+    public availableTo: Date = new Date();
+    public bidStartDate: Date = new Date();
+    public bidEndDate: Date = new Date();
     public minDate: Date = void 0;
    
     
@@ -82,7 +89,7 @@ export class MyProduct {
         //this.selectedProductType = new ProductType();
         //this.selectedProductSize = new ProductSize();
         //this.selectedProductCategory = new ProductCategory();
-        
+        this.availableTimeList = JSON.parse("[{\"id\":\"12 AM\",\"title\":\"12 AM\"}, {\"id\":\"1 AM\",\"title\":\"1 AM\"}, {\"id\":\"2 AM\",\"title\":\"2 AM\"}, {\"id\":\"3 AM\",\"title\":\"3 AM\"}, {\"id\":\"4 AM\",\"title\":\"4 AM\"}, {\"id\":\"5 AM\",\"title\":\"5 AM\"}, {\"id\":\"6 AM\",\"title\":\"6 AM\"}, {\"id\":\"7 AM\",\"title\":\"7 AM\"}, {\"id\":\"8 AM\",\"title\":\"8 AM\"}, {\"id\":\"9 AM\",\"title\":\"9 AM\"}, {\"id\":\"10 AM\",\"title\":\"10 AM\"}, {\"id\":\"11 AM\",\"title\":\"11 AM\"}, {\"id\":\"12 PM\",\"title\":\"12 PM\"}, {\"id\":\"1 PM\",\"title\":\"1 PM\"}, {\"id\":\"2 PM\",\"title\":\"2 PM\"}, {\"id\":\"3 PM\",\"title\":\"3 PM\"}, {\"id\":\"4 PM\",\"title\":\"4 PM\"}, {\"id\":\"5 PM\",\"title\":\"5 PM\"}, {\"id\":\"6 PM\",\"title\":\"6 PM\"}, {\"id\":\"7 PM\",\"title\":\"7 PM\"}, {\"id\":\"8 PM\",\"title\":\"8 PM\"}, {\"id\":\"9 PM\",\"title\":\"9 PM\"}, {\"id\":\"10 PM\",\"title\":\"10 PM\"}, {\"id\":\"11 PM\",\"title\":\"11 PM\"}]");
         //this.productCategoryList = JSON.parse("[{\"id\":\"1\",\"title\":\"1 Room\"}, {\"id\":\"2\",\"title\":\"2 Room\"}, {\"id\":\"3\",\"title\":\"3 Room\"}, {\"id\":\"4\",\"title\":\"4 Room\"}, {\"id\":\"5\",\"title\":\"5 Room\"}]");
         //this.productSizeList = JSON.parse("[{\"id\":\"1\",\"title\":\"1 Bed\"}, {\"id\":\"2\",\"title\":\"2 Bed\"}, {\"id\":\"3\",\"title\":\"3 Bed\"}, {\"id\":\"4\",\"title\":\"4 Bed\"}, {\"id\":\"5\",\"title\":\"5 Bed\"}]");
         //this.selectedProductSize = this.productSizeList[2];
@@ -131,6 +138,9 @@ export class MyProduct {
                     this.product = result;
                     this.amenities = this.product.amenities;
                     this.availableFrom = new Date(this.product.availableFrom);
+                    this.availableTo = new Date(this.product.availableTo);
+                    this.bidStartDate = new Date(this.product.bidStartDate);
+                    this.bidEndDate = new Date(this.product.bidEndDate);
                     this.availabilities = this.product.availabilities;
                     //set or update product fields into interface
                     this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_TYPE_LIST)).then(result => {
@@ -305,6 +315,9 @@ export class MyProduct {
             }
             else
             {
+                //setting any default data for product info
+                //this.product = new Product();
+                //this.product.startTime = "7 AM";
                 this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_TYPE_LIST)).then(result => {
                     if(result.productTypes != null)
                     {
@@ -447,6 +460,10 @@ export class MyProduct {
     saveProduct(event: Event) 
     {
         this.product.availableFrom = this.datepipe.transform(this.availableFrom, 'yyyy-MM-dd');
+        this.product.availableTo = this.datepipe.transform(this.availableTo, 'yyyy-MM-dd');
+        this.product.bidStartDate = this.datepipe.transform(this.bidStartDate, 'yyyy-MM-dd');
+        this.product.bidEndDate = this.datepipe.transform(this.bidEndDate, 'yyyy-MM-dd');
+        
         this.product.amenities = this.amenities;
         this.product.availabilities = this.availabilities;
         let requestBody: string = JSON.stringify(this.product);

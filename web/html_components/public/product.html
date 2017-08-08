@@ -1,3 +1,22 @@
+<div bsModal #productInfoModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+     <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header-bg">
+                <h4 class="modal-title pull-left" style="color: #FFF;">Message</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center modal-body-text">
+                {{message}}
+            </div>
+            <div class="modal-footer modal-footer-bg"></div>
+        </div>
+    </div>
+</div>
+
+
+
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
@@ -26,7 +45,7 @@
                                 Current Bid:
                             </h5>
                             <h3 class="product-info-details-left-panel-current-price">
-                                $124,000
+                                {{productInfo.totalBids}}
                                 <!--{{product?.basePrice?.currencyUnit?.title}} {{product?.basePrice?.amount}}-->
                             </h3>
                         </div>
@@ -72,14 +91,14 @@
                 </div>
             </div>
             <div class="product-info-details-left-panel">
-                <div class="row form-group">
+                <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <h3 class="product-info-details-left-panel-middle-heading">This property is marketed by:</h3>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <h3 class="product-info-details-left-panel-location">{{product?.location?.searchString}} {{product?.location?.postCode}}</h3>
+                        <h3 class="product-info-details-left-panel-location">{{productInfo.companyName}}</h3>
                     </div>
                 </div>
                 <div class="row">
@@ -89,12 +108,12 @@
                 </div>
                 <div class="row form-group">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <h3 class="product-info-details-contact-number">Call: 01653 511024</h3>
+                        <h3 class="product-info-details-contact-number">Call: {{productInfo.phone}}</h3>
                     </div>
                 </div>
                  <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <h3 class="product-info-details-left-panel-save-property" ><i class="save-property-heart-icon fa fa-heart-o" aria-hidden="true"></i><a class="product-info-details-left-panel-save-property">Save Property</a></h3>
+                        <h3 class="product-info-details-left-panel-save-property" ><i class="save-property-heart-icon fa fa-heart-o" aria-hidden="true"></i><a (click)="saveProduct($event, productInfo.id)" class="product-info-details-left-panel-save-property">Save Property</a></h3>
                     </div>
                 </div>
             </div>
@@ -162,6 +181,14 @@
                                                 </div>
                                                 <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
                                                     <h3 class="product-info-details-right-panel-product-availability-content">{{productInfo?.availableFrom}}</h3>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-availability-content">Available To</h3>
+                                                </div>
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-availability-content">{{productInfo?.availableTo}}</h3>
                                                 </div>
                                             </div>
                                             <div class="row" *ngIf="productInfo?.availabilities?.length > 0">

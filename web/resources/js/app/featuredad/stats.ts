@@ -118,6 +118,11 @@ export class Stats implements OnInit, OnDestroy {
         this.subscribe.unsubscribe();
     }
     
+    public myproduct(event: Event, id: number){
+        event.preventDefault();
+        this.router.navigate(['myproduct', {id: id }]);
+    }
+    
     accountsettings(event: Event) {
         event.preventDefault();
         this.router.navigate(['accountsettings']);

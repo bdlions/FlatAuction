@@ -31,6 +31,11 @@ export class Product {
     img:string;
     images: Array<Image> = new Array<Image>();
     availableFrom : string;
+    availableTo : string;
+    bidStartDate : string;
+    bidStartTime : string;
+    bidEndDate : string;
+    bidEndTime : string;
     location: Location;
     productType: ProductType = new ProductType();
     productSize: ProductSize = new ProductSize;

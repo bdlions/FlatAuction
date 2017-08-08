@@ -37,7 +37,7 @@ export class AccountSettings implements OnInit, OnDestroy {
             }
         });    
         
-        setInterval(() => { this.accountSettingsSuccessModal.hide(); }, 1000 * 3);
+        setInterval(() => { this.accountSettingsSuccessModal.hide(); }, 1000 * 5);
     }
     
     public hideChildModal(): void {
@@ -78,6 +78,11 @@ export class AccountSettings implements OnInit, OnDestroy {
                 this.accountSettingFA.defaultBidPerClick = this.accountSettingFA.defaultBidPerClick * 100;
             }
         });
+    }
+    
+    public myproduct(event: Event, id: number){
+        event.preventDefault();
+        this.router.navigate(['myproduct', {id: id }]);
     }
     
     accountsettings(event: Event) {

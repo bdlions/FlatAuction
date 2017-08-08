@@ -185,7 +185,7 @@ public class ProductManagerTest {
         productManager.addProduct(product);        
     }
     
-    @Test
+    //@Test
     public void getProductInfoTest(){
         ProductManager manager = new ProductManager();
         Product prod = manager.getProductInfo(1);
@@ -235,5 +235,12 @@ public class ProductManagerTest {
         ProductLibrary productLibrary = new ProductLibrary();
         List<Stat> statList = productLibrary.getStatList("2017-07-14", "2017-07-14", 1);
         System.out.println(statList.size());
+    }
+    
+    @Test
+    public void getClosingProductsTest(){
+        ProductManager productManager = new ProductManager();
+        List<Product> products = productManager.getClosingProducts(6);
+        System.out.println(products.size());
     }
 }

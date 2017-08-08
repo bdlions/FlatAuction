@@ -54,26 +54,30 @@ export class Landing {
                     {
                         this.featuredProductList[counter].timeLeft = "";
                         let tempTime: number = this.featuredProductList[counter].time;
-                        if (tempTime >= 86400)
+                        //if bid end time is over then we are not reducing time
+                        if (tempTime > 0)
                         {
-                            this.featuredProductList[counter].timeLeft = this.featuredProductList[counter].timeLeft + Math.floor(tempTime/86400) + " days ";
-                            tempTime = tempTime % 86400;
-                        }
-                        if (tempTime >= 3600)
-                        {
-                            this.featuredProductList[counter].timeLeft = this.featuredProductList[counter].timeLeft + Math.floor(tempTime/3600) + " hours ";
-                            tempTime = tempTime % 3600;
-                        } 
-                        if (tempTime >= 60)
-                        {
-                            this.featuredProductList[counter].timeLeft = this.featuredProductList[counter].timeLeft + Math.floor(tempTime/60) + " mins ";
-                            tempTime = tempTime % 60;
-                        }
-                        if (tempTime < 60)
-                        {
-                            this.featuredProductList[counter].timeLeft = this.featuredProductList[counter].timeLeft + tempTime + " secs ";
+                            if (tempTime >= 86400)
+                            {
+                                this.featuredProductList[counter].timeLeft = this.featuredProductList[counter].timeLeft + Math.floor(tempTime/86400) + " days ";
+                                tempTime = tempTime % 86400;
+                            }
+                            if (tempTime >= 3600)
+                            {
+                                this.featuredProductList[counter].timeLeft = this.featuredProductList[counter].timeLeft + Math.floor(tempTime/3600) + " hours ";
+                                tempTime = tempTime % 3600;
+                            } 
+                            if (tempTime >= 60)
+                            {
+                                this.featuredProductList[counter].timeLeft = this.featuredProductList[counter].timeLeft + Math.floor(tempTime/60) + " mins ";
+                                tempTime = tempTime % 60;
+                            }
+                            if (tempTime < 60)
+                            {
+                                this.featuredProductList[counter].timeLeft = this.featuredProductList[counter].timeLeft + tempTime + " secs ";
+                            }                        
+                            this.featuredProductList[counter].time = (this.featuredProductList[counter].time - 1);
                         }                        
-                        this.featuredProductList[counter].time = (this.featuredProductList[counter].time - 1);
                     }                    
                 }
             , 1000);

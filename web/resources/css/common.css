@@ -1338,6 +1338,7 @@ input[type=checkbox]:checked {
 }
 .save-property-heart-icon{
     color: #db3054;
+    margin-right : 10px;
 }
 .product-info-details-contact-number{
     font-family: "tw-cen-mt";

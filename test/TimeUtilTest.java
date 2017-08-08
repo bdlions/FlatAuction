@@ -44,7 +44,7 @@ public class TimeUtilTest {
     public void hello() 
     {
         TimeUtils timeUtils = new TimeUtils();
-        String time = "2017-07-22";
-        System.out.println(timeUtils.getEndingProductHumanToUnix(time));
+        String time = "2017-08-08";
+        System.out.println(timeUtils.getEndingProductHumanToUnix(time, "1 AM"));
     }
 }

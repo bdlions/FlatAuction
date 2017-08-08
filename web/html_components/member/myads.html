@@ -35,10 +35,10 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
-                            <img class="img-responsive" src="resources/images/product/328_212/{{product.img ? product.img : 'a.jpg'}}">
+                            <a (click)="selectProduct($event, product.id)"><img class="img-responsive" src="resources/images/product/328_212/{{product.img ? product.img : 'a.jpg'}}"></a>
                         </div>
                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 form-group">
-                            <div class="my-ads-product-description">{{product.description}}</div>
+                            <a (click)="selectProduct($event, product.id)"><div class="my-ads-product-description">{{product.description}}</div></a>
                         </div>
                     </div>
                     <div class="row form-group">

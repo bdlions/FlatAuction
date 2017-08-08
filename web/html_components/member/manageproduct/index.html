@@ -28,6 +28,7 @@
                         <li><a href="#step5" role="tab" data-toggle="tab">STEP 5</a></li>
                         <li><a href="#step6" role="tab" data-toggle="tab">STEP 6</a></li>
                         <li><a href="#step7" role="tab" data-toggle="tab">STEP 7</a></li>
+                        <li><a href="#step8" role="tab" data-toggle="tab">STEP 8</a></li>
                     </ul>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
@@ -123,9 +124,22 @@
                                             <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                                                 <input name="availableFrom" class="form-control input-custom-field" type="text" 
                                                     [ngModel]="availableFrom | date:'yyyy-MM-dd'" (ngModelChange)="availableFrom = $event;"
-                                                    (focus)="showDatePicker = true" >
-                                                <div class="start-date" *ngIf="showDatePicker" >
-                                                    <datepicker name="availableFromDatePicker" [(ngModel)]="availableFrom" [minDate]="minDate" [showWeeks]="false" (selectionDone) ="showDatePicker = false"  ></datepicker>
+                                                    (focus)="showAvailableFromDatePicker = true" >
+                                                <div class="start-date" *ngIf="showAvailableFromDatePicker" >
+                                                    <datepicker name="availableFromDatePicker" [(ngModel)]="availableFrom" [minDate]="minDate" [showWeeks]="false" (selectionDone) ="showAvailableFromDatePicker = false"  ></datepicker>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                                <h5 class="create-ad-label">Available To</h5>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                <input name="availableTo" class="form-control input-custom-field" type="text" 
+                                                    [ngModel]="availableTo | date:'yyyy-MM-dd'" (ngModelChange)="availableTo = $event;"
+                                                    (focus)="showAvailableToDatePicker = true" >
+                                                <div class="start-date" *ngIf="showAvailableToDatePicker" >
+                                                    <datepicker name="showAvailableToDatePicker" [(ngModel)]="availableTo" [minDate]="minDate" [showWeeks]="false" (selectionDone) ="showAvailableToDatePicker = false"  ></datepicker>
                                                 </div>
                                             </div>
                                         </div>
@@ -361,6 +375,62 @@
                                     <div class="tab-pane" id="step7">
                                         <div class="row form-group">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                                <h5 class="create-ad-label">Bid Start</h5>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                <input name="bidStartDate" class="form-control input-custom-field" type="text" 
+                                                    [ngModel]="bidStartDate | date:'yyyy-MM-dd'" (ngModelChange)="bidStartDate = $event;"
+                                                    (focus)="showBidStartDateDatePicker = true" >
+                                                <div class="start-date" *ngIf="showBidStartDateDatePicker" >
+                                                    <datepicker name="showBidStartDateDatePicker" [(ngModel)]="bidStartDate" [minDate]="minDate" [showWeeks]="false" (selectionDone) ="showBidStartDateDatePicker = false"  ></datepicker>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                                <h5 class="create-ad-label"></h5>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                <select [(ngModel)]="product.bidStartTime" name="bidStartTime" class="form-control select-custom-field">
+                                                    <option *ngFor="let availableTime of availableTimeList" [ngValue]="availableTime.title">{{availableTime.title}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                                <h5 class="create-ad-label">Bid End</h5>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                <input name="bidEndDate" class="form-control input-custom-field" type="text" 
+                                                    [ngModel]="bidEndDate | date:'yyyy-MM-dd'" (ngModelChange)="bidEndDate = $event;"
+                                                    (focus)="showBidEndDateDatePicker = true" >
+                                                <div class="start-date" *ngIf="showBidEndDateDatePicker" >
+                                                    <datepicker name="showBidEndDateDatePicker" [(ngModel)]="bidEndDate" [minDate]="minDate" [showWeeks]="false" (selectionDone) ="showBidEndDateDatePicker = false"  ></datepicker>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                                <h5 class="create-ad-label"></h5>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                <select [(ngModel)]="product.bidEndTime" name="bidEndTime" class="form-control select-custom-field">
+                                                    <option *ngFor="let availableTime of availableTimeList" [ngValue]="availableTime.title">{{availableTime.title}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                                                <a href="#step6" role="tab" data-toggle="tab"><button type="button" id="step7-previous" name="step7-previous" class="form-control common-custom-button">Previous Step</button></a>
+                                            </div>
+                                            <div class="col-xs-6 col-sm-offset-4 col-sm-4 col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4">
+                                                <a href="#step8" role="tab" data-toggle="tab"><button type="button" id="step7-next" name="step7-next" class="form-control common-custom-button">Next Step</button></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="step8">
+                                        <div class="row form-group">
+                                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                                                 <h5 class="create-ad-label">Daily Email Alerts</h5>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
@@ -377,10 +447,10 @@
                                         </div>
                                          <div class="row form-group">
                                             <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
-                                                <a href="#step6" role="tab" data-toggle="tab"><button type="button" id="step7-previous" name="step7-previous" class="form-control common-custom-button">Previous Step</button></a>
+                                                <a href="#step7" role="tab" data-toggle="tab"><button type="button" id="step8-previous" name="step8-previous" class="form-control common-custom-button">Previous Step</button></a>
                                             </div>
                                             <div class="col-xs-6 col-sm-offset-4 col-sm-4 col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4">
-                                                <button type="submit" id="step7-next" name="step7-next" class="form-control common-custom-button">Save Advert</button>
+                                                <button type="submit" id="step8-next" name="step8-next" class="form-control common-custom-button">Save Advert</button>
                                             </div>
                                         </div>
                                     </div>                                

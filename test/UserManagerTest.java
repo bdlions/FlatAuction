@@ -7,6 +7,7 @@
 import com.auction.db.HibernateUtil;
 import com.auction.dto.AccountStatus;
 import com.auction.dto.Amenity;
+import com.auction.dto.Availability;
 import com.auction.dto.ProductBid;
 import com.auction.dto.Credential;
 import com.auction.dto.Currency;
@@ -136,7 +137,7 @@ public class UserManagerTest {
 
     
     
-    //@Test
+    @Test
     public void defaultData(){
         
         try
@@ -289,6 +290,18 @@ public class UserManagerTest {
             amenity5.setId(5);
             amenity5.setTitle("Garage");
 
+            Availability availability1 = new Availability();
+            availability1.setId(1);
+            availability1.setTitle("Daily");
+            
+            Availability availability2 = new Availability();
+            availability2.setId(1);
+            availability2.setTitle("Weekly");
+            
+            Availability availability3 = new Availability();
+            availability3.setId(1);
+            availability3.setTitle("Monthly");
+            
 
             Stay stay1 = new Stay();
             stay1.setId(1);
@@ -380,6 +393,9 @@ public class UserManagerTest {
             session.save(amenity3);
             session.save(amenity4);
             session.save(amenity5);
+            session.save(availability1);
+            session.save(availability2);
+            session.save(availability3);
             session.save(stay1);
             session.save(stay2);
             session.save(stay3);
@@ -501,7 +517,7 @@ public class UserManagerTest {
         }
     }
     
-    @Test
+    //@Test
     public void getUserByIdTest() 
     {
         UserManager userManager = new UserManager();

@@ -256,22 +256,37 @@ public class ProductManager {
      */
     public List<Product> getClosingProducts(int counter) {
         Session session = HibernateUtil.getSession();
+        TimeUtils timeUtils = new TimeUtils();
+        String currentDate = timeUtils.getCurrentDate();
         List<Product> products = new ArrayList<>();
         List<Product> tempProducts = new ArrayList<>();
         Transaction transaction = session.beginTransaction();
-        Query query = session.createSQLQuery("select {p.*} from products p ")
-                    .addEntity("p",Product.class);        
+        Query query = session.createSQLQuery("select {p.*} from products p where p.bid_start_date <= :bidStartDate and p.bid_end_date >= :bidEndDate ")
+                .addEntity("p",Product.class)
+                .setString("bidStartDate", currentDate)
+                .setString("bidEndDate", currentDate);        
         tempProducts = query.list();
         int productCounter = 1;
-        TimeUtils timeUtils = new TimeUtils();
+        
         for(Product product: tempProducts)
         {
-            product.setTime(timeUtils.getEndingProductHumanToUnix(product.getAvailableFrom()));
-            products.add(product);
-            productCounter++;
-            if(productCounter > counter)
+            //instead of doing this sort all products based on time and then return 6 products
+            if( !StringUtils.isNullOrEmpty(product.getBidEndDate()) && !StringUtils.isNullOrEmpty(product.getBidEndTime()) )
             {
-                break;
+                product.setTime(timeUtils.getEndingProductHumanToUnix(product.getBidEndDate(), product.getBidEndTime()));
+            }
+            else
+            {
+                product.setTime(0);
+            }
+            if(product.getTime() > 0)
+            {
+                products.add(product);
+                productCounter++;
+                if(productCounter > counter)
+                {
+                    break;
+                }
             }
         }
         if (!transaction.wasCommitted()){
@@ -341,6 +356,11 @@ public class ProductManager {
         for(Object[] row: rows)
         {
             Product product = (Product)row[1];
+            TimeUtils timeUtils = new TimeUtils();
+            product.setAvailableFrom(timeUtils.covertDBToUserDate(product.getAvailableFrom()));
+            product.setAvailableTo(timeUtils.covertDBToUserDate(product.getAvailableTo()));
+            product.setBidStartDate(timeUtils.covertDBToUserDate(product.getBidStartDate()));
+            product.setBidEndDate(timeUtils.covertDBToUserDate(product.getBidEndDate()));
             products.add(product);
         }
         if (!transaction.wasCommitted()){
@@ -361,6 +381,12 @@ public class ProductManager {
         products = query.list();
         for(Product product : products)
         {
+            TimeUtils timeUtils = new TimeUtils();
+            product.setAvailableFrom(timeUtils.covertDBToUserDate(product.getAvailableFrom()));
+            product.setAvailableTo(timeUtils.covertDBToUserDate(product.getAvailableTo()));
+            product.setBidStartDate(timeUtils.covertDBToUserDate(product.getBidStartDate()));
+            product.setBidEndDate(timeUtils.covertDBToUserDate(product.getBidEndDate()));
+            
             Image[] images = new Image[2];
             Image image1 = new Image();
             Image image2 = new Image();
@@ -396,6 +422,11 @@ public class ProductManager {
         //setting a reference id
         Image[] images = product.getImages();
         product.setReferenceId(StringUtils.getProductReferenceId());
+        TimeUtils timeUtils = new TimeUtils();
+        product.setAvailableFrom(timeUtils.covertUserToDBDate(product.getAvailableFrom()));
+        product.setAvailableTo(timeUtils.covertUserToDBDate(product.getAvailableTo()));
+        product.setBidStartDate(timeUtils.covertUserToDBDate(product.getBidStartDate()));
+        product.setBidEndDate(timeUtils.covertUserToDBDate(product.getBidEndDate()));
         Transaction transaction = session.beginTransaction();
         session.save(product);
         if (images != null) {
@@ -447,9 +478,18 @@ public class ProductManager {
      * @author nazmul hasan on 17th June 2017
      */
     public void updateProduct(Product product) {
-        Session session = HibernateUtil.getSession();
+        if(product != null)
+        {
+            TimeUtils timeUtils = new TimeUtils();
+            product.setAvailableFrom(timeUtils.covertUserToDBDate(product.getAvailableFrom()));
+            product.setAvailableTo(timeUtils.covertUserToDBDate(product.getAvailableTo()));
+            product.setBidStartDate(timeUtils.covertUserToDBDate(product.getBidStartDate()));
+            product.setBidEndDate(timeUtils.covertUserToDBDate(product.getBidEndDate()));
+        }
+        
+        Session session = HibernateUtil.getSession();            
         session.clear();
-        Transaction transaction = session.beginTransaction();
+        Transaction transaction = session.beginTransaction();        
         session.update(product);
         try
         {
@@ -517,6 +557,7 @@ public class ProductManager {
     
     public Product getProductInfo(int productId) {
         Product product = null;
+        TimeUtils timeUtils = new TimeUtils();
         Session session = HibernateUtil.getSession();
         Transaction transaction = session.beginTransaction();        
         Query query = session.createSQLQuery("select {p.*}, {pt.*} from products p join product_types pt on p.product_type_id = pt.id where p.id = :id ")
@@ -530,65 +571,83 @@ public class ProductManager {
             product = (Product)row[0];
             break;
         }
-        TimeUtils timeUtils = new TimeUtils();
-        product.setTime(timeUtils.getEndingProductHumanToUnix(product.getAvailableFrom()));
-        product.setAmenities(new ArrayList<>());
-        product.setAvailabilities(new ArrayList<>());
-        product.setImages(new Image[0]);
-        try
-        {
-            Query query2 = session.createSQLQuery("select {a.*} from amenities a join products_amenities pa on a.id = pa.amenity_id where pa.product_id = :product_id ")
-                    .addEntity("a",Amenity.class)
-                    .setInteger("product_id", productId);
-        
-            List<Object[]> rows2 = query2.list();
-            for (Object row : rows2) 
+        //handle if product is null
+        if(product != null)
+        {            
+            if( !StringUtils.isNullOrEmpty(product.getBidEndDate()) && !StringUtils.isNullOrEmpty(product.getBidEndTime()) )
             {
-                product.getAmenities().add((Amenity)row);
+                product.setTime(timeUtils.getEndingProductHumanToUnix(product.getBidEndDate(), product.getBidEndTime()));
             }
-            
-            Query query3 = session.createSQLQuery("select {a.*} from availabilities a join products_availabilities pa on a.id = pa.availability_id where pa.product_id = :product_id ")
-                    .addEntity("a",Availability.class)
-                    .setInteger("product_id", productId);
-        
-            List<Object[]> rows3 = query3.list();
-            for (Object row : rows3) 
+            else
             {
-                product.getAvailabilities().add((Availability)row);
+                product.setTime(0);
             }
-            
-            Query imageQuery = session.createSQLQuery("select {pi.*} from product_images pi join products p on pi.product_id = p.id where pi.product_id = :product_id ")
-                    .addEntity("pi",Image.class)
-                    .setInteger("product_id", productId);
-        
-            List<Object[]> imageRows = imageQuery.list();            
-            if(imageRows != null && imageRows.size() > 0)
+            product.setAmenities(new ArrayList<>());
+            product.setAvailabilities(new ArrayList<>());
+            product.setImages(new Image[0]);
+            try
             {
-                Image[] productImages = new Image[imageRows.size()];
-                int imageCounter = 0;
-                for (Object imageRow : imageRows) 
+                Query query2 = session.createSQLQuery("select {a.*} from amenities a join products_amenities pa on a.id = pa.amenity_id where pa.product_id = :product_id ")
+                        .addEntity("a",Amenity.class)
+                        .setInteger("product_id", productId);
+
+                List<Object[]> rows2 = query2.list();
+                for (Object row : rows2) 
                 {
-                    productImages[imageCounter++] = (Image)imageRow;
+                    product.getAmenities().add((Amenity)row);
                 }
-                product.setImages(productImages);
-            } 
-            
-            Query productBidQuery = session.createSQLQuery("select {pb.*} from product_bids pb join products p on pb.product_id = p.id where pb.product_id = :product_id ")
-                    .addEntity("pb",ProductBid.class)
-                    .setInteger("product_id", productId);
-        
-            List<Object[]> productBidRows = productBidQuery.list();            
-            if(productBidRows != null)
+
+                Query query3 = session.createSQLQuery("select {a.*} from availabilities a join products_availabilities pa on a.id = pa.availability_id where pa.product_id = :product_id ")
+                        .addEntity("a",Availability.class)
+                        .setInteger("product_id", productId);
+
+                List<Object[]> rows3 = query3.list();
+                for (Object row : rows3) 
+                {
+                    product.getAvailabilities().add((Availability)row);
+                }
+
+                Query imageQuery = session.createSQLQuery("select {pi.*} from product_images pi join products p on pi.product_id = p.id where pi.product_id = :product_id ")
+                        .addEntity("pi",Image.class)
+                        .setInteger("product_id", productId);
+
+                List<Object[]> imageRows = imageQuery.list();            
+                if(imageRows != null && imageRows.size() > 0)
+                {
+                    Image[] productImages = new Image[imageRows.size()];
+                    int imageCounter = 0;
+                    for (Object imageRow : imageRows) 
+                    {
+                        productImages[imageCounter++] = (Image)imageRow;
+                    }
+                    product.setImages(productImages);
+                } 
+
+                Query productBidQuery = session.createSQLQuery("select {pb.*} from product_bids pb join products p on pb.product_id = p.id where pb.product_id = :product_id ")
+                        .addEntity("pb",ProductBid.class)
+                        .setInteger("product_id", productId);
+
+                List<Object[]> productBidRows = productBidQuery.list();            
+                if(productBidRows != null)
+                {
+                    product.setTotalBids(productBidRows.size());
+                }  
+            }
+            catch(Exception ex)
             {
-                product.setTotalBids(productBidRows.size());
-            }  
+                logger.error(ex.toString());
+            }
         }
-        catch(Exception ex)
-        {
-            logger.error(ex.toString());
-        }
+        
         if (!transaction.wasCommitted()){
             transaction.commit();
+        }
+        if(product != null)
+        {
+            product.setAvailableFrom(timeUtils.covertDBToUserDate(product.getAvailableFrom()));
+            product.setAvailableTo(timeUtils.covertDBToUserDate(product.getAvailableTo()));
+            product.setBidStartDate(timeUtils.covertDBToUserDate(product.getBidStartDate()));
+            product.setBidEndDate(timeUtils.covertDBToUserDate(product.getBidEndDate()));
         }
         return product;
     }
