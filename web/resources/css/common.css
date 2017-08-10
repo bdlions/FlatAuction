@@ -119,13 +119,14 @@ a{
     border: none!important;
 }
 
-/* ---------------------------- Terms -------------------------------- */
+/* ---------------------------- Terms, Privacy Policy, About Us, Contact Us, FAQ-------------------------------- */
 .font-size-16px{
     font-size: 16px;
 }
-.terms p, .terms li{
-    margin-top: 10px!important;
-    margin-bottom: 10px!important;
+.terms p, .terms li, .privacypolicy p, .privacypolicy li, 
+.aboutus p, .aboutus li, .contactus p, .contactus li, .faq p, .faq li{
+    padding-top: 6px!important;
+    padding-bottom: 6px!important;
 }
 /* ---------------------------- Modal -------------------------------- */
 .success-message-close{
@@ -747,7 +748,7 @@ input[type=checkbox]:checked {
     .landing-page-search-box-layout > typeahead-container > ul > li > a{
         width: 327px;
     }
-.auction-time {
+    .auction-time {
         bottom: 80px;
     }
     .header-menu-layout .navbar-nav{
@@ -1321,7 +1322,7 @@ input[type=checkbox]:checked {
     font-weight: normal;
 }
 .product-info-details-left-panel-previous-bids{
-    
+
 }
 .product-info-details-left-panel-previous-bids a{
     font-family: "tw-cen-mt";
