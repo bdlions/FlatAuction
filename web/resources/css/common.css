@@ -1125,9 +1125,12 @@ input[type=checkbox]:checked {
     color: #484848;
     font-size: 12px;
     padding: 5px;
-    line-height: 1em;
-    font-weight: normal;
-    text-align: justify;
+    display: -webkit-box;
+    height: 6.0em;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical; 
+    overflow: hidden;
+    text-overflow: ellipsis;     
 }
 .grid-property-contact-anchor{
     font-family: "tw-cen-mt";
@@ -1202,9 +1205,12 @@ input[type=checkbox]:checked {
     color: #484848;
     font-size: 14px;
     padding: 5px;
-    line-height: 1.5em;
-    font-weight: normal;
-    text-align: justify;
+    display: -webkit-box;
+    height: 12.0em;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical; 
+    overflow: hidden;
+    text-overflow: ellipsis;  
 }
 .list-property-top-right-sction{
     padding: 10px;
