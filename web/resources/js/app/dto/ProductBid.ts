@@ -7,6 +7,8 @@ export class ProductBid {
     referenceId:string;
     user:User;
     product: Product;
+    createdOn:number;
+    createdTime:string;
     bidTime:string;
     price:number;
     currency:Currency;

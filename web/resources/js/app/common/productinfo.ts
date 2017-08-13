@@ -180,14 +180,12 @@ export class Productinfo implements OnInit, OnDestroy {
             //set currency and currency unit at server.
             let requestBody: string = JSON.stringify(this.productBid);
             this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.ADD_PRODUCT_BID), requestBody).then(result =>{
-                let response  = result;
+                let response  = result;                
                 if (response.success){
-                    this.productBid = new ProductBid();
-                    //set a message that product bid is placed successfully
+                    this.productBid = new ProductBid();                    
                 }
-                else{
-                    //show error message at this page
-                }
+                this.message = response.message;
+                this.productInfoModal.show();
             });
         }
         else
@@ -210,8 +208,8 @@ export class Productinfo implements OnInit, OnDestroy {
             this.savedProduct.product = product;
             let requestBody: string = JSON.stringify(this.savedProduct);
             this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.ADD_SAVED_PRODUCT), requestBody).then(result => {
-                //show error messaage
-                this.message = "Product is added in your Saved Product List.";
+                let response  = result;                
+                this.message = response.message;
                 this.productInfoModal.show();
             });
         }
@@ -229,6 +227,13 @@ export class Productinfo implements OnInit, OnDestroy {
         let username = localStorage.getItem("username");
         if (username != null && username != "")
         {
+            //check whether message text is empty or not. if empty then show an error message.
+            if (this.newMessageBody == null || this.newMessageBody.length == 0)
+            {
+                this.message = "Please add message text.";
+                this.productInfoModal.show();
+                return;
+            }
             this.newMessageText = new MessageText();
             this.newMessageText.body = this.newMessageBody;
 
@@ -242,6 +247,9 @@ export class Productinfo implements OnInit, OnDestroy {
                 this.newMessage = new Message();
                 this.newMessageText = new MessageText();
                 this.newMessageBody = "";
+                let response  = result;                
+                this.message = response.message;
+                this.productInfoModal.show();
             });
         }
         else

@@ -20,9 +20,13 @@ import {Logout} from '../admin/logout';
 //import {Abroad} from './abroad';
 //import {Header} from './header';
 
+import {CarouselModule, TypeaheadModule, DatepickerModule, ModalModule} from "ngx-bootstrap"
+
 
 @NgModule({
     imports: [HttpModule, BrowserModule, FormsModule,
+        CarouselModule.forRoot(), TypeaheadModule.forRoot(),
+        DatepickerModule.forRoot(), ModalModule.forRoot(),
         RouterModule.forRoot(routes, {
             useHash: false
         })

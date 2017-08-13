@@ -14,6 +14,7 @@ import {SebmGoogleMap} from 'angular2-google-maps/core';
 import {WebAPIService} from './../webservice/web-api-service';
 import {PacketHeaderFactory} from './../webservice/PacketHeaderFactory';
 import {ACTION} from './../webservice/ACTION';
+import { ModalDirective } from 'ngx-bootstrap';
 
 @Component({
     styles:[
@@ -54,7 +55,8 @@ export class Search implements OnInit, OnDestroy {
     
     @ViewChild(SebmGoogleMap) private sebmGoogMap: SebmGoogleMap;
 
-    
+    @ViewChild('searchModal') public searchModal:ModalDirective;
+    private message:string;
 
     constructor(public router: Router, public route: ActivatedRoute, webAPIService: WebAPIService) {
 
@@ -131,7 +133,13 @@ export class Search implements OnInit, OnDestroy {
 //        });
         
         //console.log(this.productList);
+        setInterval(() => {this.searchModal.hide(); }, 1000 * 5);
 
+    }
+    
+    public hideChildModal(): void {
+        this.searchModal.hide();
+        this.message = "";
     }
 
     public saveProduct(event: Event, id: number) {
@@ -142,13 +150,16 @@ export class Search implements OnInit, OnDestroy {
             this.savedProduct.product = product;
             let requestBody: string = JSON.stringify(this.savedProduct);
             this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.ADD_SAVED_PRODUCT), requestBody).then(result => {
-                //handle success or error message
-                console.log(result);
+                let response  = result;                
+                this.message = response.message;
+                this.searchModal.show();
             });
         }
         else
         {
-            //may redirected to login/signup page or show error messaage
+            //show error messaage
+            this.message = "Please login to save it.";
+            this.searchModal.show();
         }        
     }
 

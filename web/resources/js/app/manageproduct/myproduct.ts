@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import { DatePipe } from '@angular/common';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Http} from '@angular/http';
@@ -21,6 +21,7 @@ import {WebAPIService} from './../webservice/web-api-service';
 import {PacketHeaderFactory} from './../webservice/PacketHeaderFactory';
 import {ACTION} from './../webservice/ACTION';
 import { FileUploader } from 'ng2-file-upload';
+import { ModalDirective } from 'ngx-bootstrap';
 
 const URL = window.SUB_DIRECTORY + '/FileUploadServlet';
 
@@ -70,6 +71,10 @@ export class MyProduct {
     public bidStartDate: Date = new Date();
     public bidEndDate: Date = new Date();
     public minDate: Date = void 0;
+    
+    public successMessage:string;
+    public errorMessage:string;
+    @ViewChild('manageProductModal') public manageProductModal:ModalDirective;
    
     
     constructor(public router:Router, public route: ActivatedRoute, webAPIService: WebAPIService, public datepipe: DatePipe) {
@@ -121,7 +126,12 @@ export class MyProduct {
             }
         }
         
+        setInterval(() => { this.manageProductModal.hide(); }, 1000 * 5);
         
+    }
+    
+    public hideChildModal(): void {
+        this.manageProductModal.hide();
     }
     
     ngOnInit() {
@@ -470,14 +480,18 @@ export class MyProduct {
         if(this.id == 0)
         {
             this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.ADD_PRODUCT), requestBody).then(result =>{
-                let response  = result;
+                let response  = result;                
                 if (response.success)
                 {
+                    //modal pop up will not work after navigation, so it is commented.
+                    //this.successMessage = "Your ad is created successfully.";
+                    //this.manageProductModal.show();
                     this.router.navigate(['myads']);
                 }
                 else
                 {
-                    //show error message at this page
+                    this.errorMessage = "Unable to create your ad. Please try again.";
+                    this.manageProductModal.show();
                 }
             });
         }
@@ -487,11 +501,15 @@ export class MyProduct {
                 let response  = result;
                 if (response.success)
                 {
+                    //modal pop up will not work after navigation, so it is commented.
+                    //this.successMessage = "Your ad is updated successfully.";
+                    //this.manageProductModal.show();
                     this.router.navigate(['myads']);
                 }
                 else
                 {
-                    //show error message at this page
+                    this.errorMessage = "Unable to update your ad. Please try again.";
+                    this.manageProductModal.show();
                 }
             });
         }

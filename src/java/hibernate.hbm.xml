@@ -192,12 +192,11 @@ Contributor(s):
         <property column="company_name" name="companyName" type="string"/>
         <property column="phone" name="phone" type="string"/>
         <property column="img" name="img" type="string"/>
-        <property column="available_from" name="availableFrom" type="string"/>
-        <property column="available_to" name="availableTo" type="string"/>
-        <property column="bid_start_date" name="bidStartDate" type="string"/>
-        <property column="bid_start_time" name="bidStartTime" type="string"/>
-        <property column="bid_end_date" name="bidEndDate" type="string"/>
-        <property column="bid_end_time" name="bidEndTime" type="string"/>
+        <property column="unix_available_from" name="unixAvailableFrom" type="long"/>
+        <property column="unix_available_to" name="unixAvailableTo" type="long"/>
+        <property column="unix_bid_start" name="unixBidStart" type="long"/>
+        <property column="unix_bid_end" name="unixBidEnd" type="long"/>
+        
         <many-to-one class="com.auction.dto.ProductType" column="product_type_id" name="productType"/>
         <many-to-one class="com.auction.dto.ProductSize" column="product_size_id" name="productSize"/>
         <many-to-one class="com.auction.dto.ProductCategory" column="product_category_id" name="productCategory"/>
@@ -275,6 +274,7 @@ Contributor(s):
         <many-to-one class="com.auction.dto.User" column="user_id"  fetch="select" name="user" not-null="true"/>
         <many-to-one class="com.auction.dto.Product" column="product_id"  fetch="select" name="product" not-null="true"/>
         <property name="createdOn" column="created_on" type="long"/>
+        <property name="createdTime" column="created_time" type="string"/>
         <property name="price" column="price" type="double"/>
         <many-to-one class="com.auction.dto.Currency" column="currency_id"  fetch="select" name="currency" not-null="true"/>
         <many-to-one class="com.auction.dto.CurrencyUnit" column="currency_unit_id"  fetch="select" name="currencyUnit" not-null="true"/>

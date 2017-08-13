@@ -2,16 +2,26 @@ package com.auction.util;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.TimeZone;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author nazmul hasan
  */
 public class TimeUtils {
+    private final Logger logger = LoggerFactory.getLogger(TimeUtils.class);
     public TimeUtils()
     {
     
+    }
+    
+    public long getCurrentTime()
+    {
+        long currentTime = System.currentTimeMillis() / 1000L;        
+        return currentTime;
     }
     
     /**
@@ -25,6 +35,54 @@ public class TimeUtils {
         sdf.setTimeZone(TimeZone.getTimeZone("GMT")); // give a timezone reference for formating (see comment at the bottom
         String timeStamp = sdf.format(java.util.Calendar.getInstance().getTime());
         return timeStamp;
+    }
+    
+    public String convertUnixToHuman(long unixSeconds) {
+        //reference http://stackoverflow.com/questions/17432735/convert-unix-time-stamp-to-date-in-java
+        //http://stackoverflow.com/questions/8046167/convert-unix-time-into-readable-date-in-java
+        Date date = new Date(unixSeconds * 1000L); // *1000 is to convert seconds to milliseconds
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd h:mm a"); // the format of your date
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT")); // give a timezone reference for formating (see comment at the bottom
+        String formattedDate = sdf.format(date);
+        return formattedDate;
+    }
+    
+    public String convertUnixToHumanDate(long unixSeconds) {
+        Date date = new Date(unixSeconds * 1000L); // *1000 is to convert seconds to milliseconds
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // the format of your date
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT")); // give a timezone reference for formating (see comment at the bottom
+        String formattedDate = sdf.format(date);
+        return formattedDate;
+    }
+    
+    public String convertUnixToHumanTime(long unixSeconds) {
+        Date date = new Date(unixSeconds * 1000L); // *1000 is to convert seconds to milliseconds
+        SimpleDateFormat sdf = new SimpleDateFormat("h a"); // the format of your date
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT")); // give a timezone reference for formating (see comment at the bottom
+        String formattedDate = sdf.format(date);
+        return formattedDate;
+    }
+    
+    public long getHumanToUnix(String date, String dateFormat)
+    {
+        //if no date formate is defined then we will use yyyy-MM-dd formate
+        if(StringUtils.isNullOrEmpty(dateFormat))
+        {
+            dateFormat = "yyyy-MM-dd";
+        }
+        long unixTime = 0;
+        try
+        {
+            SimpleDateFormat sdf = new SimpleDateFormat(dateFormat); // the format of your date
+            sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+            unixTime = sdf.parse(date).getTime() / 1000;            
+        }
+        catch(Exception ex)
+        {
+            logger.error(ex.toString());
+            unixTime = 0;
+        }
+        return unixTime;
     }
     
     /**
@@ -67,37 +125,37 @@ public class TimeUtils {
     
     
     
-    public long getEndingProductHumanToUnix(String humanFormatTime, String availableTime)
-    {
-        long response = 0;
-        long unixtime = 0;
-        DateFormat dfm = new SimpleDateFormat("yyyy-MM-dd");  
-        dfm.setTimeZone(TimeZone.getTimeZone("GMT"));//Specify your timezone 
-        try
-        {
-            unixtime = dfm.parse(humanFormatTime).getTime();  
-            unixtime = unixtime/1000;
-            long currentTime = System.currentTimeMillis() / 1000L;
-            response = unixtime - currentTime;
-            long offset = this.getEndingProductOffset(availableTime);
-            response = response + offset;
-        } 
-        catch (Exception e) 
-        {
-            e.printStackTrace();
-            response = 0;
-        }
-        if(response < 0)
-        {
-            response = 0;
-        }
-        return response;
-    }
+//    public long getEndingProductHumanToUnix(String humanFormatTime, String availableTime)
+//    {
+//        long response = 0;
+//        long unixtime = 0;
+//        DateFormat dfm = new SimpleDateFormat("yyyy-MM-dd");  
+//        dfm.setTimeZone(TimeZone.getTimeZone("GMT"));//Specify your timezone 
+//        try
+//        {
+//            unixtime = dfm.parse(humanFormatTime).getTime();  
+//            unixtime = unixtime/1000;
+//            long currentTime = System.currentTimeMillis() / 1000L;
+//            response = unixtime - currentTime;
+//            long offset = this.convertTimeToUnix(availableTime);
+//            response = response + offset;
+//        } 
+//        catch (Exception e) 
+//        {
+//            e.printStackTrace();
+//            response = 0;
+//        }
+//        if(response < 0)
+//        {
+//            response = 0;
+//        }
+//        return response;
+//    }
     
-    public long getEndingProductOffset(String availableTime)
+    public long convertTimeToUnix(String time)
     {
         long offset = 0;
-        switch(availableTime)
+        switch(time)
         {
             case "12 AM" : 
                 offset = 0 * 3600;

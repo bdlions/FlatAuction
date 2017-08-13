@@ -1,3 +1,22 @@
+<div bsModal #searchModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+     <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header-bg">
+                <h4 class="modal-title pull-left" style="color: #FFF;">Message</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center modal-body-text">
+                {{message}}
+            </div>
+            <div class="modal-footer modal-footer-bg"></div>
+        </div>
+    </div>
+</div>
+
+
+
 <div class="container">
     <nav class="navbar navbar-default product-info-detail-navbar">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -128,10 +147,10 @@
                                             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
                                                 <div class="row">
                                                     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                                                        <img class="img-responsive list-property-big-img" src="resources/images/product/328_212/{{product.img}}">
+                                                        <a (click)="selectProduct($event, product.id)"><img class="img-responsive list-property-big-img" src="resources/images/product/328_212/{{product.img}}"></a>
                                                     </div>
                                                     <div *ngFor="let image of product.images" class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                                                        <img class="img-responsive list-property-small-img" src="resources/images/product/328_212/{{image.title}}">
+                                                        <a (click)="selectProduct($event, product.id)"><img class="img-responsive list-property-small-img" src="resources/images/product/328_212/{{image.title}}"></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -140,14 +159,14 @@
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                                             <div class="list-property-title">
-                                                                <h4><a [routerLink]="['/productInfo']" (click)="selectProduct($event, product.id)">{{product.title}}</a></h4>
+                                                                <h4><a (click)="selectProduct($event, product.id)">{{product.title}}</a></h4>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                                             <div class="list-property-description">
-                                                                <h4>{{product.description}}</h4>
+                                                                <h4><a (click)="selectProduct($event, product.id)">{{product.description}}</a></h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -190,7 +209,7 @@
                                 <div *ngFor="let product of productList" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
                                     <div class="grid-property-section">
                                         <div class="grid-property-img">
-                                            <img class="img-responsive" src="resources/images/product/328_212/{{product.img}}">
+                                            <a (click)="selectProduct($event, product.id)"><img class="img-responsive" src="resources/images/product/328_212/{{product.img}}"></a>
                                         </div>
                                         <div class="grid-property-price">
                                             <h3>{{product.basePrice}}  £</h3>
@@ -199,14 +218,14 @@
                                             <div class="row">
                                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                                     <div class="grid-property-title">
-                                                        <h4><a [routerLink]="['/productInfo']" (click)="selectProduct($event, product.id)">{{product.title}}</a></h4>
+                                                        <h4><a (click)="selectProduct($event, product.id)">{{product.title}}</a></h4>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                                                     <div class="grid-property-description">
-                                                        <h4>{{product.description}}</h4>
+                                                        <h4><a (click)="selectProduct($event, product.id)">{{product.description}}</a></h4>
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">

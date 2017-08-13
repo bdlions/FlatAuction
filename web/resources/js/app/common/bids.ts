@@ -64,6 +64,35 @@ export class Bids implements OnInit, OnDestroy {
             let requestBody2: string = JSON.stringify(this.product);
             this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_INFO), requestBody2).then(result => {
                 this.product = result;
+                setInterval(() => 
+                    {
+                        this.product.timeLeft = "";
+                        let tempTime: number = this.product.time;
+                        if (tempTime > 0)
+                        {
+                            if (tempTime >= 86400)
+                            {
+                                this.product.timeLeft = this.product.timeLeft + Math.floor(tempTime/86400) + " days ";
+                                tempTime = tempTime % 86400;
+                            }
+                            if (tempTime >= 3600)
+                            {
+                                this.product.timeLeft = this.product.timeLeft + Math.floor(tempTime/3600) + " hours ";
+                                tempTime = tempTime % 3600;
+                            } 
+                            if (tempTime >= 60)
+                            {
+                                this.product.timeLeft = this.product.timeLeft + Math.floor(tempTime/60) + " mins ";
+                                tempTime = tempTime % 60;
+                            }
+                            if (tempTime < 60)
+                            {
+                                this.product.timeLeft = this.product.timeLeft + tempTime + " secs ";
+                            }                        
+                            this.product.time = (this.product.time - 1); 
+                        }
+                    }
+                , 1000);
             });
         });
     }

@@ -44,30 +44,50 @@ public class MessageManagerTest {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-    //@Test
+    @Test
     public void addMessageTextTest() 
     {
-        User user1 = new User();
-        user1.setId(1);
-        User user2 = new User();
-        user2.setId(2);
+        
+        int userId = 2;
+        User user = new User();
+        user.setId(1);
         Product product = new Product();
         product.setId(1);
+        product.setUser(user);
+        
+        User user2 = new User();
         
         Message message = new Message();
-        message.setFrom(user2);
-        message.setTo(user1);
+        message.setSubject("sub1");
         message.setProduct(product);
-        message.setSubject("Hi There");
-        
         MessageText messageText = new MessageText();
-        messageText.setUser(user1);
-        messageText.setBody("Hello World2");
-        
+        messageText.setBody("body2");
         message.getMessageTextList().add(messageText);
         
         MessageManager messageManager = new MessageManager();
-        messageManager.addMessageText(message);
+        Message messageInfo = messageManager.getMessage(userId, message.getProduct().getUser().getId(), message.getProduct().getId()); 
+        if(messageInfo == null || messageInfo.getId() == 0)
+        {
+            //add new message
+            User fromUser = new User();
+            fromUser.setId(userId);
+            message.setFrom(fromUser);
+            User toUser = new User();
+            toUser.setId(message.getProduct().getUser().getId());
+            message.setTo(toUser);
+            user2.setId(userId);
+            message.getMessageTextList().get(0).setUser(user2);
+            messageManager.addMessageInfo(message);
+        }
+        else
+        {
+            //add message text
+            message.setId(messageInfo.getId());
+            user2.setId(userId);
+            message.getMessageTextList().get(0).setUser(user2);            
+            message.getMessageTextList().get(0).setMessageId(messageInfo.getId());
+            messageManager.addMessageText(message);
+        }
         
     }
     
@@ -78,7 +98,7 @@ public class MessageManagerTest {
         messageManager.getInboxMessageList(2);
     }
     
-    @Test
+    //@Test
     public void getMessageInfoTest() 
     {
         MessageManager messageManager = new MessageManager();

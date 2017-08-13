@@ -144,7 +144,7 @@ public class ProductManagerTest {
             Image[] images = product.getImages();
             product.setImages(null);
             manager.addProduct(product);
-            manager.addProductImages(product.getId(), images);
+            //manager.addProductImages(product.getId(), images);
         }
     }
     //@Test
@@ -218,10 +218,10 @@ public class ProductManagerTest {
         System.out.println(productBids.size());
     }
     
-    //@Test
+    @Test
     public void addSavedProductTest(){
         ProductManager productManager = new ProductManager();
-        System.out.println(productManager.addSavedProduct(1, 1));
+        System.out.println(productManager.addSavedProduct(2, 1));
     }
     
     //@Test
@@ -237,10 +237,24 @@ public class ProductManagerTest {
         System.out.println(statList.size());
     }
     
-    @Test
+    //@Test
     public void getClosingProductsTest(){
         ProductManager productManager = new ProductManager();
         List<Product> products = productManager.getClosingProducts(6);
         System.out.println(products.size());
+    }
+    
+    //@Test
+    public void getProductUserIdTest(){
+        ProductManager productManager = new ProductManager();
+        int userId = productManager.getProductUserId(1);
+        System.out.println(userId);
+    }
+    
+    //@Test
+    public void getProductTest(){
+        ProductManager productManager = new ProductManager();
+        Product product = productManager.getProduct(1);
+        System.out.println(product.getTitle());
     }
 }

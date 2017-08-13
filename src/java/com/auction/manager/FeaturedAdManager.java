@@ -7,63 +7,126 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import sun.rmi.log.ReliableLog;
 
 /**
  *
  * @author nazmul hasan
  */
 public class FeaturedAdManager {
+    private final Logger logger = LoggerFactory.getLogger(FeaturedAdManager.class);
+    
+    /**
+     * This method will return account settings of featured ad
+     * @param userId user id
+     * @return AccountSettingFA
+     * @author nazmul hasan on 11th June 2017
+     */
     public AccountSettingFA getFeaturedAdAccountSetting(int userId)
     {
-        AccountSettingFA accountSettingFA = new AccountSettingFA();
-        Session session = HibernateUtil.getSession();
-        Transaction transaction = session.beginTransaction();
-        Query query = session.createSQLQuery("select {asfa.*} from account_setting_fa asfa where user_id = :user_id ")
-                        .addEntity("asfa",AccountSettingFA.class)
-                        .setInteger("user_id", userId);
-        List<AccountSettingFA> accountSettingFAList =  query.list();        
-        if(accountSettingFAList != null && !accountSettingFAList.isEmpty())
+        Transaction transaction = null;
+        AccountSettingFA accountSettingFA = null;
+        try
         {
-            accountSettingFA =  accountSettingFAList.get(0);  
+            Session session = HibernateUtil.getSession();
+            transaction = session.beginTransaction();
+            Query query = session.createSQLQuery("select {asfa.*} from account_setting_fa asfa where user_id = :user_id ")
+                            .addEntity("asfa",AccountSettingFA.class)
+                            .setInteger("user_id", userId);
+            List<AccountSettingFA> accountSettingFAList =  query.list();        
+            if(accountSettingFAList != null && !accountSettingFAList.isEmpty())
+            {
+                accountSettingFA =  accountSettingFAList.get(0);  
+                Currency defaultBidPerClickUnit = new Currency();
+                defaultBidPerClickUnit.setId(1);
+                accountSettingFA.setDefaultBidPerClickUnit(defaultBidPerClickUnit);
+                Currency dailyBudgetUnit = new Currency();
+                dailyBudgetUnit.setId(1);
+                accountSettingFA.setDailyBudgetUnit(dailyBudgetUnit);
+            }
+            if (!transaction.wasCommitted()){
+                transaction.commit();
+            }
+        }
+        catch(Exception ex)
+        {
+            logger.error(ex.toString());
+            if(transaction != null)
+            {
+                transaction.rollback();
+            }
+            accountSettingFA = null;
+        }        
+        return accountSettingFA;
+    }
+    
+    /**
+     * This method will add account settings of featured ad
+     * @param accountSettingFA account setting featured ad
+     * @return AccountSettingFA
+     * @author nazmul hasan on 11th June 2017
+     */
+    public AccountSettingFA addFeaturedAdAccountSetting(AccountSettingFA accountSettingFA)
+    {
+        //N.B. this method should return boolean fields instead of returning object
+        Transaction transaction = null;
+        try
+        {
             Currency defaultBidPerClickUnit = new Currency();
             defaultBidPerClickUnit.setId(1);
             accountSettingFA.setDefaultBidPerClickUnit(defaultBidPerClickUnit);
             Currency dailyBudgetUnit = new Currency();
             dailyBudgetUnit.setId(1);
             accountSettingFA.setDailyBudgetUnit(dailyBudgetUnit);
+            Session session = HibernateUtil.getSession();
+            transaction = session.beginTransaction();
+            session.save(accountSettingFA);
+            if (!transaction.wasCommitted()){
+                transaction.commit();
+            }
         }
-        if (!transaction.wasCommitted()){
-            transaction.commit();
-        }
+        catch(Exception ex)
+        {
+            logger.error(ex.toString());
+            if(transaction != null)
+            {
+                transaction.rollback();
+            }
+        }        
         return accountSettingFA;
     }
     
-    public AccountSettingFA addFeaturedAdAccountSetting(AccountSettingFA accountSettingFA)
+    /**
+     * This method will update account settings of featured ad
+     * @param accountSettingFA account setting featured ad
+     * @return boolean whether account setting featured ad is updated or not
+     * @author nazmul hasan on 11th June 2017
+     */
+    public boolean updateFeaturedAdAccountSetting(AccountSettingFA accountSettingFA)
     {
-        Currency defaultBidPerClickUnit = new Currency();
-        defaultBidPerClickUnit.setId(1);
-        accountSettingFA.setDefaultBidPerClickUnit(defaultBidPerClickUnit);
-        Currency dailyBudgetUnit = new Currency();
-        dailyBudgetUnit.setId(1);
-        accountSettingFA.setDailyBudgetUnit(dailyBudgetUnit);
-        Session session = HibernateUtil.getSession();
-        Transaction transaction = session.beginTransaction();
-        session.save(accountSettingFA);
-        if (!transaction.wasCommitted()){
-            transaction.commit();
+        Transaction transaction = null;
+        try
+        {
+            Session session = HibernateUtil.getSession();
+            session.clear();
+            transaction = session.beginTransaction();
+            session.update(accountSettingFA);
+            //session.getTransaction().commit();
+            if (!transaction.wasCommitted()){
+                transaction.commit();
+            }
+            return true;
         }
-        return accountSettingFA;
-    }
-    
-    public void updateFeaturedAdAccountSetting(AccountSettingFA accountSettingFA)
-    {
-        Session session = HibernateUtil.getSession();
-        session.clear();
-        Transaction transaction = session.beginTransaction();
-        session.update(accountSettingFA);
-        //session.getTransaction().commit();
-        if (!transaction.wasCommitted()){
-            transaction.commit();
-        }
+        catch(Exception ex)
+        {
+            logger.error(ex.toString());
+            if(transaction != null)
+            {
+                transaction.rollback();
+            }
+            return false;
+        }        
     }
 }

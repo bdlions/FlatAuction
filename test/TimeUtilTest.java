@@ -44,7 +44,19 @@ public class TimeUtilTest {
     public void hello() 
     {
         TimeUtils timeUtils = new TimeUtils();
-        String time = "2017-08-08";
-        System.out.println(timeUtils.getEndingProductHumanToUnix(time, "1 AM"));
+        long currentTime = timeUtils.getCurrentTime();
+        System.out.println(currentTime);
+        System.out.println(timeUtils.convertUnixToHuman(currentTime));
+        System.out.println(timeUtils.convertUnixToHumanDate(currentTime));
+        System.out.println(timeUtils.convertUnixToHumanTime(currentTime));
+        
+//        String date = timeUtils.getCurrentDate();
+//        System.out.println(date);
+//        //String dateFromat = "yyyy-MM-dd h:mm a";
+//        String dateFromat = "yyyy-MM-dd";
+//        long unixTime = timeUtils.getHumanToUnix(date, dateFromat);
+//        System.out.println(unixTime);
+//        
+//        System.out.println(timeUtils.convertUnixToHuman(unixTime));
     }
 }

@@ -1,8 +1,9 @@
 import {User} from "./User";
 
 export class MessageText {
-    id:string;
+    id:number;
     body:string;
+    messageId:number;
     //time:string;
     createdTime:string;
     user: User;

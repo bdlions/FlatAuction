@@ -128,12 +128,12 @@ public class UserManagerTest {
     }
 
 //    @Test
-    public void getRoles() {
-        UserManager user = new UserManager();
-        for (Role role : user.getRoles()) {
-            System.out.println(role.getId() + " " + role.getName() + " " + role.getDescription());
-        }
-    }
+//    public void getRoles() {
+//        UserManager user = new UserManager();
+//        for (Role role : user.getRoles()) {
+//            System.out.println(role.getId() + " " + role.getName() + " " + role.getDescription());
+//        }
+//    }
 
     
     
@@ -526,22 +526,22 @@ public class UserManagerTest {
     }
     
     //@Test
-    public void getUserRoles() {
-        UserManager user = new UserManager();
-        Set<Role> roles = user.getUserRolesByUserId(1);
-        System.out.println("roles are : ");
-        if(roles != null){
-//            for(int i = 0; i < roles.size() ; i ++){
-//                Role role = roles.get(i);
-////                System.out.println("Role id: " + role.getId() + ", Role Name: " + role.getName());
-//                System.out.println("sdfffffffffffffffffffffffffffffffffffffff");
+//    public void getUserRoles() {
+//        UserManager user = new UserManager();
+//        Set<Role> roles = user.getUserRolesByUserId(1);
+//        System.out.println("roles are : ");
+//        if(roles != null){
+////            for(int i = 0; i < roles.size() ; i ++){
+////                Role role = roles.get(i);
+//////                System.out.println("Role id: " + role.getId() + ", Role Name: " + role.getName());
+////                System.out.println("sdfffffffffffffffffffffffffffffffffffffff");
+////            }
+//            Iterator<Role> it = roles.iterator();
+//            while(it.hasNext()){
+//                Role role = it.next();
+//                System.out.println("Role id: " + role.getId() + ", Role Name: " + role.getName());
 //            }
-            Iterator<Role> it = roles.iterator();
-            while(it.hasNext()){
-                Role role = it.next();
-                System.out.println("Role id: " + role.getId() + ", Role Name: " + role.getName());
-            }
-        }
-        
-    }  
+//        }
+//        
+//    }  
 }
