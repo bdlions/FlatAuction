@@ -19,7 +19,8 @@
                 <div class="message-inbox-content-layout" *ngFor="let message of messageList">
                      <div class="row">
                         <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
-                            <!--<input id="message-inbox-message-id-{{message.id}}" type="checkbox" class="checkbox message-inbox-checkbox"> <img class="img-responsive message-inbox-user-image"  src="resources/images/member_icon.png">-->
+                            <!--<input id="message-inbox-message-id-{{message.id}}" type="checkbox" class="checkbox message-inbox-checkbox">--> 
+                            <img class="img-responsive message-inbox-user-image"  src="resources/images/member_icon.png">
                         </div>
                         <div class="col-xs-7 col-sm-8 col-md-9 col-lg-9">
                             <a (click)="selectedMessage($event, message.id)">

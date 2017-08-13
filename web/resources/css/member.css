@@ -714,7 +714,7 @@ html, body {
     background: #f68521;
     border-radius: 50%;
     float: right;
-    margin-top: -13px;
+    margin-top: 8px;
 }
 .message-inbox-checkbox{
     position: relative;
