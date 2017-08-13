@@ -119,7 +119,7 @@ a{
     border: none!important;
 }
 
-/* ---------------------------- Terms, Privacy Policy, About Us, Contact Us, FAQ-------------------------------- */
+/* ---------------------------- Terms, Privacy Policy, About Us, Contact Us, FAQ -------------------------------- */
 .font-size-16px{
     font-size: 16px;
 }
@@ -155,7 +155,12 @@ a{
 .error-message-content{
     color: red;
 }
-
+.modal-header,.modal-footer{
+    background-color: #F68521;
+}
+.modal-body{
+    color: #216db1;
+}
 
 /* ---------------------------- Footer -------------------------------- */
 .footer-bg{
