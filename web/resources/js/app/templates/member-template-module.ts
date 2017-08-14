@@ -34,6 +34,7 @@ import {MyProfile} from "../profile/myprofile";
 import {EditProfile} from "../profile/editprofile";
 import {UploadImg} from "../profile/uploadimg";
 import {UploadDocument} from "../profile/uploaddocument";
+import {UploadLogo} from "../profile/uploadlogo";
 import {BasicSearch} from "../common/basicsearch";
 import {AdvancedSearch} from "../common/advancedsearch";
 import {AppHeader} from '../member/header';
@@ -64,7 +65,7 @@ import {CarouselModule, TypeaheadModule, DatepickerModule, ModalModule} from "ng
             useHash: false
         })
     ],
-    declarations: [MemberApp, Search, DashBoard, MyHome, MyProduct, MyAds, SavedAds, Productinfo, Bids, AccountSettings, IndividualAdBids, Stats, Ranking, Fafaq, Inbox, Sent, Saved, Showmessage, Notifications, MyProfile, EditProfile, UploadImg, UploadDocument, BasicSearch, AdvancedSearch, AppHeader, AppFooter, Terms, Privacypolicy, Contactus, Aboutus, Faq, Logout],
+    declarations: [MemberApp, Search, DashBoard, MyHome, MyProduct, MyAds, SavedAds, Productinfo, Bids, AccountSettings, IndividualAdBids, Stats, Ranking, Fafaq, Inbox, Sent, Saved, Showmessage, Notifications, MyProfile, EditProfile, UploadImg, UploadDocument, UploadLogo, BasicSearch, AdvancedSearch, AppHeader, AppFooter, Terms, Privacypolicy, Contactus, Aboutus, Faq, Logout],
     bootstrap: [MemberApp],
     providers: [AuthGuard, MemberHeaderMenuManager, {provide: LocationStrategy, useClass: HashLocationStrategy}]
 })

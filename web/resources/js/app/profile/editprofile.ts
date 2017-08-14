@@ -125,4 +125,9 @@ export class EditProfile {
         event.preventDefault();
         this.router.navigate(['uploaddocument']);
     }
+    
+    uploadlogo(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['uploadlogo']);
+    }
 }

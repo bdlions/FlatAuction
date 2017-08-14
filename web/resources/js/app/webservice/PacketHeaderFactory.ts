@@ -125,6 +125,9 @@ export class PacketHeaderFactory {
             case ACTION.UPDATE_USER_DOCUMENT:
                 packetHeader.requestType = REQUEST_TYPE.UPDATE
                 break;
+            case ACTION.UPDATE_USER_LOGO:
+                packetHeader.requestType = REQUEST_TYPE.UPDATE
+                break;
             case ACTION.UPDATE_PRODUCT_INFO:
                 packetHeader.requestType = REQUEST_TYPE.UPDATE
                 break;

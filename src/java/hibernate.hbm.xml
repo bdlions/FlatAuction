@@ -64,6 +64,9 @@ Contributor(s):
         <property column="email" name="email" type="string" unique="true"/>
         <property column="cell_no" name="cellNo" type="string"/>
         <property column="img" name="img" type="string"/>
+        <property column="agent_logo" name="agentLogo" type="string"/>
+        <property column="business_name" name="businessName" type="string"/>
+        <property column="address" name="address" type="string"/>
         <property column="document" name="document" type="string"/>
         <property column="is_verified" name="isVerified" type="boolean"/>
         <property column="last_access_time" name="lastAccessTime" type="long"/>

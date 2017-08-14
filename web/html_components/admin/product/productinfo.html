@@ -1,0 +1,364 @@
+<div bsModal #productInfoModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+     <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header-bg">
+                <h4 class="modal-title pull-left" style="color: #FFF;">Message</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center modal-body-text">
+                {{message}}
+            </div>
+            <div class="modal-footer modal-footer-bg"></div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <div class="product-info-details-left-panel form-group">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h1 class="product-info-details-left-panel-top-heading">Auction</h1>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="hr"></div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
+                        <div class="product-info-details-left-panel-auction-timeblock">
+                            <h5 class="product-info-details-left-panel-timeheader">
+                                Ends within:
+                            </h5>
+                            <h5 class="product-info-details-left-panel-auction-time">
+                                <!--3 hours 25 mins 20 secs-->
+                                {{productInfo.timeLeft}}
+                            </h5>
+                            <h5 class="product-info-details-left-panel-current-price-header">
+                                Current Bid:
+                            </h5>
+                            <h3 class="product-info-details-left-panel-current-price">
+                                {{productInfo.totalBids}}
+                                <!--{{product?.basePrice?.currencyUnit?.title}} {{product?.basePrice?.amount}}-->
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                        <h3 class="product-info-details-left-panel-previous-bids-header">
+                            Current Bids
+                        </h3>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-8 col-lg-8">
+                        <div class="product-info-details-left-panel-previous-bids">
+                            <a [routerLink]="['/bids']" (click)="showBids($event, productInfo.id)">{{productInfo.totalBids}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-info-details-left-panel">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h3 class="product-info-details-left-panel-middle-heading">This property is marketed by:</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h3 class="product-info-details-left-panel-location">{{productInfo.companyName}}</h3>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h3 class="product-info-details-contact-number">Call: {{productInfo.phone}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+            <div class="product-info-details-right-panel form-group">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+                        <h1 class="product-info-details-right-panel-product-title">{{productInfo.title}}</h1>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                        <h1 class="product-info-details-right-panel-product-price">£{{productInfo?.basePrice}}</h1>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <!--                        <div class="carousel slide" data-ride="carousel" id="quote-carousel">
+                                                    <div class="carousel-inner">
+                                                        image loop
+                                                        <div class="item active">
+                                                            <div class="row">
+                                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                                    <img class="product-info-details-right-panel-carousel-img-adjust" src="resources/images/{{product.img}}">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <a data-slide="prev" href="#quote-carousel" class="left carousel-control"><i class="fa fa-chevron-left"></i></a>
+                                                    <a data-slide="next" href="#quote-carousel" class="right carousel-control"><i class="fa fa-chevron-right"></i></a>
+                                                </div>                          -->
+
+
+                        <carousel>
+                            <slide *ngFor="let image of productInfo.images">
+                                <img class="product-info-details-img" src="resources/images/product/328_212/{{image.title}}" alt="{{image.title}}">
+                            </slide>
+                        </carousel>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="tabbed">
+                            <input name="tabbed" id="tabbed1" type="radio" checked>
+                            <section>
+                                <h1>
+                                    <label for="tabbed1">Key Features</label>
+                                </h1>
+                                <div class="tabbed-content">
+                                    <div class="row form-group">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="hr"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <h2 class="product-info-details-right-panel-product-availability-header">Availability</h2>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="row">
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-availability-content">Available From</h3>
+                                                </div>
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-availability-content">{{productInfo?.availableFrom}}</h3>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-availability-content">Available To</h3>
+                                                </div>
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-availability-content">{{productInfo?.availableTo}}</h3>
+                                                </div>
+                                            </div>
+                                            <div class="row" *ngIf="productInfo?.availabilities?.length > 0">
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-availability-content">Availablility</h3>
+                                                </div>
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-availability-content">
+                                                        <p *ngFor="let availability of productInfo.availabilities">
+                                                            {{availability.title}}&nbsp;
+                                                        </p>
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-availability-content">Minimum term</h3>
+                                                </div>
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-availability-content">{{productInfo?.minStay?.title}}</h3>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-availability-content">Maximum term</h3>
+                                                </div>
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-availability-content">{{productInfo?.maxStay?.title}}</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+<!--                                    <div class="row form-group">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="hr"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <h2 class="product-info-details-right-panel-product-extra-cost-header">Extra costs</h2>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="row">
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-extra-cost-content">Fees apply?</h3>
+                                                </div>
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-extra-cost-content">Yes</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>-->
+                                    <div class="row form-group">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="hr"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <h2 class="product-info-details-right-panel-product-amenities-header">Amenities</h2>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" *ngFor="let amenity of amenityList">
+                                            <div class="row">
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-amenities-content">{{amenity.title}}</h3>
+                                                </div>
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-amenities-content">{{amenity.status}}</h3>
+                                                </div>
+                                            </div>
+<!--                                            <div class="row">
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-amenities-content">Parking</h3>
+                                                </div>
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-amenities-content">No</h3>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-amenities-content">Garage</h3>
+                                                </div>
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-amenities-content">No</h3>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-amenities-content">Garden/terrace</h3>
+                                                </div>
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-amenities-content">No</h3>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-amenities-content">Balcony/Patio</h3>
+                                                </div>
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-amenities-content">No</h3>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-amenities-content">Disabled access</h3>
+                                                </div>
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-amenities-content">No</h3>
+                                                </div>
+                                            </div>-->
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="hr"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <h2 class="product-info-details-right-panel-product-tenant-preferences-header">New tenant preferences</h2>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="row">
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-tenant-preferences-content">Smoking OK?</h3>
+                                                </div>
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-tenant-preferences-content">{{productInfo?.smoking?.title}}</h3>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-tenant-preferences-content">Pets OK?</h3>
+                                                </div>
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-tenant-preferences-content">{{productInfo?.pet?.title}}</h3>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-tenant-preferences-content">Occupation</h3>
+                                                </div>
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-tenant-preferences-content">{{productInfo?.occupation?.title}}</h3>
+                                                </div>
+                                            </div>
+<!--                                            <div class="row">
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-tenant-preferences-content">DSS</h3>
+                                                </div>
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-tenant-preferences-content">No</h3>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-tenant-preferences-content">References?</h3>
+                                                </div>
+                                                <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+                                                    <h3 class="product-info-details-right-panel-product-tenant-preferences-content">Yes</h3>
+                                                </div>
+                                            </div>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <input name="tabbed" id="tabbed2" type="radio">
+                            <section>
+                                <h1>
+                                    <label for="tabbed2">Description</label>
+                                </h1>
+                                <div class="tabbed-content">
+                                    <div class="row form-group">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="hr"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <h2 class="product-info-details-right-panel-product-description-header">Property Description</h2>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <h3 class="product-info-details-right-panel-product-description">{{productInfo.description}}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--id: {{product.id}} , title: {{product.title}}, time: {{product.time}} price : {{product.price}}, img : {{product.img}}, description : {{product.description}}
+Images :
+<div *ngFor="let image of product.images">
+    Image Id:{{image.id}} , Image url: {{image.url}}
+</div>-->

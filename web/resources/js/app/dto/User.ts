@@ -7,6 +7,9 @@ export class User {
     lastName:string;
     email:string;
     img:string;
+    agentLogo:string;
+    businessName:string;
+    address:string;
     document:string;
     cellNo:string;
     isVerified:boolean;

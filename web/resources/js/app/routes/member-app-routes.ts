@@ -25,6 +25,7 @@ import {MyProfile} from "../profile/myprofile";
 import {EditProfile} from "../profile/editprofile";
 import {UploadImg} from "../profile/uploadimg";
 import {UploadDocument} from "../profile/uploaddocument";
+import {UploadLogo} from "../profile/uploadlogo";
 import {BasicSearch} from "../common/basicsearch";
 import {AdvancedSearch} from "../common/advancedsearch";
 import {AppHeader} from '../member/header';
@@ -65,6 +66,7 @@ export const routes: Routes = [
     {path: 'editprofile', component: EditProfile},
     {path: 'uploadimg', component: UploadImg},
     {path: 'uploaddocument', component: UploadDocument},
+    {path: 'uploadlogo', component: UploadLogo},
     { path: 'basicsearch', component: BasicSearch },
     { path: 'advancedsearch', component: AdvancedSearch },
     {path: 'terms', component: Terms},

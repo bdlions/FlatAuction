@@ -20,4 +20,8 @@ export class Products {
         });
     }
     
+    public selectProduct(event: Event, id: number){
+        event.preventDefault();
+        this.router.navigate(['productinfo', {id: id }]);
+    }
 }

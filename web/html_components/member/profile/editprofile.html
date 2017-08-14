@@ -5,6 +5,7 @@
             <li><a class="active" (click)="editprofile($event)">Edit Profile</a></li>
             <li><a (click)="uploadimg($event)">Upload Profile Picture</a></li>
             <li><a (click)="uploaddocument($event)">Profile Verification</a></li>
+            <li><a (click)="uploadlogo($event)">Logo</a></li>
         </ul>
     </div>
     <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
@@ -54,6 +55,28 @@
                         </div>
                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                             <input [(ngModel)]="user.cellNo" class="form-control input-custom-field" name="cellNo" placeholder="Cell No." type="text"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="row form-group">
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                            <h5 class="create-ad-label">Business Name</h5>
+                        </div>
+                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                            <input [(ngModel)]="user.businessName" class="form-control input-custom-field" name="business_name" placeholder="Business Name" type="text"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="row form-group">
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                            <h5 class="create-ad-label">Address</h5>
+                        </div>
+                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                            <input [(ngModel)]="user.address" class="form-control input-custom-field" name="address" placeholder="Address" type="text"/>
                         </div>
                     </div>
                 </div>

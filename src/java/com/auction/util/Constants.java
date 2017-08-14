@@ -11,6 +11,7 @@ public class Constants {
     public static final int ROLE_ID_ADMIN = 1;
     public static final int ROLE_ID_LANDLORD = 2;
     public static final int ROLE_ID_TANENT = 3;
+    public static final int ROLE_ID_AGENT = 4;
     
     public static final int CURRENCY_UNIT_DEFAULT = 1;    
    
@@ -23,6 +24,11 @@ public class Constants {
     public static final String IMG_PROFILE_PIC_PATH_150_150 = "resources/images/profile/150_150";
     
     public static final String USER_DOCUMENT_PATH = "resources/images/profile/document/";
+    
+    public static final String USER_LOGO_PATH = "resources/images/profile/logo/";
+    public static final String USER_LOGO_PATH_100_100 = "resources/images/profile/logo/100_100";
+    public static final int IMG_PROFILE_LOGO_WIDTH_100  = 100;
+    public static final int IMG_PROFILE_LOGO_HEIGHT_100 = 100;
     
     public static final int IMG_PRODUCT_LIST_WIDTH  = 328;
     public static final int IMG_PRODUCT_LIST_HEIGHT = 212;

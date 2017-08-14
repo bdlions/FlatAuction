@@ -20,4 +20,8 @@ export class Users {
         });
     }
     
+    public selectUser(event: Event, id: number){
+        event.preventDefault();
+        this.router.navigate(['userinfo', {id: id }]);
+    }
 }

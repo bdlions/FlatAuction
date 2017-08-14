@@ -10,9 +10,6 @@ import com.auction.dto.AccountSettingFA;
 import com.auction.dto.AmenityList;
 import com.auction.dto.AvailabilityList;
 import com.auction.dto.ProductBidList;
-import com.auction.dto.CurrencyList;
-import com.auction.dto.DurationList;
-import com.auction.dto.GenderList;
 import com.auction.dto.LocationList;
 import com.auction.dto.Message;
 import com.auction.dto.MessageList;
@@ -25,10 +22,8 @@ import com.auction.dto.ProductCategoryList;
 import com.auction.dto.ProductList;
 import com.auction.dto.ProductSizeList;
 import com.auction.dto.ProductTypeList;
-import com.auction.dto.RadiusList;
 import com.auction.dto.Role;
 import com.auction.dto.RoleList;
-import com.auction.dto.RoomSizeList;
 import com.auction.dto.SmokingList;
 import com.auction.dto.Stat;
 import com.auction.dto.StatList;
@@ -50,10 +45,8 @@ import com.auction.manager.FeaturedAdManager;
 import com.auction.manager.MessageManager;
 import com.auction.manager.ProductManager;
 import com.auction.manager.UserManager;
-import com.auction.util.ClientRequestHandler;
 import com.auction.util.Constants;
 import com.auction.util.FileUtils;
-import com.auction.util.ServerPropertyProvider;
 import com.auction.util.StringUtils;
 import org.bdlions.util.annotation.ClientRequest;
 import com.google.gson.Gson;
@@ -309,7 +302,7 @@ public class RequestHandler {
     @ClientRequest(action = ACTION.FETCH_PRODUCT_LIST)
     public ClientResponse getProductList(ISession session, IPacket packet){
         ProductManager pm = new ProductManager();
-        List<Product> products = pm.getProducts(0, 10);
+        List<Product> products = pm.getProducts(0, 30);
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
         Gson gson = gsonBuilder.create();
@@ -420,7 +413,26 @@ public class RequestHandler {
     
     @ClientRequest(action = ACTION.FETCH_USER_INFO)
     public ClientResponse getUserInfo(ISession session, IPacket packet){
-        int userId = (int)session.getUserId();
+        //check if user info is provided with id, if not then use user id from the session
+        User userInfo = null;
+        int userId = 0;
+        try
+        {
+            Gson gson = new Gson();
+            userInfo = gson.fromJson(packet.getPacketBody(), User.class);
+        }
+        catch(Exception ex)
+        {
+            logger.error(ex.toString());
+        }
+        if(userInfo == null || userInfo.getId() == 0)
+        {
+            userId = (int)session.getUserId();
+        }
+        else
+        {
+            userId = userInfo.getId();
+        }
         UserManager userManager = new UserManager();
         
         GsonBuilder gsonBuilder = new GsonBuilder();
@@ -585,6 +597,36 @@ public class RequestHandler {
         
         SignInResponse response = new SignInResponse();
         response.setMessage("Profile update successful.");
+        response.setSuccess(true);
+        return response;
+    }
+    
+    @ClientRequest(action = ACTION.UPDATE_USER_LOGO)
+    public ClientResponse updateUserLogo(ISession session, IPacket packet){
+        Gson gson = new Gson();
+        User user = gson.fromJson(packet.getPacketBody(), User.class);
+        //read image from temp directory and place into user logo directory
+        String imageFileName = user.getAgentLogo().trim().replaceAll("\n", "");
+        user.setAgentLogo(imageFileName);
+        if(!StringUtils.isNullOrEmpty(imageFileName))
+        {
+            //String root = Constants.SERVER_ROOT_DIR;
+            String uploadPath = RequestHandler.class.getClassLoader().getResource(Constants.SERVER_ROOT_DIR + Constants.IMAGE_UPLOAD_PATH).getFile();
+            String profilePicPath = RequestHandler.class.getClassLoader().getResource(Constants.SERVER_ROOT_DIR + Constants.USER_LOGO_PATH).getFile();
+            
+            //copy actual image
+            FileUtils.copyFile(uploadPath + imageFileName, profilePicPath + imageFileName);
+            
+            //resize image to 100px to 100px
+            String profileLogoPath100_100 = RequestHandler.class.getClassLoader().getResource(Constants.SERVER_ROOT_DIR + Constants.USER_LOGO_PATH_100_100).getFile();
+            ImageLibrary imageLibrary = new ImageLibrary();
+            imageLibrary.resizeImage(uploadPath + imageFileName, profileLogoPath100_100 + imageFileName, Constants.IMG_PROFILE_LOGO_WIDTH_100, Constants.IMG_PROFILE_LOGO_HEIGHT_100);
+        }
+        UserManager userManager = new UserManager();
+        userManager.updateUserProfile(user);
+        
+        GeneralResponse response = new GeneralResponse();
+        response.setMessage("Logo is updated successfully.");
         response.setSuccess(true);
         return response;
     }
