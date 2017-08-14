@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="row form-group">
-                    <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
+                    <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
                         <div class="product-info-details-left-panel-auction-timeblock">
                             <h5 class="product-info-details-left-panel-timeheader">
                                 Ends within:
@@ -41,13 +41,13 @@
                                 <!--3 hours 25 mins 20 secs-->
                                 {{productInfo.timeLeft}}
                             </h5>
-                            <h5 class="product-info-details-left-panel-current-price-header">
+<!--                            <h5 class="product-info-details-left-panel-current-price-header">
                                 Current Bid:
                             </h5>
                             <h3 class="product-info-details-left-panel-current-price">
                                 {{productInfo.totalBids}}
-                                <!--{{product?.basePrice?.currencyUnit?.title}} {{product?.basePrice?.amount}}-->
-                            </h3>
+                                {{product?.basePrice?.currencyUnit?.title}} {{product?.basePrice?.amount}}
+                            </h3>-->
                         </div>
                     </div>
                 </div>
@@ -98,7 +98,17 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <h3 class="product-info-details-left-panel-location">{{productInfo.companyName}}</h3>
+                        <img class="img-responsive" src="resources/images/company-logo.jpg">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h3 class="product-info-details-left-panel-company-name">{{productInfo.companyName}}</h3>
+                    </div>
+                </div>
+                 <div class="row form-group">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                       <h3 class="product-info-details-left-panel-company-address">21 Bukit Batok Crescent #12-79 Wcega Tower Singapore 658065 Mr. S.K </h3>
                     </div>
                 </div>
                 <div class="row">

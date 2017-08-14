@@ -460,7 +460,7 @@ input[type=checkbox]:checked {
     color: #f00;
     font-style: normal;
 } */
-.checkbox {
+/*.checkbox {
     padding-left: 20px; }
 .checkbox label {
     display: inline-block;
@@ -554,7 +554,7 @@ input[type=checkbox]:checked {
     -o-transition: -o-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
     transition: transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33); }
 .radio input[type="radio"] {
-    opacity: 0; }
+    opacity: 1; }
 .radio input[type="radio"]:focus + label::before {
     outline: thin dotted;
     outline: 5px auto -webkit-focus-ring-color;
@@ -569,7 +569,7 @@ input[type=checkbox]:checked {
 .radio input[type="radio"]:disabled + label::before {
     cursor: not-allowed; }
 .radio.radio-inline {
-    margin-top: 0; }
+    margin-top: 0; }*/
 
 .search-box-pagelet{
     /*    background-image: url("../images/search-bg.jpg");
@@ -1268,10 +1268,15 @@ input[type=checkbox]:checked {
     margin-top: -3px;
 }
 .product-info-details-left-panel-auction-timeblock{
+    /*    text-align: center;
+        border-radius: 50%;
+        border: 2px solid #4568b2!important;
+        padding: 5px 5px 15px 5px;*/
     text-align: center;
     border-radius: 50%;
-    border: 2px solid #4568b2!important;
-    padding: 5px 5px 15px 5px;
+    border: 2px solid #4568b2 !important;
+    padding: 30px;
+
 }
 .product-info-details-left-panel-timeheader{
     font-family: "tw-cen-mt";
@@ -1346,6 +1351,12 @@ input[type=checkbox]:checked {
     padding: 10px;
 }
 .product-info-details-left-panel-location,.product-info-details-left-panel-save-property{
+    font-family: "tw-cen-mt";
+    color: #484848;
+    font-size: 16px;
+    font-weight: normal;
+}
+.product-info-details-left-panel-company-name,.product-info-details-left-panel-company-address{
     font-family: "tw-cen-mt";
     color: #484848;
     font-size: 16px;
