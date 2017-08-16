@@ -5,6 +5,9 @@ import {Subscription} from 'rxjs';
 import {Product} from '../dto/Product';
 import {Location} from '../dto/Location';
 import {ProductSize} from '../dto/ProductSize';
+import {ProductType} from '../dto/ProductType';
+import {SearchParams} from '../dto/SearchParams';
+import {Occupation} from '../dto/Occupation';
 import {Pet} from '../dto/Pet';
 import {Availability} from '../dto/Availability';
 import {Currency} from '../dto/Currency';
@@ -28,6 +31,9 @@ import { ModalDirective } from 'ngx-bootstrap';
 })
 export class Search implements OnInit, OnDestroy {
     private webAPIService: WebAPIService;
+    
+    private searchParams: SearchParams;
+    
     private locationList: Location[];
     private productSizeList: ProductSize[];
     private availabilityList: Availability[];
@@ -61,7 +67,64 @@ export class Search implements OnInit, OnDestroy {
     constructor(public router: Router, public route: ActivatedRoute, webAPIService: WebAPIService) {
 
         this.webAPIService = webAPIService;
+        
+        this.searchParams = new SearchParams();
         this.savedProduct = new SavedProduct();
+        
+        //get search params from local storage
+        let referenceId = localStorage.getItem("referenceId");
+        if (referenceId != null && referenceId != ""){
+            this.searchParams.referenceId = referenceId;
+            localStorage.removeItem("referenceId");
+        }
+        
+        let productTypeId = localStorage.getItem("productTypeId");
+        if (productTypeId != null && productTypeId != ""){
+            this.searchParams.productType = new ProductType();
+            this.searchParams.productType.id = +productTypeId;
+            localStorage.removeItem("productTypeId");
+        }
+        
+//        let locationId = localStorage.getItem("locationId");
+//        if (locationId != null && locationId != ""){
+//            this.searchParams.location = new Location();
+//            this.searchParams.location.id = +locationId;
+//            localStorage.removeItem("locationId");
+//        }
+        
+        let productSizeId = localStorage.getItem("productSizeId");
+        if (productSizeId != null && productSizeId != ""){
+            this.searchParams.productSize = new ProductSize();
+            this.searchParams.productSize.id = +productSizeId;
+            localStorage.removeItem("productSizeId");
+        }
+        
+        let occupationId = localStorage.getItem("occupationId");
+        if (occupationId != null && occupationId != ""){
+            this.searchParams.occupation = new Occupation();
+            this.searchParams.occupation.id = +occupationId;
+            localStorage.removeItem("occupationId");
+        }
+        
+        let petId = localStorage.getItem("petId");
+        if (petId != null && petId != ""){
+            this.searchParams.pet = new Pet();
+            this.searchParams.pet.id = +petId;
+            localStorage.removeItem("petId");
+        }
+        
+        let minPrice = localStorage.getItem("minPrice");
+        if (minPrice != null && minPrice != ""){
+            this.searchParams.minPrice = +minPrice;
+            localStorage.removeItem("minPrice");
+        }
+        
+        let maxPrice = localStorage.getItem("maxPrice");
+        if (maxPrice != null && maxPrice != ""){
+            this.searchParams.maxPrice = +maxPrice;
+            localStorage.removeItem("maxPrice");
+        }
+        
         //this.locationList = JSON.parse("[{\"id\":\"1\",\"locationType\":\"area\",\"searchString\":\"London\"}, {\"id\":\"2\",\"locationType\":\"area\",\"searchString\":\"London 123\"}]");
         
         //this.radiusList = JSON.parse("[{\"id\":\"1\",\"title\":\"+0 miles\"}, {\"id\":\"2\",\"title\":\"+1/4 miles\"}, {\"id\":\"3\",\"title\":\"+1/2 miles\"}]");
@@ -73,8 +136,8 @@ export class Search implements OnInit, OnDestroy {
         //this.roomSizeList = JSON.parse("[{\"id\":\"1\",\"title\":\"Any room size\"}, {\"id\":\"2\",\"title\":\"Double room\"}, {\"id\":\"3\",\"title\":\"Single room\"}]");
         //this.durationList = JSON.parse("[{\"id\":\"1\",\"title\":\"Daily\"}, {\"id\":\"2\",\"title\":\"Weekly\"}, {\"id\":\"3\",\"title\":\"Monthly\"}]");
         //this.productList = JSON.parse("[{\"id\":\"1\",\"title\":\"Fun at the Bowling Alley1\", \"img\":\"a.jpg\", \"price\":\"£100\", \"price_type\":\"pw\", \"size\":\"single\", \"images\":[{\"id\":\"1\", \"url\":\"a.jpg\"}, {\"id\":\"2\", \"url\":\"b.jpg\"}], \"available\":\"2017-04-18\", \"description\":\"Double room in E16 available from 17/04/2017, short walk away from Prince Regent Lane DLR1.\"}, {\"id\":\"3\",\"title\":\"Fun at the Bowling Alley2\", \"img\":\"a.jpg\", \"price\":\"£100\", \"price_type\":\"pw\", \"size\":\"single\", \"images\":[{\"id\":\"1\", \"url\":\"a.jpg\"}, {\"id\":\"2\", \"url\":\"b.jpg\"}], \"available\":\"2017-04-18\", \"description\":\"Double room in E16 available from 17/04/2017, short walk away from Prince Regent Lane DLR2.\"}, {\"id\":\"3\",\"title\":\"Fun at the Bowling Alley3\", \"img\":\"a.jpg\", \"price\":\"£100\", \"price_type\":\"pw\", \"size\":\"single\", \"images\":[{\"id\":\"1\", \"url\":\"a.jpg\"}, {\"id\":\"2\", \"url\":\"b.jpg\"}], \"available\":\"2017-04-18\", \"description\":\"Double room in E16 available from 17/04/2017, short walk away from Prince Regent Lane DLR3.\"}, {\"id\":\"4\",\"title\":\"Fun at the Bowling Alley4\", \"img\":\"a.jpg\", \"price\":\"£100\", \"price_type\":\"pw\", \"size\":\"single\", \"images\":[{\"id\":\"1\", \"url\":\"a.jpg\"}, {\"id\":\"2\", \"url\":\"b.jpg\"}], \"available\":\"2017-04-18\", \"description\":\"Double room in E16 available from 17/04/2017, short walk away from Prince Regent Lane DLR4.\"} ]");
-        
-        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_LIST)).then(result => {
+        let requestBody: string = JSON.stringify(this.searchParams);
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_LIST), requestBody).then(result => {
             this.productList = result.products;
         });
         
@@ -176,7 +239,7 @@ export class Search implements OnInit, OnDestroy {
         this.sebmGoogMap.triggerResize();
         this.subscribe = this.route.params.subscribe(params => {
             this.id = params['id'];
-            console.log(this.id);
+            console.log(this.id);            
         });
     }
 

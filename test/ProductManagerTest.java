@@ -17,6 +17,7 @@ import com.auction.dto.ProductCategory;
 import com.auction.dto.ProductList;
 import com.auction.dto.ProductSize;
 import com.auction.dto.ProductType;
+import com.auction.dto.SearchParams;
 import com.auction.dto.Smoking;
 import com.auction.dto.Stat;
 import com.auction.dto.Stay;
@@ -150,12 +151,19 @@ public class ProductManagerTest {
     //@Test
     public void getProducts(){
         ProductManager manager = new ProductManager();
-        
-//        List products = manager.getProducts(1, 10);
-//        products.forEach((product) -> {
-//            
-//            System.out.println(((Product)product).getTitle());
-//        });
+        SearchParams searchParams = new SearchParams();
+        ProductType productType = new ProductType();
+        productType.setId(2);
+        searchParams.setProductType(productType);
+        Location location = new Location();
+        location.setId(1);
+        searchParams.setLocation(location);
+        searchParams.setReferenceId("4632938");
+        List products = manager.getProducts(searchParams, 0, 10);
+        products.forEach((product) -> {
+            
+            System.out.println(((Product)product).getTitle());
+        });
     }
     
     //@Test
@@ -185,7 +193,7 @@ public class ProductManagerTest {
         productManager.addProduct(product);        
     }
     
-    //@Test
+    @Test
     public void getProductInfoTest(){
         ProductManager manager = new ProductManager();
         Product prod = manager.getProductInfo(1);
@@ -218,7 +226,7 @@ public class ProductManagerTest {
         System.out.println(productBids.size());
     }
     
-    @Test
+    //@Test
     public void addSavedProductTest(){
         ProductManager productManager = new ProductManager();
         System.out.println(productManager.addSavedProduct(2, 1));

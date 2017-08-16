@@ -189,7 +189,7 @@ Contributor(s):
         <many-to-one class="com.auction.dto.User" column="user_id"  fetch="select" name="user" not-null="true"/>
         <property column="reference_id" name="referenceId" type="string"/>
         <property column="title" name="title" type="string"/>
-        <property column="description" name="description" type="string"/>
+        <property column="description" name="description" type="text"/>
         <property column="first_name" name="firstName" type="string"/>
         <property column="last_name" name="lastName" type="string"/>
         <property column="company_name" name="companyName" type="string"/>

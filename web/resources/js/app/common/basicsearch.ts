@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 //import {Product} from '../dto/Product';
 import {Location} from '../dto/Location';
 import {ProductType} from '../dto/ProductType'
+import {SearchParams} from '../dto/SearchParams';
 //import {Price} from '../dto/Price';
 //import {General} from '../dto/General';
 import {WebAPIService} from './../webservice/web-api-service';
@@ -31,9 +32,14 @@ export class BasicSearch{
     //private productList: Product[];
     //private subscribe:Subscription;
     //private id:number;
+    private selectedLocation: Location;
+    private searchParams: SearchParams;
+    private referenceId:string;
     
     constructor(public router:Router, public route: ActivatedRoute, webAPIService: WebAPIService) {
         this.webAPIService = webAPIService;
+        this.searchParams = new SearchParams();
+        this.referenceId = "";
         //this.locationList = JSON.parse("[{\"id\":\"1\",\"locationType\":\"area\",\"searchString\":\"London\"}, {\"id\":\"2\",\"locationType\":\"area\",\"searchString\":\"London 123\"}]");
         //this.radiusList = JSON.parse("[{\"id\":\"1\",\"title\":\"+0 miles\"}, {\"id\":\"2\",\"title\":\"+1/4 miles\"}, {\"id\":\"3\",\"title\":\"+1/2 miles\"}]");
         //this.minPriceList = JSON.parse("[{\"id\":\"1\",\"symbol\":\"\",\"amount\":\"Min Price\"}, {\"id\":\"2\",\"symbol\":\"£\",\"amount\":\"500\"}, {\"id\":\"3\",\"symbol\":\"£\",\"amount\":\"600\"}]");
@@ -85,7 +91,21 @@ export class BasicSearch{
     
     search(event: Event) {
         event.preventDefault();
+        //console.log(this.selectedLocation);
         //forward search params into search page....
+        //set search params into local storage
+        if (this.searchParams.referenceId != null && this.searchParams.referenceId != "")
+        {
+            localStorage.setItem("referenceId", this.searchParams.referenceId);
+        }
+        if (this.searchParams.productType != null && this.searchParams.productType.id  != 0)
+        {
+            localStorage.setItem("productTypeId", this.searchParams.productType.id+"");
+        }
+//        if (this.searchParams.location != null && this.searchParams.location.id  != 0)
+//        {
+//            localStorage.setItem("locationId", this.searchParams.location.id+"");
+//        }
         let id:number;
         id = 1;
         this.router.navigate(['search', {id: id}]);

@@ -1,4 +1,4 @@
 export class Occupation {
-    id:string;
+    id:number;
     title:string;
 }

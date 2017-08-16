@@ -17,6 +17,7 @@ import com.auction.dto.ProductCategory;
 import com.auction.dto.ProductSize;
 import com.auction.dto.ProductType;
 import com.auction.dto.SavedProduct;
+import com.auction.dto.SearchParams;
 import com.auction.dto.Smoking;
 import com.auction.dto.Stay;
 import com.auction.dto.User;
@@ -49,6 +50,7 @@ public class ProductManager {
         try
         {
             Session session = HibernateUtil.getSession();
+            session.clear();
             transaction = session.beginTransaction();        
             Query query = session.createSQLQuery("select {pt.*} from product_types pt")
                     .addEntity("pt",ProductType.class);
@@ -80,6 +82,7 @@ public class ProductManager {
         try
         {
             Session session = HibernateUtil.getSession();
+            session.clear();
             transaction = session.beginTransaction();        
             Query query = session.createSQLQuery("select {ps.*} from product_sizes ps")
                     .addEntity("ps",ProductSize.class);
@@ -111,6 +114,7 @@ public class ProductManager {
         try
         {
             Session session = HibernateUtil.getSession();
+            session.clear();
             transaction = session.beginTransaction();        
             Query query = session.createSQLQuery("select {pc.*} from product_categories pc")
                     .addEntity("pc",ProductCategory.class);
@@ -139,26 +143,28 @@ public class ProductManager {
     public List<Location> getLocations() {
         Transaction transaction = null;
         List<Location> locations = new ArrayList<>();
-        try
-        {
-            Session session = HibernateUtil.getSession();
-            transaction = session.beginTransaction();        
+        
+//        try
+//        {
+            Session session = HibernateUtil.getSession();            
+            session.clear();            
+            transaction = session.beginTransaction();
             Query query = session.createSQLQuery("select {l.*} from locations l")
                     .addEntity("l",Location.class);
-            locations = query.list();
+            locations = query.list();            
             if (!transaction.wasCommitted()){
                 transaction.commit();
             }
-        }
-        catch(Exception ex)
-        {
-            logger.error(ex.toString());
-            if(transaction != null)
-            {
-                transaction.rollback();
-            }
-            locations = new ArrayList<>();
-        }        
+//        }
+//        catch(Exception ex)
+//        {
+//            logger.error(ex.toString());
+//            if(transaction != null)
+//            {
+//                transaction.rollback();
+//            }
+//            locations = new ArrayList<>();
+//        }        
         return locations;
     }
     
@@ -173,6 +179,7 @@ public class ProductManager {
         try
         {
             Session session = HibernateUtil.getSession();
+            session.clear();
             transaction = session.beginTransaction();        
             Query query = session.createSQLQuery("select {a.*} from amenities a")
                     .addEntity("a",Amenity.class);
@@ -204,6 +211,7 @@ public class ProductManager {
         try
         {
             Session session = HibernateUtil.getSession();
+            session.clear();
             transaction = session.beginTransaction();        
             Query query = session.createSQLQuery("select {a.*} from availabilities a")
                     .addEntity("a",Availability.class);
@@ -235,6 +243,7 @@ public class ProductManager {
         try
         {
             Session session = HibernateUtil.getSession();
+            session.clear();
             transaction = session.beginTransaction();        
             Query query = session.createSQLQuery("select {s.*} from stays s")
                     .addEntity("s",Stay.class);
@@ -266,6 +275,7 @@ public class ProductManager {
         try
         {
             Session session = HibernateUtil.getSession();
+            session.clear();
             transaction = session.beginTransaction();        
             Query query = session.createSQLQuery("select {s.*} from smokings s")
                     .addEntity("s",Smoking.class);
@@ -297,6 +307,7 @@ public class ProductManager {
         try
         {
             Session session = HibernateUtil.getSession();
+            session.clear();
             transaction = session.beginTransaction();            
             Query query = session.createSQLQuery("select {o.*} from occupations o")
                     .addEntity("o",Occupation.class);
@@ -329,6 +340,7 @@ public class ProductManager {
         try
         {
             Session session = HibernateUtil.getSession();
+            session.clear();
             transaction = session.beginTransaction();            
             Query query = session.createSQLQuery("select {p.*} from pets p")
                     .addEntity("p",Pet.class);
@@ -362,7 +374,8 @@ public class ProductManager {
         List<Product> products = new ArrayList<>();
         try
         {
-            Session session = HibernateUtil.getSession();            
+            Session session = HibernateUtil.getSession();     
+            session.clear();
             transaction = session.beginTransaction();
             Query query = session.createSQLQuery("select {p.*} from products p where p.user_id = :user_id limit :limit offset :offset ")
                         .addEntity("p",Product.class)
@@ -399,7 +412,8 @@ public class ProductManager {
         List<Product> products = new ArrayList<>();
         try
         {
-            Session session = HibernateUtil.getSession();            
+            Session session = HibernateUtil.getSession(); 
+            session.clear();
             transaction = session.beginTransaction();
             Query query = session.createSQLQuery("select {sp.*}, {p.*} from saved_products sp join products p on sp.product_id = p.id  where sp.user_id = :user_id limit :limit offset :offset ")
                         .addEntity("sp",SavedProduct.class)
@@ -438,9 +452,10 @@ public class ProductManager {
     public List<Product> getClosingProducts(int limit) {
         Transaction transaction = null;
         List<Product> products = new ArrayList<>();
-        try
-        {
+//        try
+//        {
             Session session = HibernateUtil.getSession();
+            session.clear();
             TimeUtils timeUtils = new TimeUtils();
             long currentUnixTime = timeUtils.getCurrentTime();
             List<Product> tempProducts = new ArrayList<>();
@@ -464,16 +479,16 @@ public class ProductManager {
             if (!transaction.wasCommitted()){
                 transaction.commit();
             }
-        }
-        catch(Exception ex)
-        {
-            logger.error(ex.toString());
-            if(transaction != null)
-            {
-                transaction.rollback();
-            }
-            products = new ArrayList<>();
-        }
+//        }
+//        catch(Exception ex)
+//        {
+//            logger.error(ex.toString());
+//            if(transaction != null)
+//            {
+//                transaction.rollback();
+//            }
+//            products = new ArrayList<>();
+//        }
         return products;
     }
     
@@ -491,6 +506,7 @@ public class ProductManager {
         try
         {
             Session session = HibernateUtil.getSession();
+            session.clear();
             transaction = session.beginTransaction();
             //checking whether product is already saved or not
             Query query = session.createSQLQuery("select {sp.*} from saved_products sp where user_id = :user_id and product_id = :product_id ")
@@ -535,6 +551,7 @@ public class ProductManager {
         try
         {
             Session session = HibernateUtil.getSession();
+            session.clear();
             transaction = session.beginTransaction();
             //checking whether product is already saved or not
             Query query = session.createSQLQuery("select {sp.*} from saved_products sp where user_id = :user_id and product_id = :product_id ")
@@ -586,6 +603,7 @@ public class ProductManager {
         try
         {
             Session session = HibernateUtil.getSession();
+            session.clear();
             //setting a reference id
             Image[] images = product.getImages();
             product.setReferenceId(StringUtils.getProductReferenceId());
@@ -649,10 +667,12 @@ public class ProductManager {
         {            
             TimeUtils timeUtils = new TimeUtils();
             Session session = HibernateUtil.getSession();
+            session.clear();
             transaction = session.beginTransaction();        
-            Query query = session.createSQLQuery("select {p.*}, {pt.*} from products p join product_types pt on p.product_type_id = pt.id where p.id = :id ")
+            Query query = session.createSQLQuery("select {p.*}, {pt.*}, {u.*} from products p join product_types pt on p.product_type_id = pt.id join users u on u.id = p.user_id where p.id = :id ")
                         .addEntity("p",Product.class)
                         .addJoin("pt","p.productType")
+                        .addJoin("u","p.user")
                         .setInteger("id", productId);
 
             List<Object[]> rows = query.list();
@@ -686,6 +706,17 @@ public class ProductManager {
                 product.setImages(new Image[0]);
                 try
                 {
+//                    Query productUser = session.createSQLQuery("select {u.*} from users u join products p on u.id = p.user_id where p.id = :product_id ")
+//                            .addEntity("u",User.class)
+//                            .setInteger("product_id", productId);
+//
+//                    List<Object[]> userRows = productUser.list();
+//                    for (Object user : userRows) 
+//                    {
+//                        product.setUser((User)user);
+//                        break;
+//                    }
+                    
                     Query query2 = session.createSQLQuery("select {a.*} from amenities a join products_amenities pa on a.id = pa.amenity_id where pa.product_id = :product_id ")
                             .addEntity("a",Amenity.class)
                             .setInteger("product_id", productId);
@@ -764,6 +795,7 @@ public class ProductManager {
         try
         {            
             Session session = HibernateUtil.getSession();
+            session.clear();
             transaction = session.beginTransaction();        
             Query query = session.createSQLQuery("select {p.*} from products p where p.id = :id ")
                         .addEntity("p",Product.class)
@@ -804,6 +836,7 @@ public class ProductManager {
         try
         {
             Session session = HibernateUtil.getSession();
+            session.clear();
             transaction = session.beginTransaction();        
             Query query = session.createSQLQuery("select user_id from products where products.id = :id ")
                         .setInteger("id", productId);
@@ -905,6 +938,7 @@ public class ProductManager {
         try
         {
             Session session = HibernateUtil.getSession();
+            session.clear();
             transaction = session.beginTransaction();
             
             //setting current unix time
@@ -942,6 +976,7 @@ public class ProductManager {
         try
         {
             Session session = HibernateUtil.getSession();
+            session.clear();
             transaction = session.beginTransaction();
             Query query = session.createSQLQuery("select {pb.*}, {p.*}, {u.*}, {c.*}, {cu.*} from product_bids pb join products p on pb.product_id = p.id join users u on pb.user_id = u.id join currencies c on pb. currency_id = c.id join currency_units cu on pb.currency_unit_id = cu.id where pb.product_id = :product_id order by pb.created_on desc ")
                         .addEntity("pb", ProductBid.class)
@@ -977,20 +1012,115 @@ public class ProductManager {
     
     /**
      * This method will return product list
+     * @param searchParams search parameters
      * @param offset offset
      * @param limit limit
      * @return List product list
      * @author nazmul hasan on 11th June 2017
      */
-    public List<Product> getProducts(int offset , int limit) {
+    public List<Product> getProducts(SearchParams searchParams, int offset , int limit) {
         Transaction transaction = null;
         List<Product> productList = new ArrayList<>();
         try
         {
-            Session session = HibernateUtil.getSession();            
+            String where = "";
+            if(searchParams != null)
+            {
+                if(!StringUtils.isNullOrEmpty(searchParams.getReferenceId()))
+                {
+                    if(where.equals(""))
+                    {
+                        where += " where p.reference_id = '" + searchParams.getReferenceId()+"' ";
+                    }
+                    else
+                    {
+                        where += " AND p.reference_id = '" + searchParams.getReferenceId()+"' ";
+                    }
+                    
+                }
+                if(searchParams.getProductType() != null && searchParams.getProductType().getId() > 0)
+                {
+                    if(where.equals(""))
+                    {
+                        where += " where p.product_type_id = " + searchParams.getProductType().getId() + " ";
+                    }
+                    else
+                    {
+                        where += " AND p.product_type_id = " + searchParams.getProductType().getId() +" ";
+                    }
+                }
+                if(searchParams.getLocation()!= null && searchParams.getLocation().getId() > 0)
+                {
+                    if(where.equals(""))
+                    {
+                        where += " where p.location_id = " + searchParams.getLocation().getId() + " ";
+                    }
+                    else
+                    {
+                        where += " AND p.location_id = " + searchParams.getLocation().getId() +" ";
+                    }
+                }
+                if(searchParams.getProductSize() != null && searchParams.getProductSize().getId() > 0)
+                {
+                    if(where.equals(""))
+                    {
+                        where += " where p.product_size_id = " + searchParams.getProductSize().getId() + " ";
+                    }
+                    else
+                    {
+                        where += " AND p.product_size_id = " + searchParams.getProductSize().getId() +" ";
+                    }
+                }
+                if(searchParams.getOccupation() != null && searchParams.getOccupation().getId() > 0)
+                {
+                    if(where.equals(""))
+                    {
+                        where += " where p.occupation_id = " + searchParams.getOccupation().getId() + " ";
+                    }
+                    else
+                    {
+                        where += " AND p.occupation_id = " + searchParams.getOccupation().getId() +" ";
+                    }
+                }
+                if(searchParams.getPet() != null && searchParams.getOccupation().getId() > 0)
+                {
+                    if(where.equals(""))
+                    {
+                        where += " where p.pet_id = " + searchParams.getPet().getId() + " ";
+                    }
+                    else
+                    {
+                        where += " AND p.pet_id = " + searchParams.getPet().getId() +" ";
+                    }
+                }
+                if(searchParams.getMinPrice() >= 0 )
+                {
+                    if(where.equals(""))
+                    {
+                        where += " where p.base_price >= " + searchParams.getMinPrice() + " ";
+                    }
+                    else
+                    {
+                        where += " AND p.base_price >= " + searchParams.getMinPrice() +" ";
+                    }
+                }
+                if(searchParams.getMaxPrice() > 0 )
+                {
+                    if(where.equals(""))
+                    {
+                        where += " where p.base_price <= " + searchParams.getMaxPrice() + " ";
+                    }
+                    else
+                    {
+                        where += " AND p.base_price <= " + searchParams.getMaxPrice() +" ";
+                    }
+                }
+            }
+            Session session = HibernateUtil.getSession(); 
+            session.clear();
             List<Product> products = new ArrayList<>();
             transaction = session.beginTransaction();
-            Query query = session.createSQLQuery("select {p.*} from products p limit :limit offset :offset ")
+            Query query = session.createSQLQuery("select {p.*} from products p " + where + " limit :limit offset :offset ")
                         .addEntity("p",Product.class)
                         .setInteger("limit", limit)
                         .setInteger("offset", offset);        

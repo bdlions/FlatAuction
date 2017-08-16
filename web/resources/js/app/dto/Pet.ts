@@ -1,4 +1,4 @@
 export class Pet {
-    id:string;
+    id:number;
     title:string;
 }

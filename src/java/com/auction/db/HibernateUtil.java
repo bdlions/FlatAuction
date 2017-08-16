@@ -37,7 +37,7 @@ public class HibernateUtil {
         }
     }
     
-    public static Session getSession() {
+    synchronized public static Session getSession() {
         //getTransaction().getStatus() != TransactionStatus.ACTIVE
         for(int i = 0; i < sessions.size() ;  i ++){
             if(sessions.get(i).getTransaction().getLocalStatus() != LocalStatus.ACTIVE){
@@ -48,6 +48,6 @@ public class HibernateUtil {
         sessions.add(session);
         return session;
     }
-    
+
     
 }

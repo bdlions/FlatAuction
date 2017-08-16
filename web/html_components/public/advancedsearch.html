@@ -24,40 +24,40 @@
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
                     <h3 class="advanced-search-selection-title">Property Size</h3>
-                    <select class="form-control select-custom-field">
-                        <option *ngFor="let productSize of productSizeList" value="{{productSize.title}}"><a id="{{productSize.id}}">{{productSize.title}}</a></option>
+                    <select [(ngModel)]="searchParams.productSize" name="productSize" class="form-control select-custom-field">
+                        <option *ngFor="let productSize of productSizeList" [ngValue]="productSize">{{productSize.title}}</option>
                     </select> 
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
                     <h3 class="advanced-search-selection-title">Property Type</h3>
-                    <select class="form-control select-custom-field">
-                        <option *ngFor="let productType of productTypeList" value="{{productType.title}}"><a id="{{productType.id}}">{{productType.title}}</a></option>
+                    <select [(ngModel)]="searchParams.productType" name="productType" class="form-control select-custom-field">
+                        <option *ngFor="let productType of productTypeList" [ngValue]="productType">{{productType.title}}</option>
                     </select> 
                 </div>
                 
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
                     <h3 class="advanced-search-selection-title">Occupation</h3>
-                    <select class="form-control select-custom-field">
-                        <option *ngFor="let occupation of occupationList" value="{{occupation.title}}"><a id="{{occupation.id}}">{{occupation.title}}</a></option>
+                    <select [(ngModel)]="searchParams.occupation" name="occupation" class="form-control select-custom-field">
+                        <option *ngFor="let occupation of occupationList" [ngValue]="occupation">{{occupation.title}}</option>
                     </select> 
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
                     <h3 class="advanced-search-selection-title">Pet</h3>
-                    <select class="form-control select-custom-field">
-                        <option *ngFor="let pet of petList" value="{{pet.title}}"><a id="{{pet.id}}">{{pet.title}}</a></option>
+                    <select [(ngModel)]="searchParams.pet" name="pet" class="form-control select-custom-field">
+                        <option *ngFor="let pet of petList" [ngValue]="pet">{{pet.title}}</option>
                     </select> 
                 </div>
                 
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
                     <h3 class="advanced-search-selection-title">Min Price</h3>
-                    <select class="form-control select-custom-field">
-                        <option *ngFor="let minPrice of minPriceList" value="£{{minPrice.amount}}"><a id="{{minPrice.id}}">£{{minPrice.amount}}</a></option>
+                    <select [(ngModel)]="searchParams.minPrice" name="minPrice" class="form-control select-custom-field">
+                        <option *ngFor="let minPrice of minPriceList" [ngValue]="minPrice.title">{{minPrice.title}} £</option>
                     </select> 
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
                     <h3 class="advanced-search-selection-title">Max Price</h3>
-                    <select class="form-control select-custom-field">
-                        <option *ngFor="let maxPrice of maxPriceList" value="£{{maxPrice.amount}}"><a id="{{maxPrice.id}}">£{{maxPrice.amount}}</a></option>
+                    <select [(ngModel)]="searchParams.maxPrice" name="maxPrice" class="form-control select-custom-field">
+                        <option *ngFor="let maxPrice of maxPriceList" [ngValue]="maxPrice.title">{{maxPrice.title}} £</option>
                     </select> 
                 </div>
                 
@@ -71,7 +71,7 @@
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
                     <h3 class="advanced-search-selection-title">Duration</h3>
                     <select class="form-control select-custom-field">
-                        <option *ngFor="let availability of availabilityList" value="{{availability.title}}"><a id="{{availability.id}}">{{availability.title}}</a></option>
+                        <option *ngFor="let availability of availabilityList">{{availability.title}}</option>
                     </select> 
                 </div>
             </div>

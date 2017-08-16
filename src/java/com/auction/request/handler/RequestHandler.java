@@ -24,6 +24,7 @@ import com.auction.dto.ProductSizeList;
 import com.auction.dto.ProductTypeList;
 import com.auction.dto.Role;
 import com.auction.dto.RoleList;
+import com.auction.dto.SearchParams;
 import com.auction.dto.SmokingList;
 import com.auction.dto.Stat;
 import com.auction.dto.StatList;
@@ -301,8 +302,20 @@ public class RequestHandler {
     
     @ClientRequest(action = ACTION.FETCH_PRODUCT_LIST)
     public ClientResponse getProductList(ISession session, IPacket packet){
+        SearchParams searchParams = null;
+        try
+        {
+            Gson gson1 = new Gson();
+            searchParams = gson1.fromJson(packet.getPacketBody(), SearchParams.class);
+        }
+        catch(Exception ex)
+        {
+            logger.error(ex.toString());
+        }
+        
+        
         ProductManager pm = new ProductManager();
-        List<Product> products = pm.getProducts(0, 30);
+        List<Product> products = pm.getProducts(searchParams, 0, 10);
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
         Gson gson = gsonBuilder.create();

@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 //import {Http} from '@angular/http';
 //import {Subscription} from 'rxjs';
 //import {Product} from '../dto/Product';
+import {SearchParams} from '../dto/SearchParams';
 import {ProductType} from '../dto/ProductType';
 import {ProductSize} from '../dto/ProductSize';
 import {Occupation} from '../dto/Occupation';
@@ -22,6 +23,7 @@ import {ACTION} from './../webservice/ACTION';
 })
 export class AdvancedSearch{
     private webAPIService: WebAPIService;
+    private searchParams: SearchParams;
     private locationList: Location[];
     private productSizeList: ProductSize[];
     private productTypeList: ProductType[]; 
@@ -45,7 +47,9 @@ export class AdvancedSearch{
     
     constructor(public router:Router, public route: ActivatedRoute, webAPIService: WebAPIService) {
         this.webAPIService = webAPIService;
-        
+        this.searchParams = new SearchParams();
+        this.minPriceList = JSON.parse("[{\"id\":\"1\",\"title\":\"100\"}, {\"id\":\"2\",\"title\":\"200\"}, {\"id\":\"3\",\"title\":\"300\"}, {\"id\":\"4\",\"title\":\"400\"}, {\"id\":\"5\",\"title\":\"500\"}]");
+        this.maxPriceList = JSON.parse("[{\"id\":\"1\",\"title\":\"100\"}, {\"id\":\"2\",\"title\":\"200\"}, {\"id\":\"3\",\"title\":\"300\"}, {\"id\":\"4\",\"title\":\"400\"}, {\"id\":\"5\",\"title\":\"500\"}]");
         //this.locationList = JSON.parse("[{\"id\":\"1\",\"locationType\":\"area\",\"searchString\":\"London\"}, {\"id\":\"2\",\"locationType\":\"area\",\"searchString\":\"London 123\"}]");
         //this.radiusList = JSON.parse("[{\"id\":\"1\",\"title\":\"+0 miles\"}, {\"id\":\"2\",\"title\":\"+1/4 miles\"}, {\"id\":\"3\",\"title\":\"+1/2 miles\"}]");
         //this.minPriceList = JSON.parse("[{\"id\":\"1\",\"symbol\":\"\",\"amount\":\"Min Price\"}, {\"id\":\"2\",\"symbol\":\"£\",\"amount\":\"500\"}, {\"id\":\"3\",\"symbol\":\"£\",\"amount\":\"600\"}]");
@@ -77,13 +81,13 @@ export class AdvancedSearch{
             this.petList = result.pets;
         });
         
-        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_MIN_PRICE_LIST)).then(result => {
-            this.minPriceList = result.prices;
-        });
-        
-        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_MAX_PRICE_LIST)).then(result => {
-            this.maxPriceList = result.prices;
-        });
+//        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_MIN_PRICE_LIST)).then(result => {
+//            this.minPriceList = result.prices;
+//        });
+//        
+//        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_MAX_PRICE_LIST)).then(result => {
+//            this.maxPriceList = result.prices;
+//        });
         
         this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_AVAILABILITY_LIST)).then(result => {
             this.availabilityList = result.availabilities;
@@ -128,6 +132,30 @@ export class AdvancedSearch{
     search(event: Event) {
         event.preventDefault();
         //forward search params into search page....
+        if (this.searchParams.productType != null && this.searchParams.productType.id  != 0)
+        {
+            localStorage.setItem("productTypeId", this.searchParams.productType.id+"");
+        }
+        if (this.searchParams.productSize != null && this.searchParams.productSize.id  != 0)
+        {
+            localStorage.setItem("productSizeId", this.searchParams.productSize.id+"");
+        }
+        if (this.searchParams.occupation != null && this.searchParams.occupation.id  != 0)
+        {
+            localStorage.setItem("occupationId", this.searchParams.occupation.id+"");
+        }
+        if (this.searchParams.pet != null && this.searchParams.pet.id  != 0)
+        {
+            localStorage.setItem("petId", this.searchParams.pet.id+"");
+        }
+        if (this.searchParams.minPrice != null)
+        {
+            localStorage.setItem("minPrice", this.searchParams.minPrice+"");
+        }
+        if (this.searchParams.maxPrice != null)
+        {
+            localStorage.setItem("maxPrice", this.searchParams.maxPrice+"");
+        }
         let id:number;
         id = 1;
         this.router.navigate(['search', {id: id}]);

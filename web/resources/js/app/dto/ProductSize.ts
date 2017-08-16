@@ -1,4 +1,4 @@
 export class ProductSize {
-    id:string;
+    id:number;
     title:string;
 }

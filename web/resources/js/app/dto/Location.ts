@@ -1,5 +1,5 @@
 export class Location {
-    locationId:string;
+    id:number;
     locationType:number;
     searchString:string;
     postCode:string;

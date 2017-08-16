@@ -30,15 +30,15 @@
                     <h3 class="basic-search-selection-title">Property Type</h3>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 form-group">
-                    <select class="form-control select-custom-field">
-                        <option *ngFor="let productType of productTypeList" value="{{productType.title}}"><a id="{{productType.id}}">{{productType.title}}</a></option>
+                    <select [(ngModel)]="searchParams.productType" name="productType" class="form-control select-custom-field">
+                        <option *ngFor="let productType of productTypeList" [ngValue]="productType">{{productType.title}}</option>
                     </select> 
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
                     <h3 class="basic-search-selection-title">Advert Ref#</h3>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 form-group">
-                    <input id="advertRef" class="form-control input-custom-field" placeholder="Enter Your Advert Ref#"> 
+                    <input [(ngModel)]="searchParams.referenceId" name="referenceId" class="form-control input-custom-field" placeholder="Enter Your Advert Ref#"> 
                 </div>
             </div>                    
             <div class="row form-group">
