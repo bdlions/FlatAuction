@@ -4,36 +4,54 @@
             <div class="signup-pagelet">
                 <div class="signup-block">
                     <h1>Sign Up</h1>
-<!--                    <div class="row form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <button type="submit" class="form-control signup-facebook-button"><i class="fa fa-facebook"></i>&nbsp;&nbsp; Log in with Facebook</button> 
-                        </div>
-                    </div>-->
-                    <div class="row form-group">
+                    <!--                    <div class="row form-group">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <button type="submit" class="form-control signup-facebook-button"><i class="fa fa-facebook"></i>&nbsp;&nbsp; Log in with Facebook</button> 
+                                            </div>
+                                        </div>-->
+                    <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <input name="firstName" [(ngModel)]="user.firstName" class="form-control input-custom-field" placeholder="First Name"/>
                         </div>
                     </div>
-                    <div class="row form-group">
+                    <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <input name="lastName" [(ngModel)]="user.lastName" class="form-control input-custom-field" placeholder="Last Name"/>
                         </div>
                     </div>
-                    <div class="row form-group">
+                    <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <input name="email" [(ngModel)]="user.email" class="form-control input-custom-field" placeholder="Email"/>
                         </div>
                     </div>
-                    <div class="row form-group">
+                    <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <input type="password" name="password" [(ngModel)]="user.password" class="form-control input-custom-field" placeholder="Password"/>
                         </div>
                     </div>
-                    <div class="row form-group">
+                    <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <input type="password" name="confirmPassword" [(ngModel)]="user.confirmPassword" class="form-control input-custom-field" placeholder="Confirm Password"/>
                         </div>
                     </div>
+                    <div class="row form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <label class="radio-inline">
+                                <input id="gender-male" type="radio" name="optradio" checked> Male
+                            </label>
+                            <label class="radio-inline">
+                                <input id="gender-female" type="radio" name="optradio"> Female
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <input id="landlord" type="checkbox"  name="landlord"> Landlord <br>
+                            <input id="tenant" type="checkbox"  name="tenant"> Tenant <br>
+                            <input id="agency" type="checkbox"  name="agency"> Agency
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <button type="submit" class="form-control common-custom-button">Submit</button> 

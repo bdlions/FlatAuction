@@ -3,7 +3,7 @@
         <h2 class="heading">Product List</h2>
     </div>
 </div>
-<div class="row form-group">
+<div class="row form-group margin-bottom-100px">
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group" *ngFor="let product of productList">
          <div class="my-ads-product-layout">
             <div class="row form-group">
@@ -13,7 +13,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
-                    <a (click)="selectProduct($event, product.id)"><img class="img-responsive" src="resources/images/product/{{product.img ? product.img : 'a.jpg'}}"></a>
+                    <a (click)="selectProduct($event, product.id)"><img class="img-responsive image80x50" src="resources/images/product/{{product.img ? product.img : 'a.jpg'}}" alt="Product Img"></a>
                 </div>
                 <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 form-group">
                     <div class="row form-group">

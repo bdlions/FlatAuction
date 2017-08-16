@@ -501,3 +501,13 @@ input[type=checkbox]:checked {
     font-size: 13px;
     display: inline;
 }
+
+/* --------------------- User Info -------------------------------------  */
+.image150x150{
+    width: 150px;
+    height: 150px;
+}
+.image150x100{
+    width: 150px;
+    height: 100px;
+}
