@@ -70,8 +70,8 @@
                 </div>                -->
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group">
                     <h3 class="advanced-search-selection-title">Duration</h3>
-                    <select class="form-control select-custom-field">
-                        <option *ngFor="let availability of availabilityList">{{availability.title}}</option>
+                    <select [(ngModel)]="searchParams.availability" name="availability" class="form-control select-custom-field">
+                        <option *ngFor="let availability of availabilityList" [ngValue]="availability">{{availability.title}}</option>
                     </select> 
                 </div>
             </div>

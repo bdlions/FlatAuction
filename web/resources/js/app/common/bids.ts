@@ -22,6 +22,8 @@ export class Bids implements OnInit, OnDestroy {
     private subscribe:Subscription;
     //private id:number;
     //private productId:number;
+    private fetchProductCounter:number = 0;
+    private fetchBidCounter:number = 0;
     
     constructor(public router:Router, public route: ActivatedRoute, webAPIService: WebAPIService) {
         this.webAPIService = webAPIService;
@@ -56,44 +58,78 @@ export class Bids implements OnInit, OnDestroy {
             //this.productId = params['id'];
             this.product = new Product();
             this.product.id =  params['id'];
-            let requestBody: string = JSON.stringify(this.product);
-            this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_BID_LIST), requestBody).then(result => {
-                this.productBidList = result.productBidList;
-            });
             
-            let requestBody2: string = JSON.stringify(this.product);
-            this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_INFO), requestBody2).then(result => {
-                this.product = result;
-                setInterval(() => 
+            
+            this.fetchProductInfo();
+            this.fetchBidList();
+            
+            setInterval(() => 
+            {
+                this.product.timeLeft = "";
+                let tempTime: number = this.product.time;
+                if (tempTime > 0)
+                {
+                    if (tempTime >= 86400)
                     {
-                        this.product.timeLeft = "";
-                        let tempTime: number = this.product.time;
-                        if (tempTime > 0)
-                        {
-                            if (tempTime >= 86400)
-                            {
-                                this.product.timeLeft = this.product.timeLeft + Math.floor(tempTime/86400) + " days ";
-                                tempTime = tempTime % 86400;
-                            }
-                            if (tempTime >= 3600)
-                            {
-                                this.product.timeLeft = this.product.timeLeft + Math.floor(tempTime/3600) + " hours ";
-                                tempTime = tempTime % 3600;
-                            } 
-                            if (tempTime >= 60)
-                            {
-                                this.product.timeLeft = this.product.timeLeft + Math.floor(tempTime/60) + " mins ";
-                                tempTime = tempTime % 60;
-                            }
-                            if (tempTime < 60)
-                            {
-                                this.product.timeLeft = this.product.timeLeft + tempTime + " secs ";
-                            }                        
-                            this.product.time = (this.product.time - 1); 
-                        }
+                        this.product.timeLeft = this.product.timeLeft + Math.floor(tempTime/86400) + " days ";
+                        tempTime = tempTime % 86400;
                     }
-                , 1000);
-            });
+                    if (tempTime >= 3600)
+                    {
+                        this.product.timeLeft = this.product.timeLeft + Math.floor(tempTime/3600) + " hours ";
+                        tempTime = tempTime % 3600;
+                    } 
+                    if (tempTime >= 60)
+                    {
+                        this.product.timeLeft = this.product.timeLeft + Math.floor(tempTime/60) + " mins ";
+                        tempTime = tempTime % 60;
+                    }
+                    if (tempTime < 60)
+                    {
+                        this.product.timeLeft = this.product.timeLeft + tempTime + " secs ";
+                    }                        
+                    this.product.time = (this.product.time - 1); 
+                }
+            }
+        , 1000);
+        });
+    }
+    
+    public fetchProductInfo()
+    {
+        let requestBody2: string = JSON.stringify(this.product);
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_INFO), requestBody2).then(result => {
+            if(result.success)
+            {
+                this.product = result;
+            }
+            else
+            {
+                this.fetchProductCounter++;
+                if (this.fetchProductCounter <= 5)
+                {
+                    this.fetchProductInfo();
+                }
+            }
+        });
+    }
+    
+    public fetchBidList()
+    {
+        let requestBody: string = JSON.stringify(this.product);
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_BID_LIST), requestBody).then(result => {
+            if(result.success)
+            {
+                this.productBidList = result.productBidList;
+            }
+            else
+            {
+                this.fetchBidCounter++;
+                if (this.fetchBidCounter <= 5)
+                {
+                    this.fetchBidList();
+                }
+            }            
         });
     }
 

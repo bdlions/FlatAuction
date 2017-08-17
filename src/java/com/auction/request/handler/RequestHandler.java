@@ -315,7 +315,7 @@ public class RequestHandler {
         
         
         ProductManager pm = new ProductManager();
-        List<Product> products = pm.getProducts(searchParams, 0, 10);
+        List<Product> products = pm.getProducts(searchParams, 0, 12);
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
         Gson gson = gsonBuilder.create();

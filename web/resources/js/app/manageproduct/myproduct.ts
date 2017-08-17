@@ -34,6 +34,19 @@ export class MyProduct {
     private datePipe: DatePipe;
     private subscribe:Subscription;
     private id:number;
+    
+    private fetchProductInfoCounter:number = 0;
+    private fetchProductTypeCounter:number = 0;
+    private fetchProductSizeCounter:number = 0;
+    private fetchProductCategoryCounter:number = 0;
+    private fetchLocationCounter:number = 0;
+    private fetchAmenityCounter:number = 0;
+    private fetchAvailabilityCounter:number = 0;
+    private fetchStayCounter:number = 0;
+    private fetchSmokingCounter:number = 0;
+    private fetchOccupationCounter:number = 0;
+    private fetchPetCounter: number = 0;
+    
     private requestProduct: Product;
     private responseProduct: Product;
     public uploader:FileUploader = new FileUploader({url: URL});
@@ -143,304 +156,21 @@ export class MyProduct {
                 this.requestProduct = new Product();
                 this.responseProduct = new Product();
                 this.requestProduct.id = this.id;
-                let requestBody: string = JSON.stringify(this.requestProduct);
-                this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_INFO), requestBody).then(result => {
-                    this.product = result;
-                    this.amenities = this.product.amenities;
-                    this.availableFrom = new Date(this.product.availableFrom);
-                    this.availableTo = new Date(this.product.availableTo);
-                    this.bidStartDate = new Date(this.product.bidStartDate);
-                    this.bidEndDate = new Date(this.product.bidEndDate);
-                    this.availabilities = this.product.availabilities;
-                    //set or update product fields into interface
-                    this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_TYPE_LIST)).then(result => {
-                        if(result.productTypes != null)
-                        {
-                            this.productTypeList = result.productTypes;
-                            //set product type matching id
-                            if (this.productTypeList.length > 0)
-                            {
-                                for (let counter = 0; counter < this.productTypeList.length; counter++)
-                                {
-                                    if (this.productTypeList[counter].id == this.product.productType.id)
-                                    {
-                                        this.product.productType = this.productTypeList[counter];
-                                    }
-                                }
-                            }
-                        }            
-                    });
-                    this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_SIZE_LIST)).then(result => {
-                        if(result.productSizes != null)
-                        {
-                            this.productSizeList = result.productSizes;
-                            if (this.productSizeList.length > 0)
-                            {
-                                for (let counter = 0; counter < this.productSizeList.length; counter++)
-                                {
-                                    if (this.productSizeList[counter].id == this.product.productSize.id)
-                                    {
-                                        this.product.productSize = this.productSizeList[counter];
-                                    }
-                                }
-                                //this.product.productSize = this.productSizeList[0];
-                            }
-                        }            
-                    });
-                    this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_CATEGORY_LIST)).then(result => {
-                        if(result.productCategories != null)
-                        {
-                            this.productCategoryList = result.productCategories;
-                            if (this.productCategoryList.length > 0)
-                            {
-                                for (let counter = 0; counter < this.productCategoryList.length; counter++)
-                                {
-                                    if (this.productCategoryList[counter].id == this.product.productCategory.id)
-                                    {
-                                        this.product.productCategory = this.productCategoryList[counter];
-                                    }
-                                }
-                                //this.product.productCategory = this.productCategoryList[0];
-                            }
-                        }
-                    });
-                    this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_LOCATION_LIST)).then(result => {
-                        if(result.locations != null)
-                        {
-                            this.locationList = result.locations;
-                            if (this.locationList.length > 0)
-                            {
-                                this.product.location = this.locationList[0];
-                            }
-                        }
-                        //this.locationList = result.locations;
-                        //this.product.location = this.locationList[0];
-                    });
-                    this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_AMENITY_LIST)).then(result => {
-                        if(result.amenities != null)
-                        {
-                            this.amenityList = result.amenities;
-                        }
-                    });
-                    this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_AVAILABILITY_LIST)).then(result => {
-                        if(result.availabilities != null)
-                        {
-                            this.availabilityList = result.availabilities;
-                        }
-                    });
-                    this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_STAY_LIST)).then(result => {
-                        if(result.stays != null)
-                        {
-                            this.minStayList = result.stays;
-                            if (this.minStayList.length > 0)
-                            {
-                                for (let counter = 0; counter < this.minStayList.length; counter++)
-                                {
-                                    if (this.minStayList[counter].id == this.product.minStay.id)
-                                    {
-                                        this.product.minStay = this.minStayList[counter];
-                                    }
-                                }
-                                //this.product.minStay = this.minStayList[0];
-                            }
-                            this.maxStayList = result.stays;
-                            if (this.maxStayList.length > 0)
-                            {
-                                for (let counter = 0; counter < this.maxStayList.length; counter++)
-                                {
-                                    if (this.maxStayList[counter].id == this.product.maxStay.id)
-                                    {
-                                        this.product.maxStay = this.maxStayList[counter];
-                                    }
-                                }
-                                //this.product.maxStay = this.maxStayList[0];
-                            }
-                        }
-                        //this.minStayList = result.stays;
-                        //this.product.minStay = this.minStayList[0];
-                        //this.maxStayList = result.stays;
-                        //this.product.maxStay = this.minStayList[0];
-                    });
-
-                    this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_SMOKING_LIST)).then(result => {
-                        if(result.smokings != null)
-                        {
-                            this.smokingList = result.smokings;
-                            if (this.smokingList.length > 0)
-                            {
-                                for (let counter = 0; counter < this.smokingList.length; counter++)
-                                {
-                                    if (this.smokingList[counter].id == this.product.smoking.id)
-                                    {
-                                        this.product.smoking = this.smokingList[counter];
-                                    }
-                                }
-                                //this.product.smoking = this.smokingList[0];
-                            }
-                        }
-                        //this.smokingList = result.smokings;
-                        //this.product.smoking = this.smokingList[0];
-                    });
-
-                    this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_OCCUPATION_LIST)).then(result => {
-                        if(result.occupations != null)
-                        {
-                            this.occupationList = result.occupations;
-                            if (this.occupationList.length > 0)
-                            {
-                                for (let counter = 0; counter < this.occupationList.length; counter++)
-                                {
-                                    if (this.occupationList[counter].id == this.product.occupation.id)
-                                    {
-                                        this.product.occupation = this.occupationList[counter];
-                                    }
-                                }
-                                //this.product.occupation = this.occupationList[0];
-                            }
-                        }
-                        //this.occupationList = result.occupations;
-                        //this.product.occupation = this.occupationList[0];
-                    });
-
-                    this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PET_LIST)).then(result => {
-                        if(result.pets != null)
-                        {
-                            this.petList = result.pets;
-                            if (this.petList.length > 0)
-                            {
-                                for (let counter = 0; counter < this.petList.length; counter++)
-                                {
-                                    if (this.petList[counter].id == this.product.pet.id)
-                                    {
-                                        this.product.pet = this.petList[counter];
-                                    }
-                                }
-                                //this.product.pet = this.petList[0];
-                            }
-                        }
-                        //this.petList = result.pets;
-                        //this.product.pet = this.petList[0];
-                    });
-                });
+                this.fetchProductInfo();
             }
             else
             {
                 //setting any default data for product info
-                //this.product = new Product();
-                //this.product.startTime = "7 AM";
-                this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_TYPE_LIST)).then(result => {
-                    if(result.productTypes != null)
-                    {
-                        this.productTypeList = result.productTypes;
-                        if (this.productTypeList.length > 0)
-                        {
-                            this.product.productType = this.productTypeList[0];
-                        }
-                    }            
-                });
-                this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_SIZE_LIST)).then(result => {
-                    if(result.productSizes != null)
-                    {
-                        this.productSizeList = result.productSizes;
-                        if (this.productSizeList.length > 0)
-                        {
-                            this.product.productSize = this.productSizeList[0];
-                        }
-                    }            
-                });
-                this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_CATEGORY_LIST)).then(result => {
-                    if(result.productCategories != null)
-                    {
-                        this.productCategoryList = result.productCategories;
-                        if (this.productCategoryList.length > 0)
-                        {
-                            this.product.productCategory = this.productCategoryList[0];
-                        }
-                    }
-                });
-                this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_LOCATION_LIST)).then(result => {
-                    if(result.locations != null)
-                    {
-                        this.locationList = result.locations;
-                        if (this.locationList.length > 0)
-                        {
-                            this.product.location = this.locationList[0];
-                        }
-                    }
-                    //this.locationList = result.locations;
-                    //this.product.location = this.locationList[0];
-                });
-                
-                this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_AMENITY_LIST)).then(result => {
-                    if(result.amenities != null)
-                    {
-                        this.amenityList = result.amenities;
-                    }
-                });
-                this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_AVAILABILITY_LIST)).then(result => {
-                    if(result.availabilities != null)
-                    {
-                        this.availabilityList = result.availabilities;
-                    }
-                });
-                this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_STAY_LIST)).then(result => {
-                    if(result.stays != null)
-                    {
-                        this.minStayList = result.stays;
-                        if (this.minStayList.length > 0)
-                        {
-                            this.product.minStay = this.minStayList[0];
-                        }
-                        this.maxStayList = result.stays;
-                        if (this.maxStayList.length > 0)
-                        {
-                            this.product.maxStay = this.maxStayList[0];
-                        }
-                    }
-                    //this.minStayList = result.stays;
-                    //this.product.minStay = this.minStayList[0];
-                    //this.maxStayList = result.stays;
-                    //this.product.maxStay = this.minStayList[0];
-                });
-
-                this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_SMOKING_LIST)).then(result => {
-                    if(result.smokings != null)
-                    {
-                        this.smokingList = result.smokings;
-                        if (this.smokingList.length > 0)
-                        {
-                            this.product.smoking = this.smokingList[0];
-                        }
-                    }
-                    //this.smokingList = result.smokings;
-                    //this.product.smoking = this.smokingList[0];
-                });
-
-                this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_OCCUPATION_LIST)).then(result => {
-                    if(result.occupations != null)
-                    {
-                        this.occupationList = result.occupations;
-                        if (this.occupationList.length > 0)
-                        {
-                            this.product.occupation = this.occupationList[0];
-                        }
-                    }
-                    //this.occupationList = result.occupations;
-                    //this.product.occupation = this.occupationList[0];
-                });
-
-                this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PET_LIST)).then(result => {
-                    if(result.pets != null)
-                    {
-                        this.petList = result.pets;
-                        if (this.petList.length > 0)
-                        {
-                            this.product.pet = this.petList[0];
-                        }
-                    }
-                    //this.petList = result.pets;
-                    //this.product.pet = this.petList[0];
-                });
+                this.fetchProductTypeList();
+                this.fetchProductSizeList();
+                this.fetchProductCategoryList();
+                this.fetchLocationList();
+                this.fetchAmenityList();
+                this.fetchAvailabilityList();
+                this.fetchStayList();
+                this.fetchSmokingList();
+                this.fetchOccupationList();
+                this.fetchPetList();
             }
         });
     }
@@ -448,6 +178,368 @@ export class MyProduct {
     ngOnDestroy() {
         this.subscribe.unsubscribe();
     }
+    
+    public fetchProductInfo()
+    {
+        let requestBody: string = JSON.stringify(this.requestProduct);
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_INFO), requestBody).then(result => {
+            if(result.success)
+            {
+                this.product = result;
+                this.amenities = this.product.amenities;
+                this.availableFrom = new Date(this.product.availableFrom);
+                this.availableTo = new Date(this.product.availableTo);
+                this.bidStartDate = new Date(this.product.bidStartDate);
+                this.bidEndDate = new Date(this.product.bidEndDate);
+                this.availabilities = this.product.availabilities;
+                //set or update product fields into interface
+                this.fetchProductTypeList();
+                this.fetchProductSizeList();
+                this.fetchProductCategoryList();
+                this.fetchLocationList();
+                this.fetchAmenityList();
+                this.fetchAvailabilityList();
+                this.fetchStayList();
+                this.fetchSmokingList();
+                this.fetchOccupationList();
+                this.fetchPetList();
+            }
+            else
+            {
+                this.fetchProductInfoCounter++;
+                if (this.fetchProductInfoCounter <= 5)
+                {
+                    this.fetchProductInfo();
+                }
+            }
+        });
+    }
+    
+    
+    public fetchProductTypeList()
+    {
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_TYPE_LIST)).then(result => {
+            if(result.success && result.productTypes != null)
+            {
+                this.productTypeList = result.productTypes;
+                //set product type matching id
+                if (this.productTypeList.length > 0)
+                {
+                    if(this.id > 0 )
+                    {
+                        for (let counter = 0; counter < this.productTypeList.length; counter++)
+                        {
+                            if (this.productTypeList[counter].id == this.product.productType.id)
+                            {
+                                this.product.productType = this.productTypeList[counter];
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.product.productType = this.productTypeList[0];
+                    }                    
+                }
+            } 
+            else
+            {
+                this.fetchProductTypeCounter++;
+                if (this.fetchProductTypeCounter <= 5)
+                {
+                    this.fetchProductTypeList();
+                }
+            }           
+        });
+    }
+    
+    
+    public fetchProductSizeList()
+    {
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_SIZE_LIST)).then(result => {
+            if(result.success && result.productSizes != null)
+            {
+                this.productSizeList = result.productSizes;
+                if (this.productSizeList.length > 0)
+                {
+                    if(this.id > 0)
+                    {
+                        for (let counter = 0; counter < this.productSizeList.length; counter++)
+                        {
+                            if (this.productSizeList[counter].id == this.product.productSize.id)
+                            {
+                                this.product.productSize = this.productSizeList[counter];
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.product.productSize = this.productSizeList[0];
+                    }
+                }
+                else
+                {
+                    this.fetchProductSizeCounter++;
+                    if (this.fetchProductSizeCounter <= 5)
+                    {
+                        this.fetchProductSizeList();
+                    }
+                }
+            }            
+        });
+    }
+    
+    public fetchProductCategoryList()
+    {
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_CATEGORY_LIST)).then(result => {
+            if(result.success && result.productCategories != null)
+            {
+                this.productCategoryList = result.productCategories;
+                if (this.productCategoryList.length > 0)
+                {
+                    if(this.id > 0)
+                    {
+                        for (let counter = 0; counter < this.productCategoryList.length; counter++)
+                        {
+                            if (this.productCategoryList[counter].id == this.product.productCategory.id)
+                            {
+                                this.product.productCategory = this.productCategoryList[counter];
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.product.productCategory = this.productCategoryList[0];
+                    }                    
+                }
+            }
+            else
+            {
+                this.fetchProductCategoryCounter++;
+                if (this.fetchProductCategoryCounter <= 5)
+                {
+                    this.fetchProductCategoryList();
+                }
+            }
+        });
+    }
+    
+    public fetchLocationList()
+    {
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_LOCATION_LIST)).then(result => {
+            if(result.success && result.locations != null)
+            {
+                this.locationList = result.locations;
+                if (this.locationList.length > 0)
+                {
+                    this.product.location = this.locationList[0];
+                }
+            }
+            else
+            {
+                this.fetchLocationCounter++;
+                if (this.fetchLocationCounter <= 5)
+                {
+                    this.fetchLocationList();
+                }
+            }
+        });
+    }
+    
+    public fetchAmenityList()
+    {
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_AMENITY_LIST)).then(result => {
+            if(result.success && result.amenities != null)
+            {
+                this.amenityList = result.amenities;
+            }
+            else
+            {
+                this.fetchAmenityCounter++;
+                if (this.fetchAmenityCounter <= 5)
+                {
+                    this.fetchAmenityList();
+                }
+            }
+        });
+    }
+    
+    public fetchAvailabilityList()
+    {
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_AVAILABILITY_LIST)).then(result => {
+            if(result.success && result.availabilities != null)
+            {
+                this.availabilityList = result.availabilities;
+            }
+            else
+            {
+                this.fetchAvailabilityCounter++;
+                if (this.fetchAvailabilityCounter <= 5)
+                {
+                    this.fetchAvailabilityList();
+                }
+            }
+        });
+    }
+
+    public fetchStayList()
+    {
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_STAY_LIST)).then(result => {
+            if(result.success && result.stays != null)
+            {
+                this.minStayList = result.stays;
+                if (this.minStayList.length > 0)
+                {
+                    if(this.id > 0)
+                    {
+                        for (let counter = 0; counter < this.minStayList.length; counter++)
+                        {
+                            if (this.minStayList[counter].id == this.product.minStay.id)
+                            {
+                                this.product.minStay = this.minStayList[counter];
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.product.minStay = this.minStayList[0];
+                    }
+                }
+                this.maxStayList = result.stays;
+                if (this.maxStayList.length > 0)
+                {
+                    if(this.id > 0)
+                    {
+                        for (let counter = 0; counter < this.maxStayList.length; counter++)
+                        {
+                            if (this.maxStayList[counter].id == this.product.maxStay.id)
+                            {
+                                this.product.maxStay = this.maxStayList[counter];
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.product.maxStay = this.maxStayList[0];
+                    }
+                }
+            }
+            else
+            {
+                this.fetchStayCounter++;
+                if (this.fetchStayCounter <= 5)
+                {
+                    this.fetchStayList();
+                }
+            }
+        });
+    }
+    
+    public fetchSmokingList()
+    {
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_SMOKING_LIST)).then(result => {
+            if(result.success && result.smokings != null)
+            {
+                this.smokingList = result.smokings;
+                if (this.smokingList.length > 0)
+                {
+                    if(this.id > 0)
+                    {
+                        for (let counter = 0; counter < this.smokingList.length; counter++)
+                        {
+                            if (this.smokingList[counter].id == this.product.smoking.id)
+                            {
+                                this.product.smoking = this.smokingList[counter];
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.product.smoking = this.smokingList[0];
+                    }                    
+                }
+            }
+            else
+            {
+                this.fetchSmokingCounter++;
+                if (this.fetchSmokingCounter <= 5)
+                {
+                    this.fetchSmokingList();
+                }
+            }
+        });
+    }
+    
+    public fetchOccupationList()
+    {
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_OCCUPATION_LIST)).then(result => {
+            if(result.success && result.occupations != null)
+            {
+                this.occupationList = result.occupations;
+                if (this.occupationList.length > 0)
+                {
+                    if(this.id > 0)
+                    {
+                        for (let counter = 0; counter < this.occupationList.length; counter++)
+                        {
+                            if (this.occupationList[counter].id == this.product.occupation.id)
+                            {
+                                this.product.occupation = this.occupationList[counter];
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.product.occupation = this.occupationList[0];
+                    }                    
+                }
+            }
+            else
+            {
+                this.fetchOccupationCounter++;
+                if (this.fetchOccupationCounter <= 5)
+                {
+                    this.fetchOccupationList();
+                }
+            }
+        });
+    }
+    
+    public fetchPetList()
+    {
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PET_LIST)).then(result => {
+            if(result.success && result.pets != null)
+            {
+                this.petList = result.pets;
+                if (this.petList.length > 0)
+                {
+                    if(this.id > 0)
+                    {
+                        for (let counter = 0; counter < this.petList.length; counter++)
+                        {
+                            if (this.petList[counter].id == this.product.pet.id)
+                            {
+                                this.product.pet = this.petList[counter];
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.product.pet = this.petList[0];
+                    }                    
+                }
+            }
+            else
+            {
+                this.fetchPetCounter++;
+                if (this.fetchPetCounter <= 5)
+                {
+                    this.fetchPetList();
+                }
+            }
+        });
+    }
+        
+    
     
     //onDropdownProductTypeChange(event: any) 
     //{

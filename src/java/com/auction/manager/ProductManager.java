@@ -47,8 +47,8 @@ public class ProductManager {
     public List<ProductType> getProductTypes() {
         Transaction transaction = null;
         List<ProductType> productTypes = new ArrayList<>();
-        try
-        {
+//        try
+//        {
             Session session = HibernateUtil.getSession();
             session.clear();
             transaction = session.beginTransaction();        
@@ -58,16 +58,16 @@ public class ProductManager {
             if (!transaction.wasCommitted()){
                 transaction.commit();
             }
-        }
-        catch(Exception ex)
-        {
-            logger.error(ex.toString());
-            if(transaction != null)
-            {
-                transaction.rollback();
-            }
-            productTypes = new ArrayList<>();
-        }        
+//        }
+//        catch(Exception ex)
+//        {
+//            logger.error(ex.toString());
+//            if(transaction != null)
+//            {
+//                transaction.rollback();
+//            }
+//            productTypes = new ArrayList<>();
+//        }        
         return productTypes;
     }
     
@@ -79,8 +79,8 @@ public class ProductManager {
     public List<ProductSize> getProductSizes() {
         Transaction transaction = null;
         List<ProductSize> productSizes = new ArrayList<>();
-        try
-        {
+//        try
+//        {
             Session session = HibernateUtil.getSession();
             session.clear();
             transaction = session.beginTransaction();        
@@ -90,16 +90,16 @@ public class ProductManager {
             if (!transaction.wasCommitted()){
                 transaction.commit();
             }
-        }
-        catch(Exception ex)
-        {
-            logger.error(ex.toString());
-            if(transaction != null)
-            {
-                transaction.rollback();
-            }
-            productSizes = new ArrayList<>();
-        }        
+//        }
+//        catch(Exception ex)
+//        {
+//            logger.error(ex.toString());
+//            if(transaction != null)
+//            {
+//                transaction.rollback();
+//            }
+//            productSizes = new ArrayList<>();
+//        }        
         return productSizes;
     }
     
@@ -111,8 +111,8 @@ public class ProductManager {
     public List<ProductCategory> getProductCategories() {
         Transaction transaction = null;
         List<ProductCategory> productCategories = new ArrayList<>();
-        try
-        {
+//        try
+//        {
             Session session = HibernateUtil.getSession();
             session.clear();
             transaction = session.beginTransaction();        
@@ -122,16 +122,16 @@ public class ProductManager {
             if (!transaction.wasCommitted()){
                 transaction.commit();
             }
-        }
-        catch(Exception ex)
-        {
-            logger.error(ex.toString());
-            if(transaction != null)
-            {
-                transaction.rollback();
-            }
-            productCategories = new ArrayList<>();
-        }        
+//        }
+//        catch(Exception ex)
+//        {
+//            logger.error(ex.toString());
+//            if(transaction != null)
+//            {
+//                transaction.rollback();
+//            }
+//            productCategories = new ArrayList<>();
+//        }        
         return productCategories;
     }
     
@@ -176,8 +176,8 @@ public class ProductManager {
     public List<Amenity> getAmenities() {
         Transaction transaction = null;
         List<Amenity> amenities = new ArrayList<>();
-        try
-        {
+//        try
+//        {
             Session session = HibernateUtil.getSession();
             session.clear();
             transaction = session.beginTransaction();        
@@ -187,16 +187,16 @@ public class ProductManager {
             if (!transaction.wasCommitted()){
                 transaction.commit();
             }
-        }
-        catch(Exception ex)
-        {
-            logger.error(ex.toString());
-            if(transaction != null)
-            {
-                transaction.rollback();
-            }
-            amenities = new ArrayList<>();
-        }        
+//        }
+//        catch(Exception ex)
+//        {
+//            logger.error(ex.toString());
+//            if(transaction != null)
+//            {
+//                transaction.rollback();
+//            }
+//            amenities = new ArrayList<>();
+//        }        
         return amenities;
     }
     
@@ -208,8 +208,8 @@ public class ProductManager {
     public List<Availability> getAvailabilities() {
         Transaction transaction = null;
         List<Availability> availabilities = new ArrayList<>();
-        try
-        {
+//        try
+//        {
             Session session = HibernateUtil.getSession();
             session.clear();
             transaction = session.beginTransaction();        
@@ -219,16 +219,16 @@ public class ProductManager {
             if (!transaction.wasCommitted()){
                 transaction.commit();
             }
-        }
-        catch(Exception ex)
-        {
-            logger.error(ex.toString());
-            if(transaction != null)
-            {
-                transaction.rollback();
-            }
-            availabilities = new ArrayList<>();
-        }        
+//        }
+//        catch(Exception ex)
+//        {
+//            logger.error(ex.toString());
+//            if(transaction != null)
+//            {
+//                transaction.rollback();
+//            }
+//            availabilities = new ArrayList<>();
+//        }        
         return availabilities;
     }
     
@@ -240,8 +240,8 @@ public class ProductManager {
     public List<Stay> getStays() {
         Transaction transaction = null;
         List<Stay> stays = new ArrayList<>();
-        try
-        {
+//        try
+//        {
             Session session = HibernateUtil.getSession();
             session.clear();
             transaction = session.beginTransaction();        
@@ -251,16 +251,16 @@ public class ProductManager {
             if (!transaction.wasCommitted()){
                 transaction.commit();
             }
-        }
-        catch(Exception ex)
-        {
-            logger.error(ex.toString());
-            if(transaction != null)
-            {
-                transaction.rollback();
-            }
-            stays = new ArrayList<>();
-        }        
+//        }
+//        catch(Exception ex)
+//        {
+//            logger.error(ex.toString());
+//            if(transaction != null)
+//            {
+//                transaction.rollback();
+//            }
+//            stays = new ArrayList<>();
+//        }        
         return stays;
     }
     
@@ -272,8 +272,8 @@ public class ProductManager {
     public List<Smoking> getSmokings() {
         Transaction transaction = null;
         List<Smoking> smokings = new ArrayList<>();
-        try
-        {
+//        try
+//        {
             Session session = HibernateUtil.getSession();
             session.clear();
             transaction = session.beginTransaction();        
@@ -283,16 +283,16 @@ public class ProductManager {
             if (!transaction.wasCommitted()){
                 transaction.commit();
             }
-        }
-        catch(Exception ex)
-        {
-            logger.error(ex.toString());
-            if(transaction != null)
-            {
-                transaction.rollback();
-            }
-            smokings = new ArrayList<>();
-        }        
+//        }
+//        catch(Exception ex)
+//        {
+//            logger.error(ex.toString());
+//            if(transaction != null)
+//            {
+//                transaction.rollback();
+//            }
+//            smokings = new ArrayList<>();
+//        }        
         return smokings;
     }
     
@@ -304,8 +304,8 @@ public class ProductManager {
     public List<Occupation> getOccupations() {
         Transaction transaction = null;
         List<Occupation> occupations = new ArrayList<>();
-        try
-        {
+//        try
+//        {
             Session session = HibernateUtil.getSession();
             session.clear();
             transaction = session.beginTransaction();            
@@ -315,16 +315,16 @@ public class ProductManager {
             if (!transaction.wasCommitted()){
                 transaction.commit();
             }
-        }
-        catch(Exception ex)
-        {
-            logger.error(ex.toString());
-            if(transaction != null)
-            {
-                transaction.rollback();
-            }
-            occupations = new ArrayList<>();
-        }
+//        }
+//        catch(Exception ex)
+//        {
+//            logger.error(ex.toString());
+//            if(transaction != null)
+//            {
+//                transaction.rollback();
+//            }
+//            occupations = new ArrayList<>();
+//        }
         
         return occupations;
     }
@@ -337,8 +337,8 @@ public class ProductManager {
     public List<Pet> getPets() {
         Transaction transaction = null;
         List<Pet> pets = new ArrayList<>();
-        try
-        {
+//        try
+//        {
             Session session = HibernateUtil.getSession();
             session.clear();
             transaction = session.beginTransaction();            
@@ -348,16 +348,16 @@ public class ProductManager {
             if (!transaction.wasCommitted()){
                 transaction.commit();
             }
-        }
-        catch(Exception ex)
-        {
-            logger.error(ex.toString());
-            if(transaction != null)
-            {
-                transaction.rollback();
-            }
-            pets = new ArrayList<>();
-        }        
+//        }
+//        catch(Exception ex)
+//        {
+//            logger.error(ex.toString());
+//            if(transaction != null)
+//            {
+//                transaction.rollback();
+//            }
+//            pets = new ArrayList<>();
+//        }        
         return pets;
     }
     
@@ -663,8 +663,8 @@ public class ProductManager {
     public Product getProductInfo(int productId) {
         Transaction transaction = null;
         Product product = null;
-        try
-        {            
+//        try
+//        {            
             TimeUtils timeUtils = new TimeUtils();
             Session session = HibernateUtil.getSession();
             session.clear();
@@ -771,15 +771,15 @@ public class ProductManager {
             if (!transaction.wasCommitted()){
                 transaction.commit();
             }
-        }
-        catch(Exception ex)
-        {
-            logger.error(ex.toString());
-            if(transaction != null)
-            {
-                transaction.rollback();
-            }
-        }        
+//        }
+//        catch(Exception ex)
+//        {
+//            logger.error(ex.toString());
+//            if(transaction != null)
+//            {
+//                transaction.rollback();
+//            }
+//        }        
         return product;
     }
     
@@ -973,8 +973,8 @@ public class ProductManager {
     {
         Transaction transaction = null;
         List<ProductBid> productBidList = new ArrayList<>();
-        try
-        {
+//        try
+//        {
             Session session = HibernateUtil.getSession();
             session.clear();
             transaction = session.beginTransaction();
@@ -996,16 +996,16 @@ public class ProductManager {
             if (!transaction.wasCommitted()){
                 transaction.commit();
             }
-        }
-        catch(Exception ex)
-        {
-            logger.error(ex.toString());
-            if(transaction != null)
-            {
-                transaction.rollback();
-            }
-            productBidList = new ArrayList<>();
-        }
+//        }
+//        catch(Exception ex)
+//        {
+//            logger.error(ex.toString());
+//            if(transaction != null)
+//            {
+//                transaction.rollback();
+//            }
+//            productBidList = new ArrayList<>();
+//        }
         return productBidList;
     }
     
@@ -1021,8 +1021,8 @@ public class ProductManager {
     public List<Product> getProducts(SearchParams searchParams, int offset , int limit) {
         Transaction transaction = null;
         List<Product> productList = new ArrayList<>();
-        try
-        {
+//        try
+//        {
             String where = "";
             if(searchParams != null)
             {
@@ -1155,16 +1155,16 @@ public class ProductManager {
             if (!transaction.wasCommitted()){
                 transaction.commit();
             }            
-        }
-        catch(Exception ex)
-        {
-            logger.error(ex.toString());
-            if(transaction != null)
-            {
-                transaction.rollback();
-            }
-            productList = new ArrayList<>();
-        }        
+//        }
+//        catch(Exception ex)
+//        {
+//            logger.error(ex.toString());
+//            if(transaction != null)
+//            {
+//                transaction.rollback();
+//            }
+//            productList = new ArrayList<>();
+//        }        
         return productList;
     }
     

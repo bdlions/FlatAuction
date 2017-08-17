@@ -31,6 +31,8 @@ export class Landing {
     
     constructor(public router: Router, webAPIService: WebAPIService) {
         this.webAPIService = webAPIService;
+        //initializing closing product list
+        this.featuredProductList = JSON.parse("[]");
         let msg = localStorage.getItem("msg");
         if (msg != null && msg != "")
         {

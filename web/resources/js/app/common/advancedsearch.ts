@@ -38,6 +38,14 @@ export class AdvancedSearch{
     
     private availabilityList: Availability[];
     
+    private fetchLocationCounter:number = 0;
+    private fetchProductTypeCounter:number = 0;
+    private fetchProductSizeCounter:number = 0;
+    private fetchAvailabilityCounter:number = 0;
+    private fetchOccupationCounter:number = 0;
+    private fetchPetCounter: number = 0;
+    
+    
     //private genderList: General[];
     
     //private durationList: General[];    
@@ -48,6 +56,12 @@ export class AdvancedSearch{
     constructor(public router:Router, public route: ActivatedRoute, webAPIService: WebAPIService) {
         this.webAPIService = webAPIService;
         this.searchParams = new SearchParams();
+        this.fetchLocationList();
+        this.fetchProductTypeList();
+        this.fetchProductSizeList();
+        this.fetchAvailabilityList();
+        this.fetchOccupationList();
+        this.fetchPetList();
         this.minPriceList = JSON.parse("[{\"id\":\"1\",\"title\":\"100\"}, {\"id\":\"2\",\"title\":\"200\"}, {\"id\":\"3\",\"title\":\"300\"}, {\"id\":\"4\",\"title\":\"400\"}, {\"id\":\"5\",\"title\":\"500\"}]");
         this.maxPriceList = JSON.parse("[{\"id\":\"1\",\"title\":\"100\"}, {\"id\":\"2\",\"title\":\"200\"}, {\"id\":\"3\",\"title\":\"300\"}, {\"id\":\"4\",\"title\":\"400\"}, {\"id\":\"5\",\"title\":\"500\"}]");
         //this.locationList = JSON.parse("[{\"id\":\"1\",\"locationType\":\"area\",\"searchString\":\"London\"}, {\"id\":\"2\",\"locationType\":\"area\",\"searchString\":\"London 123\"}]");
@@ -63,23 +77,23 @@ export class AdvancedSearch{
         //this.productList = JSON.parse("[{\"id\":\"1\",\"title\":\"Fun at the Bowling Alley1\", \"img\":\"a.jpg\", \"price\":\"£100\", \"price_type\":\"pw\", \"size\":\"single\", \"images\":[{\"id\":\"1\", \"url\":\"a.jpg\"}, {\"id\":\"2\", \"url\":\"b.jpg\"}], \"available\":\"2017-04-18\", \"description\":\"Double room in E16 available from 17/04/2017, short walk away from Prince Regent Lane DLR1.\"}, {\"id\":\"3\",\"title\":\"Fun at the Bowling Alley2\", \"img\":\"a.jpg\", \"price\":\"£100\", \"price_type\":\"pw\", \"size\":\"single\", \"images\":[{\"id\":\"1\", \"url\":\"a.jpg\"}, {\"id\":\"2\", \"url\":\"b.jpg\"}], \"available\":\"2017-04-18\", \"description\":\"Double room in E16 available from 17/04/2017, short walk away from Prince Regent Lane DLR2.\"}, {\"id\":\"3\",\"title\":\"Fun at the Bowling Alley3\", \"img\":\"a.jpg\", \"price\":\"£100\", \"price_type\":\"pw\", \"size\":\"single\", \"images\":[{\"id\":\"1\", \"url\":\"a.jpg\"}, {\"id\":\"2\", \"url\":\"b.jpg\"}], \"available\":\"2017-04-18\", \"description\":\"Double room in E16 available from 17/04/2017, short walk away from Prince Regent Lane DLR3.\"}, {\"id\":\"4\",\"title\":\"Fun at the Bowling Alley4\", \"img\":\"a.jpg\", \"price\":\"£100\", \"price_type\":\"pw\", \"size\":\"single\", \"images\":[{\"id\":\"1\", \"url\":\"a.jpg\"}, {\"id\":\"2\", \"url\":\"b.jpg\"}], \"available\":\"2017-04-18\", \"description\":\"Double room in E16 available from 17/04/2017, short walk away from Prince Regent Lane DLR4.\"} ]");
         //console.log(this.productList);
         
-        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_LOCATION_LIST)).then(result => {
-            this.locationList = result.locations;
-        });
+//        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_LOCATION_LIST)).then(result => {
+//            this.locationList = result.locations;
+//        });
         
-        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_TYPE_LIST)).then(result => {
-            this.productTypeList = result.productTypes;
-        });
-        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_SIZE_LIST)).then(result => {
-            this.productSizeList = result.productSizes;
-        });
+//        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_TYPE_LIST)).then(result => {
+//            this.productTypeList = result.productTypes;
+//        });
+//        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_SIZE_LIST)).then(result => {
+//            this.productSizeList = result.productSizes;
+//        });
         
-        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_OCCUPATION_LIST)).then(result => {
-            this.occupationList = result.occupations;
-        });
-        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PET_LIST)).then(result => {
-            this.petList = result.pets;
-        });
+//        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_OCCUPATION_LIST)).then(result => {
+//            this.occupationList = result.occupations;
+//        });
+//        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PET_LIST)).then(result => {
+//            this.petList = result.pets;
+//        });
         
 //        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_MIN_PRICE_LIST)).then(result => {
 //            this.minPriceList = result.prices;
@@ -89,9 +103,9 @@ export class AdvancedSearch{
 //            this.maxPriceList = result.prices;
 //        });
         
-        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_AVAILABILITY_LIST)).then(result => {
-            this.availabilityList = result.availabilities;
-        });
+//        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_AVAILABILITY_LIST)).then(result => {
+//            this.availabilityList = result.availabilities;
+//        });
         
         
         //this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_RADIUS_LIST)).then(result => {
@@ -105,6 +119,115 @@ export class AdvancedSearch{
         
         
         
+    }
+    
+    public fetchLocationList()
+    {
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_LOCATION_LIST)).then(result => {
+            if(result.success)
+            {
+                this.locationList = result.locations;
+            }
+            else
+            {
+                this.fetchLocationCounter++;
+                if (this.fetchLocationCounter <= 5)
+                {
+                    this.fetchLocationList();
+                }
+            }            
+        });
+    }
+    
+    public fetchProductTypeList()
+    {
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_TYPE_LIST)).then(result => {
+            if(result.success)
+            {
+                this.productTypeList = result.productTypes;
+            }
+            else
+            {
+                this.fetchProductTypeCounter++;
+                if (this.fetchProductTypeCounter <= 5)
+                {
+                    this.fetchProductTypeList();
+                }
+            }
+            
+        });
+    }
+    
+    public fetchProductSizeList()
+    {
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PRODUCT_SIZE_LIST)).then(result => {
+            if(result.success)
+            {
+                this.productSizeList = result.productSizes;
+            }
+            else
+            {
+                this.fetchProductSizeCounter++;
+                if (this.fetchProductSizeCounter <= 5)
+                {
+                    this.fetchProductSizeList();
+                }
+            }                
+        });
+    }
+    
+    public fetchAvailabilityList()
+    {
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_AVAILABILITY_LIST)).then(result => {
+            if(result.success)
+            {
+                this.availabilityList = result.availabilities;
+            }
+            else
+            {
+                this.fetchAvailabilityCounter++;
+                if (this.fetchAvailabilityCounter <= 5)
+                {
+                    this.fetchAvailabilityList();
+                }
+            }            
+        });
+    }
+    
+    public fetchOccupationList()
+    {
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_OCCUPATION_LIST)).then(result => {
+            if(result.success)
+            {
+                this.occupationList = result.occupations;
+            }
+            else
+            {
+                this.fetchOccupationCounter++;
+                if (this.fetchOccupationCounter <= 5)
+                {
+                    this.fetchOccupationList();
+                }
+            }
+        });
+    }
+    
+    public fetchPetList()
+    {
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_PET_LIST)).then(result => {
+            if(result.success)
+            {
+                this.petList = result.pets;
+            }
+            else
+            {
+                this.fetchPetCounter++;
+                if (this.fetchPetCounter <= 5)
+                {
+                    this.fetchPetList();
+                }
+            }            
+        });
     }
     
     
