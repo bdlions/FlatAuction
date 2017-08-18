@@ -42,23 +42,35 @@
                 </div>
             </form>
             <ul class="nav navbar-nav">
-<!--                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Radius <span class="caret"></span></a>
-                    <ul class="dropdown-menu product-info-detail-custom-dropdown-menu">
-                        <li *ngFor="let radius of radiusList" ><a href="" id="{{radius.id}}">{{radius.title}}</a></li>
-                    </ul>
-                </li>-->
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Min Price <span class="caret"></span></a>
-                    <ul class="dropdown-menu product-info-detail-custom-dropdown-menu">
-                        <li *ngFor="let minPrice of minPriceList" >{{minPrice.title}} £</li>
-                    </ul>
+                <!--                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Radius <span class="caret"></span></a>
+                                    <ul class="dropdown-menu product-info-detail-custom-dropdown-menu">
+                                        <li *ngFor="let radius of radiusList" ><a href="" id="{{radius.id}}">{{radius.title}}</a></li>
+                                    </ul>
+                                </li>-->
+                <!--                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Min Price <span class="caret"></span></a>
+                                    <ul class="dropdown-menu product-info-detail-custom-dropdown-menu">
+                                        <li *ngFor="let minPrice of minPriceList" >{{minPrice.title}} £</li>
+                                    </ul>
+                                </li>-->
+                <li class="minPrice-align">
+                    <a >Min Price</a>
+                    <select class="form-control product-info-detail-minPrice">
+                        <option *ngFor="let minPrice of minPriceList" value="{{minPrice.title}} £">{{minPrice.title}} £</option>
+                    </select> 
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Max Price <span class="caret"></span></a>
-                    <ul class="dropdown-menu product-info-detail-custom-dropdown-menu">
-                        <li *ngFor="let maxPrice of maxPriceList" >{{maxPrice.title}} £</li>
-                    </ul>
+                <!--                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Max Price <span class="caret"></span></a>
+                                    <ul class="dropdown-menu product-info-detail-custom-dropdown-menu">
+                                        <li *ngFor="let maxPrice of maxPriceList" >{{maxPrice.title}} £</li>
+                                    </ul>
+                                </li>-->
+                <li class="maxPrice-align">
+                    <a >Max Price</a>
+                    <select class="form-control product-info-detail-maxPrice">
+                        <option *ngFor="let maxPrice of maxPriceList" value="{{maxPrice.title}} £">{{maxPrice.title}} £</option>
+                    </select> 
                 </li>
                 <button type="button" class="common-custom-button custom-nav-button" data-toggle="collapse" data-target="#filsters">Filters <span class="caret"></span></button>
                 <div id="filsters" class="collapse filter-content-box">

@@ -679,6 +679,14 @@ input[type=checkbox]:checked {
     .auction-time {
         bottom: 130px;
     }
+    .custom-nav-button{
+        margin-left: 15px;
+        margin-bottom: 15px;
+        margin-top: 15px;
+    }
+    .minPrice-align a,.maxPrice-align a{
+    margin-top: 15px;
+}
 }
 
 /* --------------------- Tablet Device -------------------------------------  */
@@ -759,6 +767,9 @@ input[type=checkbox]:checked {
     .header-menu-layout .navbar-nav{
         margin-left: 25px;
     }
+    .product-info-detail-minPrice,.product-info-detail-maxPrice{
+        margin-top: -15px;
+    }
 }
 /* --------------------- Medium Device -------------------------------------  */
 @media (min-width : 992px) and (max-width : 1199px) {
@@ -834,6 +845,9 @@ input[type=checkbox]:checked {
     .auction-time {
         bottom: 80px;
     }
+    .product-info-detail-minPrice,.product-info-detail-maxPrice{
+        margin-top: -15px;
+    }
 }
 /* --------------------- Large Device -------------------------------------  */
 @media only screen and (min-width : 1200px) {
@@ -907,6 +921,9 @@ input[type=checkbox]:checked {
     }
     .auction-time {
         bottom: 80px;
+    }
+    .product-info-detail-minPrice,.product-info-detail-maxPrice{
+        margin-top: -15px;
     }
 }
 
@@ -1635,6 +1652,27 @@ input[type=checkbox]:checked {
     background-image: none!important;
     background-repeat: repeat-x!important;
     box-shadow: none!important; 
+}
+.product-info-detail-minPrice,.product-info-detail-maxPrice{
+    padding: 0px 3px!important;
+    height: 28px!important;
+    border: 2px solid #f49726;
+    border-radius: 0px;
+    margin-left: 15px;
+    width: 93%;
+}
+.minPrice-align,.maxPrice-align{
+    margin-top: -15px;
+}
+.minPrice-align{
+    margin-right: 15px;
+}
+.maxPrice-align{
+     margin-right: 15px;
+}
+
+.minPrice-align:hover,.maxPrice-align:hover{
+    background: transparent!important;
 }
 .dropdown-submenu {
     position: relative;
