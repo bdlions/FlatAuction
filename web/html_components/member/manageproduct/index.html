@@ -142,10 +142,10 @@
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                                                 <input name="availableFrom" class="form-control input-custom-field" type="text" 
-                                                    [ngModel]="availableFrom | date:'yyyy-MM-dd'" (ngModelChange)="availableFrom = $event;"
+                                                    [ngModel]="availableFrom | date:'dd-MM-yyyy'" (ngModelChange)="availableFrom = $event;"
                                                     (focus)="showAvailableFromDatePicker = true" >
                                                 <div class="start-date" *ngIf="showAvailableFromDatePicker" >
-                                                    <datepicker name="availableFromDatePicker" [(ngModel)]="availableFrom" [minDate]="minDate" [showWeeks]="false" (selectionDone) ="showAvailableFromDatePicker = false"  ></datepicker>
+                                                    <datepicker name="availableFromDatePicker" [(ngModel)]="availableFrom" [minDate]="minDate2" [showWeeks]="false" (selectionDone) ="showAvailableFromDatePicker = false"  ></datepicker>
                                                 </div>
                                             </div>
                                         </div>
@@ -155,10 +155,10 @@
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                                                 <input name="availableTo" class="form-control input-custom-field" type="text" 
-                                                    [ngModel]="availableTo | date:'yyyy-MM-dd'" (ngModelChange)="availableTo = $event;"
+                                                    [ngModel]="availableTo | date:'dd-MM-yyyy'" (ngModelChange)="availableTo = $event;"
                                                     (focus)="showAvailableToDatePicker = true" >
                                                 <div class="start-date" *ngIf="showAvailableToDatePicker" >
-                                                    <datepicker name="showAvailableToDatePicker" [(ngModel)]="availableTo" [minDate]="minDate" [showWeeks]="false" (selectionDone) ="showAvailableToDatePicker = false"  ></datepicker>
+                                                    <datepicker name="showAvailableToDatePicker" [(ngModel)]="availableTo" [minDate]="minDate2" [showWeeks]="false" (selectionDone) ="showAvailableToDatePicker = false"  ></datepicker>
                                                 </div>
                                             </div>
                                         </div>
@@ -399,10 +399,10 @@
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                                                 <input name="bidStartDate" class="form-control input-custom-field" type="text" 
-                                                    [ngModel]="bidStartDate | date:'yyyy-MM-dd'" (ngModelChange)="bidStartDate = $event;"
+                                                    [ngModel]="bidStartDate | date:'dd-MM-yyyy'" (ngModelChange)="bidStartDate = $event;"
                                                     (focus)="showBidStartDateDatePicker = true" >
                                                 <div class="start-date" *ngIf="showBidStartDateDatePicker" >
-                                                    <datepicker name="showBidStartDateDatePicker" [(ngModel)]="bidStartDate" [minDate]="minDate" [showWeeks]="false" (selectionDone) ="showBidStartDateDatePicker = false"  ></datepicker>
+                                                    <datepicker name="showBidStartDateDatePicker" [(ngModel)]="bidStartDate" [minDate]="minDate2" [showWeeks]="false" (selectionDone) ="showBidStartDateDatePicker = false"  ></datepicker>
                                                 </div>
                                             </div>
                                         </div>
@@ -422,10 +422,10 @@
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                                                 <input name="bidEndDate" class="form-control input-custom-field" type="text" 
-                                                    [ngModel]="bidEndDate | date:'yyyy-MM-dd'" (ngModelChange)="bidEndDate = $event;"
+                                                    [ngModel]="bidEndDate | date:'dd-MM-yyyy'" (ngModelChange)="bidEndDate = $event;"
                                                     (focus)="showBidEndDateDatePicker = true" >
                                                 <div class="start-date" *ngIf="showBidEndDateDatePicker" >
-                                                    <datepicker name="showBidEndDateDatePicker" [(ngModel)]="bidEndDate" [minDate]="minDate" [showWeeks]="false" (selectionDone) ="showBidEndDateDatePicker = false"  ></datepicker>
+                                                    <datepicker name="showBidEndDateDatePicker" [(ngModel)]="bidEndDate" [minDate]="minDate2" [showWeeks]="false" (selectionDone) ="showBidEndDateDatePicker = false"  ></datepicker>
                                                 </div>
                                             </div>
                                         </div>

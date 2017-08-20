@@ -195,7 +195,7 @@
                                                     <h3 class="product-info-details-right-panel-product-availability-content">Available From</h3>
                                                 </div>
                                                 <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
-                                                    <h3 class="product-info-details-right-panel-product-availability-content">{{productInfo?.availableFrom}}</h3>
+                                                    <h3 class="product-info-details-right-panel-product-availability-content">{{productInfo?.availableFrom | date: 'dd-MM-yyyy'}}</h3>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -203,7 +203,7 @@
                                                     <h3 class="product-info-details-right-panel-product-availability-content">Available To</h3>
                                                 </div>
                                                 <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
-                                                    <h3 class="product-info-details-right-panel-product-availability-content">{{productInfo?.availableTo}}</h3>
+                                                    <h3 class="product-info-details-right-panel-product-availability-content">{{productInfo?.availableTo | date: 'dd-MM-yyyy'}}</h3>
                                                 </div>
                                             </div>
                                             <div class="row" *ngIf="productInfo?.availabilities?.length > 0">

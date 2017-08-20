@@ -684,11 +684,11 @@ public class ProductManager {
             //handle if product is null
             if(product != null)
             {            
-                product.setAvailableFrom(timeUtils.convertUnixToHumanDate(product.getUnixAvailableFrom()));
-                product.setAvailableTo(timeUtils.convertUnixToHumanDate(product.getUnixAvailableTo()));
-                product.setBidStartDate(timeUtils.convertUnixToHumanDate(product.getUnixBidStart()));
+                product.setAvailableFrom(timeUtils.convertUnixToHumanDate(product.getUnixAvailableFrom(), ""));
+                product.setAvailableTo(timeUtils.convertUnixToHumanDate(product.getUnixAvailableTo(), ""));
+                product.setBidStartDate(timeUtils.convertUnixToHumanDate(product.getUnixBidStart(), ""));
                 product.setBidStartTime(timeUtils.convertUnixToHumanTime(product.getUnixBidStart()));
-                product.setBidEndDate(timeUtils.convertUnixToHumanDate(product.getUnixBidEnd()));
+                product.setBidEndDate(timeUtils.convertUnixToHumanDate(product.getUnixBidEnd(), ""));
                 product.setBidEndTime(timeUtils.convertUnixToHumanTime(product.getUnixBidEnd()));
                 
                 long currentUnixTime = timeUtils.getCurrentTime();
@@ -990,7 +990,7 @@ public class ProductManager {
             for(Object[] row: rows)
             {
                 ProductBid productBid = (ProductBid)row[0];
-                productBid.setCreatedTime(timeUtils.convertUnixToHuman(productBid.getCreatedOn()));
+                productBid.setCreatedTime(timeUtils.convertUnixToHuman(productBid.getCreatedOn(), "dd-MM-yyyy h:mm a"));
                 productBidList.add(productBid);
             }
             if (!transaction.wasCommitted()){

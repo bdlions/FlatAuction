@@ -346,6 +346,11 @@ export class Search implements OnInit, OnDestroy {
         });
     }
     
+    //retrieve product list based on search params change
+    public onSearchParamChange(event: Event) {
+        this.fetchProductList();
+    }
+    
     public hideChildModal(): void {
         this.searchModal.hide();
         this.message = "";

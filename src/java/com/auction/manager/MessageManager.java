@@ -310,7 +310,7 @@ public class MessageManager {
                 MessageText messageText = (MessageText)row[0];
                 User user = (User)row[1];
                 messageText.setUser(user);
-                messageText.setCreatedTime(timeUtils.convertUnixToHuman(messageText.getCreatedOn()));
+                messageText.setCreatedTime(timeUtils.convertUnixToHuman(messageText.getCreatedOn(), "dd-MM-yyyy h:mm a"));
                 message.getMessageTextList().add(messageText);
             }
             if (!transaction.wasCommitted()){

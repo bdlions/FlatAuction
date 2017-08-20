@@ -79,11 +79,14 @@ export class MyProduct {
     private showAvailableToDatePicker: boolean = false;
     private showBidStartDateDatePicker: boolean = false;
     private showBidEndDateDatePicker: boolean = false;
+    
     public availableFrom: Date = new Date();
     public availableTo: Date = new Date();
     public bidStartDate: Date = new Date();
     public bidEndDate: Date = new Date();
+    
     public minDate: Date = void 0;
+    public minDate2: Date = void 0;
     
     public successMessage:string;
     public errorMessage:string;
