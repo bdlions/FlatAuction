@@ -44,6 +44,9 @@ a{
 .padding-5px{
     padding: 5px;
 }
+.margin-top-1px{
+    margin-top: 1px;
+}
 .margin-bottom-5px{
     margin-bottom: 5px;
 }
@@ -677,16 +680,22 @@ input[type=checkbox]:checked {
         margin: 30px 0;
     }
     .auction-time {
-        bottom: 130px;
+        bottom: 125px;
     }
     .custom-nav-button{
         margin-left: 15px;
         margin-bottom: 15px;
         margin-top: 15px;
     }
-    .minPrice-align a,.maxPrice-align a{
-    margin-top: 15px;
-}
+/*    .minPrice-align,.maxPrice-align{
+        margin-top: 27px;
+        margin-left: -25px;
+        margin-right: 40px;
+    }*/
+    .custom-nav-button{
+        margin-top: 10px;
+        padding: 4px 16px!important;
+    }
 }
 
 /* --------------------- Tablet Device -------------------------------------  */
@@ -762,13 +771,22 @@ input[type=checkbox]:checked {
         width: 327px;
     }
     .auction-time {
-        bottom: 80px;
+        bottom: 75px;
     }
     .header-menu-layout .navbar-nav{
         margin-left: 25px;
     }
     .product-info-detail-minPrice,.product-info-detail-maxPrice{
         margin-top: -15px;
+    }
+    .minPrice-align,.maxPrice-align{
+        margin-top: 27px;
+        margin-left: -25px;
+        margin-right: 40px;
+    }
+    .custom-nav-button{
+        margin-top: 10px;
+        padding: 4px 16px!important;
     }
 }
 /* --------------------- Medium Device -------------------------------------  */
@@ -843,10 +861,18 @@ input[type=checkbox]:checked {
         margin-left: -34px;
     }
     .auction-time {
-        bottom: 80px;
+        bottom: 75px;
     }
     .product-info-detail-minPrice,.product-info-detail-maxPrice{
         margin-top: -15px;
+    }
+    .minPrice-align,.maxPrice-align{
+        margin-top: 27px;
+        margin-left: -25px;
+        margin-right: 40px;
+    }
+    .custom-nav-button{
+        padding: 14px 16px;
     }
 }
 /* --------------------- Large Device -------------------------------------  */
@@ -920,10 +946,18 @@ input[type=checkbox]:checked {
         margin-left: -34px;
     }
     .auction-time {
-        bottom: 80px;
+        bottom: 75px;
     }
     .product-info-detail-minPrice,.product-info-detail-maxPrice{
         margin-top: -15px;
+    }
+    .minPrice-align,.maxPrice-align{
+        margin-top: 27px;
+        margin-left: -25px;
+        margin-right: 40px;
+    }
+    .custom-nav-button{
+        padding: 14px 16px;
     }
 }
 
@@ -1661,16 +1695,6 @@ input[type=checkbox]:checked {
     margin-left: 15px;
     width: 93%;
 }
-.minPrice-align,.maxPrice-align{
-    margin-top: -15px;
-}
-.minPrice-align{
-    margin-right: 15px;
-}
-.maxPrice-align{
-     margin-right: 15px;
-}
-
 .minPrice-align:hover,.maxPrice-align:hover{
     background: transparent!important;
 }
@@ -1741,7 +1765,6 @@ input[type=checkbox]:checked {
 }
 .custom-nav-button{
     font-size: 16px;
-    padding: 14px 16px;
     font-family: "tw-cen-mt";
     background-color: #262637;
     border: 1px solid #262637;

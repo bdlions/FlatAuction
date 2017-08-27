@@ -70,23 +70,23 @@
                 </div>
             </div>
             <div class="row" *ngIf="productInfo?.user?.agentLogo != null">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <img class="img-responsive" src="resources/images/profile/logo/100_100/{{productInfo?.user?.agentLogo}}">
                 </div>
             </div>
-            <div class="row" *ngIf="productInfo?.companyName != null">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row form-group" *ngIf="productInfo?.companyName != null">
+                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <h3 class="product-info-details-left-panel-company-name">{{productInfo.companyName}}</h3>
                 </div>
             </div>
             <div class="row form-group" *ngIf="productInfo?.user?.businessName != null">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                   <h3 class="product-info-details-left-panel-company-address">{{productInfo?.user?.businessName}}</h3>
+                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h3 class="product-info-details-left-panel-company-address">{{productInfo?.user?.businessName}}</h3>
                 </div>
             </div>
             <div class="row form-group" *ngIf="productInfo?.user?.address != null">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                   <h3 class="product-info-details-left-panel-company-address">{{productInfo?.user?.address}}</h3>
+                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h3 class="product-info-details-left-panel-company-address">{{productInfo?.user?.address}}</h3>
                 </div>
             </div>
         </div>

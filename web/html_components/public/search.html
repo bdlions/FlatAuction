@@ -37,7 +37,7 @@
                         <input #locationSelector name="locationSelector" [(ngModel)]="selectedLocation"
                             [typeahead]="locationList"
                             typeaheadOptionField="searchString"
-                            class="form-control search-input-field">
+                            class="form-control search-input-field margin-top-1px">
                     </div>
                 </div>
             </form>
@@ -54,24 +54,40 @@
                                         <li *ngFor="let minPrice of minPriceList" >{{minPrice.title}} £</li>
                                     </ul>
                                 </li>-->
-                <li class="minPrice-align">
+                <li>
                     <a >Min Price</a>
+                </li>
+                <li class="minPrice-align">
                     <select [(ngModel)]="searchParams.minPrice" name="minPrice" (change)="onSearchParamChange($event)" class="form-control product-info-detail-minPrice">
                         <option *ngFor="let minPrice of minPriceList" [ngValue]="minPrice.title" >{{minPrice.title}} £</option>
                     </select> 
                 </li>
+                <!--                <li class="minPrice-align">
+                                    <a >Min Price</a>
+                                    <select [(ngModel)]="searchParams.minPrice" name="minPrice" (change)="onSearchParamChange($event)" class="form-control product-info-detail-minPrice">
+                                        <option *ngFor="let minPrice of minPriceList" [ngValue]="minPrice.title" >{{minPrice.title}} £</option>
+                                    </select> 
+                                </li>-->
                 <!--                <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Max Price <span class="caret"></span></a>
                                     <ul class="dropdown-menu product-info-detail-custom-dropdown-menu">
                                         <li *ngFor="let maxPrice of maxPriceList" >{{maxPrice.title}} £</li>
                                     </ul>
                                 </li>-->
-                <li class="maxPrice-align">
+                <li>
                     <a >Max Price</a>
+                </li>
+                <li class="maxPrice-align">
                     <select [(ngModel)]="searchParams.maxPrice" name="maxPrice" (change)="onSearchParamChange($event)" class="form-control product-info-detail-maxPrice">
                         <option *ngFor="let maxPrice of maxPriceList" [ngValue]="maxPrice.title" >{{maxPrice.title}} £</option>
                     </select> 
                 </li>
+                <!--                <li class="maxPrice-align">
+                                    <a >Max Price</a>
+                                    <select [(ngModel)]="searchParams.maxPrice" name="maxPrice" (change)="onSearchParamChange($event)" class="form-control product-info-detail-maxPrice">
+                                        <option *ngFor="let maxPrice of maxPriceList" [ngValue]="maxPrice.title" >{{maxPrice.title}} £</option>
+                                    </select> 
+                                </li>-->
                 <button type="button" class="common-custom-button custom-nav-button" data-toggle="collapse" data-target="#filsters">Filters <span class="caret"></span></button>
                 <div id="filsters" class="collapse filter-content-box">
                     <div class="row form-group">
