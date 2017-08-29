@@ -502,16 +502,3 @@ input[type=checkbox]:checked {
     display: inline;
 }
 
-/* --------------------- User Info -------------------------------------  */
-.image150x150{
-    width: 150px;
-    height: 150px;
-}
-.image150x100{
-    width: 150px;
-    height: 100px;
-}
-.image80x50{
-    width: 80px;
-    height: 50px;
-}
