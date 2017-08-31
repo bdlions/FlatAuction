@@ -80,7 +80,7 @@
         <div *ngFor="let productInfo of featuredProductList" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group" >
             <div class="product-auction-head">
                 <div class="product-auction-img">
-                    <a (click)="selectProduct($event, productInfo.id)"><img class="img-responsive" src="resources/images/product/328_212/{{productInfo.img}}"></a>
+                    <a (click)="selectProduct($event, productInfo.id)"><img class="img-responsive" src="resources/images/product/328_212/{{productInfo.img}}" alt="Property Image"></a>
                 </div>
                 <div class="auction-time text-center">{{productInfo.timeLeft}}</div>
 <!--                <div *ngIf="productInfo.id == 1" class="auction-time text-center">1 hours 56 mins 46 secs</div>
