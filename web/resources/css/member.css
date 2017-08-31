@@ -1028,6 +1028,17 @@ html, body {
         margin-top: 0!important;
     }
 }
+.individual-ad-bids-product-title{
+    line-height: 1.2em;
+    font-weight: normal;
+    margin-top: -5px;
+    display: -webkit-box;
+    height: 6.0em;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
 /* --------------------- Datepicker  -------------------------------------  */
 .start-date{
     position: absolute; 
