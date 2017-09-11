@@ -302,6 +302,10 @@ html, body {
     .featured-ad-left-sidebar-margin-top-align{
         margin-top: 45px!important;
     }
+    
+    .individual-ad-bids-radio-inline-custom{
+        padding-left: 0px!important;
+    }
 }
 /* --------------------- Large Device -------------------------------------  */
 @media (min-width : 1200px) {
