@@ -1043,6 +1043,9 @@ html, body {
     overflow: hidden;
     text-overflow: ellipsis
 }
+.ad-bids-optradio{
+    margin-top: 6px!important;
+}
 /* --------------------- Datepicker  -------------------------------------  */
 .start-date{
     position: absolute; 
