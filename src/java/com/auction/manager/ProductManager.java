@@ -377,7 +377,7 @@ public class ProductManager {
             Session session = HibernateUtil.getSession();     
             session.clear();
             transaction = session.beginTransaction();
-            Query query = session.createSQLQuery("select {p.*} from products p where p.user_id = :user_id limit :limit offset :offset ")
+            Query query = session.createSQLQuery("select {p.*} from products p where p.user_id = :user_id order by p.unix_available_to desc  limit :limit offset :offset ")
                         .addEntity("p",Product.class)
                         .setInteger("user_id", userId)
                         .setInteger("limit", limit)

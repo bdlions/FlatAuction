@@ -175,7 +175,7 @@ export class Productinfo implements OnInit, OnDestroy {
         if (username != null && username != "")
         {
             this.productBid.product = new Product();
-            this.productBid.product.id = this.product.id;
+            this.productBid.product.id = this.id;
             //ser user id from session at server
             //set currency and currency unit at server.
             let requestBody: string = JSON.stringify(this.productBid);

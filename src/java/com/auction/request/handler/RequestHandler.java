@@ -563,7 +563,9 @@ public class RequestHandler {
         Gson gson = new Gson();
         User user = gson.fromJson(packet.getPacketBody(), User.class);
         //read image from temp directory and place into user profile picture directory
+        logger.debug("-------------------------imageFileName1:"+user.getImg());
         String imageFileName = user.getImg().trim().replaceAll("\n", "");
+        logger.debug("-------------------------imageFileName2:"+imageFileName);
         user.setImg(imageFileName);
         if(!StringUtils.isNullOrEmpty(imageFileName))
         {
@@ -571,14 +573,18 @@ public class RequestHandler {
             String uploadPath = RequestHandler.class.getClassLoader().getResource(Constants.SERVER_ROOT_DIR + Constants.IMAGE_UPLOAD_PATH).getFile();
             String profilePicPath = RequestHandler.class.getClassLoader().getResource(Constants.SERVER_ROOT_DIR + Constants.PROFILE_PIC_PATH).getFile();
             //System.out.println(root);
-            
+            logger.debug("--------------------------------Source Path:"+uploadPath + imageFileName+", Destination Path"+profilePicPath + imageFileName);
             //copy actual image
             FileUtils.copyFile(uploadPath + imageFileName, profilePicPath + imageFileName);
             
             //resize image to 150px to 150px
             String profilePicPath150_150 = RequestHandler.class.getClassLoader().getResource(Constants.SERVER_ROOT_DIR + Constants.IMG_PROFILE_PIC_PATH_150_150).getFile();
             ImageLibrary imageLibrary = new ImageLibrary();
-            imageLibrary.resizeImage(uploadPath + imageFileName, profilePicPath150_150 + imageFileName, Constants.IMG_PROFILE_PIC_WIDTH, Constants.IMG_PROFILE_PIC_HEIGHT);
+            imageLibrary.resizeImage(uploadPath + imageFileName, profilePicPath150_150 + imageFileName, Constants.IMG_PROFILE_PIC_WIDTH_150, Constants.IMG_PROFILE_PIC_HEIGHT_150);
+            
+            //resize image to 50px to 50px
+            String profilePicPath50_50 = RequestHandler.class.getClassLoader().getResource(Constants.SERVER_ROOT_DIR + Constants.IMG_PROFILE_PIC_PATH_50_50).getFile();
+            imageLibrary.resizeImage(uploadPath + imageFileName, profilePicPath50_50 + imageFileName, Constants.IMG_PROFILE_PIC_WIDTH_50, Constants.IMG_PROFILE_PIC_HEIGHT_50);
         }
         UserManager userManager = new UserManager();
         userManager.updateUserProfile(user);
