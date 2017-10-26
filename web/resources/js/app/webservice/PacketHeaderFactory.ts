@@ -116,6 +116,9 @@ export class PacketHeaderFactory {
             case ACTION.FETCH_STAT_LIST:
                 packetHeader.requestType = REQUEST_TYPE.REQUEST
                 break;
+            case ACTION.FETCH_BID_TIME_LIST:
+                packetHeader.requestType = REQUEST_TYPE.REQUEST
+                break;
             case ACTION.UPDATE_USER_INFO:
                 packetHeader.requestType = REQUEST_TYPE.UPDATE
                 break;

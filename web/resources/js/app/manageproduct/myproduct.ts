@@ -17,6 +17,7 @@ import {Stay} from '../dto/Stay'
 import {Smoking} from '../dto/Smoking'
 import {Occupation} from '../dto/Occupation'
 import {Pet} from '../dto/Pet'
+import {BidTime} from '../dto/BidTime'
 import {WebAPIService} from './../webservice/web-api-service';
 import {PacketHeaderFactory} from './../webservice/PacketHeaderFactory';
 import {ACTION} from './../webservice/ACTION';
@@ -46,6 +47,7 @@ export class MyProduct {
     private fetchSmokingCounter:number = 0;
     private fetchOccupationCounter:number = 0;
     private fetchPetCounter: number = 0;
+    private fetchBidTimeCounter: number = 0;
     
     private requestProduct: Product;
     private responseProduct: Product;
@@ -73,6 +75,10 @@ export class MyProduct {
     private petList: Pet[];
     
     private availableTimeList: General[];
+    private bidTimeList: BidTime[];
+    
+    private selectedBidStartTime: BidTime;
+    private selectedBidEndTime: BidTime;
     
     //private durationList: General[];    
     private showAvailableFromDatePicker: boolean = false;
@@ -107,6 +113,7 @@ export class MyProduct {
         this.amenities = new Array<Amenity>();
         this.availabilityList = new Array<Availability>();
         this.availabilities = new Array<Availability>();
+        this.bidTimeList = new Array<BidTime>();
         //this.selectedProductType = new ProductType();
         //this.selectedProductSize = new ProductSize();
         //this.selectedProductCategory = new ProductCategory();
@@ -174,6 +181,7 @@ export class MyProduct {
                 this.fetchSmokingList();
                 this.fetchOccupationList();
                 this.fetchPetList();
+                this.fetchBidTimeList();
             }
         });
     }
@@ -206,6 +214,7 @@ export class MyProduct {
                 this.fetchSmokingList();
                 this.fetchOccupationList();
                 this.fetchPetList();
+                this.fetchBidTimeList();
             }
             else
             {
@@ -541,6 +550,49 @@ export class MyProduct {
             }
         });
     }
+    
+    public fetchBidTimeList()
+    {
+        this.webAPIService.getResponse(PacketHeaderFactory.getHeader(ACTION.FETCH_BID_TIME_LIST)).then(result => {
+            if(result.success && result.bidTimes != null)
+            {
+                this.bidTimeList = result.bidTimes;
+                if (this.product.id > 0)
+                {
+                    let counter: number = 0;
+                    for (counter = 0; counter < this.bidTimeList.length; counter++)
+                    {
+                        if (this.product.bidStartTime == this.bidTimeList[counter].title)
+                        {
+                            this.selectedBidStartTime = this.bidTimeList[counter];
+                        }
+                        if (this.product.bidEndTime == this.bidTimeList[counter].title)
+                        {
+                            this.selectedBidEndTime = this.bidTimeList[counter];
+                        }
+                    }
+                }
+                else
+                {
+                    if (this.bidTimeList.length > 0)
+                    {
+                        this.selectedBidStartTime = this.bidTimeList[0];
+                        this.selectedBidEndTime = this.bidTimeList[0]; 
+                    }
+                }
+                console.log(this.selectedBidStartTime);
+                console.log(this.selectedBidEndTime);
+            } 
+            else
+            {
+                this.fetchBidTimeCounter++;
+                if (this.fetchBidTimeCounter <= 5)
+                {
+                    this.fetchBidTimeList();
+                }
+            }           
+        });
+    }
         
     
     
@@ -571,6 +623,9 @@ export class MyProduct {
         
         this.product.amenities = this.amenities;
         this.product.availabilities = this.availabilities;
+        this.product.bidStartTime = this.selectedBidStartTime.title;
+        this.product.bidEndTime = this.selectedBidEndTime.title;
+        
         let requestBody: string = JSON.stringify(this.product);
         if(this.id == 0)
         {
