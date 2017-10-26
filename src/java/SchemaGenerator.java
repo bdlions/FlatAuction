@@ -9,7 +9,7 @@
  * @author alamgir
  */
 import com.auction.db.HibernateUtil;
-import com.auction.dto.*;
+import com.bdlions.dto.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.util.logging.Level;

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-import com.auction.dto.AccountSettingFA;
+import com.bdlions.dto.AccountSettingFA;
 import com.google.gson.Gson;
 import org.junit.After;
 import org.junit.AfterClass;

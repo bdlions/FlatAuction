@@ -6,13 +6,16 @@
 package com.auction.util;
 
 import org.bdlions.util.StringUtils;
-import com.auction.dto.response.ClientResponse;
+import com.bdlions.dto.response.ClientResponse;
 import com.auction.exceptions.InvalidRequestException;
 import org.bdlions.transport.packet.IPacket;
 import org.bdlions.transport.packet.IPacketHeader;
 import com.auction.request.handler.AuthHandler;
+import com.auction.request.handler.BidHandler;
 import com.auction.request.handler.RequestExecutorInfo;
 import com.auction.request.handler.RequestHandler;
+import com.bdlions.util.ACTION;
+import com.bdlions.util.REQUEST_TYPE;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.bdlions.session.ISession;
@@ -127,7 +130,7 @@ public class ClientRequestHandler implements IClientRequestHandler{
     }
 
     private Class[] getDelegators() {
-        Class[] delegators = new Class[]{AuthHandler.class, RequestHandler.class};
+        Class[] delegators = new Class[]{AuthHandler.class, RequestHandler.class, BidHandler.class};
         return delegators;
     }
 

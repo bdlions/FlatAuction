@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-import com.auction.dto.Message;
-import com.auction.dto.MessageText;
-import com.auction.dto.Product;
-import com.auction.dto.User;
+import com.bdlions.dto.Message;
+import com.bdlions.dto.MessageText;
+import com.bdlions.dto.Product;
+import com.bdlions.dto.User;
 import com.auction.manager.MessageManager;
 import org.junit.After;
 import org.junit.AfterClass;

@@ -1,10 +1,10 @@
 package com.auction.manager;
 
 import com.auction.db.HibernateUtil;
-import com.auction.dto.Message;
-import com.auction.dto.MessageText;
-import com.auction.dto.Product;
-import com.auction.dto.User;
+import com.bdlions.dto.Message;
+import com.bdlions.dto.MessageText;
+import com.bdlions.dto.Product;
+import com.bdlions.dto.User;
 import com.auction.util.TimeUtils;
 import java.util.ArrayList;
 import java.util.Hashtable;

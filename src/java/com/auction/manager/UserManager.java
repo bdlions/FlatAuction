@@ -1,12 +1,12 @@
 package com.auction.manager;
 
 import com.auction.db.HibernateUtil;
-import com.auction.dto.Amenity;
-import com.auction.dto.Product;
-import com.auction.dto.ProductAmenities;
-import com.auction.dto.Role;
-import com.auction.dto.User;
-import com.auction.dto.UserRoles;
+import com.bdlions.dto.Amenity;
+import com.bdlions.dto.Product;
+import com.bdlions.dto.ProductAmenities;
+import com.bdlions.dto.Role;
+import com.bdlions.dto.User;
+import com.bdlions.dto.UserRoles;
 import com.auction.util.Constants;
 import java.util.ArrayList;
 import java.util.List;

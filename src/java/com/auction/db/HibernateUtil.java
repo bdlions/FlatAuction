@@ -5,7 +5,7 @@
  */
 package com.auction.db;
 
-import com.auction.dto.Role;
+import com.bdlions.dto.Role;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;

@@ -1,8 +1,8 @@
 package com.auction.manager;
 
 import com.auction.db.HibernateUtil;
-import com.auction.dto.AccountSettingFA;
-import com.auction.dto.Currency;
+import com.bdlions.dto.AccountSettingFA;
+import com.bdlions.dto.Currency;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;

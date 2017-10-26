@@ -5,7 +5,7 @@
  */
 package com.auction.servlet;
 
-import com.auction.dto.AccountStatus;
+import com.bdlions.dto.AccountStatus;
 import com.auction.manager.UserManager;
 import com.auction.util.Constants;
 import com.auction.util.FacebookConfig;
@@ -89,15 +89,15 @@ public class SocialAuthServlet extends HttpServlet {
                             String userId = user.getId();
                             
                             UserManager userManager = new UserManager();
-                            com.auction.dto.User userDTO = userManager.getUserProfileByFbCode(userId);
+                            com.bdlions.dto.User userDTO = userManager.getUserProfileByFbCode(userId);
                             String password = "dummy";
                             if(userDTO == null)
                             {
                                 //fb code doesn't exist
-                                com.auction.dto.User newUser = new com.auction.dto.User();
+                                com.bdlions.dto.User newUser = new com.bdlions.dto.User();
                                 if(!StringUtils.isNullOrEmpty(user.getEmail()))
                                 {
-                                    com.auction.dto.User checkUser = userManager.getUserByIdentity(user.getEmail());
+                                    com.bdlions.dto.User checkUser = userManager.getUserByIdentity(user.getEmail());
                                     //register a new user via fb
                                     if(checkUser == null)
                                     {
