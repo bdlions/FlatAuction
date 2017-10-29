@@ -5,7 +5,10 @@
  */
 package com.auction.db;
 
+import com.bdlions.dto.Role;
 import java.util.ArrayList;
+import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
@@ -41,7 +44,21 @@ public class HibernateUtil {
         //getTransaction().getStatus() != TransactionStatus.ACTIVE
         for(int i = 0; i < sessions.size() ;  i ++){
             if(sessions.get(i).getTransaction().getLocalStatus() != LocalStatus.ACTIVE){
-                return sessions.get(i);
+                Session tempSession = sessions.get(i);
+                try
+                {
+                    //a dummy call to check whether session is valid or not
+                    tempSession.beginTransaction();
+                    Query query = tempSession.createSQLQuery("select * from roles");
+                    List<Role> roles = query.list();
+                    tempSession.getTransaction().commit();
+                    return tempSession;
+                }
+                catch(Exception ex)
+                {
+                    //if there is exception then we will use next session in array list
+                }
+                //return sessions.get(i);
             }
         }
         Session session = sessionFactory.openSession();

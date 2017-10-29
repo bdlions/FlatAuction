@@ -1,8 +1,8 @@
 package com.auction.packet;
 
 import org.bdlions.transport.packet.IPacketHeader;
-import com.auction.util.ACTION;
-import com.auction.util.REQUEST_TYPE;
+import com.bdlions.util.ACTION;
+import com.bdlions.util.REQUEST_TYPE;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

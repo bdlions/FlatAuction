@@ -22,6 +22,12 @@ public class Constants {
     public static final int IMG_PROFILE_PIC_HEIGHT = 150;
     public static final String PROFILE_PIC_PATH = "resources/images/profile/";
     public static final String IMG_PROFILE_PIC_PATH_150_150 = "resources/images/profile/150_150";
+    public static final int IMG_PROFILE_PIC_WIDTH_150  = 150;
+    public static final int IMG_PROFILE_PIC_HEIGHT_150 = 150;
+    
+    public static final String IMG_PROFILE_PIC_PATH_50_50 = "resources/images/profile/50_50";
+    public static final int IMG_PROFILE_PIC_WIDTH_50  = 50;
+    public static final int IMG_PROFILE_PIC_HEIGHT_50 = 50;
     
     public static final String USER_DOCUMENT_PATH = "resources/images/profile/document/";
     
@@ -37,5 +43,9 @@ public class Constants {
     public static final String PRODUCT_IMAGE_PATH = "resources/images/product/";
     public static final String IMG_PRODUCT_PATH_328_212 = "resources/images/product/328_212";
     public static final String IMG_PRODUCT_PATH_656_424 = "resources/images/product/656_424";
+    
+    public static final String IMG_PRODUCT_PATH_103_87 = "resources/images/product/103_87";
+    public static final int IMG_PRODUCT_LIST_WIDTH_103  = 103;
+    public static final int IMG_PRODUCT_LIST_HEIGHT_87 = 87;
     
 }

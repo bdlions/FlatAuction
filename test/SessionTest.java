@@ -1,5 +1,5 @@
 
-import com.auction.dto.Credential;
+import com.bdlions.dto.Credential;
 import com.auction.util.DBUserProvider;
 import org.bdlions.session.ISession;
 import org.bdlions.session.UserSessionManagerImpl;

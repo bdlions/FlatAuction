@@ -5,26 +5,26 @@
  */
 package com.auction.request.handler;
 
-import com.auction.dto.Credential;
+import com.bdlions.dto.Credential;
 import org.bdlions.transport.packet.IPacket;
 import org.bdlions.session.ISession;
 import org.bdlions.session.ISessionManager;
-import com.auction.util.ACTION;
-import com.auction.commons.ClientMessages;
+import com.bdlions.util.ACTION;
+import com.bdlions.commons.ClientMessages;
 import com.auction.commons.HibernateProxyTypeAdapter;
-import com.auction.dto.AccountSettingFA;
-import com.auction.dto.AccountStatus;
-import com.auction.dto.Currency;
-import com.auction.dto.CurrencyUnit;
-import com.auction.dto.Image;
-import com.auction.dto.Message;
-import com.auction.dto.Product;
-import com.auction.dto.ProductBid;
-import com.auction.dto.SavedProduct;
-import com.auction.dto.User;
-import com.auction.dto.response.ClientResponse;
-import com.auction.dto.response.GeneralResponse;
-import com.auction.dto.response.SignInResponse;
+import com.bdlions.dto.AccountSettingFA;
+import com.bdlions.dto.AccountStatus;
+import com.bdlions.dto.Currency;
+import com.bdlions.dto.CurrencyUnit;
+import com.bdlions.dto.Image;
+import com.bdlions.dto.Message;
+import com.bdlions.dto.Product;
+import com.bdlions.dto.ProductBid;
+import com.bdlions.dto.SavedProduct;
+import com.bdlions.dto.User;
+import com.bdlions.dto.response.ClientResponse;
+import com.bdlions.dto.response.GeneralResponse;
+import com.bdlions.dto.response.SignInResponse;
 import com.auction.library.ImageLibrary;
 import com.auction.library.SendMail;
 import com.auction.manager.FeaturedAdManager;
@@ -89,6 +89,7 @@ public class AuthHandler {
         try{
             session = sessionManager.createSession(credential);
         }catch(UnknownAccountException uae){
+            logger.error(uae.toString());
             response.setMessage(ClientMessages.INVALID_CREDENTIAL);
             response.setSuccess(false);
             return response;
@@ -282,6 +283,10 @@ public class AuthHandler {
                         String imgProductPath328_212 = RequestHandler.class.getClassLoader().getResource(Constants.SERVER_ROOT_DIR + Constants.IMG_PRODUCT_PATH_328_212).getFile();
                         ImageLibrary imageLibrary = new ImageLibrary();
                         imageLibrary.resizeImage(uploadPath + imageFileName, imgProductPath328_212 + imageFileName, Constants.IMG_PRODUCT_LIST_WIDTH, Constants.IMG_PRODUCT_LIST_HEIGHT);
+                        
+                        //resize image to 328px to 212px
+                        String imgProductPath103_87 = RequestHandler.class.getClassLoader().getResource(Constants.SERVER_ROOT_DIR + Constants.IMG_PRODUCT_PATH_103_87).getFile();
+                        imageLibrary.resizeImage(uploadPath + imageFileName, imgProductPath103_87 + imageFileName, Constants.IMG_PRODUCT_LIST_WIDTH_103, Constants.IMG_PRODUCT_LIST_HEIGHT_87);
                         
                         //resize image to 656px to 424px
                         String imgProductPath658_424 = RequestHandler.class.getClassLoader().getResource(Constants.SERVER_ROOT_DIR + Constants.IMG_PRODUCT_PATH_656_424).getFile();

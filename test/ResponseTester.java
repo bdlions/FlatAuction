@@ -1,6 +1,6 @@
 
-import com.auction.dto.ProductList;
-import com.auction.dto.response.ClientResponse;
+import com.bdlions.dto.ProductList;
+import com.bdlions.dto.response.ClientResponse;
 import com.auction.request.handler.RequestHandler;
 import com.google.gson.Gson;
 import java.net.InetAddress;

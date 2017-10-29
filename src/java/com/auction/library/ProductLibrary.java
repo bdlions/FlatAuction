@@ -1,7 +1,7 @@
 package com.auction.library;
 
-import com.auction.dto.Stat;
-import com.auction.dto.StayList;
+import com.bdlions.dto.Stat;
+import com.bdlions.dto.StayList;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

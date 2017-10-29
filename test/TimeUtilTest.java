@@ -46,8 +46,8 @@ public class TimeUtilTest {
         TimeUtils timeUtils = new TimeUtils();
         long currentTime = timeUtils.getCurrentTime();
         System.out.println(currentTime);
-        System.out.println(timeUtils.convertUnixToHuman(currentTime));
-        System.out.println(timeUtils.convertUnixToHumanDate(currentTime));
+        //System.out.println(timeUtils.convertUnixToHuman(currentTime));
+        //System.out.println(timeUtils.convertUnixToHumanDate(currentTime));
         System.out.println(timeUtils.convertUnixToHumanTime(currentTime));
         
 //        String date = timeUtils.getCurrentDate();

@@ -69,7 +69,7 @@ public class TimeUtils {
         SimpleDateFormat sdf = new SimpleDateFormat("h a"); // the format of your date
         sdf.setTimeZone(TimeZone.getTimeZone("GMT")); // give a timezone reference for formating (see comment at the bottom
         String formattedDate = sdf.format(date);
-        return formattedDate;
+        return this.convertTimeFormatFrom12To24(formattedDate);
     }
     
     public long getHumanToUnix(String date, String dateFormat)
@@ -166,81 +166,164 @@ public class TimeUtils {
         long offset = 0;
         switch(time)
         {
-            case "12 AM" : 
+            case "00:00" : 
                 offset = 0 * 3600;
                 break;
-            case "1 AM" : 
+            case "01:00" : 
                 offset = 1 * 3600;
                 break;
-            case "2 AM" : 
+            case "02:00" : 
                 offset = 2 * 3600;
                 break;
-            case "3 AM" : 
+            case "03:00" : 
                 offset = 3 * 3600;
                 break;
-            case "4 AM" : 
+            case "04:00" : 
                 offset = 4 * 3600;
                 break;
-            case "5 AM" : 
+            case "05:00" : 
                 offset = 5 * 3600;
                 break;
-            case "6 AM" : 
+            case "06:00" : 
                 offset = 6 * 3600;
                 break;
-            case "7 AM" : 
+            case "07:00" : 
                 offset = 7 * 3600;
                 break;
-            case "8 AM" : 
+            case "08:00" : 
                 offset = 8 * 3600;
                 break;
-            case "9 AM" : 
+            case "09:00" : 
                 offset = 9 * 3600;
                 break;
-            case "10 AM" : 
+            case "10:00" : 
                 offset = 10 * 3600;
                 break;
-            case "11 AM" : 
+            case "11:00" : 
                 offset = 11 * 3600;
                 break;
-            case "12 PM" : 
+            case "12:00" : 
                 offset = 12 * 3600;
                 break;
-            case "1 PM" : 
+            case "13:00" : 
                 offset = 13 * 3600;
                 break;
-            case "2 PM" : 
+            case "14:00" : 
                 offset = 14 * 3600;
                 break;
-            case "3 PM" : 
+            case "15:00" : 
                 offset = 15 * 3600;
                 break;
-            case "4 PM" : 
+            case "16:00" : 
                 offset = 16 * 3600;
                 break;
-            case "5 PM" : 
+            case "17:00" : 
                 offset = 17 * 3600;
                 break;
-            case "6 PM" : 
+            case "18:00" : 
                 offset = 18 * 3600;
                 break;
-            case "7 PM" : 
+            case "19:00" : 
                 offset = 19 * 3600;
                 break;
-            case "8 PM" : 
+            case "20:00" : 
                 offset = 20 * 3600;
                 break;
-            case "9 PM" : 
+            case "21:00" : 
                 offset = 21 * 3600;
                 break;
-            case "10 PM" : 
+            case "22:00" : 
                 offset = 22 * 3600;
                 break;
-            case "11 PM" : 
+            case "23:00" : 
                 offset = 23 * 3600;
                 break;
             default:
                 offset = 0;
         }
         return offset;
+    }
+    
+    public String convertTimeFormatFrom12To24(String time)
+    {
+        String convertedFormat;
+        switch(time)
+        {
+            case "12 AM" : 
+                convertedFormat = "00:00";
+                break;
+            case "1 AM" : 
+                convertedFormat = "01:00";
+                break;
+            case "2 AM" : 
+                convertedFormat = "02:00";
+                break;
+            case "3 AM" : 
+                convertedFormat = "03:00";
+                break;
+            case "4 AM" : 
+                convertedFormat = "04:00";
+                break;
+            case "5 AM" : 
+                convertedFormat = "05:00";
+                break;
+            case "6 AM" : 
+                convertedFormat = "06:00";
+                break;
+            case "7 AM" : 
+                convertedFormat = "07:00";
+                break;
+            case "8 AM" : 
+                convertedFormat = "08:00";
+                break;
+            case "9 AM" : 
+                convertedFormat = "09:00";
+                break;
+            case "10 AM" : 
+                convertedFormat = "10:00";
+                break;
+            case "11 AM" : 
+                convertedFormat = "11:00";
+                break;
+            case "12 PM" : 
+                convertedFormat = "12:00";
+                break;
+            case "1 PM" : 
+                convertedFormat = "13:00";
+                break;
+            case "2 PM" : 
+                convertedFormat = "14:00";
+                break;
+            case "3 PM" : 
+                convertedFormat = "15:00";
+                break;
+            case "4 PM" : 
+                convertedFormat = "16:00";
+                break;
+            case "5 PM" : 
+                convertedFormat = "17:00";
+                break;
+            case "6 PM" : 
+                convertedFormat = "18:00";
+                break;
+            case "7 PM" : 
+                convertedFormat = "19:00";
+                break;
+            case "8 PM" : 
+                convertedFormat = "20:00";
+                break;
+            case "9 PM" : 
+                convertedFormat = "21:00";
+                break;
+            case "10 PM" : 
+                convertedFormat = "22:00";
+                break;
+            case "11 PM" : 
+                convertedFormat = "23:00";
+                break;
+            default:
+                convertedFormat = "24:00";
+        }
+        return convertedFormat;
     }
 }

@@ -1,8 +1,8 @@
 
 import com.auction.db.HibernateUtil;
-import com.auction.dto.AccountSettingFA;
-import com.auction.dto.Currency;
-import com.auction.dto.User;
+import com.bdlions.dto.AccountSettingFA;
+import com.bdlions.dto.Currency;
+import com.bdlions.dto.User;
 import com.auction.manager.FeaturedAdManager;
 import org.hibernate.Session;
 import org.junit.Test;

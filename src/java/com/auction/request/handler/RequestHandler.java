@@ -6,39 +6,39 @@
 package com.auction.request.handler;
 
 import com.auction.commons.HibernateProxyTypeAdapter;
-import com.auction.dto.AccountSettingFA;
-import com.auction.dto.AmenityList;
-import com.auction.dto.AvailabilityList;
-import com.auction.dto.ProductBidList;
-import com.auction.dto.LocationList;
-import com.auction.dto.Message;
-import com.auction.dto.MessageList;
-import com.auction.dto.OccupationList;
-import com.auction.dto.PetList;
-import com.auction.dto.PriceList;
-import com.auction.dto.Product;
-import com.auction.dto.ProductBid;
-import com.auction.dto.ProductCategoryList;
-import com.auction.dto.ProductList;
-import com.auction.dto.ProductSizeList;
-import com.auction.dto.ProductTypeList;
-import com.auction.dto.Role;
-import com.auction.dto.RoleList;
-import com.auction.dto.SearchParams;
-import com.auction.dto.SmokingList;
-import com.auction.dto.Stat;
-import com.auction.dto.StatList;
-import com.auction.dto.StatParams;
-import com.auction.dto.StayList;
-import com.auction.dto.User;
-import com.auction.dto.UserList;
+import com.bdlions.dto.AccountSettingFA;
+import com.bdlions.dto.AmenityList;
+import com.bdlions.dto.AvailabilityList;
+import com.bdlions.dto.ProductBidList;
+import com.bdlions.dto.LocationList;
+import com.bdlions.dto.Message;
+import com.bdlions.dto.MessageList;
+import com.bdlions.dto.OccupationList;
+import com.bdlions.dto.PetList;
+import com.bdlions.dto.PriceList;
+import com.bdlions.dto.Product;
+import com.bdlions.dto.ProductBid;
+import com.bdlions.dto.ProductCategoryList;
+import com.bdlions.dto.ProductList;
+import com.bdlions.dto.ProductSizeList;
+import com.bdlions.dto.ProductTypeList;
+import com.bdlions.dto.Role;
+import com.bdlions.dto.RoleList;
+import com.bdlions.dto.SearchParams;
+import com.bdlions.dto.SmokingList;
+import com.bdlions.dto.Stat;
+import com.bdlions.dto.StatList;
+import com.bdlions.dto.StatParams;
+import com.bdlions.dto.StayList;
+import com.bdlions.dto.User;
+import com.bdlions.dto.UserList;
 import org.bdlions.transport.packet.IPacket;
 import org.bdlions.session.ISession;
 import org.bdlions.session.ISessionManager;
-import com.auction.util.ACTION;
-import com.auction.dto.response.ClientResponse;
-import com.auction.dto.response.GeneralResponse;
-import com.auction.dto.response.SignInResponse;
+import com.bdlions.util.ACTION;
+import com.bdlions.dto.response.ClientResponse;
+import com.bdlions.dto.response.GeneralResponse;
+import com.bdlions.dto.response.SignInResponse;
 import com.auction.exceptions.InvalidRequestException;
 import com.auction.library.ImageLibrary;
 import com.auction.library.ProductLibrary;
@@ -563,7 +563,9 @@ public class RequestHandler {
         Gson gson = new Gson();
         User user = gson.fromJson(packet.getPacketBody(), User.class);
         //read image from temp directory and place into user profile picture directory
+        logger.debug("-------------------------imageFileName1:"+user.getImg());
         String imageFileName = user.getImg().trim().replaceAll("\n", "");
+        logger.debug("-------------------------imageFileName2:"+imageFileName);
         user.setImg(imageFileName);
         if(!StringUtils.isNullOrEmpty(imageFileName))
         {
@@ -571,14 +573,18 @@ public class RequestHandler {
             String uploadPath = RequestHandler.class.getClassLoader().getResource(Constants.SERVER_ROOT_DIR + Constants.IMAGE_UPLOAD_PATH).getFile();
             String profilePicPath = RequestHandler.class.getClassLoader().getResource(Constants.SERVER_ROOT_DIR + Constants.PROFILE_PIC_PATH).getFile();
             //System.out.println(root);
-            
+            logger.debug("--------------------------------Source Path:"+uploadPath + imageFileName+", Destination Path"+profilePicPath + imageFileName);
             //copy actual image
             FileUtils.copyFile(uploadPath + imageFileName, profilePicPath + imageFileName);
             
             //resize image to 150px to 150px
             String profilePicPath150_150 = RequestHandler.class.getClassLoader().getResource(Constants.SERVER_ROOT_DIR + Constants.IMG_PROFILE_PIC_PATH_150_150).getFile();
             ImageLibrary imageLibrary = new ImageLibrary();
-            imageLibrary.resizeImage(uploadPath + imageFileName, profilePicPath150_150 + imageFileName, Constants.IMG_PROFILE_PIC_WIDTH, Constants.IMG_PROFILE_PIC_HEIGHT);
+            imageLibrary.resizeImage(uploadPath + imageFileName, profilePicPath150_150 + imageFileName, Constants.IMG_PROFILE_PIC_WIDTH_150, Constants.IMG_PROFILE_PIC_HEIGHT_150);
+            
+            //resize image to 50px to 50px
+            String profilePicPath50_50 = RequestHandler.class.getClassLoader().getResource(Constants.SERVER_ROOT_DIR + Constants.IMG_PROFILE_PIC_PATH_50_50).getFile();
+            imageLibrary.resizeImage(uploadPath + imageFileName, profilePicPath50_50 + imageFileName, Constants.IMG_PROFILE_PIC_WIDTH_50, Constants.IMG_PROFILE_PIC_HEIGHT_50);
         }
         UserManager userManager = new UserManager();
         userManager.updateUserProfile(user);

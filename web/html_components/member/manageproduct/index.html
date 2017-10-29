@@ -95,7 +95,7 @@
                                     <div class="tab-pane" id="step2">
                                         <div class="row form-group">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <h5 class="create-ad-label">Price (£)</h5>
+                                                <h5 class="create-ad-label">Guide Price (£)</h5>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                                                 <input [(ngModel)]="product.basePrice" class="form-control input-custom-field" name="base_price" placeholder="Price" type="text" />
@@ -395,7 +395,7 @@
                                     <div class="tab-pane" id="step7">
                                         <div class="row form-group">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <h5 class="create-ad-label">Bid Start</h5>
+                                                <h5 class="create-ad-label">Auction Start Date</h5>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                                                 <input name="bidStartDate" class="form-control input-custom-field" type="text" 
@@ -411,14 +411,14 @@
                                                 <h5 class="create-ad-label"></h5>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-                                                <select [(ngModel)]="product.bidStartTime" name="bidStartTime" class="form-control select-custom-field">
-                                                    <option *ngFor="let availableTime of availableTimeList" [ngValue]="availableTime.title">{{availableTime.title}}</option>
+                                                <select [(ngModel)]="selectedBidStartTime" name="selectedBidStartTime" class="form-control select-custom-field">
+                                                    <option *ngFor="let bidTime of bidTimeList" [ngValue]="bidTime">{{bidTime.title}}</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="row form-group">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <h5 class="create-ad-label">Bid End</h5>
+                                                <h5 class="create-ad-label">Auction End Date</h5>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                                                 <input name="bidEndDate" class="form-control input-custom-field" type="text" 
@@ -434,8 +434,8 @@
                                                 <h5 class="create-ad-label"></h5>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-                                                <select [(ngModel)]="product.bidEndTime" name="bidEndTime" class="form-control select-custom-field">
-                                                    <option *ngFor="let availableTime of availableTimeList" [ngValue]="availableTime.title">{{availableTime.title}}</option>
+                                                <select [(ngModel)]="selectedBidEndTime" name="selectedBidEndTime" class="form-control select-custom-field">
+                                                    <option *ngFor="let bidTime of bidTimeList" [ngValue]="bidTime">{{bidTime.title}}</option>
                                                 </select>
                                             </div>
                                         </div>
